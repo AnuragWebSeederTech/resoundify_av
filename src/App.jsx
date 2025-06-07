@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection.jsx'
 import WhyResoundify from './components/WhyResoundify.jsx'
 import ExploreOurRange from './components/ExploreOurRange.jsx'
 import JoinCommunitySection from './components/JoinCommunitySection.jsx'
+import Footer from "./components/Footer";
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <WhyResoundify />
       <ExploreOurRange />
       <JoinCommunitySection />
+      <Footer />
     </>
   )
 }
