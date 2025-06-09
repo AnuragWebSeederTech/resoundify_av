@@ -10,7 +10,7 @@ const slides = [
 const SliderText = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Change slide every 4 seconds
+  // Change slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -32,7 +32,10 @@ const SliderText = () => {
             key={index}
             className="flex-shrink-0 w-full flex items-center justify-center px-4"
           >
-            <p className="text-xl md:text-4xl font-semibold text-gray-800 text-center">{text}</p>
+            {/* Text color changed to black as requested */}
+            <p className="text-xl md:text-4xl font-semibold text-black text-center">
+              {text}
+            </p>
           </div>
         ))}
       </div>
@@ -45,20 +48,25 @@ const HeroSectionWithSlider = () => {
     <div className="h-[70vh] relative w-full rounded-b-4xl overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center "
+        className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/images/HeroSectionImg.jpg')", // Replace with your image path
+          backgroundImage: "url('/images/HeroSectionImg.jpg')", // Ensure this image has sufficient contrast
         }}
       ></div>
 
-      {/* Overlay with semi-transparent background for readability */}
-      <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-center p-4 gap-10">
+      {/* Overlay with subtle gradient for readability and aesthetic. */}
+      {/* Note: With black text, you might need to adjust this overlay further 
+          to be much lighter for the text to be clearly visible. */}
+      <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/70 via-transparent to-indigo-950/40 flex flex-col justify-center items-center p-4 gap-10">
         {/* Slider Text */}
         <SliderText />
-        {/* Call to Action Button */}
-        <button className="bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded hover:bg-gray-200 transition duration-300">
+        {/* Call to Action Button: Updated style to match brand's primary accent color */}
+        <a
+          href="#learn-more"
+          className="inline-block bg-indigo-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-indigo-600 hover:scale-105 transition-all duration-300 ease-in-out"
+        >
           LEARN MORE
-        </button>
+        </a>
       </div>
     </div>
   );

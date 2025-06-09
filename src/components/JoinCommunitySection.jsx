@@ -2,25 +2,32 @@ import React from 'react';
 
 const JoinCommunitySection = () => {
   return (
-    <section className="relative py-20 px-6 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 overflow-hidden">
-      {/* Decorative abstract shapes */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 opacity-20" />
+    // Updated background to a subtle, consistent light grey/off-white for better visual flow
+    // and contrast with the darker sections, avoiding the pastel gradient.
+    <section className="relative py-20 px-6 bg-gray-50 text-gray-800 overflow-hidden">
+      {/* Removed the strong background gradient overlay, relying on a simpler, cleaner base.
+          Could add very subtle, abstract shapes from the main brand colors if desired, but keep it minimal. */}
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 opacity-20" /> */}
 
-      <div className="relative mx-auto flex flex-col lg:flex-row items-center lg:items-center lg:justify-between z-10 space-y-8 lg:space-y-0 lg:space-x-8">
+      <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-center lg:justify-between z-10 space-y-8 lg:space-y-0 lg:space-x-8">
         {/* Text Content */}
-        <div className="lg:w-1/2 text-center lg:text-left px-4 pl-10">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide text-gray-800">
+        <div className="lg:w-1/2 text-center lg:text-left px-4 lg:pl-10">
+          {/* Main heading color, ensured good contrast on light background */}
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide text-gray-900">
             Join the Resoundify Community
           </h2>
-          <p className="mb-8 text-lg md:text-xl text-gray-600 leading-relaxed">
+          {/* Body text color, ensured good contrast */}
+          <p className="mb-8 text-lg md:text-xl text-gray-700 leading-relaxed">
             At Resoundify, we believe in the power of sound to inspire, connect, and transform. Let us help you create audio-visual experiences that resonate. Explore our products, connect with our team, and experience the future of AV with Resoundify.
           </p>
-          <p className="mb-8 text-lg md:text-xl font-semibold text-gray-700">
+          {/* Emphasized text, ensured good contrast */}
+          <p className="mb-8 text-lg md:text-xl font-semibold text-indigo-700"> {/* Changed to a darker indigo for emphasis */}
             Resoundify – Where Sound Meets Innovation.
           </p>
+          {/* "Join the Community" Button: Updated to match the consistent brand accent color */}
           <a
             href="#"
-            className="inline-block bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-300"
+            className="inline-block bg-indigo-500 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-indigo-600 hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out"
           >
             Join the Community
           </a>
@@ -36,11 +43,12 @@ const JoinCommunitySection = () => {
         </div>
       </div>
 
-      {/* Floating decorative elements */}
-      <div className="absolute top-10 left-10 w-24 h-24 bg-purple-200 rounded-full opacity-15 animate-bounce-slow" />
-      <div className="absolute bottom-10 right-10 w-20 h-20 bg-pink-200 rounded-full opacity-15 animate-bounce-slow" />
+      {/* Floating decorative elements: Updated colors to align with the new palette.
+          Using very light opacity to keep them subtle on a light background. */}
+      <div className="absolute top-10 left-10 w-24 h-24 bg-indigo-200 rounded-full opacity-30 animate-bounce-slow" />
+      <div className="absolute bottom-10 right-10 w-20 h-20 bg-blue-200 rounded-full opacity-20 animate-bounce-slow" />
 
-      {/* Custom bounce animation */}
+      {/* Custom bounce animation (kept as is) */}
       <style jsx>{`
         @keyframes bounce-slow {
           0%, 100% {
