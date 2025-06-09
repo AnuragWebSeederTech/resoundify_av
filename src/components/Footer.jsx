@@ -72,7 +72,7 @@ const Footer = () => {
           </a>
         </div>
         <p className="text-sm mt-4 lg:mt-0">
-          Powered by <span className="text-blue-800 font-medium">Webseeder Technologies</span>
+          Designed & developed by <span className="text-blue-800 font-medium">Webseeder Technologies</span>
         </p>
       </div>
     </footer>
