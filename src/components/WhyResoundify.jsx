@@ -31,9 +31,9 @@ const features = [
 const WhyResoundify = () => {
   return (
     // Section with background GIF and overlay
-    <section 
-      className="relative py-24 px-8 text-white overflow-hidden" 
-      style={{ 
+    <section
+      className="relative py-24 px-8 text-white overflow-hidden"
+      style={{
         backgroundImage: 'url("/images/bgwhy.gif")', // **IMPORTANT: Replace with your actual GIF path**
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -44,7 +44,7 @@ const WhyResoundify = () => {
       <div className="absolute inset-0 bg-indigo-950 opacity-95 z-0"></div> {/* Dark overlay */}
 
       {/* Main Heading (relative z-index to be above overlay) */}
-      <h2 className="relative z-10 text-4xl md:text-5xl font-extrabold text-center mb-20 tracking-wide leading-tight">
+      <h2 className="relative z-10 text-5xl md:text-6xl font-extrabold text-center mb-20 tracking-wide leading-tight">
         Why <span className="text-indigo-400">Resoundify</span>?
       </h2>
       <div className="relative z-10 max-w-7xl mx-auto space-y-24"> {/* Content container with z-index */}
@@ -65,10 +65,10 @@ const WhyResoundify = () => {
             <div className="lg:w-1/2 w-full text-center lg:text-left p-6">
               {React.createElement(feature.icon, { className: "text-6xl mb-8 text-indigo-400 mx-auto lg:mx-0" })}
               <h3
-                className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
+                className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight" // Updated text size and weight
                 dangerouslySetInnerHTML={{ __html: feature.title }}
               />
-              <p className="text-lg md:text-xl leading-relaxed text-indigo-200 font-normal">{feature.description}</p>
+              <p className="text-xl md:text-2xl leading-relaxed text-indigo-200 font-normal">{feature.description}</p> {/* Updated text size and weight */}
             </div>
           </div>
         ))}
