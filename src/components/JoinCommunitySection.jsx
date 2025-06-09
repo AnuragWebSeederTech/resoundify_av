@@ -6,9 +6,9 @@ const JoinCommunitySection = () => {
       {/* Decorative abstract shapes */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 opacity-20" />
 
-      <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-center lg:justify-between z-10 space-y-8 lg:space-y-0 lg:space-x-12">
+      <div className="relative mx-auto flex flex-col lg:flex-row items-center lg:items-center lg:justify-between z-10 space-y-8 lg:space-y-0 lg:space-x-8">
         {/* Text Content */}
-        <div className="lg:w-1/2 text-center lg:text-left px-4">
+        <div className="lg:w-1/2 text-center lg:text-left px-4 pl-10">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide text-gray-800">
             Join the Resoundify Community
           </h2>
@@ -31,7 +31,7 @@ const JoinCommunitySection = () => {
           <img
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" // Example image
             alt="Audio-visual collaboration"
-            className="w-full max-w-md rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-2xl rounded-4xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
           />
         </div>
       </div>
