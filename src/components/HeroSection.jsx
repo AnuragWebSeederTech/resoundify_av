@@ -50,14 +50,14 @@ const HeroSectionWithSlider = () => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/images/HeroSectionImg.jpg')", // Ensure this image has sufficient contrast
+          backgroundImage: "url('/#img')", // Ensure this image has sufficient contrast
         }}
       ></div>
 
       {/* Overlay with subtle gradient for readability and aesthetic. */}
       {/* Note: With black text, you might need to adjust this overlay further 
           to be much lighter for the text to be clearly visible. */}
-      <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/70 via-transparent to-indigo-950/40 flex flex-col justify-center items-center p-4 gap-10">
+      <div className="absolute inset-0 bg-white flex flex-col justify-center items-center p-4 gap-10">
         {/* Slider Text */}
         <SliderText />
         {/* Call to Action Button: Updated style to match brand's primary accent color */}

@@ -3,8 +3,8 @@ import React from 'react';
 const ExploreOurRange = () => {
   return (
     // Background changed to bg-indigo-950 to match TechnologySpotlight
-    <section className="py-24 px-8 bg-indigo-950 text-white text-center">
-      <h2 className="text-5xl lg:text-6xl font-bold mb-8 tracking-wide text-white leading-tight"> {/* Text color changed to white */}
+    <section className="py-24 px-8 bg-white text-black text-center">
+      <h2 className="text-5xl lg:text-6xl font-bold mb-8 tracking-wide text-black leading-tight"> {/* Text color changed to white */}
         Explore Our <span className="text-indigo-400">Range</span> {/* Accent color for dark theme */}
       </h2>
       <p className="text-xl md:text-2xl max-w-4xl mx-auto mb-12 leading-relaxed text-indigo-200"> {/* Text color adjusted for readability on dark background */}

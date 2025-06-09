@@ -3,7 +3,7 @@ import React from 'react';
 const TechnologySpotlight = () => {
   return (
     // Fading dark gradient background
-    <section className="relative py-24 px-8 bg-gradient-to-b from-indigo-900 to-indigo-950 text-white overflow-hidden">
+    <section className="relative py-24 px-8 bg-white text-black overflow-hidden">
       <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-center lg:justify-between z-10 space-y-16 lg:space-y-0 lg:space-x-16">
         {/* Text Content */}
         <div className="lg:w-1/2 text-center lg:text-left">

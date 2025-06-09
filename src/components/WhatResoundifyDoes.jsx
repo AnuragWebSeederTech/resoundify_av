@@ -3,7 +3,7 @@ import React from 'react';
 const WhatResoundifyDoes = () => {
   return (
     // Changed background to a deeper indigo-to-white gradient
-    <section className="py-24 px-8 bg-gradient-to-b from-indigo-300 to-white text-gray-800"> {/* Changed gradient to indigo-300 */}
+    <section className="py-24 px-8 bg-white text-gray-800"> {/* Changed gradient to indigo-300 */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start space-y-16 lg:space-y-0 lg:space-x-16">
         {/* Left Column: Heading and Main Description */}
         <div className="lg:w-1/2 text-center lg:text-left">

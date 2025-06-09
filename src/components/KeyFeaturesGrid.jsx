@@ -31,7 +31,7 @@ const keyFeatures = [
 const KeyFeaturesGrid = () => {
   return (
     // Solid dark background, matching ExploreOurRange
-    <section className="py-24 px-8 bg-indigo-950 text-white">
+    <section className="py-24 px-8 bg-white text-black">
       <h2 className="text-5xl lg:text-6xl font-bold text-center mb-20 tracking-wide leading-tight">
         Key <span className="text-indigo-400">Features</span> {/* Accent color for dark theme */}
       </h2>
