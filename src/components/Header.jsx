@@ -1,72 +1,66 @@
 import React from "react";
-import { FaLinkedin, FaEnvelope, FaPhoneAlt } from "react-icons/fa"; // Added FaEnvelope and FaPhoneAlt
+import { FaLinkedin, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 
 const Header = () => {
   return (
     <header className="w-full shadow-md bg-white z-50 sticky top-0">
-      {/* Top bar - Contact Info: Updated background color for consistency */}
-      <div className="bg-indigo-950 text-indigo-200 text-sm px-6 lg:px-16 py-2 flex justify-between items-center">
-        {/* Adjusted padding and text color for better visual balance and consistency */}
-        {/* Left Side: Empty or Logo if needed (keeping as is for now) */}
+      {/* Top bar - Contact Info */}
+      <div className="bg-gray-100 text-gray-700 text-base px-6 lg:px-16 py-3 flex justify-between items-center"> {/* Increased text-sm to text-base, py-2 to py-3 */}
         <div></div>
 
         {/* Right Side: Contact + LinkedIn */}
         <div className="flex items-center space-x-6 font-medium tracking-wide">
-          {/* Email: Replaced emoji with FaEnvelope icon */}
-          <div className="flex items-center space-x-2 hover:text-indigo-400 transition duration-300 cursor-pointer">
-            <FaEnvelope size={16} /> {/* Using react-icons for consistency */}
+          {/* Email */}
+          <div className="flex items-center space-x-2 hover:text-indigo-600 transition duration-300 cursor-pointer">
+            <FaEnvelope size={18} /> {/* Icon size adjusted */}
             <span>resoundify@example.com</span>
           </div>
 
-          {/* Phone: Replaced emoji with FaPhoneAlt icon */}
-          <div className="flex items-center space-x-2 hover:text-indigo-400 transition duration-300 cursor-pointer">
-            <FaPhoneAlt size={16} /> {/* Using react-icons for consistency */}
+          {/* Phone */}
+          <div className="flex items-center space-x-2 hover:text-indigo-600 transition duration-300 cursor-pointer">
+            <FaPhoneAlt size={18} /> {/* Icon size adjusted */}
             <span>+91-9876543210</span>
           </div>
 
-          {/* LinkedIn: Hover color adjusted */}
+          {/* LinkedIn */}
           <a
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-indigo-400 transition duration-300"
+            className="hover:text-indigo-600 transition duration-300"
           >
-            <FaLinkedin size={20} />
+            <FaLinkedin size={22} /> {/* Icon size adjusted */}
           </a>
         </div>
       </div>
 
       {/* Main Navigation */}
-      {/* Adjusted padding for more consistent alignment with the top bar */}
-      <div className="bg-white flex justify-between items-center px-6 lg:px-16 py-3 mx-auto">
+      <div className="bg-white flex justify-between items-center px-6 lg:px-16 py-4 mx-auto"> {/* py-3 to py-4 */}
         {/* Logo */}
         <div className="flex items-center space-x-4">
           <img
-            src="/images/resoundifyLogo.jpeg" // Ensure this logo has good contrast on white
+            src="/images/resoundifyLogo.jpeg"
             alt="Resoundify Logo"
-            className="h-12 w-auto object-cover rounded-lg"
+            className="h-14 w-auto object-cover rounded-lg" // Increased logo size
           />
         </div>
 
-        {/* Navigation Links: Adjusted text color and hover effect to match new palette */}
-        <nav className="space-x-10 font-semibold text-gray-800 hidden md:flex">
+        {/* Navigation Links */}
+        <nav className="space-x-12 font-semibold text-lg text-gray-700 hidden md:flex"> {/* Increased text-base to text-lg, space-x-10 to space-x-12 */}
           <a
             href="#home"
-            // Changed hover text color and underline color to the brand accent (indigo-600)
             className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             Home
           </a>
           <a
             href="#about"
-            // Changed hover text color and underline color to the brand accent
             className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             About
           </a>
           <a
             href="#contact"
-            // Changed hover text color and underline color to the brand accent
             className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             Contact

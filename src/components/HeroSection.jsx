@@ -45,7 +45,7 @@ const SliderText = () => {
 
 const HeroSectionWithSlider = () => {
   return (
-    <div className="h-[70vh] relative w-full rounded-b-4xl overflow-hidden">
+    <div className="h-[70vh] relative w-full overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"

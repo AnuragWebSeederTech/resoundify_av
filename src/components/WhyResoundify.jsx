@@ -1,51 +1,75 @@
 import React from 'react';
-
-// Icons (optional, can be replaced)
 import { FaMicrophone, FaCheckCircle, FaCogs, FaRocket } from 'react-icons/fa';
 
 const features = [
   {
-    title: 'Dante-Centric Innovation',
+    title: 'Dante-Centric <span class="text-indigo-400">Innovation</span>',
     description: 'Our products seamlessly integrate with Dante, ensuring flawless audio transmission, low latency, and unmatched scalability.',
-    icon: FaMicrophone, // Passing component reference instead of JSX for easier prop passing if needed
+    icon: FaMicrophone,
+    imageUrl: '/images/dante.jpeg',
   },
   {
-    title: 'Uncompromising Quality',
+    title: 'Uncompromising <span class="text-indigo-400">Quality</span>',
     description: 'From crystal-clear audio to robust hardware, we prioritize performance and reliability in every product.',
     icon: FaCheckCircle,
+    imageUrl: '/images/quality.avif',
   },
   {
-    title: 'Simplified Solutions',
+    title: 'Simplified <span class="text-indigo-400">Solutions</span>',
     description: 'Our solutions are designed to be intuitive, user-friendly, and adaptable to your needs.',
     icon: FaCogs,
+    imageUrl: '/images/solution.jpg',
   },
   {
-    title: 'Future-Ready Technology',
+    title: 'Future-Ready <span class="text-indigo-400">Technology</span>',
     description: 'We stay ahead of the curve, offering products compatible with today’s standards and tomorrow’s innovations.',
     icon: FaRocket,
+    imageUrl: '/images/future.webp',
   },
 ];
 
 const WhyResoundify = () => {
   return (
-    // Background remains white, but the cards will use a refined subtle background
-    <section className="py-20 px-6 bg-white">
-      <h2 className="text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-16 tracking-wide">
-        Why Resoundify?
+    // Section with background GIF and overlay
+    <section 
+      className="relative py-24 px-8 text-white overflow-hidden" 
+      style={{ 
+        backgroundImage: 'url("/images/bgwhy.gif")', // **IMPORTANT: Replace with your actual GIF path**
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed', // Makes the GIF parallax scroll
+      }}
+    >
+      {/* Overlay for fading the GIF and ensuring text readability */}
+      <div className="absolute inset-0 bg-indigo-950 opacity-95 z-0"></div> {/* Dark overlay */}
+
+      {/* Main Heading (relative z-index to be above overlay) */}
+      <h2 className="relative z-10 text-4xl md:text-5xl font-extrabold text-center mb-20 tracking-wide leading-tight">
+        Why <span className="text-indigo-400">Resoundify</span>?
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto"> {/* Adjusted to 4 columns for desktop */}
+      <div className="relative z-10 max-w-7xl mx-auto space-y-24"> {/* Content container with z-index */}
         {features.map((feature, index) => (
           <div
             key={index}
-            // Background changed to a very subtle light grey for the cards.
-            // Adjusted padding to standard Tailwind values (e.g., py-12 px-8).
-            // Adjusted mb for title to be a bit smaller.
-            className="flex flex-col items-center justify-center py-12 px-8 bg-gray-50 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl text-center"
+            className={`flex flex-col lg:flex-row items-center justify-between gap-12 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
           >
-            {/* Icon color updated to the consistent brand accent color (indigo-600) */}
-            {React.createElement(feature.icon, { className: "text-5xl mb-6 text-indigo-600" })}
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">{feature.title}</h3> {/* Reduced font size and mb for better balance */}
-            <p className="text-lg text-gray-600">{feature.description}</p> {/* Adjusted font size */}
+            {/* Image Half */}
+            <div className="lg:w-1/2 w-full">
+              <img
+                src={feature.imageUrl}
+                alt={feature.title}
+                className="w-full h-96 object-cover rounded-xl shadow-lg"
+              />
+            </div>
+            {/* Text Content Half */}
+            <div className="lg:w-1/2 w-full text-center lg:text-left p-6">
+              {React.createElement(feature.icon, { className: "text-6xl mb-8 text-indigo-400 mx-auto lg:mx-0" })}
+              <h3
+                className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
+                dangerouslySetInnerHTML={{ __html: feature.title }}
+              />
+              <p className="text-lg md:text-xl leading-relaxed text-indigo-200 font-normal">{feature.description}</p>
+            </div>
           </div>
         ))}
       </div>

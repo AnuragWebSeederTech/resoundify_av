@@ -2,33 +2,37 @@ import React from 'react';
 
 const WhatResoundifyDoes = () => {
   return (
-    <section className="py-20 px-6 bg-white text-gray-800">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start space-y-12 lg:space-y-0 lg:space-x-12">
+    // Changed background to a deeper indigo-to-white gradient
+    <section className="py-24 px-8 bg-gradient-to-b from-indigo-300 to-white text-gray-800"> {/* Changed gradient to indigo-300 */}
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start space-y-16 lg:space-y-0 lg:space-x-16">
         {/* Left Column: Heading and Main Description */}
         <div className="lg:w-1/2 text-center lg:text-left">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-wide text-gray-900">
-            What Resoundify Does
+          {/* Main Heading: text-5xl md:text-6xl, font-extrabold */}
+          <h2 className="text-5xl md:text-6xl font-extrabold mb-8 tracking-wide text-gray-900 leading-tight">
+            What <span className="text-indigo-600">Resoundify</span> Does
           </h2>
-          <p className="mb-6 text-lg md:text-xl leading-relaxed text-gray-700">
+          {/* Paragraphs and list items: text-xl md:text-2xl, font-normal */}
+          <p className="mb-8 text-xl md:text-2xl leading-relaxed text-gray-700 font-normal">
             Resoundify creates smart, high-quality sound and video systems that are perfect for:
           </p>
-          <ul className="list-disc list-inside space-y-3 mb-8 text-lg md:text-xl text-gray-700 font-medium">
+          <ul className="list-disc list-inside space-y-4 mb-10 text-xl md:text-2xl text-gray-700 font-normal">
             <li>Offices & Corporate Spaces</li>
             <li>Educational Institutions (Schools, Universities)</li>
             <li>Hospitality (Hotels, Restaurants)</li>
             <li>Live Event Stages & Venues</li>
           </ul>
-          <p className="mb-8 text-lg md:text-xl leading-relaxed text-gray-700">
+          <p className="mb-8 text-xl md:text-2xl leading-relaxed text-gray-700 font-normal">
             Their products use Dante, a special kind of technology that lets sound move around smoothly over standard network cables — no messy wiring, no delays, no confusion. Whether it’s a small meeting room or a big concert hall, Resoundify’s tools make sure the sound is always clear, fast, and reliable.
           </p>
         </div>
 
-        {/* Right Column: Placeholder for an image or illustration */}
+        {/* Right Column: Image or illustration */}
         <div className="lg:w-1/2 flex justify-center items-center">
-          {/* You can replace this with an actual image or illustration */}
-          <div className="bg-gray-100 rounded-xl p-8 shadow-lg w-full max-w-lg h-64 flex items-center justify-center text-gray-400 text-center">
-            <p>Placeholder for an engaging illustration or image about AV systems.</p>
-          </div>
+          <img
+            src="/images/what.jpg"
+            alt="Illustration of AV systems for various spaces"
+            className="w-full max-w-lg h-96 object-cover rounded-xl shadow-lg"
+          />
         </div>
       </div>
     </section>
