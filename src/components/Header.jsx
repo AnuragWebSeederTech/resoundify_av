@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="w-full shadow-md bg-white z-50 sticky top-0">
       {/* Top bar - Contact Info */}
-      <div className="bg-gray-100 text-gray-700 text-base px-6 lg:px-16 py-3 flex justify-between items-center"> {/* Increased text-sm to text-base, py-2 to py-3 */}
+      <div className="bg-gray-100 text-gray-700 text-base px-6 lg:px-16 py-1.5 flex justify-between items-center"> {/* Increased text-sm to text-base, py-2 to py-3 */}
         <div></div>
 
         {/* Right Side: Contact + LinkedIn */}
@@ -35,7 +35,7 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="bg-white flex justify-between items-center px-6 lg:px-16 py-4 mx-auto"> {/* py-3 to py-4 */}
+      <div className="bg-white flex justify-between items-center px-6 lg:px-16 py-0 mx-auto"> {/* py-3 to py-4 */}
         {/* Logo */}
         <div className="flex items-center space-x-4">
           <img

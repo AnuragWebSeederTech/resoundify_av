@@ -1,75 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const slides = [
-  "Welcome to Resoundify – Elevating Audio-Visual Experiences",
-  "Resoundify delivers next-gen AV experiences that inspire connection and creativity.",
-  "Resoundify: Trusted for seamless, professional Dante audio solutions.",
-  "Create impactful experiences with Resoundify — anytime, anywhere.",
-];
-
-const SliderText = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Change slide every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 5000); // 5000 ms = 5 seconds
-    return () => clearInterval(interval);
-  }, []);
-
+const HeroSection = () => {
   return (
-    <div className="w-full overflow-hidden h-24 md:h-32 flex items-center justify-center bg-transparent relative">
-      <div
-        className="flex transition-transform duration-1000"
-        style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
-          width: `${slides.length * 100}%`,
-        }}
-      >
-        {slides.map((text, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 w-full flex items-center justify-center px-4"
-          >
-            {/* Text color changed to black as requested */}
-            <p className="text-xl md:text-4xl font-semibold text-black text-center">
-              {text}
-            </p>
-          </div>
-        ))}
+    <div className="relative bg-gradient-to-br from-yellow-200 via-orange-200 to-pink-200 overflow-hidden">
+      {/* Background Image with Blur Effect */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/herobg1.jpeg"
+          alt="Background"
+          className="w-full h-full object-cover filter blur-4xl"
+        />
+        {/* Overlay to darken the background for better text contrast */}
+        <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
+
+        {/* Main Heading */}
+        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
+          Connect to Stripe. <br /> Start selling.
+        </h1>
+
+        {/* Description */}
+        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          Outseta is an all-in-one billing system purpose built for SaaS and membership businesses. Payments, subscription management, and tax compliance integrated with your site—and the rest of your tech stack—in minutes.
+        </p>
+
+        {/* Optional Call-to-Action Button */}
+        {/* <button className="mt-6 px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition">
+          Get Started
+        </button> */}
       </div>
     </div>
   );
 };
 
-const HeroSectionWithSlider = () => {
-  return (
-    <div className="h-[70vh] relative w-full overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/#img')", // Ensure this image has sufficient contrast
-        }}
-      ></div>
-
-      {/* Overlay with subtle gradient for readability and aesthetic. */}
-      {/* Note: With black text, you might need to adjust this overlay further 
-          to be much lighter for the text to be clearly visible. */}
-      <div className="absolute inset-0 bg-white flex flex-col justify-center items-center p-4 gap-10">
-        {/* Slider Text */}
-        <SliderText />
-        {/* Call to Action Button: Updated style to match brand's primary accent color */}
-        <a
-          href="#learn-more"
-          className="inline-block bg-indigo-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-indigo-600 hover:scale-105 transition-all duration-300 ease-in-out"
-        >
-          LEARN MORE
-        </a>
-      </div>
-    </div>
-  );
-};
-
-export default HeroSectionWithSlider;
+export default HeroSection;
