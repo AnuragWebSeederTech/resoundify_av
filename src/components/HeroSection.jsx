@@ -1,36 +1,42 @@
+// HeroSection.js
 import React from 'react';
 
 const HeroSection = () => {
   return (
-    <div className="relative bg-gradient-to-br from-yellow-200 via-orange-200 to-pink-200 overflow-hidden">
+    // Ensure font-sans is applied if you want the custom font
+    <div className="h-[75vh] relative  flex items-center font-sans">
       {/* Background Image with Blur Effect */}
       <div className="absolute inset-0">
         <img
-          src="/images/herobg1.jpeg"
+          src="/images/herobg2.jpg"
           alt="Background"
-          className="w-full h-full object-cover filter blur-4xl"
+          className="w-full h-full object-cover filter blur-1xl" // Subtle blur
         />
         {/* Overlay to darken the background for better text contrast */}
-        <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
+      {/* Changed text-left to text-center */}
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center w-full">
 
         {/* Main Heading */}
-        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
-          Connect to Stripe. <br /> Start selling.
+        {/* Re-added opacity-0 for animation start state */}
+        <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 animate-sweep-in-1">
+          Welcome to Resoundify  
         </h1>
 
         {/* Description */}
-        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-          Outseta is an all-in-one billing system purpose built for SaaS and membership businesses. Payments, subscription management, and tax compliance integrated with your site—and the rest of your tech stack—in minutes.
+        {/* Re-added opacity-0 for animation start state, added mx-auto to center block */}
+        <p className="text-3xl md:text-2xl text-gray-300 max-w-2xl mx-auto animate-sweep-in-2">
+         Resoundify is a premier AV brand specializing in cutting-edge Dante-enabled products. We deliver audio-visual solutions that redefine how you connect, communicate, and create.
         </p>
 
         {/* Optional Call-to-Action Button */}
-        {/* <button className="mt-6 px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition">
+        {/* If you uncomment the button, add 'opacity-0 animate-sweep-in-3' to it and 'mx-auto' if it's a block element */}
+         <button className="mt-6 px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition animate-sweep-in-3" >
           Get Started
-        </button> */}
+        </button> 
       </div>
     </div>
   );

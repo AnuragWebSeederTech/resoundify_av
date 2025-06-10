@@ -18,13 +18,13 @@ const features = [
     title: 'Simplified <span class="text-indigo-400">Solutions</span>',
     description: 'Our solutions are designed to be intuitive, user-friendly, and adaptable to your needs.',
     icon: FaCogs,
-    imageUrl: '/images/solution.jpg',
+    imageUrl: '/images/meeting.jpeg',
   },
   {
     title: 'Future-Ready <span class="text-indigo-400">Technology</span>',
     description: 'We stay ahead of the curve, offering products compatible with today’s standards and tomorrow’s innovations.',
     icon: FaRocket,
-    imageUrl: '/images/future.webp',
+    imageUrl: '/images/future2.png',
   },
 ];
 

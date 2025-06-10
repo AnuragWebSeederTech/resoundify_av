@@ -1,19 +1,17 @@
+// Header.js
 import React from "react";
-// Removed react-icons/fa dependency due to compilation error.
-// Replacing with inline SVG icons for better portability within the environment.
 
 const Header = () => {
   return (
-    <header className="w-full shadow-xl bg-white z-50 sticky top-0"> {/* Enhanced shadow for better appeal */}
+    <header className="w-full absolute top-0 left-0 right-0 bg-transparent z-50">
       {/* Top bar - Contact Info */}
-      <div className="bg-gray-100 text-gray-700 text-base px-6 lg:px-16 py-1 flex justify-between items-center"> {/* Increased text-sm to text-base, py-2 to py-3 */}
+      <div className="text-gray-200 text-base px-6 lg:px-16 py-1 flex justify-between items-center"> {/* Removed background and blur classes, changed text to a lighter color for contrast */}
         <div></div>
 
         {/* Right Side: Contact + LinkedIn */}
         <div className="flex items-center space-x-6 font-medium tracking-wide">
           {/* Email */}
-          <div className="flex items-center space-x-2 hover:text-indigo-600 transition duration-300 cursor-pointer">
-            {/* Replaced FaEnvelope with inline SVG */}
+          <div className="flex items-center space-x-2 hover:text-indigo-400 transition duration-300 cursor-pointer"> {/* Adjusted hover color for better visibility */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -33,8 +31,7 @@ const Header = () => {
           </div>
 
           {/* Phone */}
-          <div className="flex items-center space-x-2 hover:text-indigo-600 transition duration-300 cursor-pointer">
-            {/* Replaced FaPhoneAlt with inline SVG */}
+          <div className="flex items-center space-x-2 hover:text-indigo-400 transition duration-300 cursor-pointer"> {/* Adjusted hover color for better visibility */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -57,9 +54,8 @@ const Header = () => {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-indigo-600 transition duration-300"
+            className="hover:text-indigo-400 transition duration-300" // Adjusted hover color for better visibility
           >
-            {/* Replaced FaLinkedin with inline SVG */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22"
@@ -81,7 +77,7 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="bg-white flex justify-between items-center px-6 lg:px-16 py-0 mx-auto"> {/* py-3 to py-4 */}
+      <div className="flex justify-between items-center px-6 lg:px-16 py-0 mx-auto"> {/* Removed background and blur classes */}
         {/* Logo */}
         <div className="flex items-center space-x-4">
           <img
@@ -92,22 +88,22 @@ const Header = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="space-x-12 font-semibold text-lg text-gray-900 hidden md:flex">
+        <nav className="space-x-12 font-semibold text-lg text-white hidden md:flex"> {/* Changed text color to white for contrast */}
           <a
             href="#home"
-            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+            className="relative hover:text-indigo-400 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full" // Adjusted hover/underline color
           >
             Home
           </a>
           <a
             href="#about"
-            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+            className="relative hover:text-indigo-400 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full" // Adjusted hover/underline color
           >
             About
           </a>
           <a
             href="#contact"
-            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+            className="relative hover:text-indigo-400 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full" // Adjusted hover/underline color
           >
             Contact
           </a>
