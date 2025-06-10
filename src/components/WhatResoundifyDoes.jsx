@@ -12,7 +12,7 @@ const WhatResoundifyDoes = () => {
             What <span className="text-indigo-600">Resoundify</span> Does
           </h2>
           {/* Paragraphs and list items: text-xl md:text-2xl, font-normal */}
-          <p className="mb-8 text-xl md:text-2xl leading-relaxed text-gray-700 font-normal">
+          <p className="mb-8 text-xl md:text-2xl leading-relaxed text-black font-normal">
             Resoundify creates smart, high-quality sound and video systems that are perfect for:
           </p>
           <ul className="list-disc list-inside space-y-4 mb-10 text-xl md:text-2xl text-gray-700 font-normal">
