@@ -13,11 +13,11 @@ const JoinCommunitySection = () => {
         {/* Text Content */}
         <div className="lg:w-1/2 text-center lg:text-left px-4 lg:pl-10">
           {/* Main heading color, ensured good contrast on light background */}
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide text-gray-900">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-wide text-gray-900">
             Join the Resoundify Community
           </h2>
           {/* Body text color, ensured good contrast */}
-          <p className="mb-8 text-lg md:text-xl text-gray-700 leading-relaxed">
+          <p className="mb-8 text-lg md:text-xl text-gray-700 leading-relaxed font-light">
             At Resoundify, we believe in the power of sound to inspire, connect, and transform. Let us help you create audio-visual experiences that resonate. Explore our products, connect with our team, and experience the future of AV with Resoundify.
           </p>
           {/* Emphasized text, ensured good contrast */}

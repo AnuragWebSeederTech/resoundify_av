@@ -90,13 +90,13 @@ const Header = () => {
         {/* Navigation Links */}
         <nav className="space-x-12 font-semibold text-lg text-white hidden md:flex"> {/* Changed text color to white for contrast */}
           <a
-            href="#home"
+            href="/"
             className="relative hover:text-indigo-400 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full" // Adjusted hover/underline color
           >
             Home
           </a>
           <a
-            href="#about"
+            href="/about"
             className="relative hover:text-indigo-400 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full" // Adjusted hover/underline color
           >
             About

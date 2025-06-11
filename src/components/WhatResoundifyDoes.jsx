@@ -3,8 +3,10 @@ import React from 'react';
 const WhatResoundifyDoes = () => {
   return (
     <section className="min-h-screen bg-white font-sans relative overflow-hidden">
-      {/* --- Dynamic, Layered Top Section (from previous iteration) --- */}
-      <div className="relative bg-gradient-to-br from-blue-700 to-purple-800 py-24 md:py-32 lg:py-40 px-4 sm:px-8 lg:px-16 text-white text-left overflow-hidden z-10">
+      {/* --- Dynamic, Layered Top Section --- */}
+      {/* Changed gradient direction to 'to-b' (top to bottom) and colors to from-gray-900 to-indigo-900 for a darker, consistent theme. */}
+      <div className="relative bg-gradient-to-b from-gray-900 to-indigo-900 py-24 md:py-32 lg:py-40 px-4 sm:px-8 lg:px-16 text-white text-left overflow-hidden z-10">
+
         {/* Subtle Background Circles/Bubbles for visual texture */}
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="absolute w-64 h-64 bg-black rounded-full -top-16 -left-16 blur-3xl"></div>
@@ -24,7 +26,7 @@ const WhatResoundifyDoes = () => {
               <span className="block text-white text-shadow-xl transform -skew-y-3 inline-block relative -mt-4 md:-mt-8 lg:-mt-10">DOES.</span>
             </h1>
           </div>
-          
+
           {/* Right Side: Core Value Proposition */}
           <div className="md:w-2/5 md:mt-12 text-lg md:text-xl text-blue-100 animate-fade-in-right">
             <p>
@@ -37,7 +39,7 @@ const WhatResoundifyDoes = () => {
         </div>
       </div>
 
-      {/* --- Section Divider / Transition (from previous iteration) --- */}
+      {/* --- Section Divider / Transition --- */}
       <div className="relative -mt-16 md:-mt-20 lg:-mt-4 w-full h-32 bg-white transform -skew-y-3 origin-top-left z-20 shadow-lg overflow-hidden">
         <img
           src="/images/NewLogo.jpeg" // replace with actual path
@@ -45,8 +47,6 @@ const WhatResoundifyDoes = () => {
           className="absolute inset-0 w-full h-full object-cover opacity-100 transform scale-150"
         />
       </div>
-
-
 
       {/* --- Main Content Below Header --- */}
       <div className="py-16 px-4 sm:px-8 lg:px-16 flex flex-col items-center relative z-30">
