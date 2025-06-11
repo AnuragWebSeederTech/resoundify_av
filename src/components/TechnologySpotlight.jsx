@@ -95,7 +95,7 @@ export default function TechnologySpotlight() {
 
                       {/* Connection Line */}
                       <div
-                        className={`absolute top-1/2 left-1/2 origin-left h-0.5 transition-all duration-500 ${
+                        className={`absolute top-1/2 left-21 origin-left h-0.5 transition-all duration-500 ${
                           activeNode === i ? "bg-cyan-400 shadow-lg" : "bg-gray-600"
                         }`}
                         style={{
