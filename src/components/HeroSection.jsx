@@ -4,11 +4,11 @@ import React from 'react';
 const HeroSection = () => {
   return (
     // Ensure font-sans is applied if you want the custom font
-    <div className="h-[75vh] relative  flex items-center font-sans">
+    <div className="h-[70vh] relative  flex items-center font-sans">
       {/* Background Image with Blur Effect */}
       <div className="absolute inset-0">
         <img
-          src="/images/herobg3.avif"
+          src="/images/voicewave.gif"
           alt="Background"
           className="w-full h-full object-cover filter blur-1xl" // Subtle blur
         />
@@ -18,7 +18,7 @@ const HeroSection = () => {
 
       {/* Content */}
       {/* Changed text-left to text-center */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center w-full">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 pt-40 text-center w-full">
 
         {/* Main Heading */}
         {/* Re-added opacity-0 for animation start state */}

@@ -4,28 +4,28 @@ const features = [
     {
         title: 'Dante-Centric <span class="text-cyan-400">Integration</span>',
         description: 'Our products achieve seamless harmony with Dante, ensuring pristine audio transmission, ultra-low latency, and unmatched scalability across complex networks.',
-        imagePlaceholder: 'NETWORK', // Placeholder for image
+        imagePath: '/images/dante.jpeg', // Corrected path example
     },
     {
         title: 'Uncompromising <span class="text-cyan-400">Fidelity</span>',
         description: 'From crystal-clear sonic delivery to aerospace-grade robust hardware, we engineer for peak performance and unwavering reliability in every crafted solution.',
-        imagePlaceholder: 'SONIC', // Placeholder for image
+        imagePath: '/images/Fidelity.png', // Corrected path example
     },
     {
         title: 'Intuitive <span class="text-cyan-400">Command</span>',
         description: 'Our solutions are meticulously designed for intuitive interaction, user-centric simplicity, and intelligent adaptability to your most dynamic requirements.',
-        imagePlaceholder: 'CONTROL', // Placeholder for image
+        imagePath: '/images/future2.png', // Corrected path example
     },
     {
         title: 'Evolving <span class="text-cyan-400">Frontiers</span>',
         description: 'We proactively innovate, delivering products that resonate with today’s rigorous industry benchmarks and seamlessly integrate with tomorrow’s transformative breakthroughs.',
-        imagePlaceholder: 'FUTURE', // Placeholder for image
+        imagePath: '/images/future3.png', // Corrected path example
     },
     // Adding a final page for a concluding message
     {
         title: 'The Resoundify <span class="text-cyan-400">Journey</span>',
         description: 'Thank you for exploring how Resoundify redefines audio technology. We invite you to experience the difference firsthand.',
-        imagePlaceholder: 'LOGO', // Placeholder for image
+        imagePath: '/images/quality.avif', // Corrected path example for a logo
     },
 ];
 
@@ -57,12 +57,13 @@ const WhyResoundify = () => {
     }, [isAnimating, totalFeatures]); // Re-run if isAnimating or totalFeatures changes
 
     const currentFeature = features[currentPageIndex];
+    // These are not directly used in the current display logic for content,
+    // but useful if you plan to show "next" or "previous" content.
     const contentAfterTurn = features[(currentPageIndex + 1) % totalFeatures];
     const contentBeforeTurn = features[(currentPageIndex - 1 + totalFeatures) % totalFeatures];
 
-    // Base64 encoded placeholder image for a subtle circuit pattern
-    const bgImagePlaceholder = '/images/bgwhy.gif';
-
+    // Base64 encoded placeholder image for a subtle circuit pattern - not directly used now
+    // const bgImagePlaceholder = '/images/bgwhy.gif';
 
     return (
         <section
@@ -70,7 +71,7 @@ const WhyResoundify = () => {
         >
             {/* Background Ambience - More dynamic and less flat */}
             <div className="absolute inset-0 z-0 bg-gray-950 opacity-60"
-                 style={{ backgroundImage: 'radial-gradient(circle at center, rgba(99, 102, 241, 0.08) 0%, transparent 70%)' }}>
+                style={{ backgroundImage: 'radial-gradient(circle at center, rgba(99, 102, 241, 0.08) 0%, transparent 70%)' }}>
                 {/* Subtle Moving Grid */}
                 <div className="absolute inset-0 opacity-[0.015]" style={{
                     backgroundImage: 'linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px)',
@@ -93,37 +94,37 @@ const WhyResoundify = () => {
 
             {/* The Activated Quantum Chronicon - Increased Size & Extraordinary Design */}
             <div className="relative w-full max-w-8xl h-[750px] bg-gradient-to-br from-gray-950 to-gray-800 rounded-xl shadow-2xl overflow-hidden flex border border-gray-700/50 perspective-1000"
-                 style={{
+                style={{
                     boxShadow: '0 25px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08) inset, 0 0 80px rgba(99, 102, 241, 0.3) inset', // Deep, emissive shadow
                     backgroundImage: 'linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px), radial-gradient(circle at center, rgba(99, 102, 241, 0.05) 0%, transparent 80%)', // Subtle grid + core glow
                     backgroundSize: '20px 20px, 20px 20px, 100%',
                     backgroundBlendMode: 'overlay, overlay, normal',
-                 }}>
+                }}>
                 {/* Left Side (High-Tech Cover & Hyper-Dynamic Data Spine) */}
                 <div className="relative w-1/2 h-full bg-gradient-to-br from-gray-900 to-gray-700 flex flex-col justify-between items-center p-8 text-center rounded-l-xl border-r border-gray-700/50"
-                     style={{
+                    style={{
                         boxShadow: 'inset -5px 0 15px rgba(0,0,0,0.5)', // Inner shadow for depth
-                     }}>
-                    <h3 className="text-3xl font-bold text-white mb-4 drop-shadow-lg text-shadow-glow mt-8">Quantum Codex</h3>
-                    
-                    {/* Dynamic Image Display Area */}
-                    <div className="relative w-full max-w-sm h-72 flex items-center justify-center rounded-lg overflow-hidden flex-shrink-0 my-4"
-                         style={{
-                             border: '1px solid rgba(0,255,255,0.2)',
-                             boxShadow: 'inset 0 0 20px rgba(0,255,255,0.1), 0 0 30px rgba(0,255,255,0.15)',
-                             background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.3))',
-                         }}>
-                        {/* The dynamic image/visual with fade-in */}
+                    }}>
+                    <h3 className="text-3xl font-bold text-white mb-4 drop-shadow-lg text-shadow-glow mt-8">Resoundify</h3>
+
+                    {/* Dynamic Image Display Area (Left Panel) */}
+                    <div className="relative w-128 max-w-sm h-128 flex items-center justify-center rounded-lg overflow-hidden flex-shrink-0 my-4"
+                        style={{
+                            border: '1px solid rgba(0,255,255,0.2)',
+                            boxShadow: 'inset 0 0 20px rgba(0,255,255,0.1), 0 0 30px rgba(0,255,255,0.15)',
+                            background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.3))',
+                        }}>
+                        {/* The dynamic image with fade-in on the Left Panel */}
                         <div key={currentPageIndex} // Key to force re-render and re-apply animation
-                             className="absolute inset-0 flex items-center justify-center p-4 animate-fade-in-image"
-                             style={{
-                                 // Replace this with actual image URLs if available:
-                                 // backgroundImage: `url(${yourActualImageUrls[currentPageIndex]})`,
-                                 // backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',
-                             }}>
-                             <span className="text-cyan-400 text-6xl font-bold opacity-70 text-shadow-light-cyan">
-                                 {currentFeature.imagePlaceholder}
-                             </span>
+                            className="absolute inset-0 flex items-center justify-center p-4 animate-fade-in-image"
+                        >
+                            {currentFeature.imagePath && ( // Conditionally render if imagePath exists
+                                <img
+                                    src={currentFeature.imagePath}
+                                    alt={`Image for ${currentFeature.title.replace(/<[^>]*>/g, '')}`} // Accessible alt text
+                                    className="w-full h-full object-contain" // Tailwind classes for image styling
+                                />
+                            )}
                         </div>
                         {/* Subtle grid/overlay on top of the image */}
                         <div className="absolute inset-0 opacity-10" style={{
@@ -136,9 +137,9 @@ const WhyResoundify = () => {
 
                     {/* Hyper-Dynamic Data Spine / Binding */}
                     <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-gray-950 to-gray-800 rounded-l-xl border-r border-indigo-700/60 flex flex-col justify-around py-4 opacity-90"
-                         style={{
+                        style={{
                             boxShadow: 'inset 0 0 20px rgba(0,255,255,0.1), 0 0 15px rgba(0,255,255,0.15)', // Glowing spine effect
-                         }}>
+                        }}>
                         {[...Array(12)].map((_, i) => (
                             <div key={i} className="w-full h-0.5 bg-cyan-400 opacity-30 mx-auto animate-pulse-line" style={{animationDelay: `${i * 0.06}s`}}></div>
                         ))}
@@ -149,13 +150,10 @@ const WhyResoundify = () => {
                 </div>
 
                 {/* Right Side (The Dynamic Page Area) - Holographic Page Displays */}
-                <div className="relative w-1/2 h-full bg-black text-gray-900 rounded-r-xl shadow-inner flex flex-col justify-center items-center p-8 transform-style-preserve-3d"
-                     style={{
+                <div className="relative w-1/2 h-full bg-black text-white rounded-r-xl shadow-inner flex flex-col justify-center items-center p-8 transform-style-preserve-3d"
+                    style={{
                         boxShadow: 'inset 1px 0px 10px rgba(0,0,0,0.15)', // More pronounced inner shadow
-                     }}>
-                    {/* The static "underneath" page, showing content that will be revealed */}
-                    
-
+                    }}>
                     {/* The turning page - This is the actual page that visually flips */}
                     <div
                         ref={pageRef}
@@ -166,13 +164,13 @@ const WhyResoundify = () => {
                             zIndex: isAnimating ? 2 : 1, // Ensure turning page is above revealed page
                             boxShadow: isAnimating ? (animationDirection === 'next' ? '10px 0 40px rgba(0,0,0,0.4), 0 0 20px rgba(0,255,255,0.1)' : '-10px 0 40px rgba(0,0,0,0.4), 0 0 20px rgba(0,255,255,0.1)') : 'none', // Stronger shadow + subtle glow on turning edge
                             borderRadius: '0 12px 12px 0', // Match outer book radius
-                            // THIS IS THE LINE WHERE YOU CAN PLACE THE BACKGROUND IMAGE:
+                            // THIS IS THE LINE WHERE YOU PLACE THE BACKGROUND IMAGE FOR THE TURNING PAGE:
                             backgroundImage: `
-                                url(), /* Your new background image here */
+                                url(), /* Your current feature image here */
                                 radial-gradient(circle at 70% 30%, rgba(0,255,255,0.03) 0%, transparent 40%),
                                 linear-gradient(to bottom, rgba(0,0,0,0.01) 1px, transparent 1px),
                                 linear-gradient(to right, rgba(0,0,0,0.005) 1px, transparent 1px),
-                                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIgZmlsbD0iI0YzRjNGMyIgb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg==')`, // Subtle dot pattern
+                                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIgZmlsbD0iI0YzRjNGMiIgb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg==')`, // Subtle dot pattern
                             backgroundSize: 'cover, 100% 100%, 15px 15px, 15px 15px, 20px 20px', // 'cover' for the new image
                             backgroundRepeat: 'no-repeat, no-repeat, repeat, repeat, repeat', // No-repeat for the new image
                             backgroundPosition: 'center center, 100% 100%, 0 0, 0 0, 0 0', // Center for the new image
@@ -199,11 +197,11 @@ const WhyResoundify = () => {
                             opacity: 0.5,
                         }}></div>
 
-                        <h3 className="text-4xl md:text-5xl font-bold mb-4 text-center text-gray-800 drop-shadow-lg text-shadow-light-cyan z-20" dangerouslySetInnerHTML={{ __html: currentFeature.title }}></h3>
-                        <p className="text-lg md:text-xl text-center text-gray-600 max-w-md leading-relaxed text-shadow-subtle z-20">
+                        <h3 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white drop-shadow-lg text-shadow-light-cyan z-20" dangerouslySetInnerHTML={{ __html: currentFeature.title }}></h3>
+                        <p className="text-lg md:text-xl text-center text-white max-w-md leading-relaxed text-shadow-subtle z-20">
                             {currentFeature.description}
                         </p>
-                         {/* Digital Page number */}
+                        {/* Digital Page number */}
                         <div className="absolute bottom-6 right-8 text-gray-400 text-sm opacity-80 flex items-center space-x-1 font-mono z-20">
                             <span className="text-cyan-400 text-xs animate-flicker">&#9679;</span>
                             <span>{(currentPageIndex + 1).toString().padStart(2, '0')}</span>
@@ -244,7 +242,7 @@ const WhyResoundify = () => {
                     100% { transform: rotateY(-180deg); }
                 }
                 .animate-page-turn-next {
-                    animation: page-turn-next 0.8s ease-in-out forwards; /* Reduced duration */
+                    animation: page-turn-next 0.9s ease-in-out forwards; /* Reduced duration */
                 }
 
                 /* Page turn animation for 'previous' */

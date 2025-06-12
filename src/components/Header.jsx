@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="w-full absolute top-0 left-0 right-0 bg-transparent z-50">
       {/* Top bar - Contact Info */}
-      <div className="text-gray-200 text-base px-6 lg:px-16 py-1 flex justify-between items-center"> {/* Removed background and blur classes, changed text to a lighter color for contrast */}
+      <div className="text-white bg-black text-base px-6 lg:px-16 py-1 flex justify-between items-center"> {/* Removed background and blur classes, changed text to a lighter color for contrast */}
         <div></div>
 
         {/* Right Side: Contact + LinkedIn */}
@@ -77,7 +77,7 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="flex justify-between items-center px-6 lg:px-16 py-0 mx-auto"> {/* Removed background and blur classes */}
+      <div className="flex bg-white justify-between items-center px-6 lg:px-16 py-0 mx-auto border-black"> {/* Removed background and blur classes */}
         {/* Logo */}
         <div className="flex items-center space-x-4">
           <img
@@ -88,7 +88,7 @@ const Header = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="space-x-12 font-semibold text-lg text-white hidden md:flex"> {/* Changed text color to white for contrast */}
+        <nav className="space-x-12 font-semibold text-lg text-black hidden md:flex"> {/* Changed text color to white for contrast */}
           <a
             href="/"
             className="relative hover:text-indigo-400 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full" // Adjusted hover/underline color
