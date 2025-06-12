@@ -8,7 +8,7 @@ const HeroSection = () => {
       {/* Background Image with Blur Effect */}
       <div className="absolute inset-0">
         <img
-          src="/images/herobg2.jpg"
+          src="/images/herobg3.avif"
           alt="Background"
           className="w-full h-full object-cover filter blur-1xl" // Subtle blur
         />
@@ -34,7 +34,7 @@ const HeroSection = () => {
 
         {/* Optional Call-to-Action Button */}
         {/* If you uncomment the button, add 'opacity-0 animate-sweep-in-3' to it and 'mx-auto' if it's a block element */}
-         <button className="mt-6 px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition animate-sweep-in-3" >
+         <button className="mt-6 px-8 py-3 bg-blue-950 text-white rounded-lg font-semibold hover:bg-blue-900 transition animate-sweep-in-3" >
           Get Started
         </button> 
       </div>
