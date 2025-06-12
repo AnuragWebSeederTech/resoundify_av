@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 // Products Hero Component
 const ProductsHero = () => {
@@ -334,7 +336,9 @@ const ProductsPage = () => {
       : products.filter((product) => product.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-gray-50 font-inter text-gray-800">
+    <>
+    <Header />
+    <div className="min-h-screen pt-30 bg-gray-50 font-inter text-gray-800">
       {/* Products Hero Section */}
       <ProductsHero />
 
@@ -360,6 +364,8 @@ const ProductsPage = () => {
         </div>
       </section>
     </div>
+    <Footer />
+    </>
   );
 };
 
