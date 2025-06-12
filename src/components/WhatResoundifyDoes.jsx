@@ -5,7 +5,7 @@ const WhatResoundifyDoes = () => {
     <section className="min-h-screen bg-white font-sans relative overflow-hidden">
       {/* --- Dynamic, Layered Top Section --- */}
       {/* Changed gradient direction to 'to-b' (top to bottom) and colors to from-gray-900 to-indigo-900 for a darker, consistent theme. */}
-      <div className="relative bg-gradient-to-b from-gray-900 to-indigo-900 py-24 md:py-32 lg:py-40 px-4 sm:px-8 lg:px-16 text-white text-left overflow-hidden z-10">
+      <div className="relative bg-gradient-to-b from-gray-900 to-blue-950 py-24 md:py-32 lg:py-40 px-4 sm:px-8 lg:px-16 text-white text-left overflow-hidden z-10">
 
         {/* Subtle Background Circles/Bubbles for visual texture */}
         <div className="absolute inset-0 z-0 opacity-10">
