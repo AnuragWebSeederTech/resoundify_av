@@ -1,17 +1,41 @@
-// Header.js
-import React from "react";
+import React, { useState } from "react";
 
 const Header = () => {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchToggle = () => {
+    setIsSearchOpen(!isSearchOpen);
+    setSearchTerm(""); // Clear search term when opening/closing
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      // Here you would typically redirect to a search results page
+      // or trigger a search function.
+      // For demonstration, let's just log the search term.
+      console.log("Searching for:", searchTerm);
+      // Example: window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
+      setIsSearchOpen(false); // Close search bar after submit
+      setSearchTerm(""); // Clear search term
+    }
+  };
+
   return (
     <header className="w-full absolute top-0 left-0 right-0 bg-transparent z-50">
       {/* Top bar - Contact Info */}
-      <div className="text-white bg-black text-base px-6 lg:px-16 py-1 flex justify-between items-center"> {/* Removed background and blur classes, changed text to a lighter color for contrast */}
+      <div className="text-white bg-black text-base px-6 lg:px-16 py-1 flex justify-between items-center">
+        {/* Left side can be used for a slogan or empty as is */}
         <div></div>
-
         {/* Right Side: Contact + LinkedIn */}
         <div className="flex items-center space-x-6 font-medium tracking-wide">
           {/* Email */}
-          <div className="flex items-center space-x-2 hover:text-indigo-400 transition duration-300 cursor-pointer"> {/* Adjusted hover color for better visibility */}
+          <div className="flex items-center space-x-2 hover:text-indigo-400 transition duration-300 cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -29,9 +53,8 @@ const Header = () => {
             </svg>
             <span>resoundify@example.com</span>
           </div>
-
           {/* Phone */}
-          <div className="flex items-center space-x-2 hover:text-indigo-400 transition duration-300 cursor-pointer"> {/* Adjusted hover color for better visibility */}
+          <div className="flex items-center space-x-2 hover:text-indigo-400 transition duration-300 cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -48,13 +71,12 @@ const Header = () => {
             </svg>
             <span>+91-9876543210</span>
           </div>
-
           {/* LinkedIn */}
           <a
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-indigo-400 transition duration-300" // Adjusted hover color for better visibility
+            className="hover:text-indigo-400 transition duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -75,39 +97,119 @@ const Header = () => {
           </a>
         </div>
       </div>
-
       {/* Main Navigation */}
-      <div className="flex bg-white justify-between items-center px-6 lg:px-16 py-0 mx-auto border-black"> {/* Removed background and blur classes */}
+      <div className="flex bg-white justify-between items-center px-6 lg:px-16 py-3 mx-auto shadow-md relative"> {/* Added relative for absolute positioning of search */}
         {/* Logo */}
         <div className="flex items-center space-x-4">
           <img
             src="/images/resoundifyLogo.jpeg"
             alt="Resoundify Logo"
-            className="h-14 w-auto object-cover rounded-lg"
+            className="h-16 w-auto object-cover rounded-lg"
           />
         </div>
-
-        {/* Navigation Links */}
-        <nav className="space-x-12 font-semibold text-lg text-black hidden md:flex"> {/* Changed text color to white for contrast */}
+        {/* Navigation Links and Search */}
+        <nav className="flex items-center space-x-8 font-semibold text-lg text-black hidden md:flex">
           <a
             href="/"
-            className="relative hover:text-indigo-400 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full" // Adjusted hover/underline color
+            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             Home
           </a>
           <a
             href="/about"
-            className="relative hover:text-indigo-400 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full" // Adjusted hover/underline color
+            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             About
           </a>
           <a
+            href="/products"
+            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Products
+          </a>
+          <a
             href="#contact"
-            className="relative hover:text-indigo-400 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full" // Adjusted hover/underline color
+            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             Contact
           </a>
+          {/* Search Icon */}
+          <div
+            className="cursor-pointer hover:text-indigo-600 transition duration-300 ml-8"
+            onClick={handleSearchToggle}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-search"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </div>
         </nav>
+
+        {/* Search Bar */}
+        {isSearchOpen && (
+          <form
+            onSubmit={handleSearchSubmit}
+            className="absolute top-1/2 right-16 transform -translate-y-1/2 flex items-center bg-white border border-gray-300 rounded-full px-4 py-2 shadow-lg transition-all duration-300 ease-in-out w-96" // Increased width
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              className="flex-grow outline-none text-gray-800 text-lg" // Increased font size
+              value={searchTerm}
+              onChange={handleSearchChange}
+              autoFocus // Focus input when it appears
+            />
+            <button type="submit" className="text-gray-600 hover:text-indigo-600 transition duration-300 ml-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-arrow-right"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={handleSearchToggle}
+              className="text-gray-600 hover:text-red-500 transition duration-300 ml-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-x"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          </form>
+        )}
       </div>
     </header>
   );
