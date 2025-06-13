@@ -6,7 +6,7 @@ const Footer = () => {
     // Added bg-fixed to make the background image fixed relative to the viewport,
     // creating a parallax-like effect that often makes the image feel like it "fits" better.
     <footer
-      className="bg-gray-900 text-gray-300 py-16 px-8 relative overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed" // Added bg-fixed
+      className="bg-gray-900 text-gray-300 py-16 px-10 relative overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed" // Added bg-fixed
       style={{ backgroundImage: "url('/images/image.png')" }} // Assuming the image is accessible at this public path
     >
       {/* Semi-transparent overlay to ensure text readability */}
@@ -28,8 +28,8 @@ const Footer = () => {
         <div className="md:col-span-1 lg:col-span-2 text-center md:text-left">
           <h4 className="text-2xl font-semibold mb-6 text-white">Quick Links</h4>
           <ul className="space-y-3 text-lg">
-            <li><a href="#home" className="hover:text-indigo-400 transition-colors duration-300">Home</a></li>
-            <li><a href="#products" className="hover:text-indigo-400 transition-colors duration-300">Products</a></li>
+            <li><a href="/" className="hover:text-indigo-400 transition-colors duration-300">Home</a></li>
+            <li><a href="/products" className="hover:text-indigo-400 transition-colors duration-300">Products</a></li>
             <li><a href="#support" className="hover:text-indigo-400 transition-colors duration-300">Support</a></li>
             <li><a href="#contact" className="hover:text-indigo-400 transition-colors duration-300">Contact</a></li>
           </ul>
@@ -39,7 +39,7 @@ const Footer = () => {
         <div className="md:col-span-1 lg:col-span-2 text-center md:text-left">
           <h4 className="text-2xl font-semibold mb-6 text-white">More</h4>
           <ul className="space-y-3 text-lg">
-            <li><a href="#about" className="hover:text-indigo-400 transition-colors duration-300">About Us</a></li>
+            <li><a href="/about" className="hover:text-indigo-400 transition-colors duration-300">About Us</a></li>
             <li><a href="#tech-spotlight" className="hover:text-indigo-400 transition-colors duration-300">Technology Spotlight</a></li>
           </ul>
         </div>

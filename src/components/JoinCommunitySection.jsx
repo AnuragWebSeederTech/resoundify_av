@@ -39,23 +39,23 @@ const JoinCommunitySection = () => {
   };
 
   return (
-    <section className="relative py-20 px-6 bg-gray-50 text-gray-800 overflow-hidden font-inter"> {/* Added font-inter */}
+    <section className="relative py-20 px-10 bg-gray-50 text-gray-800 overflow-hidden font-inter"> {/* Added font-inter */}
       <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-center lg:justify-between z-10 space-y-8 lg:space-y-0 lg:space-x-8">
         {/* Text Content */}
         <div className="lg:w-1/2 text-center lg:text-left px-4 lg:pl-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-wide text-gray-900">
             Join the Resoundify Community
           </h2>
-          <p className="mb-8 text-lg md:text-xl text-gray-700 leading-relaxed font-light">
+          <p className="mb-8 text-lg md:text-lg text-gray-700 leading-relaxed font-light">
             At Resoundify, we believe in the power of sound to inspire, connect, and transform. Let us help you create audio-visual experiences that resonate. Explore our products, connect with our team, and experience the future of AV with Resoundify.
           </p>
-          <p className="mb-8 text-lg md:text-xl font-semibold text-indigo-700">
+          <p className="mb-8 text-lg md:text-lg font-semibold text-indigo-700">
             Resoundify – Where Sound Meets Innovation.
           </p>
           {/* "Join the Community" Button */}
           <button
             onClick={() => setShowJoinForm(true)} // Set showJoinForm to true when button is clicked
-            className="inline-block bg-indigo-500 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-indigo-600 hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out"
+            className="inline-block bg-indigo-500 text-white text-lg font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-indigo-600 hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out"
           >
             Join the Community
           </button>

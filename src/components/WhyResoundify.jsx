@@ -83,7 +83,7 @@ const WhyResoundify = () => {
                 <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-cyan-500 rounded-full mix-blend-screen opacity-[0.02] blur-3xl animate-float-medium animation-delay-2000"></div>
             </div>
 
-            <h2 className="relative z-20 text-5xl md:text-7xl font-extrabold text-center mb-20 tracking-tight leading-tight text-white animate-fade-in-up">
+            <h2 className="relative z-20 text-3xl md:text-5xl font-extrabold text-center mb-20 tracking-tight leading-tight text-white animate-fade-in-up">
                 Why{" "}
                 <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent relative inline-block">
                     Resoundify
@@ -197,8 +197,8 @@ const WhyResoundify = () => {
                             opacity: 0.5,
                         }}></div>
 
-                        <h3 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white drop-shadow-lg text-shadow-light-cyan z-20" dangerouslySetInnerHTML={{ __html: currentFeature.title }}></h3>
-                        <p className="text-lg md:text-xl text-center text-white max-w-md leading-relaxed text-shadow-subtle z-20">
+                        <h3 className="text-3xl md:text-3xl font-bold mb-4 text-center text-white drop-shadow-lg text-shadow-light-cyan z-20" dangerouslySetInnerHTML={{ __html: currentFeature.title }}></h3>
+                        <p className="text-lg md:text-lg text-center text-white max-w-md leading-relaxed text-shadow-subtle z-20">
                             {currentFeature.description}
                         </p>
                         {/* Digital Page number */}

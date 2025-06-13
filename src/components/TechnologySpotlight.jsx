@@ -13,7 +13,7 @@ export default function TechnologySpotlight() {
   return (
     <section className="relative py-24 px-6 bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900">
       {/* Background Network Animation */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 px-10 opacity-20">
         <svg className="w-full h-full">
           <defs>
             <linearGradient id="networkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -41,13 +41,13 @@ export default function TechnologySpotlight() {
       <div className="relative max-w-7xl mx-auto z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-wide leading-tight">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-wide leading-tight">
             Technology{" "}
             <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
               Spotlight
             </span>
           </h2>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Discover the power of Dante technology and how Resoundify leverages it for superior audio networking
           </p>
         </div>
@@ -129,8 +129,8 @@ export default function TechnologySpotlight() {
           {/* Content */}
           <div className="space-y-8">
             <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl p-8 rounded-3xl border border-gray-700/50">
-              <h3 className="text-4xl font-bold text-white mb-6">Dante Integration</h3>
-              <p className="text-xl text-gray-300 leading-relaxed mb-6">
+              <h3 className="text-3xl font-bold text-white mb-6">Dante Integration</h3>
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">
                 Explain the benefits of Dante technology and how Resoundify leverages it for superior performance,
                 reliability, and scalability in professional audio environments.
               </p>

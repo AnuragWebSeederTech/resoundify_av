@@ -5,7 +5,7 @@ const WhatResoundifyDoes = () => {
     <section className="min-h-screen bg-white font-sans relative overflow-hidden">
       {/* --- Dynamic, Layered Top Section --- */}
       {/* Changed gradient direction to 'to-b' (top to bottom) and colors to from-gray-900 to-indigo-900 for a darker, consistent theme. */}
-      <div className="relative bg-gradient-to-b from-black to-blue-900 py-24 md:py-32 lg:py-40 px-4 sm:px-8 lg:px-16 text-white text-left overflow-hidden z-10">
+      <div className="relative px-10 bg-gradient-to-b from-black to-blue-900 py-24 md:py-32 lg:py-40 px-4 sm:px-8 lg:px-16 text-white text-left overflow-hidden z-10">
 
         {/* Subtle Background Circles/Bubbles for visual texture */}
         <div className="absolute inset-0 z-0 opacity-10">
@@ -17,7 +17,7 @@ const WhatResoundifyDoes = () => {
         <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
           {/* Left Side: Bold Heading with Accent */}
           <div className="md:w-3/5">
-            <p className="text-xl md:text-2xl font-semibold text-blue-200 mb-4 animate-fade-in-down">
+            <p className="text-xl md:text-xl font-semibold text-blue-200 mb-4 animate-fade-in-down">
               Redefining Audio-Visual Experiences
             </p>
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-none animate-fade-in-left">
@@ -28,7 +28,7 @@ const WhatResoundifyDoes = () => {
           </div>
 
           {/* Right Side: Core Value Proposition */}
-          <div className="md:w-2/5 md:mt-12 text-lg md:text-xl text-blue-100 animate-fade-in-right">
+          <div className="md:w-2/5 md:mt-12 text-lg md:text-lg text-blue-100 animate-fade-in-right">
             <p>
               We don't just build audio-video systems; we engineer seamless, crystal-clear auditory and visual environments that transform professional spaces of all sizes into extraordinary experiences.
             </p>
@@ -53,7 +53,7 @@ const WhatResoundifyDoes = () => {
 
         {/* --- PERFECT FOR Section - Enhanced Design --- */}
         <div className="w-full max-w-6xl mb-20 relative px-4 py-12 md:px-8 md:py-16 rounded-3xl bg-gradient-to-tr from-blue-50 to-purple-50 shadow-inner-xl animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12 animate-fade-in">
+          <h2 className="text-3xl md:text-3xl font-bold text-gray-800 text-center mb-12 animate-fade-in">
             Perfect For
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
@@ -117,7 +117,7 @@ const WhatResoundifyDoes = () => {
 
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
             <div className="md:w-1/2 text-center md:text-left order-2 md:order-1">
-              <h2 className="text-4xl font-bold text-gray-800 mb-4 leading-tight">
+              <h2 className="text-3xl font-bold text-gray-800 mb-4 leading-tight">
                 Powered by <span className="text-blue-700">Dante Network Technology</span>
               </h2>
               <p className="text-lg text-gray-700 mb-6">

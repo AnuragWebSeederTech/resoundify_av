@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ExploreOurRange = () => {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center py-24 px-4 sm:px-8 overflow-hidden bg-white text-gray-900" // Changed background to white, default text to dark
+      className="relative min-h-screen flex items-center justify-center py-24 px-10 sm:px-8 overflow-hidden bg-white text-gray-900" // Changed background to white, default text to dark
     >
       {/* Dynamic Background Blob/Shape - Adjusted colors for light theme */}
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 sm:w-[500px] sm:h-[500px] bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-0"></div>
@@ -14,15 +14,15 @@ const ExploreOurRange = () => {
       <div className="relative z-10 w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left Side: Content Block */}
         <div className="text-center md:text-left p-6 sm:p-8 md:p-12 bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg rounded-3xl shadow-2xl border border-gray-100 transform -rotate-1 perspective-1000 group hover:rotate-0 transition-transform duration-700 ease-in-out">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tighter leading-tight text-gray-900 animate-fade-in-right"> {/* Text color adjusted */}
+          <h2 className="text-4xl sm:text-5xl lg:text-5xl font-extrabold mb-6 tracking-tighter leading-tight text-gray-900 animate-fade-in-right"> {/* Text color adjusted */}
             Unleash the Future of <span className="text-indigo-600">Audio Excellence</span> {/* Accent color made stronger for light bg */}
           </h2>
-          <p className="text-lg sm:text-xl max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed text-gray-700 font-light animate-fade-in-right delay-200"> {/* Text color adjusted */}
+          <p className="text-lg sm:text-lg max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed text-gray-700 font-light animate-fade-in-right delay-200"> {/* Text color adjusted */}
             Discover our groundbreaking suite of Dante-enabled professional audio equipment. Engineered for unmatched clarity, unparalleled reliability, and limitless scalability, Resoundify empowers visionaries to craft immersive sonic experiences.
           </p>
           <Link
             to="/products"
-            className="inline-block relative z-10 bg-gradient-to-r from-indigo-500 to-blue-600 text-white font-bold px-10 py-4 sm:px-12 sm:py-5 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-400 ease-in-out text-lg sm:text-xl
+            className="inline-block relative z-10 bg-gradient-to-r from-indigo-500 to-blue-600 text-white font-bold px-10 py-4 sm:px-12 sm:py-5 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-400 ease-in-out text-lg sm:text-lg
                        group-hover:translate-x-2 group-hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-75 animate-fade-in-right delay-400"
           >
             Explore Our Innovations

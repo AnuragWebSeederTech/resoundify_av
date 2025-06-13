@@ -104,7 +104,7 @@ const Header = () => {
           <img
             src="/images/resoundifyLogo.jpeg"
             alt="Resoundify Logo"
-            className="h-16 w-auto object-cover rounded-lg"
+            className="h-14 w-auto object-cover rounded-lg"
           />
         </div>
         {/* Navigation Links and Search */}
@@ -135,13 +135,13 @@ const Header = () => {
           </a>
           {/* Search Icon */}
           <div
-            className="cursor-pointer hover:text-indigo-600 transition duration-300 ml-8"
+            className="cursor-pointer hover:text-indigo-600 transition duration-300 ml-6"
             onClick={handleSearchToggle}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
