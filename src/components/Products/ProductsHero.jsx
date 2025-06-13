@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductsHero = () => {
   return (
-    <section className="relative bg-gradient-to-br from-indigo-700 to-purple-800 text-white py-28 px-6 lg:px-16 overflow-hidden shadow-xl">
+    <section className="relative bg-gradient-to-br from-black to-blue-900 text-white py-28 px-6 lg:px-16 overflow-hidden shadow-xl">
       {/* Background circles for futuristic feel */}
       <div className="absolute -top-10 -left-10 w-48 h-48 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
       <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />

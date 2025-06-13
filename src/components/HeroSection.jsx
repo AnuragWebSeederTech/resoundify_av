@@ -22,13 +22,13 @@ const HeroSection = () => {
 
         {/* Main Heading */}
         {/* Re-added opacity-0 for animation start state */}
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 animate-sweep-in-1">
+        <h1 className="text-5xl md:text-5xl font-bold text-white mb-4 animate-sweep-in-1">
           Welcome to Resoundify  
         </h1>
 
         {/* Description */}
         {/* Re-added opacity-0 for animation start state, added mx-auto to center block */}
-        <p className="text-3xl md:text-2xl text-gray-300 max-w-2xl mx-auto animate-sweep-in-2">
+        <p className="text-3xl md:text-lg text-gray-300 max-w-2xl mx-auto animate-sweep-in-2">
          Resoundify is a premier AV brand specializing in cutting-edge Dante-enabled products. We deliver audio-visual solutions that redefine how you connect, communicate, and create.
         </p>
 

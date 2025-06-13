@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <header className="w-full absolute top-0 left-0 right-0 bg-transparent z-50">
       {/* Top bar - Contact Info */}
-      <div className="text-white bg-black text-base px-6 lg:px-16 py-1 flex justify-between items-center">
+      <div className="text-white bg-black text-base px-6 lg:px-10 py-1 flex justify-between items-center">
         {/* Left side can be used for a slogan or empty as is */}
         <div></div>
         {/* Right Side: Contact + LinkedIn */}
@@ -98,7 +98,7 @@ const Header = () => {
         </div>
       </div>
       {/* Main Navigation */}
-      <div className="flex bg-white justify-between items-center px-6 lg:px-16 py-3 mx-auto shadow-md relative"> {/* Added relative for absolute positioning of search */}
+      <div className="flex bg-white justify-between items-center px-6 lg:px-10 py-0 mx-auto shadow-md relative"> {/* Added relative for absolute positioning of search */}
         {/* Logo */}
         <div className="flex items-center space-x-4">
           <img
