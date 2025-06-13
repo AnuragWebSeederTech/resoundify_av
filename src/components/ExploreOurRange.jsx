@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ExploreOurRange = () => {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center py-24 px-10 sm:px-8 overflow-hidden bg-white text-gray-900" // Changed background to white, default text to dark
+      className="relative flex items-center justify-center py-24 px-10 sm:px-8 overflow-hidden bg-white text-gray-900" // Changed background to white, default text to dark
     >
       {/* Dynamic Background Blob/Shape - Adjusted colors for light theme */}
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 sm:w-[500px] sm:h-[500px] bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-0"></div>

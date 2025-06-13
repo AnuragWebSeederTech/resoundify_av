@@ -3,7 +3,7 @@ import React from 'react';
 
 const AboutHero = () => {
   return (
-    <section className="relative h-[65vh] bg-cover bg-center" style={{ backgroundImage: "url('/images/aboutImages/aboutbg.webp')" }}>
+    <section className="relative h-[65vh] bg-cover bg-top" style={{ backgroundImage: "url('/images/aboutImages/heroabout.jpg')" }}>
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
