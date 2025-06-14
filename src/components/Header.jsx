@@ -128,7 +128,7 @@ const Header = () => {
             Products
           </a>
           <a
-            href="#contact"
+            href="/contact"
             className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             Contact
