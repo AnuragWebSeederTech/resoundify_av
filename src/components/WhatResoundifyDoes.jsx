@@ -134,7 +134,7 @@ const WhatResoundifyDoes = () => {
             <div className="md:w-1/2 flex justify-center items-center order-1 md:order-2">
               <div className="w-full max-w-md h-64 bg-white border border-gray-200 rounded-xl flex items-center justify-center overflow-hidden shadow-lg transform rotate-2 hover:rotate-0 transition-transform duration-300 ease-in-out">
                 <img
-                  src="https://noisegate.com.au/wp-content/uploads/2023/03/Dante-Feature-1024x512.jpg"
+                  src="/images/Dante_Feature.jpg"
                   alt="Dante Network Simplified Diagram"
                   className="w-full h-full object-contain p-4" // Use object-contain and padding for SVG clarity
                 />
