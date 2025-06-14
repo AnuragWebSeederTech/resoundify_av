@@ -107,7 +107,7 @@ const ProductsPage = () => {
   return (
     <>
     <Header />
-    <div className="min-h-screen pt-30 bg-gray-50 font-inter text-gray-800">
+    <div className="min-h-screen pt-20 bg-gray-50 font-inter text-gray-800">
       {/* Products Hero Section */}
       <ProductsHero />
 

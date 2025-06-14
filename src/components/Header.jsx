@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -109,30 +110,30 @@ const Header = () => {
         </div>
         {/* Navigation Links and Search */}
         <nav className="flex items-center space-x-8 font-semibold text-lg text-black hidden md:flex">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             Home
-          </a>
-          <a
-            href="/about"
+          </Link>
+          <Link
+            to="/about"
             className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             About
-          </a>
-          <a
-            href="/products"
+          </Link>
+          <Link
+            to="/products"
             className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             Products
-          </a>
-          <a
-            href="/contact"
+          </Link>
+          <Link
+            to="/contact"
             className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
           >
             Contact
-          </a>
+          </Link>
           {/* Search Icon */}
           <div
             className="cursor-pointer hover:text-indigo-600 transition duration-300 ml-6"

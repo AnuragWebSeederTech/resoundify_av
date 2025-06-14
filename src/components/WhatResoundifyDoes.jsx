@@ -124,7 +124,7 @@ const WhatResoundifyDoes = () => {
                 Our cutting-edge systems leverage *Dante network technology* to transmit high-quality audio over standard Ethernet cables. This means *no complex wiring, zero delays, just remarkably **reliable and professional sound quality* across your entire setup.
               </p>
               <a
-                href="#learn-more-dante"
+                href="/products"
                 className="inline-block bg-blue-600 text-white text-lg font-semibold py-3 px-8 rounded-full hover:bg-purple-700 hover:scale-105 transition duration-300 ease-in-out shadow-lg hover:shadow-xl group"
               >
                 Discover Dante's Advantages
