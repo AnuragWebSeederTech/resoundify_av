@@ -101,7 +101,7 @@ const ExploreOurRange = () => {
       <div className="relative z-10 w-full max-w-2xl mx-auto text-center p-6 sm:p-8 md:p-12
                       bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-3xl shadow-2xl border border-gray-100
                       transition-transform duration-700 ease-in-out animate-fade-in-up">
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tighter leading-tight text-gray-900"> {/* Adjusted text size to lg:text-6xl */}
+        <h2 className="text-4xl sm:text-5xl lg:text-5xl font-extrabold mb-6 tracking-tighter leading-tight text-gray-900"> {/* Adjusted text size to lg:text-6xl */}
           Unleash the Future of <span className="text-blue-500">Audio Excellence</span> {/* Changed accent color to blue-500 */}
         </h2>
         <p className="text-lg sm:text-xl max-w-xl mx-auto mb-10 leading-relaxed text-gray-700 font-light"> {/* Adjusted text size to sm:text-xl */}

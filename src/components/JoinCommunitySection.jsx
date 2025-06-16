@@ -45,7 +45,7 @@ const JoinCommunitySection = () => {
       <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-center lg:justify-between z-10 space-y-8 lg:space-y-0 lg:space-x-8">
         {/* Text Content */}
         <div className="lg:w-1/2 text-center lg:text-left px-4 lg:pl-10">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-gray-900"> {/* Adjusted text size for consistency, removed gradient to match other headings */}
+          <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 tracking-tight text-gray-900"> {/* Adjusted text size for consistency, removed gradient to match other headings */}
             Join the Resoundify <span className="text-blue-500">Community</span> {/* Accent color to match others */}
           </h2>
           <p className="mb-8 text-lg sm:text-xl text-gray-700 leading-relaxed font-light"> {/* Adjusted text size for consistency */}
