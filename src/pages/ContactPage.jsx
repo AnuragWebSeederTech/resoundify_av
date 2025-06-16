@@ -1,400 +1,540 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Globe, Twitter, Linkedin, Facebook, Send, MessageCircle, Clock, Users } from 'lucide-react';
-import Header from '../components/Header'; // Verify this path is correct
-import Footer from '../components/Footer'; // Verify this path is correct
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
+import { Briefcase, CalendarCheck, Globe, Award, Star } from 'lucide-react'; // Added Star icon for testimonials
 
-// Import Leaflet components
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css'; // Don't forget to import Leaflet's CSS!
+// Import your Header and Footer components
+import Header from '../components/Header'; // Adjust path if your Header is elsewhere
+import Footer from '../components/Footer'; // Adjust path if your Footer is elsewhere
 
-// Fix for default marker icon issues with Webpack (common with Leaflet)
-// This ensures the default blue Leaflet markers are visible.
-import L from 'leaflet';
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-});
-
-function ContactPage() {
+const ContactPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
-    subject: '',
+    company: '',
+    mobile: '',
+    interestedService: '',
+    projectBudget: '',
     message: '',
   });
 
-  const [activeTab, setActiveTab] = useState('general');
+  const [errors, setErrors] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // New loading state
+  const [isContentVisible, setIsContentVisible] = useState(false); // For entry animation
+
+  useEffect(() => {
+    // Trigger entry animation for main content on mount
+    setIsContentVisible(true);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // In a production app, consider a more user-friendly modal or toast notification
-    // instead of alert for better user experience.
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-  };
-
-  // Define contact methods for the dynamic display
-  const contactMethods = [
-    {
-      id: 'general',
-      icon: MessageCircle,
-      title: 'General Inquiries',
-      description: 'Questions about our services',
-      contact: 'info@resoundify.com',
-      response: '24 hours'
-    },
-    {
-      id: 'support',
-      icon: Users,
-      title: 'Technical Support',
-      description: 'Need help with your setup?',
-      contact: 'support@resoundify.com',
-      response: '2 hours'
-    },
-    {
-      id: 'sales',
-      icon: Phone,
-      title: 'Sales Team',
-      description: 'Ready to transform your space?',
-      contact: '+1-800-RESOUND',
-      response: 'Immediate'
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    if (errors[name]) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: null,
+      }));
     }
+  };
+
+  const validate = () => {
+    let newErrors = {};
+    if (!formData.fullName) newErrors.fullName = 'Full Name is required.';
+    if (!formData.email) {
+      newErrors.email = 'Email Address is required.';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email address is invalid.';
+    }
+    if (!formData.company) newErrors.company = 'Company Name is required.';
+    if (!formData.mobile) {
+      newErrors.mobile = 'Mobile Number is required.';
+    } else if (!/^\+?\d{10,15}$/.test(formData.mobile)) {
+      newErrors.mobile = 'Invalid mobile number.';
+    }
+    if (!formData.interestedService) newErrors.interestedService = 'Please select a service.';
+    if (!formData.projectBudget) newErrors.projectBudget = 'Please select a budget.';
+    if (!formData.message) newErrors.message = 'Message is required.';
+
+    return newErrors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setIsSubmitted(false);
+    } else {
+      setIsLoading(true); // Start loading
+      setIsSubmitted(false); // Reset submitted status
+
+      try {
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        console.log('Form submitted for Resoundify:', formData);
+        setIsSubmitted(true);
+        setErrors({}); // Clear any previous errors
+        setFormData({
+          fullName: '',
+          email: '',
+          company: '',
+          mobile: '',
+          interestedService: '',
+          projectBudget: '',
+          message: '',
+        });
+      } catch (error) {
+        console.error("Submission error:", error);
+        // You might set an error state here to show a submission error message
+      } finally {
+        setIsLoading(false); // End loading
+      }
+    }
+  };
+
+  const serviceOptions = [
+    'Dante Integration Consulting',
+    'Audio System Design',
+    'Hardware Solutions (Specify product type)',
+    'Software & Firmware Development',
+    'Technical Support & Training',
+    'Other Audio-Visual Needs',
   ];
 
-  // Define the coordinates for the map marker
-  // IMPORTANT: Replace these with your actual headquarters coordinates.
-  // This example uses a general New York City location.
-  const mapPosition = [22.72547599965755, 75.89151350630961]; // Coordinates for WebSeeder Technologies from your iframe
+  const budgetOptions = [
+    'Less than $5,000',
+    '$5,000 - $10,000',
+    '$10,000 - $25,000',
+    '$25,000 - $50,000',
+    'More than $50,000',
+    'Custom Project',
+  ];
+
+  const testimonials = [
+    {
+      id: 1,
+      name: 'Sarah Johnson',
+      title: 'CEO, InnovateTech',
+      quote: "Resoundify transformed our office's audio conferencing. The clarity is exceptional, and their team was incredibly professional and efficient.",
+      rating: 5,
+      avatar: '/path-to-sarah-avatar.jpg', // Placeholder
+    },
+    {
+      id: 2,
+      name: 'Michael Chen',
+      title: 'Event Manager, Grand Venues',
+      quote: 'We relied on Resoundify for our latest concert venue sound design. The results were phenomenal, exceeding all expectations. True audio masters!',
+      rating: 5,
+      avatar: '/path-to-michael-avatar.jpg', // Placeholder
+    },
+    {
+      id: 3,
+      name: 'Emily Rodriguez',
+      title: 'CTO, FutureWave Studios',
+      quote: 'Their Dante integration expertise is unmatched. They seamlessly integrated complex systems, and their support has been excellent.',
+      rating: 4,
+      avatar: '/path-to-emily-avatar.jpg', // Placeholder
+    },
+    {
+      id: 4,
+      name: 'David Lee',
+      title: 'Education Director, Summit Academy',
+      quote: 'Resoundify provided us with an intuitive and powerful audio solution for our lecture halls. Highly recommend their services.',
+      rating: 5,
+      avatar: '/path-to-david-avatar.jpg', // Placeholder
+    },
+    {
+      id: 5,
+      name: 'Priya Sharma',
+      title: 'Marketing Head, Global Brands',
+      quote: 'We needed a custom audio solution for our interactive exhibit, and Resoundify delivered beyond imagination. Creative and technically brilliant!',
+      rating: 5,
+      avatar: '/path-to-priya-avatar.jpg', // Placeholder
+    },
+  ];
+
+  // Function to render star ratings
+  const renderStars = (rating) => {
+    return (
+      <div className="flex text-yellow-400">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} size={20} fill={i < rating ? "currentColor" : "none"} stroke={i < rating ? "currentColor" : "gray"} />
+        ))}
+      </div>
+    );
+  };
 
   return (
-    <>
-      <Header />
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white font-inter pt-10 overflow-hidden">
-        {/* Link to import the 'Inter' font from Google Fonts for consistent typography */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    // Main container with light theme background and black text
+    <div className="min-h-screen bg-white font-sans text-gray-900 flex flex-col">
+      <Header /> {/* Call the Header component */}
 
-        {/* Animated Background Elements for visual flair */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+      {/* Main Content Area - Wrapped for animation */}
+      <div className={`pt-25 flex flex-col lg:flex-row flex-grow transform transition-all duration-1000 ease-out
+        ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+
+        {/* Left Section: Info and Stats */}
+        <div className="lg:w-1/2 p-8 md:p-16 pt-16 lg:pt-0 flex flex-col justify-center bg-gray-50 shadow-lg lg:shadow-none rounded-lg mx-4 lg:mx-0 my-4 lg:my-0">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
+            Get a quote for your project
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-700 mb-12">
+            Let us help you achieve superior audio-visual experiences. Fill in the form and our team will get back to you.
+          </p>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
+            <div className="flex items-center p-4 bg-white rounded-lg shadow-md
+                          transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
+              <CalendarCheck className="w-8 h-8 text-blue-500 mr-4" />
+              <div>
+                <div className="text-3xl font-bold text-gray-900">99%</div>
+                <div className="text-gray-600 text-base">Client Satisfaction</div>
+              </div>
+            </div>
+            <div className="flex items-center p-4 bg-white rounded-lg shadow-md
+                          transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
+              <Briefcase className="w-8 h-8 text-green-500 mr-4" />
+              <div>
+                <div className="text-3xl font-bold text-gray-900">10+</div>
+                <div className="text-gray-600 text-base">Years in AV Innovation</div>
+              </div>
+            </div>
+            <div className="flex items-center p-4 bg-white rounded-lg shadow-md
+                          transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
+              <Globe className="w-8 h-8 text-purple-500 mr-4" />
+              <div>
+                <div className="text-3xl font-bold text-gray-900">500+</div>
+                <div className="text-gray-600 text-base">Successful Deployments</div>
+              </div>
+            </div>
+            <div className="flex items-center p-4 bg-white rounded-lg shadow-md
+                          transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
+              <Award className="w-8 h-8 text-yellow-500 mr-4" />
+              <div>
+                <div className="text-3xl font-bold text-gray-900">Leading</div>
+                <div className="text-gray-600 text-base">Dante Solutions Provider</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Awards Section */}
+          <div className="text-center mt-12">
+            <h3 className="text-3xl font-bold text-gray-900 mb-8">Our Recognitions</h3>
+            <div className="flex justify-center flex-wrap gap-8">
+              <div className="flex flex-col items-center group bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-100 hover:shadow-xl">
+                <img src={"image_9408ec.png"} alt="Best Audio Tech Innovation Award" className="h-24 w-24 mb-2 object-contain
+                               transition-transform duration-300 group-hover:scale-110" />
+                <p className="text-gray-800 text-sm font-semibold">"Best Audio Tech"<br />Innovation Award</p>
+                <p className="text-xs text-gray-500">2023 Tech Excellence</p>
+              </div>
+              <div className="flex flex-col items-center group bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-100 hover:shadow-xl">
+                <img src={"image_9405e5.png"} alt="Top Industry Solution Provider" className="h-24 w-24 mb-2 object-contain
+                               transition-transform duration-300 group-hover:scale-110" />
+                <p className="text-gray-800 text-sm font-semibold">"Top Industry"<br />Solution Provider</p>
+                <p className="text-xs text-gray-500">AV Integration Summit</p>
+              </div>
+              <div className="flex flex-col items-center group bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-100 hover:shadow-xl">
+                <img src={"image_9409c7.png"} alt="Trusted Partner Excellence Badge" className="h-24 w-24 mb-2 object-contain
+                               transition-transform duration-300 group-hover:scale-110" />
+                <p className="text-gray-800 text-sm font-semibold">"Trusted Partner"<br />Excellence Badge</p>
+                <p className="text-xs text-gray-500">Dante Certified</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Hero Section - Prominent title and call-to-action */}
-        <section className="relative pt-20 pb-10">
-          <div className="container mx-auto px-6">
-            <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-300 text-sm font-medium mb-8 backdrop-blur-sm">
-                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
-                Available 24/7 for Support
+        {/* Right Section: Contact Form */}
+        {/* Changed background to blue-600 for contrast but still within blue theme */}
+        <div className="lg:w-1/2 p-8 md:p-16 bg-blue-600 text-white flex flex-col justify-center relative overflow-hidden rounded-lg mx-4 lg:mx-0 my-4 lg:my-0 lg:ml-0">
+            {/* Background elements (kept white for subtle contrast) */}
+            <div className="absolute inset-0 z-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="30" stroke="white" strokeWidth="0.5" className="animate-pulse-slow"></circle>
+                  <circle cx="20" cy="80" r="15" stroke="white" strokeWidth="0.5" className="animate-pulse-slow animation-delay-2s"></circle>
+                  <circle cx="80" cy="20" r="20" stroke="white" strokeWidth="0.5" className="animate-pulse-slow animation-delay-4s"></circle>
+              </svg>
+            </div>
+
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 relative z-10 text-white">Hello there :)</h2>
+
+          {isSubmitted && (
+            <div className="bg-green-600 text-white px-4 py-3 rounded-lg relative mb-6 text-base animate-fadeInUp z-10 shadow-lg">
+              <strong className="font-bold">Success!</strong>
+              <span className="block sm:inline ml-2">Your message has been sent. We'll get back to you soon!</span>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="fullName" className="block text-sm font-medium text-blue-100 mb-2">
+                  Full Name<span className="text-red-300">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  className={`w-full p-3 bg-blue-700 text-white border ${
+                    errors.fullName ? 'border-red-400' : 'border-blue-500'
+                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
+                  placeholder="Enter your name"
+                />
+                {errors.fullName && <p className="mt-1 text-sm text-red-300">{errors.fullName}</p>}
               </div>
-              
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Let's Create
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-blue-100 mb-2">
+                  Email Address<span className="text-red-300">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`w-full p-3 bg-blue-700 text-white border ${
+                    errors.email ? 'border-red-400' : 'border-blue-500'
+                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
+                  placeholder="Enter your email id"
+                />
+                {errors.email && <p className="mt-1 text-sm text-red-300">{errors.email}</p>}
+              </div>
+
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium text-blue-100 mb-2">
+                  Company<span className="text-red-300">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className={`w-full p-3 bg-blue-700 text-white border ${
+                    errors.company ? 'border-red-400' : 'border-blue-500'
+                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
+                  placeholder="Enter your company name"
+                />
+                {errors.company && <p className="mt-1 text-sm text-red-300">{errors.company}</p>}
+              </div>
+              <div>
+                <label htmlFor="mobile" className="block text-sm font-medium text-blue-100 mb-2">
+                  Mobile Number<span className="text-red-300">*</span>
+                </label>
+                <div className="flex items-center">
+                  <span className="inline-flex items-center px-3 text-sm text-blue-200 bg-blue-700 border border-blue-500 rounded-l-md h-[42px] shadow-inner">
+                    🇮🇳 +91
+                  </span>
+                  <input
+                    type="tel"
+                    id="mobile"
+                    name="mobile"
+                    value={formData.mobile}
+                    onChange={handleChange}
+                    className={`flex-1 p-3 bg-blue-700 text-white border ${
+                      errors.mobile ? 'border-red-400' : 'border-blue-500'
+                    } rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
+                    placeholder="Phone number"
+                  />
+                </div>
+                {errors.mobile && <p className="mt-1 text-sm text-red-300">{errors.mobile}</p>}
+              </div>
+
+              <div>
+                <label htmlFor="interestedService" className="block text-sm font-medium text-blue-100 mb-2">
+                  Interested Service<span className="text-red-300">*</span>
+                </label>
+                <select
+                  id="interestedService"
+                  name="interestedService"
+                  value={formData.interestedService}
+                  onChange={handleChange}
+                  className={`w-full p-3 bg-blue-700 text-white border ${
+                    errors.interestedService ? 'border-red-400' : 'border-blue-500'
+                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 appearance-none text-base custom-select-light shadow-inner`}
+                >
+                  <option value="">Select Interested Service</option>
+                  {serviceOptions.map((service) => (
+                    <option key={service} value={service}>
+                      {service}
+                    </option>
+                  ))}
+                </select>
+                {errors.interestedService && <p className="mt-1 text-sm text-red-300">{errors.interestedService}</p>}
+              </div>
+              <div>
+                <label htmlFor="projectBudget" className="block text-sm font-medium text-blue-100 mb-2">
+                  Project Budget<span className="text-red-300">*</span>
+                </label>
+                <select
+                  id="projectBudget"
+                  name="projectBudget"
+                  value={formData.projectBudget}
+                  onChange={handleChange}
+                  className={`w-full p-3 bg-blue-700 text-white border ${
+                    errors.projectBudget ? 'border-red-400' : 'border-blue-500'
+                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 appearance-none text-base custom-select-light shadow-inner`}
+                >
+                  <option value="">Select Project Budget</option>
+                  {budgetOptions.map((budget) => (
+                    <option key={budget} value={budget}>
+                      {budget}
+                    </option>
+                  ))}
+                </select>
+                {errors.projectBudget && <p className="mt-1 text-sm text-red-300">{errors.projectBudget}</p>}
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-blue-100 mb-2">
+                Message<span className="text-red-300">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                value={formData.message}
+                onChange={handleChange}
+                className={`w-full p-3 bg-blue-700 text-white border ${
+                  errors.message ? 'border-red-400' : 'border-blue-500'
+                } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
+                placeholder="Tell us about your audio-visual project..."
+              ></textarea>
+              {errors.message && <p className="mt-1 text-sm text-red-300">{errors.message}</p>}
+            </div>
+
+            <p className="text-blue-100 text-base pt-4">
+                We're excited to help you amplify your sound experience!
+            </p>
+
+            <button
+              type="submit"
+              disabled={isLoading} // Disable button when loading
+              className="w-full py-4 px-6 bg-green-500 text-white text-lg font-semibold rounded-lg shadow-xl
+                          hover:bg-green-600 transition-colors duration-200 flex items-center justify-center space-x-2
+                          disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-green-400"
+            >
+              {isLoading ? (
+                <span className="flex items-center">
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Submitting...
                 </span>
-                <br />
-                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient-x">
-                  Something Amazing
-                </span>
-              </h1>
-              
-              <p className="text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl mx-auto">
-                Ready to revolutionize your audio-visual experience? Our team of experts is here to bring your vision to life.
+              ) : (
+                <>
+                  <span>SUBMIT NOW</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                    <path fillRule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                </>
+              )}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* "What Our Clients Say" Section */}
+      <section className="py-16 px-8 bg-gray-100 text-gray-900 text-center">
+        <h2 className="text-4xl sm:text-5xl font-extrabold mb-12 text-gray-900">What Our Clients Say</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+          {testimonials.map((testimonial) => (
+            <div key={testimonial.id} className="bg-white p-8 rounded-xl shadow-lg border border-gray-200
+                                                transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center">
+              {testimonial.avatar && (
+                <img
+                  src={testimonial.avatar}
+                  alt={testimonial.name}
+                  className="w-24 h-24 rounded-full object-cover mb-6 border-4 border-blue-500 shadow-md"
+                />
+              )}
+              {renderStars(testimonial.rating)}
+              <p className="text-lg italic text-gray-700 mb-6 mt-4 line-clamp-4">
+                "{testimonial.quote}"
               </p>
+              <h4 className="font-bold text-gray-900 text-xl">{testimonial.name}</h4>
+              <p className="text-gray-600 text-sm">{testimonial.title}</p>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
+        <button className="mt-12 py-3 px-8 bg-blue-600 text-white text-lg font-semibold rounded-full shadow-lg
+                           hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-400">
+          Read More Testimonials
+        </button>
+      </section>
 
-        {/* Contact Methods Grid - Displays different ways to contact, with active state styling */}
-        <section className="relative py-10">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-3 gap-6 mb-16">
-              {contactMethods.map((method) => {
-                const IconComponent = method.icon;
-                return (
-                  <div
-                    key={method.id}
-                    onClick={() => setActiveTab(method.id)}
-                    className={`group cursor-pointer p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
-                      activeTab === method.id
-                        ? 'bg-blue-500/20 border-blue-400/50 shadow-2xl shadow-blue-500/25'
-                        : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
-                    }`}
-                  >
-                    <div className="flex items-start space-x-4">
-                      <div className={`p-3 rounded-xl transition-colors duration-300 ${
-                        activeTab === method.id ? 'bg-blue-500' : 'bg-white/10 group-hover:bg-blue-500/50'
-                      }`}>
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-lg mb-2">{method.title}</h3>
-                        <p className="text-slate-400 text-sm mb-3">{method.description}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-blue-300 font-medium">{method.contact}</span>
-                          <div className="flex items-center text-xs text-slate-500">
-                            <Clock className="w-3 h-3 mr-1" />
-                            {method.response}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+      <Footer /> {/* Call the Footer component */}
 
-        {/* Main Content - Split Layout for Contact Form and Info/Map */}
-        <section className="relative py-10">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-5 gap-12 items-start">
-              
-              {/* Left Side - Contact Form (Takes 3/5 of space on large screens) */}
-              <div className="lg:col-span-3">
-                <div className="sticky top-8">
-                  <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-                    <div className="mb-8">
-                      <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                        Start the Conversation
-                      </h2>
-                      <p className="text-slate-400">Tell us about your project and we'll get back to you within 24 hours.</p>
-                    </div>
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/yourresoundifynumber"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-xl hover:bg-green-600 transition-colors z-50
+                   transform hover:scale-110"
+        aria-label="Chat on WhatsApp"
+      >
+        <FaWhatsapp size={28} />
+      </a>
 
-                    <div className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className="text-sm font-medium text-slate-300">Full Name</label>
-                          <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300"
-                            placeholder="John Doe"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-sm font-medium text-slate-300">Email Address</label>
-                          <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300"
-                            placeholder="john@company.com"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-300">Project Subject</label>
-                        <input
-                          type="text"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300"
-                          placeholder="Audio System Integration"
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-300">Project Details</label>
-                        <textarea
-                          name="message"
-                          rows="6"
-                          value={formData.message}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none transition-all duration-300"
-                          placeholder="Tell us about your vision, space requirements, budget, and timeline..."
-                        />
-                      </div>
-
-                      <button
-                        onClick={handleSubmit}
-                        className="w-full group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl font-semibold text-white shadow-xl hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] overflow-hidden"
-                      >
-                        <span className="relative z-10 flex items-center justify-center">
-                          <Send className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                          Send Message
-                        </span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Side - Contact Info & Map (Takes 2/5 of space on large screens) */}
-              <div className="lg:col-span-2 space-y-8">
-                
-                {/* Contact Information Block */}
-                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-                  <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                    Get in Touch
-                  </h3>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="p-3 bg-blue-500/20 rounded-xl">
-                        <MapPin className="w-5 h-5 text-blue-400" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">Headquarters</h4>
-                        <p className="text-slate-400 text-sm leading-relaxed">
-                          123 Innovation Drive, Suite 400<br />
-                          Tech City, AV 98765, USA
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="p-3 bg-green-500/20 rounded-xl">
-                        <Mail className="w-5 h-5 text-green-400" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">Email</h4>
-                        <p className="text-slate-400 text-sm">
-                          <a href="mailto:hello@resoundify.com" className="text-blue-300 hover:text-blue-200 transition-colors">
-                            hello@resoundify.com
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="p-3 bg-purple-500/20 rounded-xl">
-                        <Phone className="w-5 h-5 text-purple-400" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1">Phone</h4>
-                        <p className="text-slate-400 text-sm">
-                          <a href="tel:+1-800-RESOUND" className="text-blue-300 hover:text-blue-200 transition-colors">
-                            +1-800-RESOUND
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Interactive Map Section */}
-                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-                  <h3 className="text-xl font-bold mb-4">Find Us</h3>
-                  <div className="w-full h-80 rounded-2xl border border-white/10 overflow-hidden">
-                    {/* MapContainer for displaying the Leaflet map */}
-                    <MapContainer 
-                      center={mapPosition} 
-                      zoom={13} 
-                      scrollWheelZoom={true} // Enabled scroll wheel zoom
-                      style={{ height: '100%', width: '100%' }}
-                      className="rounded-2xl" // Apply rounded corners to the map itself
-                    >
-                      {/* TileLayer defines the map's visual tiles (OpenStreetMap in this case) */}
-                      <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                      />
-                      {/* Marker to indicate the specific location */}
-                      <Marker position={mapPosition}>
-                        {/* Popup content when the marker is clicked */}
-                        <Popup>
-                          Resoundify Headquarters <br /> WebSeeder Technologies.
-                        </Popup>
-                      </Marker>
-                    </MapContainer>
-                  </div>
-                  <p className="text-slate-300 text-sm mt-3 text-center">Drag to explore, zoom to see details!</p>
-                </div>
-
-                {/* Social Links Block */}
-                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-                  <h3 className="text-xl font-bold mb-4">Follow Us</h3>
-                  <div className="flex space-x-4">
-                    {[
-                      { icon: Twitter, color: 'text-blue-400', href: 'https://twitter.com/resoundify' },
-                      { icon: Linkedin, color: 'text-blue-500', href: 'https://linkedin.com/company/resoundify' },
-                      { icon: Facebook, color: 'text-blue-600', href: 'https://facebook.com/resoundify' },
-                    ].map((social, index) => (
-                      <a
-                        key={index}
-                        href={social.href}
-                        className={`p-3 bg-white/5 rounded-xl ${social.color} hover:bg-white/10 hover:scale-110 transition-all duration-300`}
-                        target="_blank" // Open in new tab
-                        rel="noopener noreferrer" // Security best practice for target='_blank'
-                      >
-                        <social.icon className="w-5 h-5" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Footer />
-
-        {/* CSS Styles for animations and custom properties */}
-        <style jsx>{`
-          .font-inter {
-            font-family: 'Inter', sans-serif;
-          }
-          
-          /* Keyframes for the blob animation */
-          @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-          }
-          
-          .animate-blob {
-            animation: blob 7s infinite;
-          }
-          
-          .animation-delay-2000 {
-            animation-delay: 2s;
-          }
-          
-          .animation-delay-4000 {
-            animation-delay: 4s;
-          }
-          
-          /* Keyframes for the gradient-x animation */
-          @keyframes gradient-x {
+      {/* Custom CSS for animations and text shadows (removed text shadows on light elements) */}
+      <style jsx>{`
+        @keyframes pulse-slow {
             0%, 100% {
-              background-size: 200% 200%;
-              background-position: left center;
+                transform: scale(0.9);
+                opacity: 0.1;
             }
             50% {
-              background-size: 200% 200%;
-              background-position: right center;
+                transform: scale(1.1);
+                opacity: 0.3;
             }
-          }
-          
-          .animate-gradient-x {
-            animation: gradient-x 3s ease infinite;
-          }
-        `}</style>
-      </div>
-    </>
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 6s infinite ease-in-out;
+        }
+        .animation-delay-2s {
+            animation-delay: 2s;
+        }
+        .animation-delay-4s {
+            animation-delay: 4s;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .animate-fadeInUp {
+          animation: fadeInUp 0.5s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom style for select arrow color in light theme */
+        .custom-select-light {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ffffff'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 1.5em 1.5em;
+          padding-right: 2.5rem; /* Space for the custom arrow */
+        }
+      `}</style>
+    </div>
   );
-}
+};
 
 export default ContactPage;
