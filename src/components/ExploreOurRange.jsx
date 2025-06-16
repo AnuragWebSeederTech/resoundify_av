@@ -1,65 +1,137 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+// Dummy product data for the new elements with varied sizes
+const products = [
+  {
+    name: 'Dante Pro Interface',
+    price: '$1299',
+    image: 'https://placehold.co/300x220/F0F4F8/60A5FA?text=Pro+Audio', // Smaller image for smaller card
+    sizeClass: 'w-36 h-52', // Smallest card
+    positionClass: 'top-[15%] left-[8%]', // More scattered position
+    rotateClass: '-rotate-3', // Slight rotation
+    delay: '0.6s'
+  },
+  {
+    name: 'Compact Mixer X200',
+    price: '$799',
+    image: 'https://placehold.co/350x260/E0F2F7/4FD1C5?text=Studio+Mixer', // Medium image
+    sizeClass: 'w-44 h-60', // Slightly larger card
+    positionClass: 'bottom-[20%] left-[5%]', // More scattered position
+    rotateClass: 'rotate-2', // Slight rotation
+    delay: '0.8s'
+  },
+  {
+    name: 'Studio Monitor Array',
+    price: '$1899',
+    image: 'https://placehold.co/350x260/F3E8FF/A78BFA?text=High-Res+Monitors', // Medium image
+    sizeClass: 'w-44 h-60', // Slightly larger card
+    positionClass: 'top-[25%] right-[5%]', // More scattered position
+    rotateClass: 'rotate-4', // Slight rotation
+    delay: '0.7s'
+  },
+  {
+    name: 'Wireless Mic System',
+    price: '$499',
+    image: 'https://placehold.co/300x220/FFFBEB/FCD34D?text=Wireless+Mics', // Smaller image
+    sizeClass: 'w-38 h-54', // Small card
+    positionClass: 'bottom-[10%] right-[8%]', // More scattered position
+    rotateClass: '-rotate-2', // Slight rotation
+    delay: '0.9s'
+  },
+];
+
+// Reusable Product Preview Card Component
+const ProductPreviewCard = ({ product }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className={`
+        relative bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100
+        transform transition-all duration-500 ease-in-out cursor-pointer
+        ${product.sizeClass} /* Apply dynamic size here */
+        ${product.rotateClass} /* Apply dynamic rotation */
+        ${isHovered ? "scale-105 shadow-xl ring-4 ring-blue-200" : "hover:shadow-md"} {/* Changed ring color to blue-200 */}
+      `}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Product Image */}
+      <div className="relative overflow-hidden h-3/4">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x300/CCCCCC/666666?text=Image+Unavailable"; }}
+        />
+      </div>
+
+      {/* Product Info */}
+      <div className="p-2.5 text-center h-1/4 flex flex-col justify-center">
+        <h3 className="text-sm font-bold text-gray-900 leading-tight truncate">
+          {product.name}
+        </h3>
+        <p className="text-blue-600 text-xs font-semibold">{product.price}</p> {/* Changed accent color to blue-600 */}
+      </div>
+    </div>
+  );
+};
 
 const ExploreOurRange = () => {
   return (
     <section
-      className="relative flex items-center justify-center py-24 px-10 sm:px-8 overflow-hidden bg-white text-gray-900" // Changed background to white, default text to dark
+      className="relative flex items-center justify-center py-24 px-4 sm:px-8 overflow-hidden bg-slate-50 text-gray-900 min-h-screen font-inter" // Added font-inter for consistency
     >
-      {/* Dynamic Background Blob/Shape - Adjusted colors for light theme */}
-      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 sm:w-[500px] sm:h-[500px] bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-0"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-72 h-72 sm:w-[400px] sm:h-[400px] bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-      <div className="absolute top-[20%] right-[30%] w-56 h-56 sm:w-[300px] sm:h-[300px] bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-35 animate-blob animation-delay-4000"></div>
+      {/* Font import link is ideally in your public/index.html or global CSS, but added here for self-containment if needed */}
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Left Side: Content Block */}
-        <div className="text-center md:text-left p-6 sm:p-8 md:p-12 bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg rounded-3xl shadow-2xl border border-gray-100 transform -rotate-1 perspective-1000 group hover:rotate-0 transition-transform duration-700 ease-in-out">
-          <h2 className="text-4xl sm:text-5xl lg:text-5xl font-extrabold mb-6 tracking-tighter leading-tight text-gray-900 animate-fade-in-right"> {/* Text color adjusted */}
-            Unleash the Future of <span className="text-indigo-600">Audio Excellence</span> {/* Accent color made stronger for light bg */}
-          </h2>
-          <p className="text-lg sm:text-lg max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed text-gray-700 font-light animate-fade-in-right delay-200"> {/* Text color adjusted */}
-            Discover our groundbreaking suite of Dante-enabled professional audio equipment. Engineered for unmatched clarity, unparalleled reliability, and limitless scalability, Resoundify empowers visionaries to craft immersive sonic experiences.
-          </p>
-          <Link
-            to="/products"
-            className="inline-block relative z-10 bg-gradient-to-r from-indigo-500 to-blue-600 text-white font-bold px-10 py-4 sm:px-12 sm:py-5 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-400 ease-in-out text-lg sm:text-lg
-                       group-hover:translate-x-2 group-hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-75 animate-fade-in-right delay-400"
-          >
-            Explore Our Innovations
-            <span className="absolute top-0 left-0 w-full h-full rounded-full bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"></span>
-          </Link>
+      {/* Product Preview Cards - Left Side (Absolute Positioning) */}
+      {products.slice(0, 2).map((product, index) => (
+        <div
+          key={`left-${index}`}
+          className={`absolute z-0 hidden md:block opacity-0 animate-fade-in-up ${product.positionClass}`}
+          style={{ animationDelay: product.delay }}
+        >
+          <ProductPreviewCard product={product} />
         </div>
+      ))}
 
-        {/* Right Side: Image/Visual Block */}
-        <div className="relative flex items-center justify-center p-6 sm:p-8 md:p-12">
-          {/* Decorative Ring 1 - Adjusted colors */}
-          <div className="absolute w-[80%] h-[80%] border-4 border-indigo-400 border-opacity-40 rounded-full animate-spin-slow"></div>
-          {/* Decorative Ring 2 - Adjusted colors */}
-          <div className="absolute w-[60%] h-[60%] border-4 border-blue-400 border-opacity-40 rounded-full animate-spin-reverse-slow animation-delay-1500"></div>
-
-          {/* Main Product Image Container - tilted for dynamism */}
-          <div className="relative z-10 w-full max-w-xs sm:max-w-sm lg:max-w-md bg-white rounded-2xl p-4 shadow-2xl border border-gray-200
-                        transform rotate-6 hover:rotate-0 hover:scale-105 transition-transform duration-700 ease-in-out">
-            <img
-              src="WhatsApp Image 2025-06-07 at 10.35.04_c41ceaa0.jpg" // Using the uploaded image
-              alt="Dante Pro Interface"
-              className="w-full h-auto object-cover rounded-xl shadow-lg saturate-100" // Removed saturate for natural look on light bg
-            />
-            {/* Optional: Add a subtle overlay for texture */}
-            <div className="absolute inset-0 bg-gradient-to-t from-transparent to-gray-50 opacity-10 rounded-xl pointer-events-none"></div>
-
-            {/* Faux metadata for product hint - Adjusted colors for light bg */}
-            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-gray-100 bg-opacity-70 backdrop-filter backdrop-blur-sm rounded-lg py-2 px-3 text-sm text-gray-700">
-              <span>Dante Pro Interface 16x16</span>
-              <span className="font-semibold text-indigo-600">$1299</span>
-            </div>
-          </div>
-        </div>
+      {/* Main Content Block (Centered) */}
+      <div className="relative z-10 w-full max-w-2xl mx-auto text-center p-6 sm:p-8 md:p-12
+                      bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-3xl shadow-2xl border border-gray-100
+                      transition-transform duration-700 ease-in-out animate-fade-in-up">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tighter leading-tight text-gray-900"> {/* Adjusted text size to lg:text-6xl */}
+          Unleash the Future of <span className="text-blue-500">Audio Excellence</span> {/* Changed accent color to blue-500 */}
+        </h2>
+        <p className="text-lg sm:text-xl max-w-xl mx-auto mb-10 leading-relaxed text-gray-700 font-light"> {/* Adjusted text size to sm:text-xl */}
+          Discover our groundbreaking suite of Dante-enabled professional audio equipment. Engineered for unmatched clarity, unparalleled reliability, and limitless scalability, Resoundify empowers visionaries to craft immersive sonic experiences.
+        </p>
+        <Link
+          to="/products"
+          className="inline-block relative z-10 bg-blue-500 text-white font-bold px-10 py-4 sm:px-12 sm:py-5 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-400 ease-in-out text-lg sm:text-lg
+                     focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-75" // Changed button color to solid blue-500 and ring to blue-300
+        >
+          Explore Our Innovations
+        </Link>
       </div>
 
-      {/* Tailwind Custom Animations (place these in your global CSS file for production) */}
-      <style>
-        {`
+      {/* Product Preview Cards - Right Side (Absolute Positioning) */}
+      {products.slice(2, 4).map((product, index) => (
+        <div
+          key={`right-${index}`}
+          className={`absolute z-0 hidden md:block opacity-0 animate-fade-in-up ${product.positionClass}`}
+          style={{ animationDelay: product.delay }}
+        >
+          <ProductPreviewCard product={product} />
+        </div>
+      ))}
+
+      {/* Tailwind Custom Animations */}
+      <style jsx>{`
+        .font-inter {
+          font-family: 'Inter', sans-serif;
+        }
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -70,6 +142,12 @@ const ExploreOurRange = () => {
             transform: translateY(0);
           }
         }
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+          opacity: 0; /* Hidden by default */
+        }
+        /* Keeping fadeInRight, blob, spinSlow, spinReverseSlow keyframes just in case for other parts of site */
+        /* They are not directly used in this component after removing blobs and central box rotation */
         @keyframes fadeInRight {
             from {
                 opacity: 0;
@@ -80,17 +158,6 @@ const ExploreOurRange = () => {
                 transform: translateX(0);
             }
         }
-        .animate-fade-in-right {
-          animation: fadeInRight 0.8s ease-out forwards;
-          opacity: 0; /* Hidden by default */
-        }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.6s ease-out forwards;
-          opacity: 0;
-        }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-400 { animation-delay: 0.4s; }
-
         @keyframes blob {
           0% {
             transform: translate(0px, 0px) scale(1);
@@ -106,7 +173,7 @@ const ExploreOurRange = () => {
           }
         }
         .animate-blob {
-          animation: blob 10s infinite alternate; /* Slower and longer */
+          animation: blob 10s infinite alternate;
         }
         .animation-delay-0 { animation-delay: 0s; }
         .animation-delay-1500 { animation-delay: 1.5s; }
@@ -118,7 +185,7 @@ const ExploreOurRange = () => {
           to { transform: rotate(360deg); }
         }
         .animate-spin-slow {
-          animation: spinSlow 30s linear infinite; /* Very slow spin */
+          animation: spinSlow 30s linear infinite;
         }
 
         @keyframes spinReverseSlow {
@@ -126,10 +193,9 @@ const ExploreOurRange = () => {
           to { transform: rotate(0deg); }
         }
         .animate-spin-reverse-slow {
-          animation: spinReverseSlow 25s linear infinite; /* Very slow spin in reverse */
+          animation: spinReverseSlow 25s linear infinite;
         }
-        `}
-      </style>
+      `}</style>
     </section>
   );
 };

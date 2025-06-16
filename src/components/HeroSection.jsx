@@ -1,43 +1,71 @@
-// HeroSection.js
 import React from 'react';
 
 const HeroSection = () => {
   return (
-    // Ensure font-sans is applied if you want the custom font
-    <div className="h-[70vh] relative  flex items-center font-sans">
-      {/* Background Image with Blur Effect */}
+    <div className="min-h-[95vh] relative flex items-center font-sans overflow-hidden">
+      {/* Background Image with Black Overlay */}
       <div className="absolute inset-0">
         <img
-          src="/images/voicewave.gif"
-          alt="Background"
-          className="w-full h-full object-cover filter blur-1xl" // Subtle blur
+          src="/images/herobg2.jpg" // Ensure this path is correct
+          alt="Professional Audio Visual Background"
+          className="w-full h-full object-cover"
         />
-        {/* Overlay to darken the background for better text contrast */}
-        <div className="absolute inset-0 bg-black/60" />
+        {/* Solid black overlay with opacity */}
+        <div className="absolute inset-0 bg-black opacity-70" /> 
       </div>
 
-      {/* Content */}
-      {/* Changed text-left to text-center */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 pt-40 text-center w-full">
-
+      {/* Content Container */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 text-center w-full">
         {/* Main Heading */}
-        {/* Re-added opacity-0 for animation start state */}
-        <h1 className="text-5xl md:text-5xl font-bold text-white mb-4 animate-sweep-in-1">
-          Welcome to Resoundify  
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight tracking-tight animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+          Welcome to {' '}
+          <span className="text-white">
+            Resoundify
+          </span>{' '}
+          
         </h1>
 
-        {/* Description */}
-        {/* Re-added opacity-0 for animation start state, added mx-auto to center block */}
-        <p className="text-3xl md:text-lg text-gray-300 max-w-2xl mx-auto animate-sweep-in-2">
-         Resoundify is a premier AV brand specializing in cutting-edge Dante-enabled products. We deliver audio-visual solutions that redefine how you connect, communicate, and create.
+        {/* Subtitle */}
+        <p className="text-lg md:text-xl text-white max-w-4xl mx-auto mb-12 leading-relaxed font-light animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+         At Resoundify, we deliver cutting-edge Dante-enabled solutions that redefinehow you connect, communicate, and create exceptional results.
         </p>
 
-        {/* Optional Call-to-Action Button */}
-        {/* If you uncomment the button, add 'opacity-0 animate-sweep-in-3' to it and 'mx-auto' if it's a block element */}
-         <button className="mt-6 px-8 py-3 bg-blue-950 text-white rounded-lg font-semibold hover:bg-blue-900 transition animate-sweep-in-3" >
-          Get Started
-        </button> 
+        {/* Enhanced CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+          <button className="group px-8 py-4 bg-blue-400 text-blue-900 rounded-lg font-semibold text-lg hover:bg-blue-300 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 min-w-[200px]">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            Explore Products
+          </button>
+          
+          <button className="group px-8 py-4 bg-transparent border-2 border-blue-400 text-white rounded-lg font-semibold text-lg hover:bg-blue-200 hover:text-blue-900 transition-all duration-300 flex items-center gap-3 min-w-[200px] backdrop-blur-sm">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-6m-6 0H3m6 0v-5a2 2 0 012-2h2a2 2 0 012 2v5" />
+            </svg>
+            Contact Us
+          </button>
+        </div>
+
+       
       </div>
+
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out both;
+        }
+      `}</style>
     </div>
   );
 };

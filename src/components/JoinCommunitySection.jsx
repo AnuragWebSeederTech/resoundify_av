@@ -38,26 +38,27 @@ const JoinCommunitySection = () => {
   };
 
   return (
-    <section className="relative py-20 px-10 bg-white text-gray-800 overflow-hidden font-inter"> {/* Main section background is white */}
-      {/* Link to import the 'Inter' font from Google Fonts */}
+    <section className="relative py-20 px-4 sm:px-10 bg-slate-50 text-gray-900 overflow-hidden font-inter"> {/* Main section background is light gray for consistency */}
+      {/* Font import link is ideally in your public/index.html or global CSS, but kept here for self-containment if needed */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
       <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-center lg:justify-between z-10 space-y-8 lg:space-y-0 lg:space-x-8">
         {/* Text Content */}
         <div className="lg:w-1/2 text-center lg:text-left px-4 lg:pl-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-indigo-700"> {/* Dark text gradient for contrast on white background */}
-            Join the Resoundify Community
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-gray-900"> {/* Adjusted text size for consistency, removed gradient to match other headings */}
+            Join the Resoundify <span className="text-blue-500">Community</span> {/* Accent color to match others */}
           </h2>
-          <p className="mb-8 text-lg md:text-lg text-gray-700 leading-relaxed font-light"> {/* Dark gray text */}
+          <p className="mb-8 text-lg sm:text-xl text-gray-700 leading-relaxed font-light"> {/* Adjusted text size for consistency */}
             At Resoundify, we believe in the power of sound to inspire, connect, and transform. Let us help you create audio-visual experiences that resonate. Explore our products, connect with our team, and experience the future of AV with Resoundify.
           </p>
-          <p className="mb-8 text-lg md:text-lg font-semibold text-indigo-700"> {/* Vibrant accent text */}
+          <p className="mb-8 text-lg sm:text-xl font-semibold text-blue-700"> {/* Accent color for consistency */}
             Resoundify – Where Sound Meets Innovation.
           </p>
           {/* "Join the Community" Button */}
           <button
             onClick={() => setShowJoinForm(true)}
-            className="inline-block bg-indigo-600 text-white text-lg font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out"
+            className="inline-block bg-blue-500 text-white text-lg font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-blue-600 hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out
+                       focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-75" // Added focus ring
           >
             Join the Community
           </button>
@@ -68,14 +69,16 @@ const JoinCommunitySection = () => {
           <img
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" // Example image
             alt="Audio-visual collaboration"
-            className="w-full max-w-2xl rounded-4xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+            className="w-full max-w-2xl rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300 border border-gray-100" // Adjusted border radius and added border for consistency
           />
         </div>
       </div>
 
-      {/* Floating decorative elements (light colors for light theme) */}
+      {/* Floating decorative elements (removed for cleaner look unless explicitly requested back) */}
+      {/*
       <div className="absolute top-10 left-10 w-24 h-24 bg-indigo-200 rounded-full opacity-30 animate-bounce-slow" />
       <div className="absolute bottom-10 right-10 w-20 h-20 bg-blue-200 rounded-full opacity-20 animate-bounce-slow" />
+      */}
 
       {/* Custom animations for the section */}
       <style jsx>{`
@@ -98,26 +101,13 @@ const JoinCommunitySection = () => {
 
       {/* Join Form Modal - Conditional rendering based on showJoinForm state */}
       {showJoinForm && (
-        // Overlay for the modal:
-        // - fixed inset-0: Covers the whole viewport.
-        // - bg-white/70: Semi-transparent white background for light theme.
-        // - backdrop-blur-sm: Applies a subtle blur to content behind the modal.
-        // - flex items-center justify-center: Centers the modal content.
-        // - p-4: Padding for mobile viewports.
-        // - z-50: High z-index to appear on top.
         <div className="fixed inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          {/* Modal content container:
-              - bg-white: Clear white background for the modal itself.
-              - text-gray-800: Default text color within the modal for light theme.
-              - rounded-3xl, shadow-2xl, p-8, max-w-md: Styling for the modal's appearance.
-              - transform transition-all duration-500 ease-in-out: Enables smooth entry/exit animations.
-              - scale-100 opacity-100 / scale-95 opacity-0: Control the animation based on showJoinForm. */}
           <div
-            className={`bg-white text-gray-800 rounded-3xl shadow-2xl p-8 w-full max-w-md transform transition-all duration-500 ease-in-out
+            className={`bg-white text-gray-900 rounded-3xl shadow-2xl p-8 w-full max-w-md transform transition-all duration-500 ease-in-out border border-gray-100
               ${showJoinForm ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}
           >
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-indigo-700"> {/* Dark text gradient for modal title */}
+              <h3 className="text-3xl font-bold text-gray-900"> {/* Dark text, removed gradient */}
                 Join Us!
               </h3>
               <button
@@ -163,7 +153,7 @@ const JoinCommunitySection = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-gray-800 text-lg placeholder-gray-500" // White background, dark text/placeholder for inputs
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900 text-lg placeholder-gray-500" // Focus ring in blue-500, text-gray-900 for inputs
                     placeholder="you@example.com"
                   />
                 </div>
@@ -178,7 +168,7 @@ const JoinCommunitySection = () => {
                     value={contactNumber}
                     onChange={(e) => setContactNumber(e.target.value)}
                     required
-                    className="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-gray-800 text-lg placeholder-gray-500" // White background, dark text/placeholder for inputs
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900 text-lg placeholder-gray-500" // Focus ring in blue-500, text-gray-900 for inputs
                     placeholder="+91-9876543210"
                   />
                 </div>
@@ -190,7 +180,7 @@ const JoinCommunitySection = () => {
                     type="checkbox"
                     checked={subscribeNewsletter}
                     onChange={(e) => setSubscribeNewsletter(e.target.checked)}
-                    className="h-6 w-6 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded-md bg-white" // White background, accent color checkbox
+                    className="h-6 w-6 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-md bg-white" // Checkbox accent color blue-600
                   />
                   <label htmlFor="newsletter" className="text-base text-gray-800 cursor-pointer select-none"> {/* Dark gray label text */}
                     Subscribe to our newsletter for the latest updates and exclusive content.
@@ -204,7 +194,7 @@ const JoinCommunitySection = () => {
                     type="checkbox"
                     checked={receiveNotifications}
                     onChange={(e) => setReceiveNotifications(e.target.checked)}
-                    className="h-6 w-6 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded-md bg-white" // White background, accent color checkbox
+                    className="h-6 w-6 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-md bg-white" // Checkbox accent color blue-600
                   />
                   <label htmlFor="notifications" className="text-base text-gray-800 cursor-pointer select-none"> {/* Dark gray label text */}
                     Receive notifications about new stock, product launches, and stock refills.
@@ -213,7 +203,7 @@ const JoinCommunitySection = () => {
 
                 <button
                   type="submit"
-                  className="w-full group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl font-semibold text-white shadow-xl hover:shadow-2xl hover:shadow-indigo-500/25 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] overflow-hidden" // Vibrant button gradient for light theme
+                  className="w-full group relative px-8 py-4 bg-blue-500 rounded-xl font-semibold text-white shadow-xl hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] overflow-hidden" // Solid blue-500 for button, consistent shadow
                 >
                   <span className="relative z-10 flex items-center justify-center">
                     <svg
@@ -234,8 +224,7 @@ const JoinCommunitySection = () => {
                     </svg>
                     Submit
                   </span>
-                  {/* Subtle hover background for the button */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> {/* Matching hover gradient */}
+                  {/* Removed subtle hover background for the button, solid color is cleaner */}
                 </button>
               </form>
             )}
