@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -102,6 +103,7 @@ const Header = () => {
           />
         </div>
         {/* Navigation Links and Search */}
+<<<<<<< HEAD
         <nav className="flex items-center space-x-8 font-semibold text-lg text-gray-800 hidden md:flex">
           <a
             href="/"
@@ -124,9 +126,33 @@ const Header = () => {
           <a
             href="/contact"
             className="relative hover:text-blue-700 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all after:duration-300 hover:after:w-full"
+=======
+        <nav className="flex items-center space-x-8 font-semibold text-lg text-black hidden md:flex">
+          <Link
+            to="/"
+            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            About
+          </Link>
+          <Link
+            to="/products"
+            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Products
+          </Link>
+          <Link
+            to="/contact"
+            className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+>>>>>>> 7c37e0ab73d1f4602bef9e0776514554c352dac6
           >
             Contact
-          </a>
+          </Link>
           {/* Search Icon */}
           <div
             className="cursor-pointer hover:text-blue-700 transition duration-300 ml-6"
