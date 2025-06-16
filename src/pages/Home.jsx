@@ -6,6 +6,8 @@ import TechnologySpotlight from '../components/TechnologySpotlight';
 import ExploreOurRange from '../components/ExploreOurRange';
 import JoinCommunitySection from '../components/JoinCommunitySection';
 import Footer from '../components/Footer';
+import Testimonial from '../components/Testimonial';
+import Clients from '../components/Clients';
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
       <WhyResoundify />
       <TechnologySpotlight />
       <ExploreOurRange />
+      <Testimonial />
+      <Clients />
       <JoinCommunitySection />
       <Footer />
     </>

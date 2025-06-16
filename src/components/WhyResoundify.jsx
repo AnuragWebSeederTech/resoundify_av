@@ -81,7 +81,7 @@ const WhyResoundify = () => {
         </div>
 
         {/* Premium Features Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-32">
+        <div className="grid lg:grid-cols-2 gap-8 mb-4">
           {features.map((feature, index) => (
             <div
               key={index}
@@ -138,42 +138,7 @@ const WhyResoundify = () => {
           ))}
         </div>
 
-        {/* Premium CTA Section */}
-        <div className="relative">
-          <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-3xl p-16 text-center relative overflow-hidden">
-            {/* Animated Background Pattern */}
-            <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(-45deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px] animate-pulse"></div>
-            
-            {/* Glowing Orbs */}
-            <div className="absolute top-0 left-1/4 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-1/4 w-56 h-56 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-            
-            <div className="relative z-10">
-              <h2 className="text-5xl md:text-6xl font-light mb-6 text-white">
-                Ready to Transform Your
-                <span className="block font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                  Audio Experience?
-                </span>
-              </h2>
-              <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
-                Explore our comprehensive range of Dante-enabled products and discover how Resoundify 
-                can elevate your audio-visual projects to unprecedented levels of excellence.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <button className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white rounded-2xl font-semibold text-lg hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 hover:scale-105 flex items-center gap-3 overflow-hidden">
-                  <span className="relative z-10">Explore Products</span>
-                  <Zap className="w-6 h-6 group-hover:animate-pulse relative z-10" />
-                  {/* Button shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
-                </button>
-                <button className="px-10 py-5 border-2 border-gray-600 text-gray-300 rounded-2xl font-semibold text-lg hover:border-gray-400 hover:bg-gray-800/50 hover:text-white transition-all duration-300 backdrop-blur-sm">
-                  Schedule Demo
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+       
       </div>
     </div>
   );

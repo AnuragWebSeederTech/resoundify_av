@@ -29,7 +29,7 @@ const Header = () => {
       <div className="text-gray-700 bg-white text-base px-6 lg:px-10 py-1 flex justify-end items-center border-b border-gray-200">
         <div className="flex items-center space-x-6 font-medium tracking-wide">
           <div className="flex items-center space-x-2 hover:text-blue-700 transition duration-300 cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
               <rect width="20" height="16" x="2" y="4" rx="2" />
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
