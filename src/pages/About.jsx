@@ -5,6 +5,8 @@ import AboutHero from '../components/aboutComponents/AboutHero'; // Adjust path 
 // import OurHistory from '../components/aboutComponents/OurHistory';
 import MissionVisionValues from '../components/aboutComponents/MissionVisionValues';  
 import Footer from '../components/Footer';
+import Clients from '../components/Clients';
+import Testimonial from '../components/Testimonial';
 
 const About = () => {
   return (
@@ -13,7 +15,8 @@ const About = () => {
       <AboutHero />
       <MissionVisionValues />
       {/* <OurHistory /> */}
-
+      <Testimonial />
+      <Clients />
       <Footer />
 
     
