@@ -120,25 +120,25 @@ const MissionVisionValues = () => {
             <div className="h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent w-24"></div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
-              <span className="text-sm font-mono text-slate-500 tracking-widest uppercase">Core Principles</span>
+              <span className="text-sm font-serif text-slate-500 tracking-widest uppercase">Core Principles</span>
               <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
             </div>
             <div className="h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent w-24"></div>
           </div>
           
-          <h2 className="text-6xl font-extralight text-slate-900 tracking-tight mb-6 leading-tight">
+          <h2 className="text-5xl font-sans text-slate-900 tracking-tight mb-6 leading-tight">
             Foundation
-            <span className="block font-light text-5xl text-slate-700 mt-2">& Future</span>
+            <span className="block font-sans text-4xl text-slate-700 mt-2">& Future</span>
           </h2>
           
-          <p className="text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed font-sans">
             Our mission, vision, and values form the strategic foundation that drives innovation, 
             guides decision-making, and shapes our commitment to audio-visual excellence.
           </p>
         </div>
 
         {/* Mission & Vision Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 font-sans mb-24 max-w-7xl mx-auto">
           {Object.entries(coreData).map(([key, data], index) => (
             <div 
               key={key}
@@ -159,10 +159,10 @@ const MissionVisionValues = () => {
                       <div className="w-6 h-6 bg-white rounded opacity-80"></div>
                     </div>
                     <div>
-                      <span className="text-sm font-mono text-slate-500 uppercase tracking-wider block">
+                      <span className="text-sm font-medium text-slate-500 uppercase tracking-wider block">
                         {data.subtitle}
                       </span>
-                      <h3 className="text-3xl font-semibold text-slate-900">
+                      <h3 className="text-3xl font-medium text-slate-900">
                         {data.title}
                       </h3>
                     </div>
@@ -172,16 +172,16 @@ const MissionVisionValues = () => {
                 </div>
 
                 {/* Content */}
-                <p className="text-slate-700 leading-relaxed text-lg font-light mb-8">
+                <p className="text-slate-700 leading-relaxed text-lg font-sans mb-8">
                   {data.content}
                 </p>
 
                 {/* Highlight */}
                 <div className="mb-6">
-                  <span className="text-sm font-medium text-slate-500 uppercase tracking-wider">
+                  <span className="text-sm font-sans text-slate-500 uppercase tracking-wider">
                     Key Focus
                   </span>
-                  <div className={`inline-block ml-4 px-4 py-2 bg-gradient-to-r ${data.color} text-white text-sm font-semibold rounded-full`}>
+                  <div className={`inline-block ml-4 px-4 py-2 bg-gradient-to-r ${data.color} text-white text-sm font-sans rounded-full`}>
                     {data.highlight}
                   </div>
                 </div>
@@ -191,7 +191,7 @@ const MissionVisionValues = () => {
                   {data.metrics.map((metric, idx) => (
                     <span 
                       key={idx}
-                      className="px-3 py-1 bg-slate-100 text-slate-700 text-sm font-medium rounded-full border border-slate-200"
+                      className="px-3 py-1 bg-slate-100 text-slate-700 text-sm font-sans rounded-full border border-slate-200"
                     >
                       {metric}
                     </span>
@@ -205,8 +205,8 @@ const MissionVisionValues = () => {
         {/* Values Section */}
         <div className="mb-16">
           <div className="text-center mb-16">
-            <h3 className="text-4xl font-light text-slate-900 mb-4">Core Values</h3>
-            <p className="text-slate-600 text-lg font-light max-w-3xl mx-auto">
+            <h3 className="text-4xl font-medium text-slate-900 mb-4">Core Values</h3>
+            <p className="text-slate-600 text-lg font-sans max-w-3xl mx-auto">
               Six fundamental principles that guide our operations, innovation, and commitment to excellence.
             </p>
           </div>
@@ -232,14 +232,14 @@ const MissionVisionValues = () => {
                       <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${value.color} flex items-center justify-center text-white text-xl shadow-lg`}>
                         {value.icon}
                       </div>
-                      <h4 className="text-xl font-semibold text-slate-900 leading-tight">
+                      <h4 className="text-xl font-medium text-slate-900 leading-tight">
                         {value.title}
                       </h4>
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-slate-700 leading-relaxed mb-6 font-light">
+                  <p className="text-slate-700 leading-relaxed mb-6 font-sans">
                     {value.description}
                   </p>
 
@@ -263,7 +263,7 @@ const MissionVisionValues = () => {
                     <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">
                       Impact
                     </span>
-                    <div className={`inline-block ml-3 px-3 py-1 bg-gradient-to-r ${value.color} text-white text-xs font-semibold rounded-full`}>
+                    <div className={`inline-block ml-3 px-3 py-1 bg-gradient-to-r ${value.color} text-white text-xs font-sans rounded-full`}>
                       {value.impact}
                     </div>
                   </div>
@@ -276,10 +276,10 @@ const MissionVisionValues = () => {
         {/* Bottom CTA */}
         <div className="text-center pt-12 border-t border-slate-200">
           <div className="max-w-3xl mx-auto">
-            <h4 className="text-2xl font-light text-slate-900 mb-4">
+            <h4 className="text-2xl font-medium text-slate-900 mb-4">
               Driven by Purpose, Delivered with Excellence
             </h4>
-            <p className="text-slate-600 font-light">
+            <p className="text-slate-600 font-sans">
               These principles guide every decision, every innovation, and every partnership 
               as we continue to shape the future of professional audio-visual technology.
             </p>

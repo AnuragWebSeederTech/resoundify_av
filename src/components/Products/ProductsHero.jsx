@@ -3,7 +3,7 @@ import React from 'react';
 const ProductsHero = () => {
   return (
     <section 
-      className="relative text-white py-28 px-6 lg:px-16 overflow-hidden shadow-xl bg-cover bg-center"
+      className="relative text-white h-[60vh] py-28 px-6 lg:px-16 overflow-hidden shadow-xl bg-cover bg-center"
       style={{ backgroundImage: `url('/images/productbg.jpg')` }} // Placeholder image path
     >
       <div className="absolute inset-0 bg-black opacity-20"></div> {/* Optional: Add an overlay for better text readability */}
