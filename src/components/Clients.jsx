@@ -1,21 +1,49 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Clients = () => {
   const clientLogos = [
-    { name: "Client A", url: "https://placehold.co/200x100/F0F8FF/1A2C59?text=Client+A", alt: "Innovate Solutions Logo" },
-    { name: "Client B", url: "https://placehold.co/200x100/E8F2FF/2C4373?text=Client+B", alt: "Tech Pioneers Logo" },
-    { name: "Client C", url: "https://placehold.co/200x100/E0ECFC/3E5A8D?text=Client+C", alt: "FutureForge Logo" },
-    { name: "Client D", url: "https://placehold.co/200x100/D8E6FA/5171A8?text=Client+D", alt: "Aether Dynamics Logo" },
-    { name: "Client E", url: "https://placehold.co/200x100/D0DFF7/6389C3?text=Client+E", alt: "Vertex Systems Logo" },
-    { name: "Client F", url: "https://placehold.co/200x100/C8D8F4/76A0DE?text=Client+F", alt: "Catalyst Corp Logo" },
-    { name: "Client G", url: "https://placehold.co/200x100/C0D2F1/89B6F9?text=Client+G", alt: "Nexus Innovations Logo" },
-    { name: "Client H", url: "https://placehold.co/200x100/B8CCEE/9CCDFB?text=Client+H", alt: "BrightWave Tech Logo" },
+    { name: "Client A", url: "/path/to/your/client-a-logo.png", alt: "Innovate Solutions Logo" },
+    { name: "Client B", url: "/path/to/your/client-b-logo.png", alt: "Tech Pioneers Logo" },
+    { name: "Client C", url: "/path/to/your/client-c-logo.png", alt: "FutureForge Logo" },
+    { name: "Client D", url: "/path/to/your/client-d-logo.png", alt: "Aether Dynamics Logo" },
+    { name: "Client E", url: "/path/to/your/client-e-logo.png", alt: "Vertex Systems Logo" },
+    { name: "Client F", url: "/path/to/your/client-f-logo.png", alt: "Catalyst Corp Logo" },
+    { name: "Client G", url: "/path/to/your/client-g-logo.png", alt: "Nexus Innovations Logo" },
+    { name: "Client H", url: "/path/to/your/client-h-logo.png", alt: "BrightWave Tech Logo" },
   ];
 
   const duplicatedLogos = [...clientLogos, ...clientLogos];
 
+  useEffect(() => {
+    const marquee = document.querySelector('.client-marquee');
+    let scrollPosition = 0;
+    const scrollSpeed = 1; // Adjust as needed for faster/slower scroll
+
+    const animate = () => {
+      scrollPosition -= scrollSpeed;
+      if (marquee) {
+        marquee.style.transform = `translateX(${scrollPosition}px)`;
+        // Reset position when the first set of logos has scrolled past
+        // This ensures a continuous loop
+        const totalWidth = marquee.scrollWidth / 2; // Width of one full set of logos
+        if (scrollPosition < -totalWidth) {
+          scrollPosition = 0; // Reset to start position
+        }
+      }
+      requestAnimationFrame(animate);
+    };
+
+    const animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      // Cleanup: Cancel the animation frame when the component unmounts
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []); // Empty dependency array ensures this runs once on mount
+
   return (
     <section className="bg-gradient-to-b from-blue-50 via-white to-blue-100 font-inter py-24 overflow-hidden relative">
+      {/* You might consider moving this <link> to your public/index.html or a global CSS file for better performance */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-fade-in-up">
@@ -25,12 +53,12 @@ const Clients = () => {
         </h2>
       </div>
 
-      {/* Marquee */}
+      {/* Marquee Container */}
       <div className="relative w-full overflow-hidden py-8">
-        <div className="client-marquee whitespace-nowrap flex items-center animate-marquee-left">
+        <div className="client-marquee whitespace-nowrap flex items-center" style={{ animation: 'none' }}>
           {duplicatedLogos.map((logo, index) => (
             <div
-              key={index}
+              key={index} // Using index as key is generally discouraged if items can change order, but for a static, duplicated list, it's acceptable.
               className="inline-block mx-10 p-6 bg-white rounded-xl shadow-lg border border-blue-100 flex-shrink-0"
               style={{ width: '240px', height: '140px' }}
             >
@@ -39,7 +67,8 @@ const Clients = () => {
                 alt={logo.alt}
                 className="max-w-full max-h-full object-contain mx-auto"
                 onError={(e) => {
-                  e.target.onerror = null;
+                  // Fallback to a plain placeholder if the image fails to load
+                  e.target.onerror = null; // Prevent infinite loop if fallback also fails
                   e.target.src = `https://placehold.co/200x100/E0F2FE/0B204F?text=${logo.name.replace(/ /g, '+')}`;
                 }}
               />
@@ -48,23 +77,31 @@ const Clients = () => {
         </div>
       </div>
 
-      <style>{`
+      {/* Internal CSS for component-specific styles */}
+      <style jsx>{`
         .font-inter {
           font-family: 'Inter', sans-serif;
         }
 
-
         .client-marquee {
-          width: max-content;
+          /* Ensures the container is wide enough for all content to scroll */
+          width: max-content; 
+          position: relative; /* Essential for transform property to work correctly */
         }
 
-        .animate-marquee-left {
-          animation: marquee-left 20s linear infinite;
+        /* Basic fade-in-up animation for the heading */
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
-
-        @keyframes marquee-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out forwards;
         }
       `}</style>
     </section>

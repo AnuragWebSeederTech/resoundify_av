@@ -15,7 +15,7 @@ const WhyChooseResoundify = () => {
             Why Resoundify is Your Partner in Premium Audio
           </h2>
           <p className="text-xl text-gray-700 leading-relaxed mb-8">
-            We go beyond just providing Dante-enabled products; we deliver a complete ecosystem built on **unwavering reliability, cutting-edge innovation, and unparalleled customer focus.** Our solutions are engineered to ensure your audio systems perform flawlessly, every time.
+            We go beyond just providing Dante-enabled products; we deliver a complete ecosystem built on unwavering reliability, cutting-edge innovation, and unparalleled customer focus. Our solutions are engineered to ensure your audio systems perform flawlessly, every time.
           </p>
 
           {/* Client Satisfaction Rate - Prominently displayed as a testimonial-like element */}
