@@ -21,13 +21,10 @@ const ResoundifySection = () => {
       <div className="max-w-7xl mx-auto text-center">
         {/* Header Section */}
         <div className="mb-16 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-          <div className="text-xl sm:text-2xl font-medium text-blue-700 mb-6 tracking-wide">
-            Redefining Audio-Visual Experiences
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-blue-900 mb-16">
-            What Resoundify <span className="text-blue-500">DOES.</span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-800 mb-12">
+            What Resoundify <span className="text-blue-500">Does.</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-700 mt-6 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-800 mt-6 max-w-4xl mx-auto leading-relaxed">
             We don’t just build audio-video systems. We engineer seamless, crystal-clear auditory and visual environments that transform professional spaces into extraordinary experiences.
           </p>
         </div>
