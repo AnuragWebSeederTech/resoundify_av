@@ -1,193 +1,173 @@
+// TechnologySpotlight.jsx
 import React from 'react';
-import { Network, Zap, Waves, Cpu } from 'lucide-react'; // Importing icons for visual appeal
 
 const TechnologySpotlight = () => {
   return (
-    // Main section container with a clean white background, consistent font, and generous padding
-    <section className="bg-white font-inter py-20 sm:py-24 lg:py-32 overflow-hidden relative">
-      {/* Link to import the 'Inter' font from Google Fonts to ensure consistent typography */}
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <section
+      className="w-full py-12 md:py-16 lg:py-20 font-sans relative overflow-hidden"
+      style={{
+        color: '#1A202C' // Default dark text for light theme
+      }}
+    >
+      {/* Ensure Inter font is loaded for consistency */}
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-      {/* Outer container for content, centered and utilizing a wide portion of the screen */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10 animate-fade-in-up">
+      {/* Background Image with Black Overlay */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center"
+        style={{
+          backgroundImage: `url('/images/Dante_Centric.png')` // Placeholder image URL
+        }}
+      >
+        {/* Black Overlay */}
+        <div className="absolute inset-0 bg-black opacity-70"></div> {/* Adjust opacity for desired darkness */}
+      </div>
 
-        {/* Section Heading - now directly colored for better visibility */}
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-16 text-blue-900 text-shadow-white">
-          Technology Spotlight: Dante Integration
-        </h2>
 
-        {/* Main Content Block for Dante Explanation - reduced padding */}
-        <div className="relative w-full bg-gradient-to-br from-blue-50 to-blue-50 rounded-3xl p-6 md:p-8 lg:p-10 shadow-2xl overflow-hidden border border-blue-100 group transform transition duration-500 hover:scale-[1.005] hover:shadow-3xl-subtle">
+      {/* Main content div, now wider and with adjusted padding */}
+      <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 relative z-10"> {/* Changed w-[80%] to w-[90%] and lg:px-12 to lg:px-16 */}
 
-          {/* Abstract SVG Background Pattern */}
-          <svg
-            className="absolute inset-0 w-full h-full z-0 opacity-20 group-hover:opacity-40 transition-opacity duration-700 animate-breathe-bg"
-            viewBox="0 0 1200 800"
-            preserveAspectRatio="none"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg" // Fixed xmlns attribute
-          >
-            {/* Layers for subtle wave patterns with gradients */}
-            <path d="M0 200C300 50 600 350 900 200C1200 50 1200 0 1200 0L0 0V200Z" fill="url(#dantePatternGradient1)" />
-            <path d="M0 400C300 250 600 550 900 400C1200 250 1200 150 1200 150L0 150V400Z" fill="url(#dantePatternGradient2)" opacity="0.6" />
-            <path d="M0 600C300 450 600 750 900 600C1200 450 1200 300 1200 300L0 300V600Z" fill="url(#dantePatternGradient3)" opacity="0.8" />
-            <defs>
-              {/* Gradient definitions for the SVG patterns, now using a range of blues */}
-              <linearGradient id="dantePatternGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#93c5fd" /> {/* Blue-300 */}
-                <stop offset="100%" stopColor="#bfdbfe" /> {/* Blue-200 */}
-              </linearGradient>
-              <linearGradient id="dantePatternGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#60a5fa" /> {/* Blue-400 */}
-                <stop offset="100%" stopColor="#93c5fd" /> {/* Blue-300 */}
-              </linearGradient>
-              <linearGradient id="dantePatternGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#3b82f6" /> {/* Blue-500 */}
-                <stop offset="100%" stopColor="#60a5fa" /> {/* Blue-400 */}
-              </linearGradient>
-            </defs>
-          </svg>
+        {/* Header */}
+        <div className="mb-10 text-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight text-shadow-blue"> {/* Changed text color to white for better contrast */}
+            Technology Spotlight <br className="md:hidden" /> (Dante Integration)
+          </h2>
+          <p className="mt-4 text-xl text-gray-200 font-light max-w-2xl mx-auto"> {/* Changed text color to light gray */}
+            Unleashing the power of seamless audio networking with cutting-edge technology.
+          </p>
+        </div>
 
-          {/* Content overlaying the SVG background */}
-          <div className="relative z-10 flex flex-col items-center">
-            {/* Main Dante Explanation Text */}
-            <div className="text-gray-800 text-center max-w-3xl mb-12 animate-fade-in">
-              <p className="text-xl font-semibold mb-4 text-gray-700 leading-relaxed">
-                Experience the future of audio networking.
-              </p>
-              <p className="text-lg mb-6 leading-relaxed">
-                Dante is the industry standard for high-quality, ultra-low latency audio over IP. It simplifies complex AV setups, eliminating bulky analog cables for a streamlined, digital workflow.
-              </p>
-              <p className="text-lg leading-relaxed font-medium">
-                Resoundify products are built with Dante at their core, ensuring effortless integration, superior audio performance, and flexible scalability for any professional application.
-              </p>
+        {/* Main Content Grid: About (Left) and Video (Right) */}
+        <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
+          {/* About Text Content (Left) */}
+          <div className="space-y-6">
+            <h3 className="text-3xl font-bold text-white mb-4"> {/* Changed text color to white */}
+              Benefits of <span className="text-blue-300">Dante Technology</span> {/* Adjusted accent color */}
+            </h3>
+            <p className="text-lg text-gray-200 leading-relaxed"> {/* Changed text color to light gray */}
+              Dante is the leading solution for digital audio networking, delivering
+              uncompressed, multi-channel digital media via standard Ethernet networks
+              with near-zero latency and perfect synchronization. It simplifies system
+              setup, eliminates bulky analog cabling, and provides superior sound quality.
+            </p>
+            <p className="text-lg text-gray-200 leading-relaxed"> {/* Changed text color to light gray */}
+              <span className="font-semibold text-blue-300">Resoundify</span> leverages {/* Adjusted accent color */}
+              Dante to provide unparalleled flexibility and scalability in audio
+              installations. This integration ensures our products offer a robust,
+              future-proof, and high-performance audio solution for any environment,
+              from professional studios to large-scale venues.
+            </p>
+          </div>
+
+          {/* Visual Content Placeholder (Right) */}
+          <div className="relative group overflow-hidden rounded-2xl shadow-xl border border-blue-500 aspect-video bg-blue-700 flex items-center justify-center transform transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]"> {/* Adjusted colors for dark background */}
+            <img
+              src="https://placehold.co/600x400/BFDBFE/1E3A8A?text=Dante+Integration+Video"
+              alt="Dante Integration Video Placeholder"
+              className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/BFDBFE/1E3A8A?text=Video+Loading+Failed';"
+            />
+            <div className="absolute inset-0 bg-blue-900 bg-opacity-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {/* Play icon SVG */}
+              <svg className="h-20 w-20 text-blue-300 transform hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
             </div>
+            <p className="absolute bottom-4 left-4 text-xs text-blue-100 bg-blue-900 px-3 py-1 rounded-full opacity-80">
+              Placeholder for Video / Infographic
+            </p>
+          </div>
+        </div>
 
-            {/* Feature highlights and Visual Element side-by-side */}
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
-              {/* Left Column: Feature Highlights */}
-              <div className="lg:w-1/2 text-gray-800 text-center lg:text-left animate-slide-in-left">
-                <ul className="space-y-4 text-left text-gray-700 text-base">
-                  <li className="flex items-center">
-                    <Network className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                    Effortless Digital Audio Networking
-                  </li>
-                  <li className="flex items-center">
-                    <Zap className="w-5 h-5 text-blue-700 mr-3 flex-shrink-0" />
-                    Ultra-Low Latency & High Fidelity
-                  </li>
-                  <li className="flex items-center">
-                    <Waves className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
-                    Simplified Cabling & Scalability
-                  </li>
-                  <li className="flex items-center">
-                    <Cpu className="w-5 h-5 text-blue-700 mr-3 flex-shrink-0" />
-                    Seamless Integration with Existing Systems
-                  </li>
-                </ul>
-              </div>
-
-              {/* Right Column: Visual Element (Video/Infographic Placeholder) */}
-              <div className="lg:w-1/2 flex justify-center items-center animate-slide-in-right">
-                <div className="w-full max-w-lg h-72 sm:h-80 md:h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-xl border border-gray-300 flex items-center justify-center relative transition duration-300 ease-in-out hover:shadow-2xl-subtle-hover">
-                  {/* Placeholder Image for Video/Infographic */}
-                  <img
-                    src="https://placehold.co/600x400/1d4ed8/FFFFFF?text=Dante+Explained" // Updated placeholder color
-                    alt="Dante Technology Infographic Placeholder"
-                    className="w-full h-full object-cover rounded-2xl"
-                    onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x400/1d4ed8/FFFFFF?text=Dante+Explained"; }}
-                  />
-                  {/* Text overlay for the placeholder */}
-                  <span className="absolute text-white text-lg sm:text-xl font-bold opacity-80 pointer-events-none text-center p-4">
-                  </span>
-                </div>
-              </div>
+        {/* Two Pointers Per Line Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-10">
+          {/* Pointer 1: Effortless Setup & Management */}
+          <div className="flex items-start space-x-4 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-md border border-gray-700 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group"> {/* Adjusted background for dark theme */}
+            <div className="flex-shrink-0">
+              {/* Checkmark icon SVG */}
+              <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
+            <div>
+              <h4 className="text-xl font-semibold text-white">Effortless Setup & Management</h4>
+              <p className="mt-1 text-gray-200">Dante simplifies complex audio networks, making installation and configuration straightforward.</p>
+            </div>
+          </div>
 
-            {/* CTA Button - Discover Dante-Enabled Products - lighter blue */}
-            <div className="text-center mt-16 animate-fade-in delay-700"> {/* Increased top margin */}
-              <a
-                href="/products#dante-enabled" // Example link to a specific section of your products page
-                className="inline-flex items-center px-10 py-4 border border-transparent text-lg font-semibold rounded-full shadow-lg text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 glow-on-hover-light-blue"
-              >
-                Discover Dante-Enabled Products
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </a>
+          {/* Pointer 2: Superior Sound Quality */}
+          <div className="flex items-start space-x-4 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-md border border-gray-700 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group"> {/* Adjusted background for dark theme */}
+            <div className="flex-shrink-0">
+              {/* Lightning bolt icon SVG */}
+              <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <div>
+              <h4 className="text-xl font-semibold text-white">Superior Sound Quality</h4>
+              <p className="mt-1 text-gray-200">Experience pristine, uncompressed audio with Dante's high-fidelity transmission.</p>
+            </div>
+          </div>
+
+          {/* Pointer 3: Unmatched Scalability */}
+          <div className="flex items-start space-x-4 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-md border border-gray-700 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group"> {/* Adjusted background for dark theme */}
+            <div className="flex-shrink-0">
+              {/* Code icon SVG */}
+              <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </div>
+            <div>
+              <h4 className="text-xl font-semibold text-white">Unmatched Scalability</h4>
+              <p className="mt-1 text-gray-200">Easily expand your audio system without complex re-cabling or compatibility issues.</p>
+            </div>
+          </div>
+
+          {/* Pointer 4: Future-Proof & Flexible */}
+          <div className="flex items-start space-x-4 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-md border border-gray-700 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group"> {/* Adjusted background for dark theme */}
+            <div className="flex-shrink-0">
+              {/* Dots/connectivity icon SVG */}
+              <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zM12 21c-1.657 0-3-.895-3-2s1.343-2 3-2 3 .895 3 2-1.343 2-3 2zM12 3c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zM12 14c-1.657 0-3-.895-3-2s1.343-2 3-2 3 .895 3 2-1.343 2-3 2z"></path></svg>
+            </div>
+            <div>
+              <h4 className="text-xl font-semibold text-white">Future-Proof & Flexible</h4>
+              <p className="mt-1 text-gray-200">Stay ahead with an adaptable platform ready for tomorrow's audio demands.</p>
             </div>
           </div>
         </div>
+
+        {/* CTA Button */}
+        <div className="text-center mt-16">
+          <button className="group relative inline-flex h-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-600 p-0.5 font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-opacity-50 glow-on-hover-blue-light">
+            <span className="absolute h-full w-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+            <span className="relative flex h-full w-full items-center justify-center rounded-full bg-blue-900 px-8 py-3 text-lg transition-all duration-300 group-hover:bg-transparent">
+              Discover Dante-Enabled Products
+              <svg className="ml-3 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
 
-      {/* Custom CSS for animations and the glow effect for the new button color */}
+      {/* Custom CSS for text shadow and glow effect */}
       <style>{`
-        .font-inter {
+        .font-sans {
           font-family: 'Inter', sans-serif;
         }
 
-        /* Reusing animations from previous components */
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+        /* Adjusted text shadow for dark theme */
+        .text-shadow-blue {
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), -1px -1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        .animate-slide-in-left {
-          animation: slide-in-left 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        @keyframes slide-in-left {
-          from { opacity: 0; transform: translateX(-50px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-
-        .animate-slide-in-right {
-          animation: slide-in-right 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        @keyframes slide-in-right {
-          from { opacity: 0; transform: translateX(50px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Animation for pulse effect (used on headings) */
-        .animate-pulse-slow {
-          animation: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-        }
-
-        /* Text shadow for heading */
-        .text-shadow-white {
-          text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6), -1px -1px 2px rgba(255, 255, 255, 0.6);
-        }
-
-        /* New glow effect for the CTA button, using lighter blues */
-        .glow-on-hover-light-blue {
+        /* New glow effect for the CTA button, for a lighter blue shade */
+        .glow-on-hover-blue-light {
           position: relative;
           z-index: 1;
         }
-        .glow-on-hover-light-blue:before {
+        .glow-on-hover-blue-light:before {
           content: '';
           position: absolute;
           top: -2px;
           left: -2px;
           right: -2px;
           bottom: -2px;
-          background: linear-gradient(45deg, #60a5fa, #3b82f6, #60a5fa); /* Lighter blues */
+          background: linear-gradient(45deg, #60a5fa, #3b82f6, #60a5fa); /* Blue-400, Blue-500 */
           background-size: 400% 400%;
           filter: blur(8px);
           opacity: 0;
@@ -195,35 +175,14 @@ const TechnologySpotlight = () => {
           border-radius: 9999px; /* Matches rounded-full */
           z-index: -1;
         }
-        .glow-on-hover-light-blue:hover:before {
+        .glow-on-hover-blue-light:hover:before {
           opacity: 1;
-          animation: glowing-light-blue 8s linear infinite;
+          animation: glowing-blue-light 8s linear infinite;
         }
-        @keyframes glowing-light-blue {
+        @keyframes glowing-blue-light {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-        }
-
-        /* Custom subtle shadow for main content block on hover */
-        .hover\\:shadow-3xl-subtle:hover {
-            box-shadow: 0 30px 60px -15px rgba(29, 78, 216, 0.2), 0 15px 30px -8px rgba(37, 99, 235, 0.15); /* Adjusted for blue tones */
-        }
-
-        /* Custom subtle shadow for the image/infographic container on hover */
-        .hover\\:shadow-2xl-subtle-hover:hover {
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 10px 20px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* New animation for the SVG background to create a subtle 'breathing' effect */
-        .animate-breathe-bg {
-            animation: breathe-bg 25s ease-in-out infinite alternate; /* Slower, smoother, alternating */
-            transform-origin: center center;
-        }
-        @keyframes breathe-bg {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(0.5%, 0.5%) scale(1.005); } /* Very slight translate and scale */
-            100% { transform: translate(0, 0) scale(1); }
         }
       `}</style>
     </section>
