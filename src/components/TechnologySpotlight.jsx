@@ -9,7 +9,7 @@ const TechnologySpotlight = () => {
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
       {/* Outer container for content, centered and utilizing a wide portion of the screen */}
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-fade-in-up">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10 animate-fade-in-up">
 
         {/* Section Heading - now directly colored for better visibility */}
         <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-16 text-blue-900 text-shadow-white">
