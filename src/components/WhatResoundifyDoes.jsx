@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const applications = [
   { icon: '🏢', title: 'Offices & Corporate', description: 'Elevate communication, presentations, and internal communications with pristine audio.' },
@@ -14,6 +14,32 @@ const keyFeatures = [
 ];
 
 const ResoundifySection = () => {
+  const [currentApplicationIndex, setCurrentApplicationIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const displayDuration = 3000; // Time text is fully visible
+    const transitionDuration = 1000; // Must match CSS transition duration for smoother fade
+
+    // Timeout to start fading out
+    const fadeOutTimer = setTimeout(() => {
+      setIsVisible(false);
+    }, displayDuration);
+
+    // Timeout to change content and start fading in the next item
+    const cycleTimer = setTimeout(() => {
+      setCurrentApplicationIndex((prevIndex) => (prevIndex + 1) % applications.length);
+      setIsVisible(true); // Will cause the new content to fade in
+    }, displayDuration + transitionDuration); // Wait for fade out to complete before changing content and fading in
+
+    return () => {
+      clearTimeout(fadeOutTimer);
+      clearTimeout(cycleTimer);
+    };
+  }, [currentApplicationIndex]); // Dependency array: re-run when index changes
+
+  const currentApplication = applications[currentApplicationIndex];
+
   return (
     <div className="py-20 px-4 sm:px-6 lg:px-8 font-inter bg-slate-50">
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -25,34 +51,66 @@ const ResoundifySection = () => {
             What Resoundify <span className="text-blue-500">Does.</span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-800 mt-6 max-w-4xl mx-auto leading-relaxed">
-            We don’t just build audio-video systems. We engineer seamless, crystal-clear auditory and visual environments that transform professional spaces into extraordinary experiences.
+            We don't just build audio-video systems. We engineer seamless, crystal-clear auditory and visual environments that transform professional spaces into extraordinary experiences.
           </p>
         </div>
+      </div>
 
-        {/* Perfect For Section */}
-        <div className="mb-20">
-          <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-12">
-            Perfect For
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 justify-items-center">
-            {applications.map((app, index) => (
-              <div
-                key={index}
-                className="w-full max-w-xs p-6 bg-blue-50 rounded-xl shadow-lg border border-gray-100
-                           text-center transition-all duration-500 hover:scale-105 hover:shadow-xl hover:border-blue-200
-                           opacity-0 animate-slideUp"
-                style={{ animationDelay: `${0.3 + index * 0.15}s` }}
-              >
-                <div className="text-5xl text-blue-700 mb-4 drop-shadow-md">{app.icon}</div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-3">{app.title}</h4>
-                <p className="text-gray-700 text-base leading-relaxed">{app.description}</p>
-              </div>
-            ))}
-          </div>
+      {/* Perfect For Section - Full Width Stripe */}
+      <div className="relative overflow-hidden py-20 bg-pattern-light-gradient">
+        {/* Decorative Pattern Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white opacity-10 rounded-full transform rotate-45"></div>
+          <div className="absolute top-20 right-20 w-24 h-24 bg-white opacity-5 rounded-full"></div>
+          <div className="absolute bottom-10 left-1/4 w-16 h-16 bg-white opacity-10 rounded-full"></div>
+          <div className="absolute bottom-20 right-1/3 w-20 h-20 bg-white opacity-5 rounded-full transform rotate-12"></div>
+          <div className="absolute top-1/2 left-5 w-12 h-12 bg-white opacity-10 rounded-full"></div>
+          <div className="absolute top-1/3 right-10 w-28 h-28 bg-white opacity-5 rounded-full transform -rotate-12"></div>
+          
+          {/* Geometric shapes */}
+          <div className="absolute top-16 left-1/3 w-8 h-8 bg-white opacity-10 transform rotate-45"></div>
+          <div className="absolute bottom-16 right-1/4 w-6 h-6 bg-white opacity-10 transform rotate-45"></div>
+          <div className="absolute top-1/4 right-1/2 w-10 h-10 bg-white opacity-5 transform rotate-45"></div>
+          
+          {/* Dotted pattern */}
+          <div className="absolute top-8 left-1/2 w-2 h-2 bg-white opacity-20 rounded-full"></div>
+          <div className="absolute top-12 left-1/2 w-2 h-2 bg-white opacity-15 rounded-full ml-4"></div>
+          <div className="absolute top-16 left-1/2 w-2 h-2 bg-white opacity-10 rounded-full ml-8"></div>
+          <div className="absolute bottom-8 right-1/2 w-2 h-2 bg-white opacity-20 rounded-full"></div>
+          <div className="absolute bottom-12 right-1/2 w-2 h-2 bg-white opacity-15 rounded-full mr-4"></div>
+          <div className="absolute bottom-16 right-1/2 w-2 h-2 bg-white opacity-10 rounded-full mr-8"></div>
         </div>
 
+        <div className="max-w-7xl mx-auto text-center md:flex md:items-center md:justify-between md:text-left"> {/* Added flex for side-by-side layout */}
+          {/* Perfect For Heading */}
+          <h3 className="text-5xl sm:text-6xl font-sans text-gray-100 mb-8 md:mb-0 relative z-10 text-shadow-white md:w-1/2">
+            Perfect For     ➡️
+          </h3>
+          {/* Fade In/Out Loop Box */}
+          <div className="relative z-10 w-full md:w-1/2 flex justify-center items-center min-h-[350px]"> {/* Increased min-height for the container */}
+            {currentApplication && (
+              <div
+                key={currentApplication.title} // Key for re-rendering/animation
+                className={`w-full max-w-lg p-6 bg-white rounded-xl shadow-lg border border-gray-100 min-h-[300px]
+                            transition-opacity duration-[1000ms] ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}
+                            flex flex-col md:flex-row items-center justify-between gap-6`} // Fixed to md:flex-row (text left, emoji right)
+              >
+                <div className="text-6xl text-blue-700 mb-4 md:mb-0 md:mr-6 drop-shadow-md flex-shrink-0"> {/* Fixed emoji margin */}
+                  {currentApplication.icon}
+                </div>
+                <div className="text-center md:text-left flex-grow"> {/* Fixed text alignment */}
+                  <h4 className="text-2xl font-semibold text-gray-900 mb-3">{currentApplication.title}</h4>
+                  <p className="text-gray-700 text-lg leading-relaxed">{currentApplication.description}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto text-center"> {/* Re-establish max-w for subsequent sections */}
         {/* Key Features Section */}
-        <div className="mb-20">
+        <div className="mb-20 mt-20"> {/* Added mt-20 for spacing after the stripe */}
           <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-12">
             Our Core Strengths
           </h3>
@@ -135,6 +193,14 @@ const ResoundifySection = () => {
         }
         .animate-fadeIn { animation: fadeIn 0.9s ease-out forwards; }
         .animate-slideUp { animation: slideUp 0.9s ease-out forwards; }
+
+        .bg-pattern-light-gradient {
+          background-color: #60A5FA; /* blue-400 as fallback */
+          background-image:
+            radial-gradient(at 20% 80%, rgba(147, 197, 253, 0.5) 0px, transparent 50%), /* blue-300 with transparency */
+            radial-gradient(at 80% 20%, rgba(147, 197, 253, 0.5) 0px, transparent 50%),
+            linear-gradient(to bottom right, #60A5FA, #93C5FD); /* blue-400 to blue-300 */
+        }
       `}</style>
     </div>
   );
