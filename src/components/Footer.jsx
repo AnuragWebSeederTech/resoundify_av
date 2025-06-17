@@ -20,7 +20,7 @@ import React from "react";
           
        
           {/* Main Footer Grid */}
-          <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="max-w-8xl mx-auto px-20 py-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-12">
               
               {/* Company Info - Takes 2 columns on XL screens */}
