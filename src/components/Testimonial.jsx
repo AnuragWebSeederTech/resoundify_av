@@ -1,18 +1,48 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { ShieldCheck, Settings, Award, Headset } from 'lucide-react'; // Icons for features
 
-const WhyChooseResoundify = () => {
+const Testimonial = () => {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Update isVisible state based on whether the section is intersecting
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        root: null, // viewport
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    // Cleanup observer on component unmount
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []); // Empty dependency array means this effect runs once on mount
+
   return (
     <section
+      ref={sectionRef} // Attach the ref to the section
       className="font-inter py-2 sm:py-12 lg:py-12 overflow-hidden relative"
       style={{
+        // Reverted to original light gradient
         background: 'linear-gradient(to bottom, #FFFFFF, #60A5FA)', // Light gradient from white to AliceBlue
         color: '#1A202C' // Default dark text for light theme
       }}
     >
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-fade-in-up">
+      <div className={`max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
 
         {/* Centralized Value Proposition & Intro */}
         <div className="text-center max-w-4xl mx-auto mb-16">
@@ -89,14 +119,15 @@ const WhyChooseResoundify = () => {
           font-family: 'Inter', sans-serif;
         }
 
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
+        /* Original animate-fade-in-up is now handled by the inline classes */
+        /* .animate-fade-in-up {
+           animation: fade-in-up 0.8s ease-out forwards;
+           opacity: 0;
+         }
+         @keyframes fade-in-up {
+           from { opacity: 0; transform: translateY(20px); }
+           to { opacity: 1; transform: translateY(0); }
+         } */
 
         /* Adjusted text shadow for light theme */
         .text-shadow-blue {
@@ -146,4 +177,4 @@ const WhyChooseResoundify = () => {
   );
 };
 
-export default WhyChooseResoundify;
+export default Testimonial;
