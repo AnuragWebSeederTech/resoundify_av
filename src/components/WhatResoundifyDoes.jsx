@@ -195,11 +195,11 @@ const ResoundifySection = () => {
         .animate-slideUp { animation: slideUp 0.9s ease-out forwards; }
 
         .bg-pattern-light-gradient {
-          background-color: #60A5FA; /* blue-400 as fallback */
+          background-color: #1d4ed8; /* blue-400 as fallback */
           background-image:
             radial-gradient(at 20% 80%, rgba(147, 197, 253, 0.5) 0px, transparent 50%), /* blue-300 with transparency */
             radial-gradient(at 80% 20%, rgba(147, 197, 253, 0.5) 0px, transparent 50%),
-            linear-gradient(to bottom right, #60A5FA, #93C5FD); /* blue-400 to blue-300 */
+            linear-gradient(to bottom right, #1d4ed8, #93C5FD); /* blue-400 to blue-300 */
         }
       `}</style>
     </div>
