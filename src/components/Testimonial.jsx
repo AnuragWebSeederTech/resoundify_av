@@ -3,22 +3,27 @@ import { ShieldCheck, Settings, Award, Headset } from 'lucide-react'; // Icons f
 
 const WhyChooseResoundify = () => {
   return (
-    <section className="bg-white font-inter py-20 sm:py-24 lg:py-32 overflow-hidden relative">
+    <section
+      className="font-inter py-2 sm:py-12 lg:py-12 overflow-hidden relative"
+      style={{
+        background: 'linear-gradient(to bottom, #FFFFFF, #60A5FA)', // Light gradient from white to AliceBlue
+        color: '#1A202C' // Default dark text for light theme
+      }}
+    >
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-fade-in-up">
 
         {/* Centralized Value Proposition & Intro */}
         <div className="text-center max-w-4xl mx-auto mb-16">
-          
           <h2 className="text-4xl sm:text-5xl font-extrabold text-blue-900 mb-6 leading-tight text-shadow-blue">
-            Why Resoundify is Your Partner in Premium Audio
+            Your Premier Partner in Professional Audio. Period.
           </h2>
           <p className="text-xl text-gray-700 leading-relaxed mb-8">
-            We go beyond just providing Dante-enabled products; we deliver a complete ecosystem built on unwavering reliability, cutting-edge innovation, and unparalleled customer focus. Our solutions are engineered to ensure your audio systems perform flawlessly, every time.
+            We're not just selling Dante-enabled products; we're delivering a complete ecosystem. Expect **unwavering reliability**, **cutting-edge innovation**, and **unparalleled customer focus**. Your audio, flawless every time.
           </p>
 
-          {/* Client Satisfaction Rate - Prominently displayed as a testimonial-like element */}
+          {/* Client Satisfaction Rate - Prominently displayed */}
           <div className="flex items-center justify-center gap-6 bg-blue-50 py-4 px-6 rounded-lg shadow-md border border-blue-100 animate-pulse-light mx-auto max-w-sm">
             <span className="text-blue-800 text-4xl font-extrabold">99%</span>
             <p className="text-lg font-medium text-gray-700 text-left">
@@ -27,14 +32,14 @@ const WhyChooseResoundify = () => {
           </div>
         </div>
 
-        {/* Feature Cards - Arranged in a more open, possibly scrollable or distinct row */}
+        {/* Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {/* Feature 1: Reliability */}
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-lg border border-blue-100 text-center transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group">
             <ShieldCheck className="w-14 h-14 text-blue-700 mb-4 transition-transform duration-300 group-hover:scale-110" />
-            <h3 className="text-xl font-bold text-blue-900 mb-2">Unmatched Reliability</h3>
+            <h3 className="text-xl font-bold text-blue-900 mb-2">Unwavering Reliability</h3>
             <p className="text-gray-700 text-base">
-              Our Dante-powered systems deliver consistent, crystal-clear audio performance, every single time.
+              Consistent, crystal-clear audio performance with our Dante-powered systems. Always.
             </p>
           </div>
 
@@ -43,30 +48,30 @@ const WhyChooseResoundify = () => {
             <Settings className="w-14 h-14 text-blue-700 mb-4 transition-transform duration-300 group-hover:scale-110" />
             <h3 className="text-xl font-bold text-blue-900 mb-2">Seamless Integration</h3>
             <p className="text-gray-700 text-base">
-              Effortlessly connect our products with your existing professional AV infrastructure.
+              Effortlessly connect our products with your existing AV infrastructure.
             </p>
           </div>
 
           {/* Feature 3: Expertise/Support */}
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-lg border border-blue-100 text-center transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group">
             <Award className="w-14 h-14 text-blue-700 mb-4 transition-transform duration-300 group-hover:scale-110" />
-            <h3 className="text-xl font-bold text-blue-900 mb-2">Expert-Level Support</h3>
+            <h3 className="text-xl font-bold text-blue-900 mb-2">Dedicated Expertise</h3>
             <p className="text-gray-700 text-base">
-              Benefit from our deep industry knowledge and dedicated technical assistance, whenever you need it.
+              Benefit from our deep industry knowledge and responsive technical assistance.
             </p>
           </div>
 
           {/* Feature 4: Partnership */}
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-lg border border-blue-100 text-center transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group">
             <Headset className="w-14 h-14 text-blue-700 mb-4 transition-transform duration-300 group-hover:scale-110" />
-            <h3 className="text-xl font-bold text-blue-900 mb-2">Dedicated Partnership</h3>
+            <h3 className="text-xl font-bold text-blue-900 mb-2">True Partnership</h3>
             <p className="text-gray-700 text-base">
-              We're committed to your long-term success with proactive service, comprehensive training, and continuous innovation.
+              Committed to your long-term success through proactive service and continuous innovation.
             </p>
           </div>
         </div>
 
-        {/* Call to Action Button - positioned after features */}
+        {/* Call to Action Button */}
         <div className="text-center">
           <a
             href="/about-us#our-philosophy" // Example link

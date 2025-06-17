@@ -11,10 +11,11 @@ const About = () => {
     <div className="relative">
       <Header />
       <AboutHero />
-      <OurHistory />
       <MissionVisionValues />
+      <OurHistory />
+
       <Footer />
-      {/* Add more components as needed */}
+
     
     </div>
   );

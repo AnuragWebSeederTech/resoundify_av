@@ -33,7 +33,7 @@ const ProductCard = ({ product, isHovered }) => {
             ${isHovered ? "opacity-100" : "opacity-0 group-hover:opacity-100"}
           `}
         >
-          <button className="w-full bg-white/20 backdrop-blur-sm text-white py-3 rounded-xl font-semibold text-lg
+          <button className="w-full bg-white/20 backdrop-blur-sm text-white py-3 rounded-xl font-sans text-lg
             hover:bg-white/30 hover:shadow-lg transition-all duration-300">
             View Details
             <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
@@ -43,7 +43,7 @@ const ProductCard = ({ product, isHovered }) => {
 
       {/* Product Info */}
       <div className="p-6">
-        <h3 className="text-3xl font-bold text-gray-900 mb-2 leading-tight">
+        <h3 className="text-3xl font-medium text-gray-900 mb-2 leading-tight">
           {product.name}
         </h3>
         <p className="text-gray-600 mb-5 text-base leading-relaxed line-clamp-3">

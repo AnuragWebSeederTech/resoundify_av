@@ -6,6 +6,7 @@ import { Briefcase, CalendarCheck, Globe, Award, Star } from 'lucide-react'; // 
 // Import your Header and Footer components
 import Header from '../components/Header'; // Adjust path if your Header is elsewhere
 import Footer from '../components/Footer'; // Adjust path if your Footer is elsewhere
+import Testimonial from '../components/Testimonial'; // Adjust path if your Testimonial is elsewhere
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -122,7 +123,7 @@ const ContactPage = () => {
       title: 'CEO, InnovateTech',
       quote: "Resoundify transformed our office's audio conferencing. The clarity is exceptional, and their team was incredibly professional and efficient.",
       rating: 5,
-      avatar: '/path-to-sarah-avatar.jpg', // Placeholder
+      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
     },
     {
       id: 2,
@@ -130,7 +131,7 @@ const ContactPage = () => {
       title: 'Event Manager, Grand Venues',
       quote: 'We relied on Resoundify for our latest concert venue sound design. The results were phenomenal, exceeding all expectations. True audio masters!',
       rating: 5,
-      avatar: '/path-to-michael-avatar.jpg', // Placeholder
+      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
     },
     {
       id: 3,
@@ -138,7 +139,7 @@ const ContactPage = () => {
       title: 'CTO, FutureWave Studios',
       quote: 'Their Dante integration expertise is unmatched. They seamlessly integrated complex systems, and their support has been excellent.',
       rating: 4,
-      avatar: '/path-to-emily-avatar.jpg', // Placeholder
+      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
     },
     {
       id: 4,
@@ -146,7 +147,7 @@ const ContactPage = () => {
       title: 'Education Director, Summit Academy',
       quote: 'Resoundify provided us with an intuitive and powerful audio solution for our lecture halls. Highly recommend their services.',
       rating: 5,
-      avatar: '/path-to-david-avatar.jpg', // Placeholder
+      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
     },
     {
       id: 5,
@@ -154,7 +155,7 @@ const ContactPage = () => {
       title: 'Marketing Head, Global Brands',
       quote: 'We needed a custom audio solution for our interactive exhibit, and Resoundify delivered beyond imagination. Creative and technically brilliant!',
       rating: 5,
-      avatar: '/path-to-priya-avatar.jpg', // Placeholder
+      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
     },
   ];
 
@@ -174,84 +175,91 @@ const ContactPage = () => {
     <div className="min-h-screen bg-white font-sans text-gray-900 flex flex-col">
       <Header /> {/* Call the Header component */}
 
-      {/* Main Content Area - Wrapped for animation */}
+      {/* Main Content Area - Wrapped for animation and independent scrolling */}
       <div className={`pt-24 flex flex-col lg:flex-row flex-grow transform transition-all duration-1000 ease-out
-        ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+        overflow-hidden`}> {/* Added overflow-hidden to the parent */}
 
-        {/* Left Section: Info and Stats */}
-        <div className="lg:w-1/2 p-8 md:p-16 pt-16 lg:pt-10 flex flex-col justify-center bg-gray-50 shadow-lg lg:shadow-none rounded-lg mx-4 lg:mx-0 my-4 lg:my-0">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
-            Get a quote for your project
+        {/* Left Section: Info, Stats, and Testimonials - Now with its own scroll */}
+        <div className="lg:w-1/2 p-8 md:p-16 pt-16 lg:pt-10 flex flex-col justify-start bg-gray-50 shadow-lg lg:shadow-none rounded-lg mx-4 lg:mx-0 my-4 lg:my-0
+                         overflow-y-auto custom-scroll-light no-scrollbar lg:max-h-[calc(100vh-6rem)]"> {/* Adjusted for scroll */}
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 text-shadow-dark">
+            Elevate Your Audio-Visual Experience 
           </h1>
           <p className="text-lg sm:text-xl text-gray-700 mb-12">
-            Let us help you achieve superior audio-visual experiences. Fill in the form and our team will get back to you.
+            At Resoundify, we deliver cutting-edge audio-visual solutions that redefine how you connect, communicate, and create. As a trusted AV brand specializing in Dante-enabled products, we bring seamless, high-quality audio networking to the forefront of your projects. Let us help you create audio-visual experiences that resonate.
           </p>
 
-          {/* Stats Grid */}
+          {/* Stats Grid - Aligned with Resoundify's values */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
             <div className="flex items-center p-4 bg-white rounded-lg shadow-md
-                          transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
+                           transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
               <CalendarCheck className="w-8 h-8 text-blue-500 mr-4" />
               <div>
-                <div className="text-3xl font-bold text-gray-900">99%</div>
-                <div className="text-gray-600 text-base">Client Satisfaction</div>
+                <div className="text-3xl font-bold text-gray-900">Uncompromising</div>
+                <div className="text-gray-600 text-base">Quality & Reliability </div>
               </div>
             </div>
             <div className="flex items-center p-4 bg-white rounded-lg shadow-md
-                          transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
+                           transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
               <Briefcase className="w-8 h-8 text-green-500 mr-4" />
               <div>
-                <div className="text-3xl font-bold text-gray-900">10+</div>
-                <div className="text-gray-600 text-base">Years in AV Innovation</div>
+                <div className="text-3xl font-bold text-gray-900">Simplified</div>
+                <div className="text-gray-600 text-base">Intuitive Solutions </div>
               </div>
             </div>
             <div className="flex items-center p-4 bg-white rounded-lg shadow-md
-                          transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
+                           transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
               <Globe className="w-8 h-8 text-purple-500 mr-4" />
               <div>
-                <div className="text-3xl font-bold text-gray-900">500+</div>
-                <div className="text-gray-600 text-base">Successful Deployments</div>
+                <div className="text-3xl font-bold text-gray-900">Future-Ready</div>
+                <div className="text-gray-600 text-base">Technology </div>
               </div>
             </div>
             <div className="flex items-center p-4 bg-white rounded-lg shadow-md
-                          transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
+                           transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
               <Award className="w-8 h-8 text-yellow-500 mr-4" />
               <div>
-                <div className="text-3xl font-bold text-gray-900">Leading</div>
-                <div className="text-gray-600 text-base">Dante Solutions Provider</div>
+                <div className="text-3xl font-bold text-gray-900">Dante-Centric</div>
+                <div className="text-gray-600 text-base">Innovation </div>
               </div>
             </div>
           </div>
 
-          {/* Awards Section */}
-          <div className="text-center mt-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-8">Our Recognitions</h3>
-            <div className="flex justify-center flex-wrap gap-8">
-              <div className="flex flex-col items-center group bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-100 hover:shadow-xl">
-                <img src={"image_9408ec.png"} alt="Best Audio Tech Innovation Award" className="h-24 w-24 mb-2 object-contain
-                               transition-transform duration-300 group-hover:scale-110" />
-                <p className="text-gray-800 text-sm font-semibold">"Best Audio Tech"<br />Innovation Award</p>
-                <p className="text-xs text-gray-500">2023 Tech Excellence</p>
-              </div>
-              <div className="flex flex-col items-center group bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-100 hover:shadow-xl">
-                <img src={"image_9405e5.png"} alt="Top Industry Solution Provider" className="h-24 w-24 mb-2 object-contain
-                               transition-transform duration-300 group-hover:scale-110" />
-                <p className="text-gray-800 text-sm font-semibold">"Top Industry"<br />Solution Provider</p>
-                <p className="text-xs text-gray-500">AV Integration Summit</p>
-              </div>
-              <div className="flex flex-col items-center group bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-100 hover:shadow-xl">
-                <img src={"image_9409c7.png"} alt="Trusted Partner Excellence Badge" className="h-24 w-24 mb-2 object-contain
-                               transition-transform duration-300 group-hover:scale-110" />
-                <p className="text-gray-800 text-sm font-semibold">"Trusted Partner"<br />Excellence Badge</p>
-                <p className="text-xs text-gray-500">Dante Certified</p>
-              </div>
+          {/* "What Our Clients Say" Section - Moved here */}
+          <section className="py-8 bg-gray-50 text-gray-900 text-center">
+            <h3 className="text-3xl font-extrabold mb-8 text-gray-900 text-shadow-dark">What Our Clients Say</h3>
+            <div className="grid grid-cols-1 gap-8 max-w-full mx-auto"> {/* Changed to 1 column for stacking */}
+              {testimonials.map((testimonial) => (
+                <div key={testimonial.id} className="bg-white p-6 rounded-xl shadow-md border border-gray-200
+                                       transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col items-center">
+                  {testimonial.avatar && (
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className="w-20 h-20 rounded-full object-cover mb-4 border-3 border-blue-400 shadow-sm"
+                    />
+                  )}
+                  {renderStars(testimonial.rating)}
+                  <p className="text-md italic text-gray-700 mb-4 mt-3 line-clamp-3">
+                    "{testimonial.quote}"
+                  </p>
+                  <h4 className="font-bold text-gray-900 text-lg text-shadow-dark-subtle">{testimonial.name}</h4>
+                  <p className="text-gray-600 text-sm">{testimonial.title}</p>
+                </div>
+              ))}
             </div>
-          </div>
+            <button className="mt-8 py-2 px-6 bg-blue-600 text-white text-md font-semibold rounded-full shadow-lg
+                               hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-400">
+              Read More Testimonials
+            </button>
+          </section>
         </div>
 
-        {/* Right Section: Contact Form */}
-        {/* Changed background to blue-600 for contrast but still within blue theme */}
-        <div className="lg:w-1/2 p-8 md:p-16 bg-blue-600 text-white flex flex-col justify-center relative overflow-hidden rounded-lg mx-4 lg:mx-0 my-4 lg:my-0 lg:ml-0">
+        {/* Right Section: Contact Form - Now with its own scroll */}
+        {/* Changed background to blue-600, text to white, and added text-shadow */}
+        <div className="lg:w-1/2 p-8 md:p-16 bg-blue-600 text-white flex flex-col justify-center relative overflow-hidden rounded-lg mx-4 lg:mx-0 my-4 lg:my-0 lg:ml-0
+                         overflow-y-auto custom-scroll-light no-scrollbar lg:max-h-[calc(100vh-6rem)]"> {/* Adjusted for scroll */}
             {/* Background elements (kept white for subtle contrast) */}
             <div className="absolute inset-0 z-0 opacity-20">
               <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -261,7 +269,7 @@ const ContactPage = () => {
               </svg>
             </div>
 
-          <h2 className="sm:text-4xl lg:text-5xl font-bold mb-8 relative z-10 text-white">Hello there :)</h2>
+          <h2 className="sm:text-4xl lg:text-5xl font-bold mb-8 relative z-10 text-white text-shadow-white">Connect with Resoundify</h2>
 
           {isSubmitted && (
             <div className="bg-green-600 text-white px-4 py-3 rounded-lg relative mb-6 text-base animate-fadeInUp z-10 shadow-lg">
@@ -411,8 +419,8 @@ const ContactPage = () => {
               {errors.message && <p className="mt-1 text-sm text-red-300">{errors.message}</p>}
             </div>
 
-            <p className="text-blue-100 text-base pt-4">
-                We're excited to help you amplify your sound experience!
+            <p className="text-blue-100 text-base pt-4 text-shadow-blue-subtle">
+                Let us help you create audio-visual experiences that resonate. Explore our products, connect with our team, and experience the future of AV with Resoundify.
             </p>
 
             <button
@@ -443,36 +451,7 @@ const ContactPage = () => {
           </form>
         </div>
       </div>
-
-      {/* "What Our Clients Say" Section */}
-      <section className="py-16 px-8 bg-gray-100 text-gray-900 text-center">
-        <h2 className="text-4xl sm:text-5xl font-extrabold mb-12 text-gray-900">What Our Clients Say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white p-8 rounded-xl shadow-lg border border-gray-200
-                                                transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center">
-              {testimonial.avatar && (
-                <img
-                  src={testimonial.avatar}
-                  alt={testimonial.name}
-                  className="w-24 h-24 rounded-full object-cover mb-6 border-4 border-blue-500 shadow-md"
-                />
-              )}
-              {renderStars(testimonial.rating)}
-              <p className="text-lg italic text-gray-700 mb-6 mt-4 line-clamp-4">
-                "{testimonial.quote}"
-              </p>
-              <h4 className="font-bold text-gray-900 text-xl">{testimonial.name}</h4>
-              <p className="text-gray-600 text-sm">{testimonial.title}</p>
-            </div>
-          ))}
-        </div>
-        <button className="mt-12 py-3 px-8 bg-blue-600 text-white text-lg font-semibold rounded-full shadow-lg
-                           hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-400">
-          Read More Testimonials
-        </button>
-      </section>
-
+      <Testimonial />
       <Footer /> {/* Call the Footer component */}
 
       {/* Floating WhatsApp Button */}
@@ -481,13 +460,13 @@ const ContactPage = () => {
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-xl hover:bg-green-600 transition-colors z-50
-                   transform hover:scale-110"
+                    transform hover:scale-110"
         aria-label="Chat on WhatsApp"
       >
         <FaWhatsapp size={28} />
       </a>
 
-      {/* Custom CSS for animations and text shadows (removed text shadows on light elements) */}
+      {/* Custom CSS for animations and text shadows */}
       <style jsx>{`
         @keyframes pulse-slow {
             0%, 100% {
@@ -531,6 +510,52 @@ const ContactPage = () => {
           background-position: right 0.75rem center;
           background-size: 1.5em 1.5em;
           padding-right: 2.5rem; /* Space for the custom arrow */
+        }
+
+        /* Custom text shadow utility classes */
+        /* Text shadows for light theme, making text pop slightly */
+        .text-shadow-dark {
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .text-shadow-dark-subtle {
+          text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.05);
+        }
+        .text-shadow-white { /* Retained for elements on dark blue background */
+          text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+        }
+        .text-shadow-blue-subtle { /* Retained for elements on dark blue background */
+            text-shadow: 0.5px 0.5px 2px rgba(0, 100, 255, 0.2);
+        }
+
+        /* Custom scrollbar styles */
+        .custom-scroll-light::-webkit-scrollbar {
+            width: 8px; /* For vertical scrollbars */
+            height: 8px; /* For horizontal scrollbars */
+        }
+
+        .custom-scroll-light::-webkit-scrollbar-track {
+            background: #f0f0f0; /* Light gray track */
+            border-radius: 10px;
+        }
+
+        .custom-scroll-light::-webkit-scrollbar-thumb {
+            background-color: #a0a0a0; /* Darker gray thumb */
+            border-radius: 10px;
+            border: 2px solid #f0f0f0; /* Padding around thumb */
+        }
+
+        .custom-scroll-light::-webkit-scrollbar-thumb:hover {
+            background-color: #808080; /* Even darker gray on hover */
+        }
+
+        /* Hide scrollbar for 'no-scrollbar' class, but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
       `}</style>
     </div>
