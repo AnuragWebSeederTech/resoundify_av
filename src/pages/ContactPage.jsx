@@ -175,11 +175,11 @@ const ContactPage = () => {
       <Header /> {/* Call the Header component */}
 
       {/* Main Content Area - Wrapped for animation */}
-      <div className={`pt-25 flex flex-col lg:flex-row flex-grow transform transition-all duration-1000 ease-out
+      <div className={`pt-24 flex flex-col lg:flex-row flex-grow transform transition-all duration-1000 ease-out
         ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
         {/* Left Section: Info and Stats */}
-        <div className="lg:w-1/2 p-8 md:p-16 pt-16 lg:pt-0 flex flex-col justify-center bg-gray-50 shadow-lg lg:shadow-none rounded-lg mx-4 lg:mx-0 my-4 lg:my-0">
+        <div className="lg:w-1/2 p-8 md:p-16 pt-16 lg:pt-10 flex flex-col justify-center bg-gray-50 shadow-lg lg:shadow-none rounded-lg mx-4 lg:mx-0 my-4 lg:my-0">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
             Get a quote for your project
           </h1>
@@ -261,7 +261,7 @@ const ContactPage = () => {
               </svg>
             </div>
 
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8 relative z-10 text-white">Hello there :)</h2>
+          <h2 className="sm:text-4xl lg:text-5xl font-bold mb-8 relative z-10 text-white">Hello there :)</h2>
 
           {isSubmitted && (
             <div className="bg-green-600 text-white px-4 py-3 rounded-lg relative mb-6 text-base animate-fadeInUp z-10 shadow-lg">
