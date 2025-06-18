@@ -14,13 +14,17 @@ export default function WhatResoundifyDoes() {
             setIsVisible(true);
             const elements = entry.target.querySelectorAll('[data-animate]');
             elements.forEach((el, index) => {
-              setTimeout(() => {
-                setAnimatedElements(prev => new Set([...prev, index]));
-              }, index * 100);
+              // Ensure we only animate if not already animated to prevent re-triggering on every scroll
+              if (!animatedElements.has(index)) {
+                setTimeout(() => {
+                  setAnimatedElements(prev => new Set([...prev, index]));
+                }, index * 100);
+              }
             });
           } else {
+            // Reset animation when out of view
             setIsVisible(false);
-            setAnimatedElements(new Set());
+            setAnimatedElements(new Set()); // This is crucial for re-triggering
           }
         });
       },
@@ -32,13 +36,13 @@ export default function WhatResoundifyDoes() {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [animatedElements]); // Add animatedElements to dependency array
 
   return (
     <section ref={sectionRef} className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50 py-24 overflow-hidden">
       
       {/* Sophisticated Background Pattern */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 opacity-10 w-full h-full">
         <svg 
           className="absolute inset-0 w-full h-full" 
           viewBox="0 0 1440 800" 
@@ -78,7 +82,7 @@ export default function WhatResoundifyDoes() {
           <rect width="100%" height="100%" fill="url(#dotPattern)"/>
           
           {/* Refined geometric elements */}
-          <g opacity="0.08">
+          <g opacity="0.02">
             {Array.from({ length: 12 }, (_, i) => (
               <g key={i}>
                 <circle
@@ -100,7 +104,7 @@ export default function WhatResoundifyDoes() {
                     y2={150 + Math.sin(i * 0.5) * 100}
                     stroke="#3b82f6"
                     strokeWidth="1"
-                    opacity="0.3"
+                    opacity="0.1"
                   />
                 )}
               </g>
@@ -115,7 +119,7 @@ export default function WhatResoundifyDoes() {
           <div
             key={i}
             className={`absolute w-32 h-32 rounded-full bg-gradient-to-br from-blue-500/5 to-slate-500/5 transition-all duration-2000 ${
-              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+              isVisible ? 'opacity-20 scale-100' : 'opacity-0 scale-0'
             }`}
             style={{
               left: `${15 + (i * 15)}%`,
@@ -159,17 +163,6 @@ export default function WhatResoundifyDoes() {
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-200/50 hover:bg-white transition-all duration-500 hover:shadow-lg hover:-translate-y-2">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
-              {/* Refined background pattern */}
-              <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-10 transition-all duration-700" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <pattern id="networkGrid" patternUnits="userSpaceOnUse" width="20" height="20">
-                    <circle cx="10" cy="10" r="1" fill="#3b82f6"/>
-                    <line x1="10" y1="10" x2="20" y2="10" stroke="#3b82f6" strokeWidth="0.3"/>
-                    <line x1="10" y1="10" x2="10" y2="20" stroke="#3b82f6" strokeWidth="0.3"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#networkGrid)"/>
-              </svg>
               
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
@@ -196,18 +189,6 @@ export default function WhatResoundifyDoes() {
           >
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-200/50 hover:bg-white transition-all duration-500 hover:shadow-lg hover:-translate-y-2">
               <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-10 transition-all duration-700" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <pattern id="cableGrid" patternUnits="userSpaceOnUse" width="30" height="30">
-                    <path d="M5,15 C15,10 20,20 25,15" stroke="#64748b" strokeWidth="1" fill="none"/>
-                    <circle cx="5" cy="15" r="1.5" fill="#64748b"/>
-                    <circle cx="25" cy="15" r="1.5" fill="#64748b"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#cableGrid)"/>
-              </svg>
-              
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Cable className="w-8 h-8 text-white" />
@@ -234,16 +215,7 @@ export default function WhatResoundifyDoes() {
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-200/50 hover:bg-white transition-all duration-500 hover:shadow-lg hover:-translate-y-2">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
-              <svg className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-10 transition-all duration-700" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <pattern id="monitorGrid" patternUnits="userSpaceOnUse" width="25" height="25">
-                    <rect x="8" y="8" width="9" height="6" stroke="#3b82f6" strokeWidth="0.5" fill="none"/>
-                    <rect x="9" y="15" width="7" height="1" fill="#3b82f6" opacity="0.3"/>
-                    <circle cx="12.5" cy="11" r="0.5" fill="#3b82f6"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#monitorGrid)"/>
-              </svg>
+              
               
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
@@ -262,46 +234,12 @@ export default function WhatResoundifyDoes() {
           </div>
         </div>
 
-        {/* Technology Foundation */}
-        <div 
-          className={`mb-20 transition-all duration-1000 delay-300 ${
-            animatedElements.has(4) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-          data-animate
-        >
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-light text-slate-700 mb-4">Built on Industry Standards</h3>
-            <p className="text-slate-500 text-lg">Professional audio networking foundation</p>
-          </div>
-          
-          <div className="bg-white/60 backdrop-blur-sm rounded-3xl border border-slate-200/50 overflow-hidden">
-            <div className="grid grid-cols-2 md:grid-cols-4">
-              {[
-                { name: "Dante Protocol", desc: "Core Technology" },
-                { name: "Ethernet Standard", desc: "Network Infrastructure" },
-                { name: "IP Transport", desc: "Data Delivery" },
-                { name: "Scalable Design", desc: "Growth Ready" }
-              ].map((tech, index) => (
-                <div 
-                  key={tech.name} 
-                  className="group p-8 text-center border-r border-slate-200/50 last:border-r-0 hover:bg-white/80 transition-all duration-300"
-                >
-                  <div className="text-2xl font-semibold text-slate-700 mb-2 group-hover:text-blue-700 transition-colors">
-                    {tech.name}
-                  </div>
-                  <div className="text-sm text-slate-500 uppercase tracking-wider">
-                    {tech.desc}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        
 
         {/* Performance Metrics */}
         <div 
-          className={`transition-all duration-1000 delay-400 ${
-            animatedElements.has(5) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`group relative transition-all duration-1000 delay-400 ${
+            animatedElements.has(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
           data-animate
         >
@@ -321,19 +259,24 @@ export default function WhatResoundifyDoes() {
               return (
                 <div 
                   key={metric.label} 
-                  className="group bg-white/60 backdrop-blur-sm rounded-3xl p-8 text-center border border-slate-200/50 hover:bg-white hover:shadow-lg transition-all duration-500 hover:-translate-y-1"
+                  className="group bg-white/60 backdrop-blur-sm rounded-3xl p-6 border border-slate-200/50 
+                             hover:bg-white hover:shadow-xl transition-all duration-500 hover:-translate-y-2
+                             flex items-start space-x-4" 
                 >
-                  <div className="w-16 h-16 bg-gradient-to-br from-slate-600 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-8 h-8 text-white" />
+                  <div className="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center 
+                                   group-hover:scale-110 transition-transform duration-300 border border-slate-100"> {/* Smaller icon container, subtle border */}
+                    <IconComponent className="w-6 h-6 text-slate-800" /> {/* Changed icon color to slate-800 for professionalism */}
                   </div>
-                  <div className="text-3xl font-bold text-slate-800 mb-2">
-                    {metric.value}
-                  </div>
-                  <div className="text-lg font-semibold text-slate-700 mb-2">
-                    {metric.label}
-                  </div>
-                  <div className="text-sm text-slate-500">
-                    {metric.desc}
+                  <div className="flex-grow text-left"> {/* Added flex-grow and text-left */}
+                    <div className="text-2xl font-bold text-slate-800 mb-1"> {/* Adjusted font size and margin */}
+                      {metric.value}
+                    </div>
+                    <div className="text-md font-semibold text-slate-700 mb-1"> {/* Adjusted font size and margin */}
+                      {metric.label}
+                    </div>
+                    <div className="text-xs text-slate-500"> {/* Adjusted font size */}
+                      {metric.desc}
+                    </div>
                   </div>
                 </div>
               );
