@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Shield, Settings, Cpu, Network, ArrowRight } from 'lucide-react';
-import { useInView } from 'react-intersection-observer'; // Import useInView
+import React, { useState, useEffect } from 'react';
+import { Shield, Settings, Cpu, Network, ArrowRight, CheckCircle } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
 
 const WhyResoundify = () => {
-  const [activeCard, setActiveCard] = useState(null);
+  const [activeCard, setActiveCard] = useState(0); // Start with the first card active
 
   // useInView hook for the header section to animate its appearance on scroll
   const { ref: headerRef, inView: headerInView } = useInView({
-    triggerOnce: true, // Animation triggers only once when it enters the viewport
-    threshold: 0.1, // Triggers when 10% of the header is visible
+    // Removed triggerOnce: true so it animates every time it comes into view
+    threshold: 0.1,
   });
 
   const features = [
@@ -16,141 +16,210 @@ const WhyResoundify = () => {
       icon: <Network className="w-10 h-10" />,
       title: "Dante-Centric Innovation",
       description: "Built to integrate seamlessly with Dante, ensuring flawless audio transmission, low latency, and unmatched scalability for your AV systems.",
-      color: "from-blue-600 via-blue-500 to-cyan-500",
-      bgColor: "from-blue-50 via-blue-25 to-cyan-50",
+      color: "from-blue-400 to-blue-500", // Light blue gradient
       accent: "blue",
       stat: "99.9% Uptime",
-      imageSrc: "/images/Dante_Centric.png"
+      imageSrc: "/images/Dante_Centric.png",
+      detailPoints: [
+        "Flawless audio transmission over IP",
+        "Ultra-low latency performance",
+        "Scalable for any enterprise AV system",
+        "Seamless integration with existing Dante hardware"
+      ]
     },
     {
       icon: <Shield className="w-10 h-10" />,
       title: "Uncompromising Quality",
       description: "From crystal-clear audio to robust hardware, we prioritize performance and reliability in every product we design.",
-      color: "from-emerald-600 via-green-500 to-teal-500",
-      bgColor: "from-emerald-50 via-green-25 to-teal-50",
+      color: "from-emerald-400 to-emerald-500", // Light emerald gradient
       accent: "emerald",
       stat: "Professional Grade",
-      imageSrc: "/images/Fidelity.png"
+      imageSrc: "/images/Fidelity.png",
+      detailPoints: [
+        "Durable, long-lasting hardware",
+        "Superior audio fidelity and clarity",
+        "Rigorous testing and quality assurance",
+        "Reliable performance in demanding environments"
+      ]
     },
     {
       icon: <Settings className="w-10 h-10" />,
       title: "Simplified Solutions",
       description: "Our solutions are designed to be intuitive, user-friendly, and adaptable to your unique AV system requirements.",
-      color: "from-purple-600 via-violet-500 to-indigo-500",
-      bgColor: "from-purple-50 via-violet-25 to-indigo-50",
+      color: "from-purple-400 to-purple-500", // Light purple gradient
       accent: "purple",
       stat: "Plug & Play",
-      imageSrc: "/images/future3.png"
+      imageSrc: "/images/future3.png",
+      detailPoints: [
+        "Intuitive setup and configuration",
+        "User-friendly control interfaces",
+        "Customizable for unique system needs",
+        "Reduced complexity, faster deployment"
+      ]
     },
     {
       icon: <Cpu className="w-10 h-10" />,
       title: "Future-Ready Technology",
       description: "Committed to staying ahead of the curve with products compatible with today's standards and ready for tomorrow's innovations.",
-      color: "from-orange-600 via-red-500 to-pink-500",
-      bgColor: "from-orange-50 via-red-25 to-pink-50",
+      color: "from-orange-400 to-orange-500", // Light orange gradient
       accent: "orange",
       stat: "Next-Gen Ready",
-      imageSrc: "/images/future2.png"
+      imageSrc: "/images/future2.png",
+      detailPoints: [
+        "Compliant with industry standards",
+        "Designed for long-term relevance",
+        "Easily upgradeable architecture",
+        "Adaptable to emerging AV technologies"
+      ]
     }
   ];
+
+  // useInView for the main content area to trigger its animations
+  const { ref: contentRef, inView: contentInView } = useInView({
+    triggerOnce: true, // This can remain true if you only want the whole section to fade in once
+    threshold: 0.1,
+  });
+
+  // Effect to handle image transition smoothly
+  const [currentImageSrc, setCurrentImageSrc] = useState(features[0].imageSrc);
+  const [imageKey, setImageKey] = useState(0); // Key to force re-render for transition
+
+  useEffect(() => {
+    setImageKey(prevKey => prevKey + 1); // Change key to trigger re-render and transition
+    const timer = setTimeout(() => {
+      setCurrentImageSrc(features[activeCard].imageSrc);
+    }, 300); // Duration matches opacity transition
+    return () => clearTimeout(timer);
+  }, [activeCard, features]);
+
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden font-inter">
       {/* Google Fonts import for 'Inter' font */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-      {/* Main content container: adjusted padding for wider horizontal coverage and increased vertical space */}
-      <div className="relative z-10 w-full px-4 md:px-8 lg:px-16 xl:px-24 py-24 sm:py-32">
+      {/* Background Gradient Shapes - subtle and light */}
+      <div className="absolute inset-0 opacity-20 z-0">
+        <svg className="w-full h-full" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="lightBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#E0F2FE" stopOpacity="0.8"/> {/* Light Blue 100 */}
+              <stop offset="100%" stopColor="#BFDBFE" stopOpacity="0.8"/> {/* Blue 200 */}
+            </linearGradient>
+            <linearGradient id="lightGrayGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#F0F4F8" stopOpacity="0.6"/> {/* Cool Gray 100 */}
+              <stop offset="100%" stopColor="#E2E8F0" stopOpacity="0.6"/> {/* Cool Gray 200 */}
+            </linearGradient>
+          </defs>
+          <circle cx="10%" cy="20%" r="80" fill="url(#lightBlueGradient)" className="animate-pulse-slow" style={{ animationDelay: '0s' }} />
+          <circle cx="80%" cy="50%" r="120" fill="url(#lightGrayGradient)" className="animate-pulse-slow" style={{ animationDelay: '1s' }} />
+          <circle cx="30%" cy="90%" r="60" fill="url(#lightBlueGradient)" className="animate-pulse-slow" style={{ animationDelay: '2s' }} />
+          <rect x="50%" y="10%" width="100" height="100" rx="20" ry="20" fill="url(#lightGrayGradient)" className="animate-pulse-slow" style={{ animationDelay: '0.5s' }} />
+        </svg>
+      </div>
+
+      {/* Main content container */}
+      <div ref={contentRef} className="relative z-10 w-full px-4 md:px-8 lg:px-12 xl:px-24 py-24 sm:py-32 max-w-full mx-auto">
         {/* Premium Header Section */}
         <div
-          ref={headerRef} 
-          className={`text-center mb-32 transform transition-all duration-1000 ${headerInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+          ref={headerRef}
+          className={`text-center mb-24 transform transition-all duration-1000 ${headerInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
         >
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-black mb-16">
-            Why Choose <span className="text-blue-500">Resoundify</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-gray-900 mb-6">
+            Why Choose <span className="text-blue-600">Resoundify</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mt-6 font-light">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mt-6 font-light">
             Delivering cutting-edge audio-visual solutions that redefine how you connect,
             communicate, and create with industry-leading Dante technology and unparalleled innovation.
           </p>
+          <div className="w-32 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mt-8 opacity-50"></div>
         </div>
 
-        {/* Premium Features Grid: Increased gap between cards */}
-        <div className="grid lg:grid-cols-2 gap-10">
-          {features.map((feature, index) => {
-            // useInView hook for each individual feature card to animate its appearance
-            const { ref, inView } = useInView({
-              triggerOnce: true, // Each card animates only once when it enters the viewport
-              threshold: 0.1, // Triggers when 10% of the card is visible
-            });
+        {/* New Layout: Side-by-Side Content and Image */}
+        <div className={`grid lg:grid-cols-2 gap-16 items-start transition-all duration-700 ${contentInView ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Left Side: Feature List */}
+          <div className="space-y-6">
+            {features.map((feature, index) => {
+              const { ref, inView } = useInView({
+                // Removed triggerOnce: true so it animates every time it comes into view
+                threshold: 0.1,
+              });
 
-            return (
-              <div
-                key={index}
-                ref={ref} 
-                className={`group relative p-12 bg-white/70 backdrop-blur-xl rounded-3xl border border-gray-200/50 hover:border-gray-300/60 transition-all duration-500 hover:shadow-2xl hover:shadow-gray-200/30 hover:-translate-y-2 cursor-pointer transform-gpu overflow-hidden
-                         ${inView ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'} `} 
-                style={{ transitionDelay: `${index * 100}ms` }} 
-                onMouseEnter={() => setActiveCard(index)}
-                onMouseLeave={() => setActiveCard(null)}
-              >
-                {/* Image Layer - Prominent Zoom on hover */}
-                {/* This section remains exactly as you provided, ensuring the image zoom on hover */}
-                <div className="absolute inset-0 z-0 rounded-3xl overflow-hidden">
-                  <img
-                    src={feature.imageSrc}
-                    alt={feature.title}
-                    className={`w-full h-full object-cover transition-transform duration-700 ease-out ${activeCard === index ? 'scale-115' : 'scale-100'}`}
-                  />
-                </div>
+              const isActive = activeCard === index;
 
-                {/* Dynamic Gradient Overlay - Appears and adjusts on hover */}
-                <div className={`absolute inset-0 rounded-3xl z-[5] transition-all duration-700 ease-out
-                                  ${activeCard === index
-                                      ? 'opacity-100 bg-gradient-to-t from-black/80 via-black/30 to-transparent'
-                                      : 'opacity-0 bg-gradient-to-t from-transparent via-transparent to-transparent'}`}
-                ></div>
-
-                {/* Initial Background Layer - Fades out on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.bgColor} rounded-3xl z-[4] transition-opacity duration-500 ease-out
-                                  ${activeCard === index ? 'opacity-0' : 'opacity-100'}`}></div>
-
-                {/* Content - Ensure it's above all overlays */}
-                <div className="relative z-10 flex flex-col justify-start h-full transition-all duration-300 ease-out">
-                  {/* ICON BLOCK - Smoothly collapses on hover */}
-                  <div className={`inline-flex p-5 rounded-2xl bg-gradient-to-r ${feature.color} text-white shadow-lg relative overflow-hidden transform-gpu
-                                    transition-all duration-500
-                                    ${activeCard === index ? 'opacity-0 scale-75 h-0 mb-0' : 'opacity-100 scale-100 h-auto mb-8'}`} style={{ willChange: 'opacity, transform, height, margin' }}>
-                    {feature.icon}
-                    {/* Icon shine effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
-                  </div>
-
-                  {/* Content - Text color changes to white/light on hover for readability */}
-                  <div className="relative z-10 flex-grow">
-                    <h3 className="text-2xl font-semibold mb-3 text-gray-900 group-hover:text-white transition-colors">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-700 text-base leading-relaxed group-hover:text-gray-200 transition-colors">
-                      {feature.description}
-                    </p>
-
-                    {/* Learn More Link - Text color changes and slides on hover */}
-                    <div className="flex items-center gap-2 text-gray-500 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-300 mt-6">
-                      <span className="font-medium">Learn more</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              return (
+                <div
+                  key={index}
+                  ref={ref}
+                  className={`relative p-6 rounded-lg border border-gray-200 bg-white transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md hover:-translate-y-1
+                                  ${isActive ? 'shadow-lg border-blue-400 transform -translate-y-1' : ''}
+                                  ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                  onClick={() => setActiveCard(index)}
+                >
+                  <div className="flex items-start space-x-4">
+                    <div className={`flex-shrink-0 p-3 rounded-lg bg-gradient-to-br ${feature.color} text-white shadow-md`}>
+                      {feature.icon}
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className={`text-xl font-semibold text-gray-800 ${isActive ? 'text-blue-600' : ''}`}>
+                        {feature.title}
+                      </h3>
+                      <p className={`mt-2 text-gray-600 leading-relaxed text-sm ${isActive ? 'block' : 'hidden md:block'}`}>
+                        {feature.description}
+                      </p>
                     </div>
                   </div>
 
-                  {/* Card Number - Disappears on hover */}
-                  <div className={`absolute top-8 right-8 text-6xl font-black text-gray-100 select-none transition-all duration-300
-                                    ${activeCard === index ? 'opacity-0' : 'opacity-100'}`}>
+                  {isActive && (
+                    <div className="mt-4 px-2 pt-2 border-t border-gray-100">
+                      <ul className="space-y-2 text-sm">
+                        {feature.detailPoints.map((point, i) => (
+                          <li key={i} className="flex items-center text-gray-700">
+                            <CheckCircle className="w-4 h-4 mr-3 text-blue-500 flex-shrink-0" />
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                      <button className="mt-6 inline-flex items-center px-5 py-2 border border-blue-400 rounded-full text-blue-600 font-medium text-sm hover:bg-blue-50 transition-all duration-300 transform hover:scale-105">
+                        Discover More
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </button>
+                    </div>
+                  )}
+                  <div className={`absolute top-4 right-4 text-gray-300 text-3xl font-bold select-none transition-all duration-300
+                                   ${isActive ? 'text-blue-200' : 'opacity-0 md:opacity-100'}`}>
                     {String(index + 1).padStart(2, '0')}
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          {/* Right Side: Featured Image and Description for Active Card */}
+          <div className="relative hidden lg:block rounded-lg overflow-hidden border border-gray-200 shadow-xl bg-white p-4">
+            <div className="relative w-full h-80 rounded-md overflow-hidden bg-gray-100">
+              <img
+                key={imageKey} // Key changes to force transition on src change
+                src={currentImageSrc}
+                alt={features[activeCard].title}
+                className="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
+                style={{ opacity: currentImageSrc === features[activeCard].imageSrc ? 1 : 0 }}
+              />
+            </div>
+
+            <div className="p-6 text-gray-800">
+              <span className="inline-block px-4 py-1 text-sm font-semibold rounded-full bg-blue-100 text-blue-600 mb-3 shadow-sm">
+                {features[activeCard].stat}
+              </span>
+              <h3 className="text-3xl font-extrabold text-gray-900 mb-2">
+                {features[activeCard].title}
+              </h3>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                {features[activeCard].description}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
