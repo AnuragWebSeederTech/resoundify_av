@@ -1,239 +1,186 @@
-import React from "react";
- import { FaLinkedin, FaWhatsapp, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaArrowRight, FaClock, FaGlobe } from "react-icons/fa";
- // import { Link } from "react-router-dom"; // Commented out for demo
- const Link = ({ to, children, className, ...props }) => (
-    <a href={to} className={className} {...props}>{children}</a>
- );
+// App.js (for demonstration purposes, typically in your main App file)
+import React from 'react';
 
- const Footer = () => {
-    return (
-      <footer
-        className="bg-gray-900 text-gray-300 relative overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed"
-        style={{ backgroundImage: "url('/images/footerbg.jpg')" }}
-      >
-        {/* Enhanced overlay with gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/30 via-gray-900/50 to-gray-900/80 z-0"></div>
-        
-        {/* Main Footer Content */}
-        <div className="relative z-10">
-          
-          
-       
-          {/* Main Footer Grid */}
-          <div className="max-w-8xl mx-auto px-20 py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-12">
-              
-              {/* Company Info - Takes 2 columns on XL screens */}
-              <div className="xl:col-span-2">
-                <div className="mb-6">
-                  <img src="/images/resoundifyLogo.jpeg" alt="Resoundify Logo" className="h-12 mb-3 border-2 rounded-sm" />
-                  <p className="text-blue-400 font-medium text-lg">Where Sound Meets Innovation</p>
-                </div>
-                
-                <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
-                  Resoundify is a premier AV brand specializing in cutting-edge Dante-enabled products, 
-                  designed to revolutionize audio and video networking for the modern world.
-                </p>
-                
-                {/* Key Features/Stats */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="text-center p-3 bg-white/5 rounded-lg backdrop-blur-sm">
-                    <div className="text-2xl font-bold text-blue-400">500+</div>
-                    <div className="text-sm text-gray-400">Projects Delivered</div>
-                  </div>
-                  <div className="text-center p-3 bg-white/5 rounded-lg backdrop-blur-sm">
-                    <div className="text-2xl font-bold text-blue-400">24/7</div>
-                    <div className="text-sm text-gray-400">Support Available</div>
-                  </div>
-                </div>
-                
-                {/* Social Media */}
-                <div>
-                  <p className="text-white font-semibold mb-3">Follow Our Journey</p>
-                  <div className="flex space-x-4">
-                    <a 
-                      href="https://linkedin.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="w-12 h-12 bg-white/10 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 backdrop-blur-sm group"
-                    >
-                      <FaLinkedin className="text-xl text-white group-hover:scale-110 transition-transform duration-300" />
-                    </a>
-                    <a 
-                      href="https://wa.me/919876543210" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="w-12 h-12 bg-white/10 hover:bg-green-600 rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 backdrop-blur-sm group"
-                    >
-                      <FaWhatsapp className="text-xl text-white group-hover:scale-110 transition-transform duration-300" />
-                    </a>
-                  </div>
-                </div>
-              </div>
+// This is a placeholder for react-router-dom's Link component
+// In a real application, you would uncomment the import for 'react-router-dom'
+// and remove this mock Link component.
+const Link = ({ to, children, className, ...props }) => (
+  <a href={to} className={className} {...props}>{children}</a>
+);
 
-              {/* Quick Links */}
-              <div>
-                <h4 className="text-xl font-bold text-white mb-6 relative">
-                  Quick Links
-                  <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-transparent"></div>
-                </h4>
-                <ul className="space-y-3">
-                  {[
-                    { name: "Home", path: "/" },
-                    { name: "Products", path: "/products" },
-                    { name: "Solutions", path: "/solutions" },
-                    { name: "Support", path: "/contact" },
-                    { name: "About Us", path: "/about" }
-                  ].map((link, index) => (
-                    <li key={index}>
-                      <Link 
-                        to={link.path} 
-                        className="flex items-center text-gray-400 hover:text-blue-400 transition-colors duration-300 group"
-                      >
-                        <FaArrowRight className="mr-2 text-xs opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+// Footer Component
+const Footer = () => {
+  // Concise company description
+  const companyDescription = "Resoundify delivers unparalleled Dante-enabled AV solutions, transforming connectivity and communication. We empower professional audio experiences with innovation and reliability.";
 
-              {/* Services */}
-              <div>
-                <h4 className="text-xl font-bold text-white mb-6 relative">
-                  Services
-                  <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-transparent"></div>
-                </h4>
-                <ul className="space-y-3">
-                  {[
-                    { name: "Audio Solutions", path: "/services/audio" },
-                    { name: "Video Systems", path: "/services/video" },
-                    { name: "Network Integration", path: "/services/network" },
-                    { name: "Consultation", path: "/services/consultation" },
-                    { name: "Installation", path: "/services/installation" }
-                  ].map((service, index) => (
-                    <li key={index}>
-                      <Link 
-                        to={service.path} 
-                        className="flex items-center text-gray-400 hover:text-blue-400 transition-colors duration-300 group"
-                      >
-                        <FaArrowRight className="mr-2 text-xs opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                        {service.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+  return (
+    // Main footer container with an even lighter blue gradient background, subtle shadow, and refined curves
+    <footer
+      className="bg-gradient-to-br from-blue-50 to-blue-50 text-gray-700 py-12 px-4 sm:px-6 lg:px-8 shadow-sm rounded-t-3xl relative overflow-hidden"
+    >
+      {/* Subtle, animated background flourishes for a dynamic feel using very light blues and lower opacity */}
+      <div className="absolute -top-10 -left-10 w-32 h-32 bg-blue-100 rounded-full mix-blend-multiply opacity-10 animate-pulse-slow"></div>
+      <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-blue-200 rounded-full mix-blend-multiply opacity-10 animate-pulse-slow delay-200"></div>
 
-              {/* Contact Information */}
-              <div>
-                <h4 className="text-xl font-bold text-white mb-6 relative">
-                  Get In Touch
-                  <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-transparent"></div>
-                </h4>
-                
-                <div className="space-y-4">
-                  {/* Email */}
-                  <div className="flex items-start space-x-3 group cursor-pointer">
-                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mt-1 group-hover:bg-blue-600/20 transition-colors duration-300">
-                      <FaEnvelope className="text-blue-400" size={16} />
-                    </div>
-                    <div>
-                      <p className="text-gray-400 text-sm">Email Us</p>
-                      <a href="mailto:resoundify@example.com" className="text-white hover:text-blue-400 transition-colors duration-300">
-                        resoundify@example.com
-                      </a>
-                    </div>
-                  </div>
+      {/* Main Footer Content Grid - Now taking 80% width with a nearly transparent frosted glass effect */}
+      <div className="relative z-10 w-4/5 mx-auto px-4 py-8 bg-opacity-10 rounded-xl shadow-sm backdrop-blur-sm border border-blue-50 border-opacity-70">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-10 gap-x-8">
 
-                  {/* Phone */}
-                  <div className="flex items-start space-x-3 group cursor-pointer">
-                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mt-1 group-hover:bg-green-600/20 transition-colors duration-300">
-                      <FaPhoneAlt className="text-green-400" size={16} />
-                    </div>
-                    <div>
-                      <p className="text-gray-400 text-sm">Call Us</p>
-                      <a href="tel:+919876543210" className="text-white hover:text-green-400 transition-colors duration-300">
-                        +91-9876543210
-                      </a>
-                    </div>
-                  </div>
+          {/* Company Info Section - Takes 2 columns on XL screens */}
+          <div className="xl:col-span-2 text-center md:text-left">
+            <div className="mb-6">
+              {/* Resoundify logo text with stronger visual impact using a slightly deeper blue for contrast */}
+              <h3 className="text-5xl font-extrabold text-blue-800 mb-2 tracking-tight drop-shadow-sm">
+                Resoundify
+              </h3>
+              <p className="text-blue-600 font-semibold text-xl leading-tight">Where Sound Meets Innovation</p>
+            </div>
 
-                  {/* Location */}
-                  <div className="flex items-start space-x-3 group">
-                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mt-1">
-                      <FaMapMarkerAlt className="text-red-400" size={16} />
-                    </div>
-                    <div>
-                      <p className="text-gray-400 text-sm">Visit Us</p>
-                      <p className="text-white text-sm leading-relaxed">
-                        Innovation Hub, Tech City<br />
-                        India
-                      </p>
-                    </div>
-                  </div>
+            <p className="text-gray-600 leading-relaxed text-sm mb-8 max-w-md mx-auto md:mx-0 opacity-95">
+              {companyDescription}
+            </p>
 
-                  {/* Business Hours */}
-                  <div className="flex items-start space-x-3 group">
-                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mt-1">
-                      <FaClock className="text-yellow-400" size={16} />
-                    </div>
-                    <div>
-                      <p className="text-gray-400 text-sm">Business Hours</p>
-                      <p className="text-white text-sm">
-                        Mon - Fri: 9AM - 6PM<br />
-                        Sat: 10AM - 4PM
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            {/* Placeholder for social media or other calls to action - currently empty as requested */}
+          </div>
 
-          {/* Bottom Bar */}
-          <div className="border-t border-gray-700/50 backdrop-blur-sm">
-            <div className="max-w-7xl mx-auto px-6 py-8">
-              <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                
-                {/* Copyright */}
-                <div className="text-center md:text-left">
-                  <p className="text-gray-400">
-                    &copy; {new Date().getFullYear()} Resoundify. All Rights Reserved.
-                  </p>
-                  <p className="text-gray-500 text-sm mt-1">
-                    Designed & developed by 
-                    <span className="text-blue-400 hover:text-blue-300 cursor-pointer transition-colors duration-300 ml-1">
-                      WebSeeder Technologies
-                    </span>
-                  </p>
-                </div>
+          {/* Quick Links Section */}
+          <div>
+            <h4 className="text-xl font-bold text-gray-800 mb-6 relative group cursor-pointer">
+              Quick Links
+              {/* Underline now animates on hover using lighter blue gradient */}
+              <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
+            </h4>
+            <ul className="space-y-4">
+              {[
+                { name: "Home", path: "/" },
+                { name: "Products", path: "/products" },
+                { name: "Solutions", path: "/solutions" },
+                { name: "Support", path: "/contact" },
+                { name: "About Us", path: "/about" }
+              ].map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.path}
+                    className="text-gray-600 transition-colors duration-300 text-base relative inline-block group hover:text-blue-600"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-                {/* Legal Links */}
-                <div className="flex items-center space-x-6">
-                  <Link 
-                    to="/privacy" 
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm"
-                  >
-                    Privacy Policy
-                  </Link>
-                  <Link 
-                    to="/terms" 
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm"
-                  >
-                    Terms of Use
-                  </Link>
-                  <div className="flex items-center text-gray-400 text-sm">
-                    <FaGlobe className="mr-1" size={12} />
-                    English
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    );
- };
+          {/* Services Section */}
+          <div>
+            <h4 className="text-xl font-bold text-gray-800 mb-6 relative group cursor-pointer">
+              Services
+              {/* Underline now animates on hover using lighter blue gradient */}
+              <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
+            </h4>
+            <ul className="space-y-4">
+              {[
+                { name: "Audio Solutions", path: "/services/audio" },
+                { name: "Video Systems", path: "https://www.resoundify.com/services/video" },
+                { name: "Network Integration", path: "/services/network" },
+                { name: "Consultation", path: "/services/consultation" },
+                { name: "Installation", path: "/services/installation" }
+              ].map((service, index) => (
+                <li key={index}>
+                  <Link
+                    to={service.path}
+                    className="text-gray-600 transition-colors duration-300 text-base relative inline-block group hover:text-blue-600"
+                  >
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
- export default Footer;
+          {/* Contact Information Section */}
+          <div>
+            <h4 className="text-xl font-bold text-gray-800 mb-6 relative group cursor-pointer">
+              Get In Touch
+              {/* Underline now animates on hover using lighter blue gradient */}
+              <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
+            </h4>
+
+            <div className="space-y-5">
+              {/* Email */}
+              <div>
+                <p className="text-gray-500 text-sm mb-0.5">Email Us</p>
+                <a href="mailto:resoundify@example.com" className="text-blue-600 font-semibold transition-colors duration-300 text-base underline-offset-2 hover:text-blue-800 hover:underline">
+                  resoundify@example.com
+                </a>
+              </div>
+
+              {/* Phone */}
+              <div>
+                <p className="text-gray-500 text-sm mb-0.5">Call Us</p>
+                <a href="tel:+919876543210" className="text-blue-600 font-semibold transition-colors duration-300 text-base underline-offset-2 hover:text-blue-800 hover:underline">
+                  +91-9876543210
+                </a>
+              </div>
+
+              {/* Location */}
+              <div>
+                <p className="text-gray-500 text-sm mb-0.5">Visit Us</p>
+                <p className="text-gray-800 text-base leading-relaxed font-medium">
+                  Innovation Hub, Tech City<br />
+                  India
+                </p>
+              </div>
+
+              {/* Business Hours */}
+              <div>
+                <p className="text-gray-500 text-sm mb-0.5">Business Hours</p>
+                <p className="text-gray-800 text-base font-medium">
+                  Mon - Fri: 9AM - 6PM<br />
+                  Sat: 10AM - 4PM
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Bottom Bar (Copyright & Legal Links - Enhanced) */}
+      <div className="mt-10 pt-2 relative z-10 border-t-2 border-blue-100">
+
+        <div className="max-w-7xl mx-auto px-4 py-0 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+          {/* Copyright */}
+          <div className="text-center md:text-left">
+            <p className="text-gray-500 text-sm">
+              &copy; {new Date().getFullYear()} Resoundify. All Rights Reserved.
+            </p>
+            <p className="text-gray-400 text-xs mt-1">
+              Designed & developed by
+              <span className="text-blue-500 cursor-pointer transition-colors duration-300 ml-1 font-semibold hover:text-blue-700">
+                WebSeeder Technologies
+              </span>
+            </p>
+          </div>
+
+          {/* Legal Links */}
+          <div className="flex items-center space-x-6">
+            <Link
+              to="/privacy"
+              className="text-gray-500 transition-colors duration-300 text-sm font-medium hover:text-gray-800"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms"
+              className="text-gray-500 transition-colors duration-300 text-sm font-medium hover:text-gray-800"
+            >
+              Terms of Use
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
