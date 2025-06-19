@@ -124,7 +124,7 @@ const TestimonialsSection = () => {
 
   return (
     <div className="py-20 bg-gray-50"> {/* Subtle, clean background */}
-      <div className="w-500 mx-auto px-8 sm:px-12 lg:px-10"> {/* Changed from max-w-8xl back to max-w-screen-xl for better responsiveness */}
+      <div className="max-w-full mx-auto px-8 sm:px-12 lg:px-10"> {/* Changed from max-w-8xl back to max-w-screen-xl for better responsiveness */}
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl lg:text-6xl font-light text-slate-800 mb-6 tracking-tight">
