@@ -1,267 +1,361 @@
-// TechnologySpotlight.jsx
 import React from 'react';
-import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
 
-const TechnologySpotlight = () => {
-  // Define refs and inView status for each section/element you want to animate
-  const [headerRef, headerInView] = useInView({
-    triggerOnce: true, // Animation triggers only once
-    threshold: 0.3, // Percentage of element in view to trigger
-  });
+const DanteTechnologySpotlight = () => {
+    // Placeholder functions for interactivity
+    const playVideo = () => {
+        alert('Video would play here.');
+    };
 
-  const [aboutRef, aboutInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
+    const discoverProducts = () => {
+        alert('Redirecting to Dante-enabled products.');
+    };
 
-  const [videoRef, videoInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
+    return (
+        <div style={{
+            fontFamily: 'sans-serif', // Overall content font
+            backgroundColor: '#0A0A0A', // Simple dark background
+            color: '#E0E7FF', // Light text color
+            minHeight: '100vh',
+            padding: '40px 20px',
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center', // Center content horizontally
+            justifyContent: 'flex-start', // Align content to the top
+        }}>
+            <div style={{
+                maxWidth: '1200px',
+                width: '100%', // Ensure it takes full width within max-width
+                margin: '0 auto', // Center the main container
+            }}>
 
-  const [pointersRef, pointersInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2, // Adjust threshold as needed for these smaller items
-  });
+                {/* Header Section */}
+                <div style={{
+                    textAlign: 'center',
+                    marginBottom: '60px',
+                    fontFamily: 'sans-serif', // Ensure header also uses sans-serif
+                }}>
+                    <h1 style={{
+                        fontSize: '40px', // Adjusted to "medium" - between small (32px) and large (48px)
+                        fontWeight: 'bold', // Still bold for prominence
+                        color: '#60A5FA', // Simple blue for title
+                        marginBottom: '10px'
+                    }}>
+                        Technology Spotlight<br />
+                        <span style={{
+                            display: 'block',
+                            fontSize: '28px', // Slightly smaller subtitle
+                            fontWeight: 'normal',
+                            color: '#93C5FD', // Lighter blue for subtitle
+                            marginTop: '5px'
+                        }}>
+                            (Dante Integration)
+                        </span>
+                    </h1>
+                    <p style={{
+                        fontSize: '18px', // Consistent content font size
+                        color: '#BFDBFE', // Light blue for paragraph
+                        maxWidth: '800px',
+                        margin: '0 auto',
+                        lineHeight: '1.6', // Improved readability
+                    }}>
+                        Unleashing the power of seamless audio networking with cutting-edge technology.
+                    </p>
+                </div>
 
-  const [ctaRef, ctaInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
+                {/* Main Content Grid */}
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr', // Stacked on small screens
+                    gap: '40px',
+                    marginBottom: '60px',
+                    alignItems: 'flex-start', // Align items to the top of their grid cells
+                }}>
+                    {/* Left Content */}
+                    <div>
+                        <h2 style={{
+                            fontSize: '32px', // Consistent content heading size
+                            fontWeight: 'bold',
+                            color: '#E0E7FF', // White for heading
+                            marginBottom: '20px'
+                        }}>
+                            Benefits of <span style={{ color: '#60A5FA' }}>Dante Technology</span>
+                        </h2>
+                        <p style={{
+                            fontSize: '16px', // Consistent content font size
+                            lineHeight: '1.6',
+                            color: '#BFDBFE', // Light blue for text
+                            marginBottom: '15px'
+                        }}>
+                            Dante is the leading solution for digital audio networking, delivering
+                            uncompressed, multi-channel digital media via standard Ethernet networks
+                            with near-zero latency and perfect synchronization. It simplifies system
+                            setup, eliminates bulky analog cabling, and provides superior sound quality.
+                        </p>
+                        <p style={{
+                            fontSize: '16px', // Consistent content font size
+                            lineHeight: '1.6',
+                            color: '#BFDBFE' // Light blue for text
+                        }}>
+                            <span style={{ color: '#60A5FA', fontWeight: 'bold' }}>Resoundify</span> leverages
+                            Dante to provide unparalleled flexibility and scalability in audio
+                            installations. This integration ensures our products offer a robust,
+                            future-proof, and high-performance audio solution for any environment,
+                            from professional studios to large-scale venues.
+                        </p>
+                    </div>
 
-  // Define animation variants
-  const fadeInRise = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
+                    {/* Right Content - Video Placeholder */}
+                    <div>
+                        <div
+                            style={{
+                                position: 'relative',
+                                width: '100%',
+                                paddingBottom: '56.25%', // 16:9 aspect ratio
+                                backgroundColor: '#1A1A1A', // Dark background for video area
+                                borderRadius: '10px',
+                                overflow: 'hidden',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                            onClick={playVideo}
+                        >
+                            <div style={{
+                                position: 'absolute',
+                                top: '0', left: '0', right: '0', bottom: '0',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: 'rgba(0, 0, 0, 0.5)' // Semi-transparent overlay
+                            }}>
+                                <div style={{
+                                    width: '80px',
+                                    height: '80px',
+                                    borderRadius: '50%',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    marginBottom: '15px'
+                                }}>
+                                    <div style={{
+                                        width: '0',
+                                        height: '0',
+                                        borderLeft: '25px solid white',
+                                        borderTop: '15px solid transparent',
+                                        borderBottom: '15px solid transparent',
+                                        marginLeft: '5px'
+                                    }}></div>
+                                </div>
+                                <p style={{ color: 'white', fontWeight: '500' }}>Dante Integration Showcase</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  const fadeIn = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
-  };
+                {/* Feature Boxes Grid - Your "pointers" */}
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', // Responsive grid, slightly smaller min width
+                    gap: '25px', // Consistent gap
+                    marginTop: '50px'
+                }}>
+                    {/* Feature 1 */}
+                    <div style={{
+                        backgroundColor: '#1C1C1C', // Darker background for boxes
+                        borderRadius: '10px',
+                        padding: '25px', // Increased padding for better look
+                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.4)', // Slightly stronger shadow
+                        borderTop: '4px solid #60A5FA', // Thicker blue top border
+                        display: 'flex', // Use flex for internal alignment
+                        flexDirection: 'column',
+                        alignItems: 'flex-start', // Align text left within box
+                    }}>
+                        <div style={{
+                            width: '56px', // Larger icon wrapper
+                            height: '56px',
+                            borderRadius: '8px',
+                            backgroundColor: '#3B82F6', // Blue icon background
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '18px', // Increased margin
+                        }}>
+                            <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24"> {/* Larger icon */}
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 style={{
+                            fontSize: '22px', // Larger heading for pointers
+                            fontWeight: 'bold', // Bold for prominence
+                            color: '#E0E7FF',
+                            marginBottom: '10px'
+                        }}>Effortless Setup</h3>
+                        <p style={{
+                            fontSize: '15px', // Slightly larger content font
+                            lineHeight: '1.5',
+                            color: '#BFDBFE'
+                        }}>Dante simplifies complex audio networks, making installation and configuration straightforward with intelligent auto-discovery.</p>
+                    </div>
 
-  const scaleIn = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: "easeOut" } },
-  };
+                    {/* Feature 2 */}
+                    <div style={{
+                        backgroundColor: '#1C1C1C',
+                        borderRadius: '10px',
+                        padding: '25px',
+                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.4)',
+                        borderTop: '4px solid #60A5FA',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                    }}>
+                        <div style={{
+                            width: '56px',
+                            height: '56px',
+                            borderRadius: '8px',
+                            backgroundColor: '#3B82F6',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '18px'
+                        }}>
+                            <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 style={{
+                            fontSize: '22px',
+                            fontWeight: 'bold',
+                            color: '#E0E7FF',
+                            marginBottom: '10px'
+                        }}>Superior Quality</h3>
+                        <p style={{
+                            fontSize: '15px',
+                            lineHeight: '1.5',
+                            color: '#BFDBFE'
+                        }}>Experience pristine, uncompressed audio with Dante's high-fidelity transmission and near-zero latency performance.</p>
+                    </div>
 
+                    {/* Feature 3 */}
+                    <div style={{
+                        backgroundColor: '#1C1C1C',
+                        borderRadius: '10px',
+                        padding: '25px',
+                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.4)',
+                        borderTop: '4px solid #60A5FA',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                    }}>
+                        <div style={{
+                            width: '56px',
+                            height: '56px',
+                            borderRadius: '8px',
+                            backgroundColor: '#3B82F6',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '18px'
+                        }}>
+                            <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                            </svg>
+                        </div>
+                        <h3 style={{
+                            fontSize: '22px',
+                            fontWeight: 'bold',
+                            color: '#E0E7FF',
+                            marginBottom: '10px'
+                        }}>Unmatched Scalability</h3>
+                        <p style={{
+                            fontSize: '15px',
+                            lineHeight: '1.5',
+                            color: '#BFDBFE'
+                        }}>Easily expand your audio system without complex re-cabling or compatibility issues, supporting thousands of channels.</p>
+                    </div>
 
-  return (
-    <section
-      className="w-full py-12 md:py-16 lg:py-20 font-sans relative overflow-hidden"
-      style={{
-        color: '#1A202C' // Default dark text for light theme
-      }}
-    >
-      {/* Ensure Inter font is loaded for consistency */}
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+                    {/* Feature 4 */}
+                    <div style={{
+                        backgroundColor: '#1C1C1C',
+                        borderRadius: '10px',
+                        padding: '25px',
+                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.4)',
+                        borderTop: '4px solid #60A5FA',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                    }}>
+                        <div style={{
+                            width: '56px',
+                            height: '56px',
+                            borderRadius: '8px',
+                            backgroundColor: '#3B82F6',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '18px'
+                        }}>
+                            <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+                            </svg>
+                        </div>
+                        <h3 style={{
+                            fontSize: '22px',
+                            fontWeight: 'bold',
+                            color: '#E0E7FF',
+                            marginBottom: '10px'
+                        }}>Future-Proof</h3>
+                        <p style={{
+                            fontSize: '15px',
+                            lineHeight: '1.5',
+                            color: '#BFDBFE'
+                        }}>Stay ahead with an adaptable platform ready for tomorrow's audio demands and emerging technologies.</p>
+                    </div>
+                </div>
 
-      {/* Background Image with Black Overlay */}
-      <div
-        className="absolute inset-0 w-full h-full bg-cover bg-center"
-        style={{
-          backgroundImage: `url('/images/Dante_Centric.png')` // Placeholder image URL
-        }}
-      >
-        {/* Black Overlay */}
-        <div className="absolute inset-0 bg-black opacity-70"></div> {/* Adjust opacity for desired darkness */}
-      </div>
-
-
-      {/* Main content div, now wider and with adjusted padding */}
-      <div className="w-[90%] max-w-7xl mx-auto px-4 sm:px-8 lg:px-0 relative z-10">
-
-        {/* Header */}
-        <motion.div
-          ref={headerRef}
-          initial="hidden"
-          animate={headerInView ? "visible" : "hidden"}
-          variants={fadeInRise}
-          className="mb-10 text-center"
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight text-shadow-blue">
-            Technology Spotlight <br className="md:hidden" /> (Dante Integration)
-          </h2>
-          <p className="mt-4 text-xl text-gray-200 font-light max-w-2xl mx-auto">
-            Unleashing the power of seamless audio networking with cutting-edge technology.
-          </p>
-        </motion.div>
-
-        {/* Main Content Grid: About (Left) and Video (Right) */}
-        <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
-          {/* About Text Content (Left) */}
-          <motion.div
-            ref={aboutRef}
-            initial="hidden"
-            animate={aboutInView ? "visible" : "hidden"}
-            variants={fadeInRise}
-            className="space-y-6"
-          >
-            <h3 className="text-3xl font-bold text-white mb-4">
-              Benefits of <span className="text-blue-300">Dante Technology</span>
-            </h3>
-            <p className="text-lg text-gray-200 leading-relaxed">
-              Dante is the leading solution for digital audio networking, delivering
-              uncompressed, multi-channel digital media via standard Ethernet networks
-              with near-zero latency and perfect synchronization. It simplifies system
-              setup, eliminates bulky analog cabling, and provides superior sound quality.
-            </p>
-            <p className="text-lg text-gray-200 leading-relaxed">
-              <span className="font-semibold text-blue-300">Resoundify</span> leverages
-              Dante to provide unparalleled flexibility and scalability in audio
-              installations. This integration ensures our products offer a robust,
-              future-proof, and high-performance audio solution for any environment,
-              from professional studios to large-scale venues.
-            </p>
-          </motion.div>
-
-          {/* Visual Content Placeholder (Right) */}
-          <motion.div
-            ref={videoRef}
-            initial="hidden"
-            animate={videoInView ? "visible" : "hidden"}
-            variants={scaleIn}
-            className="relative group overflow-hidden rounded-2xl shadow-xl border border-blue-500 aspect-video bg-blue-700 flex items-center justify-center transform transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]"
-          >
-            <img
-              src="https://placehold.co/600x400/BFDBFE/1E3A8A?text=Dante+Integration+Video"
-              alt="Dante Integration Video Placeholder"
-              className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
-              onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/600x400/BFDBFE/1E3A8A?text=Video+Loading+Failed'; }}
-            />
-            <div className="absolute inset-0 bg-blue-900 bg-opacity-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {/* Play icon SVG */}
-              <svg className="h-20 w-20 text-blue-300 transform hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 5v14l11-7z"></path>
-              </svg>
+                {/* CTA Button */}
+                <div style={{ textAlign: 'center', marginTop: '80px' }}>
+                    <button
+                        style={{
+                            backgroundColor: '#3B82F6', // Blue button
+                            color: 'white',
+                            padding: '15px 30px',
+                            fontSize: '18px',
+                            fontWeight: 'bold',
+                            border: 'none',
+                            borderRadius: '30px',
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            transition: 'background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease', // Add transitions for smoothness
+                        }}
+                        // Simple hover effect
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#2563EB'; // Darker blue on hover
+                            e.currentTarget.style.transform = 'translateY(-3px)'; // Lift effect
+                            e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#3B82F6'; // Revert
+                            e.currentTarget.style.transform = 'translateY(0)'; // Revert
+                            e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+                        }}
+                        onClick={discoverProducts}
+                    >
+                        Discover Dante-Enabled Products
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <p className="absolute bottom-4 left-4 text-xs text-blue-100 bg-blue-900 px-3 py-1 rounded-full opacity-80">
-              Placeholder for Video / Infographic
-            </p>
-          </motion.div>
         </div>
-
-        {/* Two Pointers Per Line Section */}
-        <motion.div
-          ref={pointersRef}
-          initial="hidden"
-          animate={pointersInView ? "visible" : "hidden"}
-          variants={fadeIn} // Using a simple fade-in for the container
-          className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-10"
-        >
-          {/* Pointer 1: Effortless Setup & Management */}
-          <motion.div variants={fadeInRise} className="flex items-start space-x-4 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-md border border-gray-700 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group">
-            <div className="flex-shrink-0">
-              {/* Checkmark icon SVG */}
-              <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold text-white">Effortless Setup & Management</h4>
-              <p className="mt-1 text-gray-200">Dante simplifies complex audio networks, making installation and configuration straightforward.</p>
-            </div>
-          </motion.div>
-
-          {/* Pointer 2: Superior Sound Quality */}
-          <motion.div variants={fadeInRise} className="flex items-start space-x-4 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-md border border-gray-700 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group">
-            <div className="flex-shrink-0">
-              {/* Lightning bolt icon SVG */}
-              <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold text-white">Superior Sound Quality</h4>
-              <p className="mt-1 text-gray-200">Experience pristine, uncompressed audio with Dante's high-fidelity transmission.</p>
-            </div>
-          </motion.div>
-
-          {/* Pointer 3: Unmatched Scalability */}
-          <motion.div variants={fadeInRise} className="flex items-start space-x-4 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-md border border-gray-700 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group">
-            <div className="flex-shrink-0">
-              {/* Code icon SVG */}
-              <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold text-white">Unmatched Scalability</h4>
-              <p className="mt-1 text-gray-200">Easily expand your audio system without complex re-cabling or compatibility issues.</p>
-            </div>
-          </motion.div>
-
-          {/* Pointer 4: Future-Proof & Flexible */}
-          <motion.div variants={fadeInRise} className="flex items-start space-x-4 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-md border border-gray-700 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl group">
-            <div className="flex-shrink-0">
-              {/* Dots/connectivity icon SVG */}
-              <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zM12 21c-1.657 0-3-.895-3-2s1.343-2 3-2 3 .895 3 2-1.343 2-3 2zM12 3c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zM12 14c-1.657 0-3-.895-3-2s1.343-2 3-2 3 .895 3 2-1.343 2-3 2z"></path></svg>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold text-white">Future-Proof & Flexible</h4>
-              <p className="mt-1 text-gray-200">Stay ahead with an adaptable platform ready for tomorrow's audio demands.</p>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div
-          ref={ctaRef}
-          initial="hidden"
-          animate={ctaInView ? "visible" : "hidden"}
-          variants={scaleIn}
-          className="text-center mt-16"
-        >
-          <button className="group relative inline-flex h-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-600 p-0.5 font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-opacity-50 glow-on-hover-blue-light">
-            <span className="absolute h-full w-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-            <span className="relative flex h-full w-full items-center justify-center rounded-full bg-blue-900 px-8 py-3 text-lg transition-all duration-300 group-hover:bg-transparent">
-              Discover Dante-Enabled Products
-              <svg className="ml-3 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-              </svg>
-            </span>
-          </button>
-        </motion.div>
-      </div>
-
-      {/* Custom CSS for text shadow and glow effect */}
-      <style>{`
-        .font-sans {
-          font-family: 'Inter', sans-serif;
-        }
-
-        /* Adjusted text shadow for dark theme */
-        .text-shadow-blue {
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), -1px -1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        /* New glow effect for the CTA button, for a lighter blue shade */
-        .glow-on-hover-blue-light {
-          position: relative;
-          z-index: 1;
-        }
-        .glow-on-hover-blue-light:before {
-          content: '';
-          position: absolute;
-          top: -2px;
-          left: -2px;
-          right: -2px;
-          bottom: -2px;
-          background: linear-gradient(45deg, #60a5fa, #3b82f6, #60a5fa); /* Blue-400, Blue-500 */
-          background-size: 400% 400%;
-          filter: blur(8px);
-          opacity: 0;
-          transition: opacity .3s ease-in-out;
-          border-radius: 9999px; /* Matches rounded-full */
-          z-index: -1;
-        }
-        .glow-on-hover-blue-light:hover:before {
-          opacity: 1;
-          animation: glowing-blue-light 8s linear infinite;
-        }
-        @keyframes glowing-blue-light {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-      `}</style>
-    </section>
-  );
+    );
 };
 
-export default TechnologySpotlight;
+export default DanteTechnologySpotlight;
