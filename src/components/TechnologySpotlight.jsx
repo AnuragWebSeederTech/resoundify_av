@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const DanteTechnologySpotlight = () => {
     // Placeholder functions for interactivity
@@ -10,10 +10,70 @@ const DanteTechnologySpotlight = () => {
         alert('Redirecting to Dante-enabled products.');
     };
 
+    // State to keep track of animated elements
+    const [animatedElements, setAnimatedElements] = useState(new Set());
+
+    // Refs for each animatable section
+    const headerRef = useRef(null);
+    const mainContentRef = useRef(null);
+    const feature1Ref = useRef(null);
+    const feature2Ref = useRef(null);
+    const feature3Ref = useRef(null);
+    const feature4Ref = useRef(null);
+    const ctaButtonRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setAnimatedElements((prev) => new Set(prev).add(entry.target.dataset.animateId));
+                        // Optionally, unobserve once animated if you only want it to animate once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            }
+        );
+
+        // Observe each ref
+        if (headerRef.current) observer.observe(headerRef.current);
+        if (mainContentRef.current) observer.observe(mainContentRef.current);
+        if (feature1Ref.current) observer.observe(feature1Ref.current);
+        if (feature2Ref.current) observer.observe(feature2Ref.current);
+        if (feature3Ref.current) observer.observe(feature3Ref.current);
+        if (feature4Ref.current) observer.observe(feature4Ref.current);
+        if (ctaButtonRef.current) observer.observe(ctaButtonRef.current);
+
+        // Cleanup function
+        return () => {
+            if (headerRef.current) observer.unobserve(headerRef.current);
+            if (mainContentRef.current) observer.unobserve(mainContentRef.current);
+            if (feature1Ref.current) observer.unobserve(feature1Ref.current);
+            if (feature2Ref.current) observer.unobserve(feature2Ref.current);
+            if (feature3Ref.current) observer.unobserve(feature3Ref.current);
+            if (feature4Ref.current) observer.unobserve(feature4Ref.current);
+            if (ctaButtonRef.current) observer.unobserve(ctaButtonRef.current);
+        };
+    }, []); // Empty dependency array means this effect runs once on mount
+
+    // Animation styles based on state
+    const getAnimationStyle = (id) => ({
+        transition: 'all 1000ms ease-out 400ms', // duration-1000 delay-400
+        opacity: animatedElements.has(id) ? 1 : 0,
+        transform: animatedElements.has(id) ? 'translateY(0)' : 'translateY(30px)', // Increased translate for more noticeable effect
+        // Added text-shadow and box-shadow for highlights as per your theme preference
+        // Note: text-shadow for text elements, box-shadow for block elements
+    });
+
     return (
         <div style={{
             fontFamily: 'sans-serif', // Overall content font
-            backgroundColor: '#0A0A0A', // Simple dark background
+            background: 'linear-gradient(to bottom, #000000, #000033)', // Dark gradient from black to blue-900
             color: '#E0E7FF', // Light text color
             minHeight: '100vh',
             padding: '40px 20px',
@@ -22,6 +82,7 @@ const DanteTechnologySpotlight = () => {
             flexDirection: 'column',
             alignItems: 'center', // Center content horizontally
             justifyContent: 'flex-start', // Align content to the top
+            overflowX: 'hidden' // Prevent horizontal scroll due to initial off-screen elements
         }}>
             <div style={{
                 maxWidth: '1200px',
@@ -30,16 +91,22 @@ const DanteTechnologySpotlight = () => {
             }}>
 
                 {/* Header Section */}
-                <div style={{
-                    textAlign: 'center',
-                    marginBottom: '60px',
-                    fontFamily: 'sans-serif', // Ensure header also uses sans-serif
-                }}>
+                <div
+                    ref={headerRef}
+                    data-animate-id="header"
+                    style={{
+                        ...getAnimationStyle('header'),
+                        textAlign: 'center',
+                        marginBottom: '60px',
+                        fontFamily: 'sans-serif', // Ensure header also uses sans-serif
+                    }}
+                >
                     <h1 style={{
-                        fontSize: '40px', // Adjusted to "medium" - between small (32px) and large (48px)
+                        fontSize: '45px', // Adjusted to "medium" - between small (32px) and large (48px)
                         fontWeight: 'bold', // Still bold for prominence
                         color: '#60A5FA', // Simple blue for title
-                        marginBottom: '10px'
+                        marginBottom: '10px',
+                        textShadow: animatedElements.has('header') ? '0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(96, 165, 250, 0.7)' : 'none' // White and blue-200 shadow
                     }}>
                         Technology Spotlight<br />
                         <span style={{
@@ -64,20 +131,26 @@ const DanteTechnologySpotlight = () => {
                 </div>
 
                 {/* Main Content Grid */}
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr', // Stacked on small screens
-                    gap: '40px',
-                    marginBottom: '60px',
-                    alignItems: 'flex-start', // Align items to the top of their grid cells
-                }}>
+                <div
+                    ref={mainContentRef}
+                    data-animate-id="main-content"
+                    style={{
+                        ...getAnimationStyle('main-content'),
+                        display: 'grid',
+                        gridTemplateColumns: '1fr', // Stacked on small screens
+                        gap: '40px',
+                        marginBottom: '60px',
+                        alignItems: 'flex-start', // Align items to the top of their grid cells
+                    }}
+                >
                     {/* Left Content */}
                     <div>
                         <h2 style={{
                             fontSize: '32px', // Consistent content heading size
                             fontWeight: 'bold',
                             color: '#E0E7FF', // White for heading
-                            marginBottom: '20px'
+                            marginBottom: '20px',
+                            textShadow: animatedElements.has('main-content') ? '0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(96, 165, 250, 0.7)' : 'none'
                         }}>
                             Benefits of <span style={{ color: '#60A5FA' }}>Dante Technology</span>
                         </h2>
@@ -119,6 +192,7 @@ const DanteTechnologySpotlight = () => {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
+                                boxShadow: animatedElements.has('main-content') ? '0 4px 20px rgba(96, 165, 250, 0.4)' : 'none' // Blue-200 highlight
                             }}
                             onClick={playVideo}
                         >
@@ -164,16 +238,21 @@ const DanteTechnologySpotlight = () => {
                     marginTop: '50px'
                 }}>
                     {/* Feature 1 */}
-                    <div style={{
-                        backgroundColor: '#1C1C1C', // Darker background for boxes
-                        borderRadius: '10px',
-                        padding: '25px', // Increased padding for better look
-                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.4)', // Slightly stronger shadow
-                        borderTop: '4px solid #60A5FA', // Thicker blue top border
-                        display: 'flex', // Use flex for internal alignment
-                        flexDirection: 'column',
-                        alignItems: 'flex-start', // Align text left within box
-                    }}>
+                    <div
+                        ref={feature1Ref}
+                        data-animate-id="feature-1"
+                        style={{
+                            ...getAnimationStyle('feature-1'),
+                            backgroundColor: '#1C1C1C', // Darker background for boxes
+                            borderRadius: '10px',
+                            padding: '25px', // Increased padding for better look
+                            boxShadow: animatedElements.has('feature-1') ? '0 4px 15px rgba(96, 165, 250, 0.3)' : '0 4px 10px rgba(0, 0, 0, 0.4)', // Slightly stronger shadow with highlight
+                            borderTop: '4px solid #60A5FA', // Thicker blue top border
+                            display: 'flex', // Use flex for internal alignment
+                            flexDirection: 'column',
+                            alignItems: 'flex-start', // Align text left within box
+                        }}
+                    >
                         <div style={{
                             width: '56px', // Larger icon wrapper
                             height: '56px',
@@ -202,16 +281,21 @@ const DanteTechnologySpotlight = () => {
                     </div>
 
                     {/* Feature 2 */}
-                    <div style={{
-                        backgroundColor: '#1C1C1C',
-                        borderRadius: '10px',
-                        padding: '25px',
-                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.4)',
-                        borderTop: '4px solid #60A5FA',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
-                    }}>
+                    <div
+                        ref={feature2Ref}
+                        data-animate-id="feature-2"
+                        style={{
+                            ...getAnimationStyle('feature-2'),
+                            backgroundColor: '#1C1C1C',
+                            borderRadius: '10px',
+                            padding: '25px',
+                            boxShadow: animatedElements.has('feature-2') ? '0 4px 15px rgba(96, 165, 250, 0.3)' : '0 4px 10px rgba(0, 0, 0, 0.4)',
+                            borderTop: '4px solid #60A5FA',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'flex-start',
+                        }}
+                    >
                         <div style={{
                             width: '56px',
                             height: '56px',
@@ -240,16 +324,21 @@ const DanteTechnologySpotlight = () => {
                     </div>
 
                     {/* Feature 3 */}
-                    <div style={{
-                        backgroundColor: '#1C1C1C',
-                        borderRadius: '10px',
-                        padding: '25px',
-                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.4)',
-                        borderTop: '4px solid #60A5FA',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
-                    }}>
+                    <div
+                        ref={feature3Ref}
+                        data-animate-id="feature-3"
+                        style={{
+                            ...getAnimationStyle('feature-3'),
+                            backgroundColor: '#1C1C1C',
+                            borderRadius: '10px',
+                            padding: '25px',
+                            boxShadow: animatedElements.has('feature-3') ? '0 4px 15px rgba(96, 165, 250, 0.3)' : '0 4px 10px rgba(0, 0, 0, 0.4)',
+                            borderTop: '4px solid #60A5FA',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'flex-start',
+                        }}
+                    >
                         <div style={{
                             width: '56px',
                             height: '56px',
@@ -278,16 +367,21 @@ const DanteTechnologySpotlight = () => {
                     </div>
 
                     {/* Feature 4 */}
-                    <div style={{
-                        backgroundColor: '#1C1C1C',
-                        borderRadius: '10px',
-                        padding: '25px',
-                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.4)',
-                        borderTop: '4px solid #60A5FA',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
-                    }}>
+                    <div
+                        ref={feature4Ref}
+                        data-animate-id="feature-4"
+                        style={{
+                            ...getAnimationStyle('feature-4'),
+                            backgroundColor: '#1C1C1C',
+                            borderRadius: '10px',
+                            padding: '25px',
+                            boxShadow: animatedElements.has('feature-4') ? '0 4px 15px rgba(96, 165, 250, 0.3)' : '0 4px 10px rgba(0, 0, 0, 0.4)',
+                            borderTop: '4px solid #60A5FA',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'flex-start',
+                        }}
+                    >
                         <div style={{
                             width: '56px',
                             height: '56px',
@@ -317,7 +411,15 @@ const DanteTechnologySpotlight = () => {
                 </div>
 
                 {/* CTA Button */}
-                <div style={{ textAlign: 'center', marginTop: '80px' }}>
+                <div
+                    ref={ctaButtonRef}
+                    data-animate-id="cta-button"
+                    style={{
+                        ...getAnimationStyle('cta-button'),
+                        textAlign: 'center',
+                        marginTop: '80px',
+                    }}
+                >
                     <button
                         style={{
                             backgroundColor: '#3B82F6', // Blue button

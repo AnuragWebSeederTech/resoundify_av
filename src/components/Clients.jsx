@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 
 const Clients = () => {
   const clientLogos = [
-    { name: "Client A", url: "/path/to/your/client-a-logo.png", alt: "Innovate Solutions Logo" },
-    { name: "Client B", url: "/path/to/your/client-b-logo.png", alt: "Tech Pioneers Logo" },
-    { name: "Client C", url: "/path/to/your/client-c-logo.png", alt: "FutureForge Logo" },
-    { name: "Client D", url: "/path/to/your/client-d-logo.png", alt: "Aether Dynamics Logo" },
-    { name: "Client E", url: "/path/to/your/client-e-logo.png", alt: "Vertex Systems Logo" },
-    { name: "Client F", url: "/path/to/your/client-f-logo.png", alt: "Catalyst Corp Logo" },
-    { name: "Client G", url: "/path/to/your/client-g-logo.png", alt: "Nexus Innovations Logo" },
-    { name: "Client H", url: "/path/to/your/client-h-logo.png", alt: "BrightWave Tech Logo" },
+    { name: "Client A", url: "/images/ClientA.jpg", alt: "Innovate Solutions Logo" },
+    { name: "Client B", url: "/images/ClientB.jpg", alt: "Tech Pioneers Logo" },
+    { name: "Client C", url: "/images/ClientC.jpg", alt: "FutureForge Logo" },
+    { name: "Client D", url: "/images/ClientD.jpg", alt: "Aether Dynamics Logo" },
+    { name: "Client E", url: "/images/ClientE.png", alt: "Vertex Systems Logo" },
+    { name: "Client F", url: "/images/ClientF.png", alt: "Catalyst Corp Logo" },
+    { name: "Client G", url: "/images/ClientG.png", alt: "Nexus Innovations Logo" },
+    { name: "Client H", url: "/images/ClientH.jpg", alt: "BrightWave Tech Logo" },
   ];
 
   const duplicatedLogos = [...clientLogos, ...clientLogos];
@@ -42,12 +42,12 @@ const Clients = () => {
   }, []); // Empty dependency array ensures this runs once on mount
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 via-white to-blue-100 font-inter py-24 overflow-hidden relative">
+    <section className="bg-white font-inter py-24 overflow-hidden relative">
       {/* You might consider moving this <link> to your public/index.html or a global CSS file for better performance */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-fade-in-up">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-blue-900 mb-14">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-blue-900 mb-14 text-shadow-lg">
           Our Valued Clients
           <div className="w-28 h-1 bg-blue-600 mx-auto mt-4 rounded-full shadow-md"></div>
         </h2>
@@ -59,17 +59,18 @@ const Clients = () => {
           {duplicatedLogos.map((logo, index) => (
             <div
               key={index} // Using index as key is generally discouraged if items can change order, but for a static, duplicated list, it's acceptable.
-              className="inline-block mx-10 p-6 bg-white rounded-xl shadow-lg border border-blue-100 flex-shrink-0"
-              style={{ width: '240px', height: '140px' }}
+              className="inline-block mx-10 p-4 bg-white rounded-xl shadow-lg border border-blue-100 flex-shrink-0
+                         transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl hover:border-blue-600"
+              style={{ width: '240px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <img
                 src={logo.url}
                 alt={logo.alt}
-                className="max-w-full max-h-full object-contain mx-auto"
+                className="w-full h-full object-contain" // Ensures image fills the div while maintaining aspect ratio
                 onError={(e) => {
                   // Fallback to a plain placeholder if the image fails to load
                   e.target.onerror = null; // Prevent infinite loop if fallback also fails
-                  e.target.src = `https://placehold.co/200x100/E0F2FE/0B204F?text=${logo.name.replace(/ /g, '+')}`;
+                  e.target.src = `https://placehold.co/240x140/F0F8FF/000000?text=${logo.name.replace(/ /g, '+')}`; // Placeholder with dark text on light background
                 }}
               />
             </div>
@@ -85,7 +86,7 @@ const Clients = () => {
 
         .client-marquee {
           /* Ensures the container is wide enough for all content to scroll */
-          width: max-content; 
+          width: max-content;
           position: relative; /* Essential for transform property to work correctly */
         }
 
@@ -102,6 +103,10 @@ const Clients = () => {
         }
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        .text-shadow-lg {
+            text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Adjusted for white background */
         }
       `}</style>
     </section>
