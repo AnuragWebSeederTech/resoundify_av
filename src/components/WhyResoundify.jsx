@@ -80,18 +80,8 @@ const WhyResoundify = () => {
     threshold: 0.1,
   });
 
-  // Effect to handle image transition smoothly
-  const [currentImageSrc, setCurrentImageSrc] = useState(features[0].imageSrc);
-  const [imageKey, setImageKey] = useState(0); // Key to force re-render for transition
-
-  useEffect(() => {
-    setImageKey(prevKey => prevKey + 1); // Change key to trigger re-render and transition
-    const timer = setTimeout(() => {
-      setCurrentImageSrc(features[activeCard].imageSrc);
-    }, 300); // Duration matches opacity transition
-    return () => clearTimeout(timer);
-  }, [activeCard, features]);
-
+  // Removed the currentImageSrc and imageKey states and useEffect
+  // We will directly use features[activeCard].imageSrc and rely on key prop for transitions
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden font-inter">
@@ -141,7 +131,6 @@ const WhyResoundify = () => {
           <div className="space-y-6">
             {features.map((feature, index) => {
               const { ref, inView } = useInView({
-                // Removed triggerOnce: true so it animates every time it comes into view
                 threshold: 0.1,
               });
 
@@ -188,7 +177,7 @@ const WhyResoundify = () => {
                     </div>
                   )}
                   <div className={`absolute top-4 right-4 text-gray-300 text-3xl font-bold select-none transition-all duration-300
-                                   ${isActive ? 'text-blue-200' : 'opacity-0 md:opacity-100'}`}>
+                                      ${isActive ? 'text-blue-200' : 'opacity-0 md:opacity-100'}`}>
                     {String(index + 1).padStart(2, '0')}
                   </div>
                 </div>
@@ -199,12 +188,13 @@ const WhyResoundify = () => {
           {/* Right Side: Featured Image and Description for Active Card */}
           <div className="relative hidden lg:block rounded-lg overflow-hidden border border-gray-200 shadow-xl bg-white p-4">
             <div className="relative w-full h-80 rounded-md overflow-hidden bg-gray-100">
+              {/* Simplified image handling */}
               <img
-                key={imageKey} // Key changes to force transition on src change
-                src={currentImageSrc}
+                key={activeCard} // Key changes when activeCard changes, forcing a re-render of the img and triggering CSS transition
+                src={features[activeCard].imageSrc}
                 alt={features[activeCard].title}
-                className="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
-                style={{ opacity: currentImageSrc === features[activeCard].imageSrc ? 1 : 0 }}
+                // Tailwind CSS transition classes applied directly for fade effect
+                className="w-full h-full object-cover transition-opacity duration-300 ease-in-out opacity-100"
               />
             </div>
 
