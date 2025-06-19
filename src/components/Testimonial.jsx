@@ -97,6 +97,53 @@ const TestimonialsSection = () => {
   const cardWidth = 360; // Defined card width
   const cardGap = 32;   // space-x-8 = 32px
 
+  // State to keep track of animated testimonial IDs
+  const [animatedTestimonialIds, setAnimatedTestimonialIds] = useState(new Set());
+
+  // Refs for each testimonial card
+  const testimonialRefs = useRef([]);
+
+  useEffect(() => {
+    // Initialize testimonialRefs array with nulls
+    testimonialRefs.current = testimonials.map(
+      (_, i) => testimonialRefs.current[i] ?? React.createRef()
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const testimonialId = parseInt(entry.target.dataset.testimonialId);
+            setAnimatedTestimonialIds((prev) => new Set(prev).add(testimonialId));
+            // Stop observing once animated
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null, // viewport as the root
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the item is visible
+      }
+    );
+
+    // Observe each testimonial card
+    testimonialRefs.current.forEach((ref) => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    // Clean up observer on component unmount
+    return () => {
+      testimonialRefs.current.forEach((ref) => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+  }, [testimonials]); // Re-run if testimonials array changes
+
   const scroll = (direction) => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
@@ -124,11 +171,11 @@ const TestimonialsSection = () => {
 
   return (
     <div className="py-20 bg-gray-50"> {/* Subtle, clean background */}
-      <div className="w-500 mx-auto px-8 sm:px-12 lg:px-10"> {/* Changed from max-w-8xl back to max-w-screen-xl for better responsiveness */}
+      <div className="max-w-screen-xl mx-auto px-8 sm:px-12 lg:px-10"> {/* Changed from w-500 to max-w-screen-xl */}
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl lg:text-6xl font-light text-slate-800 mb-6 tracking-tight">
-            Truested by <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Audio</span> Professionals
+            Trusted by <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Audio</span> Professionals
           </h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Discover how Resoundify is helping creators, educators, and businesses
@@ -139,12 +186,19 @@ const TestimonialsSection = () => {
         {/* Testimonials Container */}
         <div className="w-full">
           <div className="overflow-x-auto custom-scrollbar-hide" ref={scrollContainerRef}>
-            <div className="flex space-x-8 pb-6" style={{ width: 'max-content' }}> {/* Removed pb-6, will add margin below */}
-              {testimonials.map((testimonial) => (
+            <div className="flex space-x-8 pb-6" style={{ width: 'max-content' }}>
+              {testimonials.map((testimonial, index) => (
                 <div
                   key={testimonial.id}
-                  className="bg-white rounded-2xl shadow-lg p-8 transition-all duration-300 flex-shrink-0
-                             hover:shadow-xl hover:scale-[1.01] hover:border-blue-200 border border-transparent"
+                  ref={testimonialRefs.current[index]} // Assign ref to each card
+                  data-testimonial-id={testimonial.id} // Store ID for observer
+                  className={`bg-white rounded-2xl shadow-lg p-8 transition-all duration-700 ease-out flex-shrink-0
+                              hover:shadow-xl hover:scale-[1.01] hover:border-blue-200 border border-transparent
+                              ${
+                                animatedTestimonialIds.has(testimonial.id)
+                                  ? 'opacity-100 translate-y-0'
+                                  : 'opacity-0 translate-y-8'
+                              }`}
                   style={{ width: '360px', minHeight: '300px' }}
                 >
                   <div className="h-full flex flex-col">
@@ -193,12 +247,12 @@ const TestimonialsSection = () => {
           </div>
 
           {/* Navigation Buttons - Moved Below */}
-          <div className="flex justify-center mt-8 space-x-4"> {/* Centered below cards with margin-top and space-x */}
+          <div className="flex justify-center mt-8 space-x-4">
             <button
               onClick={() => scroll('left')}
               className="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all duration-300
-                         focus:outline-none focus:ring-4 focus:ring-blue-100 focus:ring-offset-2
-                         transform hover:scale-110"
+                                  focus:outline-none focus:ring-4 focus:ring-blue-100 focus:ring-offset-2
+                                  transform hover:scale-110"
               aria-label="Scroll left"
             >
               <ChevronLeft className="w-6 h-6 text-blue-600" />
@@ -206,8 +260,8 @@ const TestimonialsSection = () => {
             <button
               onClick={() => scroll('right')}
               className="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all duration-300
-                         focus:outline-none focus:ring-4 focus:ring-blue-100 focus:ring-offset-2
-                         transform hover:scale-110"
+                                  focus:outline-none focus:ring-4 focus:ring-blue-100 focus:ring-offset-2
+                                  transform hover:scale-110"
               aria-label="Scroll right"
             >
               <ChevronRight className="w-6 h-6 text-blue-600" />
@@ -222,8 +276,8 @@ const TestimonialsSection = () => {
               Ready to elevate your audio?
             </span>
             <button className="bg-blue-600 hover:bg-blue-700
-                                text-white text-lg font-semibold px-8 py-4 rounded-full
-                                transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
+                                       text-white text-lg font-semibold px-8 py-4 rounded-full
+                                       transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
               Start Your Free Trial Today
             </button>
           </div>
