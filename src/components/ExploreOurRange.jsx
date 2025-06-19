@@ -8,7 +8,7 @@ const products = [
   {
     name: 'Dante Pro Interface',
     price: '$1299',
-    image: 'https://placehold.co/300x220/F0F4F8/60A5FA?text=Pro+Audio',
+    image: "/images/product1.jpg",
     sizeClass: 'w-40 h-56', // Small
     positionClass: 'top-[10%] left-[5%] xl:left-[10%]', // Top-left, pulled slightly further left on large screens
     rotateClass: '-rotate-3',
@@ -17,7 +17,7 @@ const products = [
   {
     name: 'Compact Mixer X200',
     price: '$799',
-    image: 'https://placehold.co/350x260/E0F2F7/4FD1C5?text=Studio+Mixer',
+    image: "/images/product2.jpg",
     sizeClass: 'w-52 h-72', // Big
     positionClass: 'bottom-[15%] left-[0%] xl:left-[5%]', // Bottom-left, slightly off edge
     rotateClass: 'rotate-2',
@@ -26,7 +26,7 @@ const products = [
   {
     name: 'Studio Monitor Array',
     price: '$1899',
-    image: 'https://placehold.co/350x260/F3E8FF/A78BFA?text=High-Res+Monitors',
+    image: "/images/product3.jpg",
     sizeClass: 'w-48 h-64', // Medium
     positionClass: 'top-[8%] right-[5%] xl:right-[10%]', // Top-right, pulled slightly further right on large screens
     rotateClass: 'rotate-4',
@@ -35,7 +35,7 @@ const products = [
   {
     name: 'Wireless Mic System',
     price: '$499',
-    image: 'https://placehold.co/300x220/FFFBEB/FCD34D?text=Wireless+Mics',
+    image: "/images/product4.jpg",
     sizeClass: 'w-40 h-56', // Small
     positionClass: 'bottom-[8%] right-[0%] xl:right-[5%]', // Bottom-right, slightly off edge
     rotateClass: '-rotate-2',
@@ -44,7 +44,7 @@ const products = [
   {
     name: 'Audio Interface Pro-5',
     price: '$999',
-    image: 'https://placehold.co/320x240/E8F5E9/81C784?text=Audio+Interface',
+    image: "/images/product5.jpg",
     sizeClass: 'w-44 h-60', // Medium
     positionClass: 'top-[35%] left-[2%] md:left-[20%] xl:left-[25%]', // Mid-left, closer to center on smaller screens
     rotateClass: 'rotate-1',
@@ -53,7 +53,7 @@ const products = [
   {
     name: 'Digital Sound Processor',
     price: '$1499',
-    image: 'https://placehold.co/340x250/F2F5FF/6C7CDA?text=DSP+Unit',
+    image: "/images/product6.jpg",
     sizeClass: 'w-46 h-62', // Medium-large
     positionClass: 'bottom-[35%] right-[2%] md:right-[20%] xl:right-[25%]', // Mid-right, closer to center on smaller screens
     rotateClass: 'rotate-3',

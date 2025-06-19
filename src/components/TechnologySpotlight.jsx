@@ -2,14 +2,14 @@ import React from 'react';
 
 const DanteBenefitsSection = () => {
   return (
-    <div className="mx-auto px-20 py-12 bg-gradient-to-br from-blue-50 to-blue-200"> {/* Added blue gradient background */}
+    <div className="mx-auto px-20 py-12 bg-gradient-to-r from-blue-300 to-blue-50"> {/* Added blue gradient background */}
 
       {/* New: Technology Spotlight Heading */}
       <div className="text-center mb-16"> {/* Centered and more margin-bottom */}
         <h2 className="text-5xl lg:text-6xl font-light text-slate-800 mb-6 tracking-tight">
             Technology <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Spotlight</span>
         </h2>
-        <p className="text-2xl md:text-3xl font-light text-gray-700 max-w-3xl mx-auto">
+        <p className="text-2xl md:text-3xl font-light text-gray-800 max-w-3xl mx-auto">
           Unleashing the power of seamless audio networking with cutting-edge technology.
         </p>
       </div>
