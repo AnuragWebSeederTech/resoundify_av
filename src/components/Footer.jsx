@@ -30,9 +30,7 @@ const Footer = () => {
           <div className="xl:col-span-2 text-center md:text-left">
             <div className="mb-6">
               {/* Resoundify logo text with stronger visual impact using a slightly deeper blue for contrast */}
-              <h3 className="text-5xl font-extrabold text-blue-800 mb-2 tracking-tight drop-shadow-sm">
-                Resoundify
-              </h3>
+              <img src ="/images/resoundifyLogo.jpeg" alt="Resoundify Logo" className="w-80 h-16 rounded-3xl mx-auto md:mx-0 mb-2" />
               <p className="text-blue-600 font-semibold text-xl leading-tight">Where Sound Meets Innovation</p>
             </div>
 

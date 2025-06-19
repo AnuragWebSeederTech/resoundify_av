@@ -153,9 +153,9 @@ const ExploreOurRange = () => {
         onMouseEnter={() => setIsCenterHovered(true)}
         onMouseLeave={() => setIsCenterHovered(false)}
       >
-        <h2 className="text-4xl sm:text-5xl lg:text-5xl font-extrabold mb-6 tracking-tighter leading-tight text-gray-900">
-          Unleash the Future of <span className="text-blue-500">Audio Excellence</span>
-        </h2>
+        <h2 className="text-4xl lg:text-5xl font-light text-slate-800 mb-6 tracking-tight">
+            Unleash the future of  <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Audio Excellence</span>
+          </h2>
         <p className="text-lg sm:text-xl max-w-xl mx-auto mb-10 leading-relaxed text-gray-700 font-light">
           Discover our groundbreaking suite of Dante-enabled professional audio equipment. Engineered for unmatched clarity, unparalleled reliability, and limitless scalability, Resoundify empowers visionaries to craft immersive sonic experiences.
         </p>

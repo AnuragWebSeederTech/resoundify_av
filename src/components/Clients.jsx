@@ -47,10 +47,9 @@ const Clients = () => {
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-fade-in-up">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-blue-900 mb-14 text-shadow-lg">
-          Our Valued Clients
-          <div className="w-28 h-1 bg-blue-600 mx-auto mt-4 rounded-full shadow-md"></div>
-        </h2>
+        <h2 className="text-4xl lg:text-5xl font-light text-slate-800 mb-6 tracking-tight">
+           Success supported by  <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Powerful Brands</span> 
+          </h2>
       </div>
 
       {/* Marquee Container */}

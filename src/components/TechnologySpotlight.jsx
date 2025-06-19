@@ -154,8 +154,8 @@ const DanteTechnologySpotlight = () => {
                     }}
                 >
                     <h1 style={{
-                        fontSize: '45px',
-                        fontWeight: 'bold',
+                        fontSize: '55px',
+                        fontWeight: 'light',
                         color: '#E0E7FF', // blue-100 for title
                         marginBottom: '10px',
                         textShadow: animatedElements.has('header') ? '0 0 8px rgba(255, 255, 255, 0.4)' : 'none', // White text shadow

@@ -115,8 +115,8 @@ const WhyResoundify = () => {
           ref={headerRef}
           className={`text-center mb-24 transform transition-all duration-1000 ${headerInView ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
         >
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-gray-900 mb-6">
-            Why Choose <span className="text-blue-600">Resoundify</span>
+         <h2 className="text-5xl lg:text-6xl font-light text-slate-800 mb-6 tracking-tight">
+            Why Choose <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Resoundify</span> 
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mt-6 font-light">
             Delivering cutting-edge audio-visual solutions that redefine how you connect,

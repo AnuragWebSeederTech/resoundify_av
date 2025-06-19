@@ -79,8 +79,8 @@ const JoinCommunitySection = () => {
         transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}> {/* Apply animation classes here */}
         {/* Text Content */}
         <div className="lg:w-1/2 text-center lg:text-left px-4 lg:pl-10">
-          <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 tracking-tight text-gray-900"> {/* Original text color */}
-            Join the Resoundify <span className="text-blue-500">Community</span> {/* Original accent color */}
+          <h2 className="text-5xl lg:text-6xl font-light text-slate-800 mb-6 tracking-tight">
+            Join the <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Resoundify Community</span>
           </h2>
           <p className="mb-8 text-lg sm:text-xl text-gray-700 leading-relaxed font-light"> {/* Original text color */}
             At Resoundify, we believe in the power of sound to inspire, connect, and transform. Let us help you create audio-visual experiences that resonate. Explore our products, connect with our team, and experience the future of AV with Resoundify.
