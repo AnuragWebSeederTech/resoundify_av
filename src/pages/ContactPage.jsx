@@ -1,565 +1,359 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft } from 'lucide-react';
-import { FaWhatsapp } from 'react-icons/fa';
-import { Briefcase, CalendarCheck, Globe, Award, Star } from 'lucide-react'; // Added Star icon for testimonials
+import { useState, useEffect, useRef } from 'react';
+import { Send, MapPin, Phone, Mail, Clock, Users, Award, ArrowRight, CheckCircle } from 'lucide-react';
+import Footer from '../components/Footer'; // Assuming this path is correct
+import TestimonialsSection from '../components/Testimonial'; // Assuming this path is correct
+import Header from '../components/Header'; // Assuming this path is correct
 
-// Import your Header and Footer components
-import Header from '../components/Header'; // Adjust path if your Header is elsewhere
-import Footer from '../components/Footer'; // Adjust path if your Footer is elsewhere
-import Testimonial from '../components/Testimonial'; // Adjust path if your Testimonial is elsewhere
-
-const ContactPage = () => {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
-    fullName: '',
+    name: '',
     email: '',
-    company: '',
-    mobile: '',
-    interestedService: '',
-    projectBudget: '',
+    subject: '',
     message: '',
+    budget: '',
+    timeline: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [focusedField, setFocusedField] = useState('');
+  const [scrollY, setScrollY] = useState(0); // This state is still here, but its usage for parallax was removed
+  const mapRef = useRef(null);
 
-  const [errors, setErrors] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // New loading state
-  const [isContentVisible, setIsContentVisible] = useState(false); // For entry animation
-
+  // This useEffect is for the scroll position, not directly related to the map issue
   useEffect(() => {
-    // Trigger entry animation for main content on mount
-    setIsContentVisible(true);
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
+  // Initialize map when component mounts
+  useEffect(() => {
+    if (mapRef.current) {
+      // Create a simple interactive map using iframe from OpenStreetMap
+      const mapContainer = mapRef.current;
+      mapContainer.innerHTML = `
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=72.8777,19.0760,72.8877,19.0860&layer=mapnik&marker=19.0810,72.8827"
+          width="100%"
+          height="240"
+          style="border: none; border-radius: 12px;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      `;
+    }
+  }, []);
+
+  const handleInputChange = (e) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
     }));
-    if (errors[name]) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [name]: null,
-      }));
-    }
-  };
-
-  const validate = () => {
-    let newErrors = {};
-    if (!formData.fullName) newErrors.fullName = 'Full Name is required.';
-    if (!formData.email) {
-      newErrors.email = 'Email Address is required.';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email address is invalid.';
-    }
-    if (!formData.company) newErrors.company = 'Company Name is required.';
-    if (!formData.mobile) {
-      newErrors.mobile = 'Mobile Number is required.';
-    } else if (!/^\+?\d{10,15}$/.test(formData.mobile)) {
-      newErrors.mobile = 'Invalid mobile number.';
-    }
-    if (!formData.interestedService) newErrors.interestedService = 'Please select a service.';
-    if (!formData.projectBudget) newErrors.projectBudget = 'Please select a budget.';
-    if (!formData.message) newErrors.message = 'Message is required.';
-
-    return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      setIsSubmitted(false);
-    } else {
-      setIsLoading(true); // Start loading
-      setIsSubmitted(false); // Reset submitted status
+    setIsSubmitting(true);
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setIsSubmitting(false);
+    setSubmitted(true);
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: '', email: '', subject: '', message: '', budget: '', timeline: '' });
+    }, 3000);
+  };
 
-      try {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        console.log('Form submitted for Resoundify:', formData);
-        setIsSubmitted(true);
-        setErrors({}); // Clear any previous errors
-        setFormData({
-          fullName: '',
-          email: '',
-          company: '',
-          mobile: '',
-          interestedService: '',
-          projectBudget: '',
-          message: '',
-        });
-      } catch (error) {
-        console.error("Submission error:", error);
-        // You might set an error state here to show a submission error message
-      } finally {
-        setIsLoading(false); // End loading
-      }
+  const contactMethods = [
+    {
+      icon: Mail,
+      label: "Email",
+      primary: "hello@resoundify.com",
+      secondary: "Response within 2 hours"
+    },
+    {
+      icon: Phone,
+      label: "Phone",
+      primary: "+91 98765 43210",
+      secondary: "Available 24/7"
+    },
+    {
+      icon: MapPin,
+      label: "Location",
+      primary: "Mumbai, Maharashtra",
+      secondary: "Audio District, India"
+    },
+    {
+      icon: Clock,
+      label: "Hours",
+      primary: "Mon-Fri 9AM-6PM",
+      secondary: "Sat 10AM-4PM"
     }
-  };
-
-  const serviceOptions = [
-    'Dante Integration Consulting',
-    'Audio System Design',
-    'Hardware Solutions (Specify product type)',
-    'Software & Firmware Development',
-    'Technical Support & Training',
-    'Other Audio-Visual Needs',
   ];
 
-  const budgetOptions = [
-    'Less than $5,000',
-    '$5,000 - $10,000',
-    '$10,000 - $25,000',
-    '$25,000 - $50,000',
-    'More than $50,000',
-    'Custom Project',
-  ];
-
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Sarah Johnson',
-      title: 'CEO, InnovateTech',
-      quote: "Resoundify transformed our office's audio conferencing. The clarity is exceptional, and their team was incredibly professional and efficient.",
-      rating: 5,
-      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
-    },
-    {
-      id: 2,
-      name: 'Michael Chen',
-      title: 'Event Manager, Grand Venues',
-      quote: 'We relied on Resoundify for our latest concert venue sound design. The results were phenomenal, exceeding all expectations. True audio masters!',
-      rating: 5,
-      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
-    },
-    {
-      id: 3,
-      name: 'Emily Rodriguez',
-      title: 'CTO, FutureWave Studios',
-      quote: 'Their Dante integration expertise is unmatched. They seamlessly integrated complex systems, and their support has been excellent.',
-      rating: 4,
-      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
-    },
-    {
-      id: 4,
-      name: 'David Lee',
-      title: 'Education Director, Summit Academy',
-      quote: 'Resoundify provided us with an intuitive and powerful audio solution for our lecture halls. Highly recommend their services.',
-      rating: 5,
-      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
-    },
-    {
-      id: 5,
-      name: 'Priya Sharma',
-      title: 'Marketing Head, Global Brands',
-      quote: 'We needed a custom audio solution for our interactive exhibit, and Resoundify delivered beyond imagination. Creative and technically brilliant!',
-      rating: 5,
-      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Placeholder
-    },
-  ];
-
-  // Function to render star ratings
-  const renderStars = (rating) => {
-    return (
-      <div className="flex text-yellow-400">
-        {[...Array(5)].map((_, i) => (
-          <Star key={i} size={20} fill={i < rating ? "currentColor" : "none"} stroke={i < rating ? "currentColor" : "gray"} />
-        ))}
-      </div>
-    );
-  };
+  const budgetOptions = ["$5K - $10K", "$10K - $25K", "$25K - $50K", "$50K+"];
+  const timelineOptions = ["1-2 weeks", "1 month", "2-3 months", "3+ months"];
 
   return (
-    // Main container with light theme background and black text
-    <div className="min-h-screen bg-white font-sans text-gray-900 flex flex-col">
-      <Header /> {/* Call the Header component */}
+    <>
+      <Header />
+      {/* The mt-25 class seems unusual for Tailwind; consider if you meant mt-24 or a custom spacing */}
+      <div className="min-h-screen mt-24">
+        {/* Hero Section with Background Image */}
+        <div
+          className="relative bg-cover bg-center bg-no-repeat h-140 flex items-center justify-center" // Increased height, added flex for centering
+          style={{
+            backgroundImage: "url('/images/Contactbg.jpg')", // Ensure this path is correct and the image exists in your public folder
+          }}
+        >
+          {/* Overlay for better text readability */}
+          {/* Consider making the overlay darker or lighter based on your image for better text contrast */}
+          <div className="absolute inset-0 bg-black/40 z-0"></div> {/* Darkened overlay for better text contrast */}
 
-      {/* Main Content Area - Wrapped for animation and independent scrolling */}
-      <div className={`pt-24 flex flex-col lg:flex-row flex-grow transform transition-all duration-1000 ease-out
-        ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-        overflow-hidden`}> {/* Added overflow-hidden to the parent */}
+          {/* Header Content */}
+          <div className="relative z-10 text-center text-white px-6"> {/* Changed text color to white for better contrast */}
+            {/* Removed the 'Available Now' badge and parallax for clarity and better design */}
 
-        {/* Left Section: Info, Stats, and Testimonials - Now with its own scroll */}
-        <div className="lg:w-1/2 p-8 md:p-16 pt-16 lg:pt-10 flex flex-col justify-start bg-gray-50 shadow-lg lg:shadow-none rounded-lg mx-4 lg:mx-0 my-4 lg:my-0
-                         overflow-y-auto custom-scroll-light no-scrollbar lg:max-h-[calc(100vh-6rem)]"> {/* Adjusted for scroll */}
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 text-shadow-dark">
-            Elevate Your Audio-Visual Experience 
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-700 mb-12">
-            At Resoundify, we deliver cutting-edge audio-visual solutions that redefine how you connect, communicate, and create. As a trusted AV brand specializing in Dante-enabled products, we bring seamless, high-quality audio networking to the forefront of your projects. Let us help you create audio-visual experiences that resonate.
-          </p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+              Let's Work Together
+            </h1>
 
-          {/* Stats Grid - Aligned with Resoundify's values */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
-            <div className="flex items-center p-4 bg-white rounded-lg shadow-md
-                           transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
-              <CalendarCheck className="w-8 h-8 text-blue-500 mr-4" />
-              <div>
-                <div className="text-3xl font-bold text-gray-900">Uncompromising</div>
-                <div className="text-gray-600 text-base">Quality & Reliability </div>
+            <p className="text-lg max-w-2xl mx-auto leading-relaxed">
+              Ready to create something extraordinary? Share your vision with us and let's bring your audio project to life.
+            </p>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="grid lg:grid-cols-3 gap-12">
+
+            {/* Main Contact Form */}
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
+                      <Send className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-semibold text-gray-900">Start Your Project</h2>
+                      <p className="text-sm text-gray-600">Tell us about your requirements</p>
+                    </div>
+                  </div>
+                </div>
+
+                {submitted ? (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Thank You!</h3>
+                    <p className="text-gray-600">We'll get back to you within 2 hours.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6"> {/* Added form tag and onSubmit */}
+                    {/* Personal Info */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="relative">
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                        <input
+                          type="text"
+                          id="name" // Added id
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          onFocus={() => setFocusedField('name')}
+                          onBlur={() => setFocusedField('')}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200"
+                          placeholder="Your full name"
+                          required
+                        />
+                      </div>
+
+                      <div className="relative">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                        <input
+                          type="email"
+                          id="email" // Added id
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          onFocus={() => setFocusedField('email')}
+                          onBlur={() => setFocusedField('')}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200"
+                          placeholder="your@email.com"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Project Details */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="relative">
+                        <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">Project Budget</label>
+                        <select
+                          id="budget" // Added id
+                          name="budget"
+                          value={formData.budget}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200 bg-white"
+                          required // Added required
+                        >
+                          <option value="">Select budget range</option>
+                          {budgetOptions.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="relative">
+                        <label htmlFor="timeline" className="block text-sm font-medium text-gray-700 mb-2">Timeline</label>
+                        <select
+                          id="timeline" // Added id
+                          name="timeline"
+                          value={formData.timeline}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200 bg-white"
+                          required // Added required
+                        >
+                          <option value="">Select timeline</option>
+                          {timelineOptions.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Subject */}
+                    <div className="relative">
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                      <input
+                        type="text"
+                        id="subject" // Added id
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200"
+                        placeholder="What's your project about?"
+                        required
+                      />
+                    </div>
+
+                    {/* Message */}
+                    <div className="relative">
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Project Details</label>
+                      <textarea
+                        id="message" // Added id
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={5}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200 resize-none"
+                        placeholder="Tell us about your vision, goals, and requirements..."
+                        required
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit" // Changed to type="submit" for form submission
+                      disabled={isSubmitting}
+                      className="w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5" />
+                          <span>Send Message</span>
+                        </>
+                      )}
+                    </button>
+
+                    <p className="text-sm text-gray-500 text-center">
+                      We respect your privacy and will respond within 2 hours during business hours.
+                    </p>
+                  </form>
+                )}
               </div>
             </div>
-            <div className="flex items-center p-4 bg-white rounded-lg shadow-md
-                           transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
-              <Briefcase className="w-8 h-8 text-green-500 mr-4" />
-              <div>
-                <div className="text-3xl font-bold text-gray-900">Simplified</div>
-                <div className="text-gray-600 text-base">Intuitive Solutions </div>
+
+            {/* Sidebar */}
+            <div className="space-y-8">
+
+              {/* Contact Information */}
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6">Get in Touch</h3>
+                <div className="space-y-6">
+                  {contactMethods.map((method, index) => {
+                    const Icon = method.icon;
+                    return (
+                      <div key={index} className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-5 h-5 text-gray-700" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900">{method.primary}</p>
+                          <p className="text-sm text-gray-600">{method.secondary}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-            <div className="flex items-center p-4 bg-white rounded-lg shadow-md
-                           transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
-              <Globe className="w-8 h-8 text-purple-500 mr-4" />
-              <div>
-                <div className="text-3xl font-bold text-gray-900">Future-Ready</div>
-                <div className="text-gray-600 text-base">Technology </div>
+
+              {/* Working Map */}
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Our Location</h3>
+                  <MapPin className="w-5 h-5 text-gray-600" />
+                </div>
+
+                <div ref={mapRef} className="mb-4 rounded-lg overflow-hidden border border-gray-200 min-h-[240px]">
+                  {/* Added min-h-[240px] to ensure the map container has a height */}
+                  {/* Map will be loaded here via useEffect */}
+                </div>
+
+                <div className="space-y-2">
+                  <p className="text-sm font-medium text-gray-900">Audio District, Mumbai</p>
+                  <p className="text-sm text-gray-600">Maharashtra, India 400001</p>
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=Mumbai,+Maharashtra,+India" // More robust Google Maps directions URL
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-gray-900 hover:text-gray-700 transition-colors"
+                  >
+                    <span>Get Directions</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center p-4 bg-white rounded-lg shadow-md
-                           transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-gray-200">
-              <Award className="w-8 h-8 text-yellow-500 mr-4" />
-              <div>
-                <div className="text-3xl font-bold text-gray-900">Dante-Centric</div>
-                <div className="text-gray-600 text-base">Innovation </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200 text-center">
+                  <Users className="w-6 h-6 text-gray-700 mx-auto mb-2" />
+                  <p className="text-2xl font-bold text-gray-900">1000+</p>
+                  <p className="text-xs text-gray-600">Happy Clients</p>
+                </div>
+
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200 text-center">
+                  <Award className="w-6 h-6 text-gray-700 mx-auto mb-2" />
+                  <p className="text-2xl font-bold text-gray-900">5.0</p>
+                  <p className="text-xs text-gray-600">Client Rating</p>
+                </div>
               </div>
             </div>
           </div>
-
-          {/* "What Our Clients Say" Section - Moved here */}
-          <section className="py-8 bg-gray-50 text-gray-900 text-center">
-            <h3 className="text-3xl font-extrabold mb-8 text-gray-900 text-shadow-dark">What Our Clients Say</h3>
-            <div className="grid grid-cols-1 gap-8 max-w-full mx-auto"> {/* Changed to 1 column for stacking */}
-              {testimonials.map((testimonial) => (
-                <div key={testimonial.id} className="bg-white p-6 rounded-xl shadow-md border border-gray-200
-                                       transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col items-center">
-                  {testimonial.avatar && (
-                    <img
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      className="w-20 h-20 rounded-full object-cover mb-4 border-3 border-blue-400 shadow-sm"
-                    />
-                  )}
-                  {renderStars(testimonial.rating)}
-                  <p className="text-md italic text-gray-700 mb-4 mt-3 line-clamp-3">
-                    "{testimonial.quote}"
-                  </p>
-                  <h4 className="font-bold text-gray-900 text-lg text-shadow-dark-subtle">{testimonial.name}</h4>
-                  <p className="text-gray-600 text-sm">{testimonial.title}</p>
-                </div>
-              ))}
-            </div>
-            <button className="mt-8 py-2 px-6 bg-blue-600 text-white text-md font-semibold rounded-full shadow-lg
-                               hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-400">
-              Read More Testimonials
-            </button>
-          </section>
-        </div>
-
-        {/* Right Section: Contact Form - Now with its own scroll */}
-        {/* Changed background to blue-600, text to white, and added text-shadow */}
-        <div className="lg:w-1/2 p-8 md:p-16 bg-blue-600 text-white flex flex-col justify-center relative overflow-hidden rounded-lg mx-4 lg:mx-0 my-4 lg:my-0 lg:ml-0
-                         overflow-y-auto custom-scroll-light no-scrollbar lg:max-h-[calc(100vh-6rem)]"> {/* Adjusted for scroll */}
-            {/* Background elements (kept white for subtle contrast) */}
-            <div className="absolute inset-0 z-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="50" r="30" stroke="white" strokeWidth="0.5" className="animate-pulse-slow"></circle>
-                  <circle cx="20" cy="80" r="15" stroke="white" strokeWidth="0.5" className="animate-pulse-slow animation-delay-2s"></circle>
-                  <circle cx="80" cy="20" r="20" stroke="white" strokeWidth="0.5" className="animate-pulse-slow animation-delay-4s"></circle>
-              </svg>
-            </div>
-
-          <h2 className="sm:text-4xl lg:text-5xl font-bold mb-8 relative z-10 text-white text-shadow-white">Connect with Resoundify</h2>
-
-          {isSubmitted && (
-            <div className="bg-green-600 text-white px-4 py-3 rounded-lg relative mb-6 text-base animate-fadeInUp z-10 shadow-lg">
-              <strong className="font-bold">Success!</strong>
-              <span className="block sm:inline ml-2">Your message has been sent. We'll get back to you soon!</span>
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="fullName" className="block text-sm font-medium text-blue-100 mb-2">
-                  Full Name<span className="text-red-300">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  className={`w-full p-3 bg-blue-700 text-white border ${
-                    errors.fullName ? 'border-red-400' : 'border-blue-500'
-                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
-                  placeholder="Enter your name"
-                />
-                {errors.fullName && <p className="mt-1 text-sm text-red-300">{errors.fullName}</p>}
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-blue-100 mb-2">
-                  Email Address<span className="text-red-300">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full p-3 bg-blue-700 text-white border ${
-                    errors.email ? 'border-red-400' : 'border-blue-500'
-                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
-                  placeholder="Enter your email id"
-                />
-                {errors.email && <p className="mt-1 text-sm text-red-300">{errors.email}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-blue-100 mb-2">
-                  Company<span className="text-red-300">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className={`w-full p-3 bg-blue-700 text-white border ${
-                    errors.company ? 'border-red-400' : 'border-blue-500'
-                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
-                  placeholder="Enter your company name"
-                />
-                {errors.company && <p className="mt-1 text-sm text-red-300">{errors.company}</p>}
-              </div>
-              <div>
-                <label htmlFor="mobile" className="block text-sm font-medium text-blue-100 mb-2">
-                  Mobile Number<span className="text-red-300">*</span>
-                </label>
-                <div className="flex items-center">
-                  <span className="inline-flex items-center px-3 text-sm text-blue-200 bg-blue-700 border border-blue-500 rounded-l-md h-[42px] shadow-inner">
-                    🇮🇳 +91
-                  </span>
-                  <input
-                    type="tel"
-                    id="mobile"
-                    name="mobile"
-                    value={formData.mobile}
-                    onChange={handleChange}
-                    className={`flex-1 p-3 bg-blue-700 text-white border ${
-                      errors.mobile ? 'border-red-400' : 'border-blue-500'
-                    } rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
-                    placeholder="Phone number"
-                  />
-                </div>
-                {errors.mobile && <p className="mt-1 text-sm text-red-300">{errors.mobile}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="interestedService" className="block text-sm font-medium text-blue-100 mb-2">
-                  Interested Service<span className="text-red-300">*</span>
-                </label>
-                <select
-                  id="interestedService"
-                  name="interestedService"
-                  value={formData.interestedService}
-                  onChange={handleChange}
-                  className={`w-full p-3 bg-blue-700 text-white border ${
-                    errors.interestedService ? 'border-red-400' : 'border-blue-500'
-                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 appearance-none text-base custom-select-light shadow-inner`}
-                >
-                  <option value="">Select Interested Service</option>
-                  {serviceOptions.map((service) => (
-                    <option key={service} value={service}>
-                      {service}
-                    </option>
-                  ))}
-                </select>
-                {errors.interestedService && <p className="mt-1 text-sm text-red-300">{errors.interestedService}</p>}
-              </div>
-              <div>
-                <label htmlFor="projectBudget" className="block text-sm font-medium text-blue-100 mb-2">
-                  Project Budget<span className="text-red-300">*</span>
-                </label>
-                <select
-                  id="projectBudget"
-                  name="projectBudget"
-                  value={formData.projectBudget}
-                  onChange={handleChange}
-                  className={`w-full p-3 bg-blue-700 text-white border ${
-                    errors.projectBudget ? 'border-red-400' : 'border-blue-500'
-                  } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 appearance-none text-base custom-select-light shadow-inner`}
-                >
-                  <option value="">Select Project Budget</option>
-                  {budgetOptions.map((budget) => (
-                    <option key={budget} value={budget}>
-                      {budget}
-                    </option>
-                  ))}
-                </select>
-                {errors.projectBudget && <p className="mt-1 text-sm text-red-300">{errors.projectBudget}</p>}
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-blue-100 mb-2">
-                Message<span className="text-red-300">*</span>
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                value={formData.message}
-                onChange={handleChange}
-                className={`w-full p-3 bg-blue-700 text-white border ${
-                  errors.message ? 'border-red-400' : 'border-blue-500'
-                } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-base placeholder-blue-200 shadow-inner`}
-                placeholder="Tell us about your audio-visual project..."
-              ></textarea>
-              {errors.message && <p className="mt-1 text-sm text-red-300">{errors.message}</p>}
-            </div>
-
-            <p className="text-blue-100 text-base pt-4 text-shadow-blue-subtle">
-                Let us help you create audio-visual experiences that resonate. Explore our products, connect with our team, and experience the future of AV with Resoundify.
-            </p>
-
-            <button
-              type="submit"
-              disabled={isLoading} // Disable button when loading
-              className="w-full py-4 px-6 bg-green-500 text-white text-lg font-semibold rounded-lg shadow-xl
-                          hover:bg-green-600 transition-colors duration-200 flex items-center justify-center space-x-2
-                          disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-green-400"
-            >
-              {isLoading ? (
-                <span className="flex items-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Submitting...
-                </span>
-              ) : (
-                <>
-                  <span>SUBMIT NOW</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                    <path fillRule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                  </svg>
-                </>
-              )}
-            </button>
-          </form>
         </div>
       </div>
-      <Testimonial />
-      <Footer /> {/* Call the Footer component */}
-
-      {/* Floating WhatsApp Button */}
-      <a
-        href="https://wa.me/yourresoundifynumber"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-xl hover:bg-green-600 transition-colors z-50
-                    transform hover:scale-110"
-        aria-label="Chat on WhatsApp"
-      >
-        <FaWhatsapp size={28} />
-      </a>
-
-      {/* Custom CSS for animations and text shadows */}
-      <style jsx>{`
-        @keyframes pulse-slow {
-            0%, 100% {
-                transform: scale(0.9);
-                opacity: 0.1;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.3;
-            }
-        }
-        .animate-pulse-slow {
-            animation: pulse-slow 6s infinite ease-in-out;
-        }
-        .animation-delay-2s {
-            animation-delay: 2s;
-        }
-        .animation-delay-4s {
-            animation-delay: 4s;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        .animate-fadeInUp {
-          animation: fadeInUp 0.5s ease-out forwards;
-        }
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Custom style for select arrow color in light theme */
-        .custom-select-light {
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ffffff'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: right 0.75rem center;
-          background-size: 1.5em 1.5em;
-          padding-right: 2.5rem; /* Space for the custom arrow */
-        }
-
-        /* Custom text shadow utility classes */
-        /* Text shadows for light theme, making text pop slightly */
-        .text-shadow-dark {
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-        .text-shadow-dark-subtle {
-          text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.05);
-        }
-        .text-shadow-white { /* Retained for elements on dark blue background */
-          text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
-        }
-        .text-shadow-blue-subtle { /* Retained for elements on dark blue background */
-            text-shadow: 0.5px 0.5px 2px rgba(0, 100, 255, 0.2);
-        }
-
-        /* Custom scrollbar styles */
-        .custom-scroll-light::-webkit-scrollbar {
-            width: 8px; /* For vertical scrollbars */
-            height: 8px; /* For horizontal scrollbars */
-        }
-
-        .custom-scroll-light::-webkit-scrollbar-track {
-            background: #f0f0f0; /* Light gray track */
-            border-radius: 10px;
-        }
-
-        .custom-scroll-light::-webkit-scrollbar-thumb {
-            background-color: #a0a0a0; /* Darker gray thumb */
-            border-radius: 10px;
-            border: 2px solid #f0f0f0; /* Padding around thumb */
-        }
-
-        .custom-scroll-light::-webkit-scrollbar-thumb:hover {
-            background-color: #808080; /* Even darker gray on hover */
-        }
-
-        /* Hide scrollbar for 'no-scrollbar' class, but allow scrolling */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-      `}</style>
-    </div>
+      <TestimonialsSection />
+      <Footer />
+    </>
   );
-};
-
-export default ContactPage;
+}

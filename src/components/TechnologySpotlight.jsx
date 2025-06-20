@@ -2,7 +2,7 @@ import React from 'react';
 
 const DanteBenefitsSection = () => {
   return (
-    <div className="mx-auto px-20 py-12 bg-gradient-to-r from-blue-300 to-blue-50"> {/* Added blue gradient background */}
+    <div className="mx-auto px-20 py-12 "> {/* Added blue gradient background */}
 
       {/* New: Technology Spotlight Heading */}
       <div className="text-center mb-16"> {/* Centered and more margin-bottom */}
@@ -29,7 +29,7 @@ const DanteBenefitsSection = () => {
       <section className="flex flex-col md:flex-row gap-10 items-stretch"> {/* Increased gap, items-stretch for equal height */}
 
         {/* Left Column: Video */}
-        <div className="w-full md:w-2/5 lg:w-1/2 xl:w-2/5 flex flex-col justify-center items-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+        <div className="w-full md:w-2/5 lg:w-1/2 xl:w-2/5 flex flex-col justify-center items-center p-6 rounded-xl shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
           {/* Enhanced styling for video container */}
           <h3 className="text-2xl font-semibold text-blue-800 mb-4 text-center">Dante Integration in Action</h3>
           {/* Replace 'YOUR_VIDEO_EMBED_CODE_HERE' with your actual video embed code */}

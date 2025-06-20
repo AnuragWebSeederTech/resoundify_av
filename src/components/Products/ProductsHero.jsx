@@ -15,7 +15,7 @@ const ProductsHero = () => {
         <p className="text-xl md:text-xl opacity-90 max-w-3xl mx-auto leading-relaxed mb-10">
           Discover Resoundify's cutting-edge audio-visual solutions. Each product is engineered for unparalleled performance, seamlessly integrating with your vision.
         </p>
-        <button className="bg-white text-indigo-700 font-sans px-10 py-4 rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 transition-transform duration-300 ease-in-out">
+        <button className="bg-white text-black font-sans px-10 py-4 rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 transition-transform duration-300 ease-in-out">
           View All Products
         </button>
       </div>

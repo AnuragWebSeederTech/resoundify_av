@@ -137,10 +137,10 @@ const MissionVisionValues = () => {
           </p>
         </div>
 
-        {/* Mission & Vision Section */}
+{/* Mission & Vision Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 font-sans mb-24 max-w-7xl mx-auto">
           {Object.entries(coreData).map(([key, data], index) => (
-            <div 
+            <div
               key={key}
               className={`group transition-all duration-700 ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -148,10 +148,12 @@ const MissionVisionValues = () => {
               style={{ transitionDelay: `${index * 200}ms` }}
               onMouseEnter={() => setActiveSection(key)}
             >
-              <div className={`relative bg-white border border-slate-200 rounded-2xl p-10 shadow-sm 
-                               transition-all duration-500 transform hover:shadow-xl hover:border-slate-300 hover:scale-[1.02] 
-                               ${activeSection === key ? 'shadow-lg border-slate-300 scale-[1.02]' : ''}`}>
-                
+              <div className={`relative bg-white border border-slate-200 rounded-2xl p-10 shadow-sm
+                                  transition-all duration-500 transform hover:shadow-xl hover:border-slate-300 hover:scale-[1.02]
+                                  ${activeSection === key ? 'shadow-lg border-slate-300 scale-[1.02]' : ''}
+                                  h-[500px]  // <--- Add a fixed height here, adjust as needed
+                                `}>
+
                 {/* Header */}
                 <div className="mb-8">
                   <div className="flex items-center gap-4 mb-4">
@@ -167,7 +169,7 @@ const MissionVisionValues = () => {
                       </h3>
                     </div>
                   </div>
-                  
+
                   <div className={`h-1 w-20 bg-gradient-to-r ${data.color} rounded-full`}></div>
                 </div>
 
@@ -189,7 +191,7 @@ const MissionVisionValues = () => {
                 {/* Metrics */}
                 <div className="flex flex-wrap gap-3">
                   {data.metrics.map((metric, idx) => (
-                    <span 
+                    <span
                       key={idx}
                       className="px-3 py-1 bg-slate-100 text-slate-700 text-sm font-sans rounded-full border border-slate-200"
                     >

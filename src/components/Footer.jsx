@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-blue-200 rounded-full mix-blend-multiply opacity-10 animate-pulse-slow delay-200"></div>
 
       {/* Main Footer Content Grid - Now taking 80% width with a nearly transparent frosted glass effect */}
-      <div className="relative z-10 w-screen mx-auto px-25 py-8 bg-opacity-10 rounded-xl shadow-sm backdrop-blur-sm border border-blue-50 border-opacity-70">
+      <div className="relative z-10 w-screen mx-auto px-25 py-8 bg-opacity-10 rounded-xl  backdrop-blur-sm">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-10 gap-x-8">
 
           {/* Company Info Section - Takes 2 columns on XL screens */}

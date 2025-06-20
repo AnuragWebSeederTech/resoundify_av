@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductsCTA = () => {
   return (
-    <div className="text-center bg-gradient-to-r from-white to-blue-500 rounded-3xl py-16 px-8 shadow-2xl relative overflow-hidden">
+    <div className="text-center  rounded-3xl py-16 px-8 shadow-2xl relative overflow-hidden">
       {/* Abstract shapes for visual interest */}
       <div className="absolute top-0 left-0 w-32 h-32 bg-white opacity-5 rounded-full transform -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-48 h-48 bg-white opacity-5 rounded-full transform translate-x-1/2 translate-y-1/2" />
