@@ -142,7 +142,7 @@ export default function WhatResoundifyDoes() {
           data-animate
         >
           <h2 className="text-5xl lg:text-6xl font-light text-slate-800 mb-6 tracking-tight">
-            What <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Resoundify</span> Delivers
+            What <span className="font-semibold bg-gradient-to-r from-teal-400 via-pink-500 to-amber-400 bg-clip-text text-transparent">Resoundify</span> Delivers
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Professional audio networking solutions engineered for enterprise excellence
