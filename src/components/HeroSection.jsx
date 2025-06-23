@@ -5,21 +5,21 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
   return (
     <a
       href={href}
-      className="relative inline-flex items-center justify-center px-8 py-5 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-royalblue-500 group" // Added 'group' class here
+      className="relative inline-flex items-center justify-center px-8 py-5 w-60 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-royalblue-500 group" // Added 'group' class here
     >
       {/* Button text */}
-      <span className="block z-10 group-hover:text-white transition-colors duration-300"> {/* Added group-hover:text-white and transition */}
+      <span className="block z-10 group-hover:text-black transition-colors duration-300"> {/* Added group-hover:text-white and transition */}
         {text}
       </span>
       {/* Outer border span */}
-      <span className="absolute inset-0 z-0 border-4 border-royalblue-500 rounded-lg overflow-hidden group-hover:border-white transition-colors duration-300"> {/* Added group-hover:border-white and transition */}
-        {/* Inner span for the sweeping effect with gradient */}
-        <span
-          className="block absolute w-2 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-300 ease-out
-                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-400
-                     active:bg-blue-700" // Changed hover: to group-hover: for these effects
-        ></span>
-      </span>
+      <span class="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
+        {/* Inner span for the sweeping effect with gradient */}
+        <span
+          class="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
+                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-white
+                     active:bg-gray-200"
+        ></span>
+      </span>
     </a>
   );
 });
@@ -37,7 +37,7 @@ const HeroSection = () => {
           playsInline
           preload="metadata"
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-background-of-a-person-in-front-of-a-microphone-43501-large.mp4" type="video/mp4" /> {/* Placeholder video URL */}
+          <source src="/images/newbg3.mp4" type="video/mp4" /> {/* Placeholder video URL */}
           Your browser does not support the video tag.
         </video>
       </div>
@@ -61,7 +61,7 @@ const HeroSection = () => {
         {/*
           Paragraph: White text with a strong black drop-shadow for readability.
         */}
-        <p className="text-lg md:text-xl text-white max-w-4xl mx-auto mb-12 leading-relaxed font-sans animate-fade-in-up delay-[400ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+        <p className="text-lg md:text-xl text-black max-w-4xl mx-auto mb-12 leading-relaxed font-sans animate-fade-in-up delay-[400ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
           At Resoundify, we deliver cutting-edge Dante-enabled solutions that redefine <br /> how you connect, communicate, and create exceptional results.
         </p>
 
@@ -103,3 +103,8 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+
+      
+
+
