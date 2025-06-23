@@ -123,14 +123,14 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <div className="py-20 bg-gray-50"> {/* Subtle, clean background */}
-      <div className="max-w-full mx-auto px-8 sm:px-12 lg:px-10"> {/* Changed from max-w-8xl back to max-w-screen-xl for better responsiveness */}
+    <div className="py-20 bg-white"> {/* Subtle, clean background */}
+      <div className="max-w-full mx-auto px-8 sm:px-12 lg:px-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl lg:text-6xl font-light text-slate-800 mb-6 tracking-tight">
-            Trusted by <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Audio</span> Professionals
+          <h2 className="text-5xl lg:text-6xl font-light text-slate-900 mb-6 tracking-tight"> {/* Changed to text-slate-900 */}
+            Trusted by <span className="font-semibold bg-gradient-to-r from-slate-900 to-slate-500 bg-clip-text text-transparent">Audio Professionals</span> {/* Changed to slate-900 to slate-500 */}
           </h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed"> {/* Changed to text-slate-700 */}
             Discover how Resoundify is helping creators, educators, and businesses
             transform their audio content with cutting-edge AI technology.
           </p>
@@ -139,22 +139,22 @@ const TestimonialsSection = () => {
         {/* Testimonials Container */}
         <div className="w-full">
           <div className="overflow-x-auto custom-scrollbar-hide" ref={scrollContainerRef}>
-            <div className="flex space-x-8 pb-6" style={{ width: 'max-content' }}> {/* Removed pb-6, will add margin below */}
+            <div className="flex space-x-8 pb-6" style={{ width: 'max-content' }}>
               {testimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
                   className="bg-white rounded-2xl shadow-lg p-8 transition-all duration-300 flex-shrink-0
-                             hover:shadow-xl hover:scale-[1.01] hover:border-blue-200 border border-transparent"
+                             hover:shadow-xl hover:scale-[1.01] hover:border-slate-300 border border-slate-200 hover:bg-gradient-to-br from-slate-100 to-slate-300" // Changed hover:border-blue-200 to hover:border-slate-300, border-slate-200 for initial border
                   style={{ width: '360px', minHeight: '300px' }}
                 >
                   <div className="h-full flex flex-col">
                     {/* Quote Icon */}
                     <div className="mb-5">
-                      <Quote className="w-8 h-8 text-blue-500 opacity-70" />
+                      <Quote className="w-8 h-8 text-slate-900 opacity-70" /> {/* Changed to text-slate-900 */}
                     </div>
                     {/* Content */}
                     <div className="mb-7 flex-grow">
-                      <p className="text-base text-gray-800 leading-relaxed">
+                      <p className="text-base text-slate-800 leading-relaxed"> {/* Changed to text-slate-800 */}
                         "{testimonial.content}"
                       </p>
                     </div>
@@ -163,25 +163,25 @@ const TestimonialsSection = () => {
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star
                           key={i}
-                          className="w-5 h-5 text-yellow-500 fill-current"
+                          className="w-5 h-5 text-yellow-500 fill-current" // Yellow remains for stars
                         />
                       ))}
                     </div>
                     {/* Author Info */}
                     <div className="flex items-center mt-auto">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4 shadow-md">
+                      <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center mr-4 shadow-md"> {/* Changed to bg-slate-900 */}
                         <span className="text-sm font-bold text-white">
                           {testimonial.avatar}
                         </span>
                       </div>
                       <div>
-                        <p className="text-base font-semibold text-gray-900">
+                        <p className="text-base font-semibold text-slate-900"> {/* Changed to text-slate-900 */}
                           {testimonial.name}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-slate-700"> {/* Changed to text-slate-700 */}
                           {testimonial.role}
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-slate-500"> {/* Changed to text-slate-500 */}
                           {testimonial.company}
                         </p>
                       </div>
@@ -193,37 +193,37 @@ const TestimonialsSection = () => {
           </div>
 
           {/* Navigation Buttons - Moved Below */}
-          <div className="flex justify-center mt-8 space-x-4"> {/* Centered below cards with margin-top and space-x */}
+          <div className="flex justify-center mt-8 space-x-4">
             <button
               onClick={() => scroll('left')}
               className="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all duration-300
-                         focus:outline-none focus:ring-4 focus:ring-blue-100 focus:ring-offset-2
-                         transform hover:scale-110"
+                          focus:outline-none focus:ring-4 focus:ring-slate-100 focus:ring-offset-2 {/* Changed to slate-100 */}
+                          transform hover:scale-110"
               aria-label="Scroll left"
             >
-              <ChevronLeft className="w-6 h-6 text-blue-600" />
+              <ChevronLeft className="w-6 h-6 text-slate-900" /> {/* Changed to text-slate-900 */}
             </button>
             <button
               onClick={() => scroll('right')}
               className="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all duration-300
-                         focus:outline-none focus:ring-4 focus:ring-blue-100 focus:ring-offset-2
-                         transform hover:scale-110"
+                          focus:outline-none focus:ring-4 focus:ring-slate-100 focus:ring-offset-2 {/* Changed to slate-100 */}
+                          transform hover:scale-110"
               aria-label="Scroll right"
             >
-              <ChevronRight className="w-6 h-6 text-blue-600" />
+              <ChevronRight className="w-6 h-6 text-slate-900" /> {/* Changed to text-slate-900 */}
             </button>
           </div>
         </div>
 
         {/* CTA Section */}
         <div className="text-center mt-20">
-          <div className="inline-flex flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-8 bg-white rounded-full px-10 py-5 shadow-2xl border border-gray-100 transform hover:scale-105 transition-transform duration-300">
-            <span className="text-xl font-medium text-gray-800">
+          <div className="inline-flex flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-8 bg-white rounded-full px-10 py-5 shadow-2xl border border-slate-200 transform hover:scale-105 transition-transform duration-300"> {/* Changed to border-slate-200 */}
+            <span className="text-xl font-medium text-slate-800"> {/* Changed to text-slate-800 */}
               Ready to elevate your audio?
             </span>
-            <button className="bg-blue-600 hover:bg-blue-700
-                                text-white text-lg font-semibold px-8 py-4 rounded-full
-                                transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
+            <button className="bg-slate-900 hover:bg-slate-700 {/* Changed to bg-slate-900 and hover:bg-slate-700 */}
+                               text-white text-lg font-semibold px-8 py-4 rounded-full
+                               transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
               Start Your Free Trial Today
             </button>
           </div>

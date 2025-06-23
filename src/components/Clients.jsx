@@ -47,9 +47,9 @@ const Clients = () => {
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-fade-in-up">
-        <h2 className="text-4xl lg:text-5xl font-light text-slate-800 mb-6 tracking-tight">
-           Success supported by  <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Powerful Brands</span> 
-          </h2>
+        <h2 className="text-4xl lg:text-5xl font-light text-slate-900 mb-6 tracking-tight">
+          Success supported by <span className="font-semibold bg-gradient-to-r from-slate-900 to-slate-500 bg-clip-text text-transparent">Powerful Brands</span>
+        </h2>
       </div>
 
       {/* Marquee Container */}
@@ -58,14 +58,14 @@ const Clients = () => {
           {duplicatedLogos.map((logo, index) => (
             <div
               key={index} // Using index as key is generally discouraged if items can change order, but for a static, duplicated list, it's acceptable.
-              className="inline-block mx-10 p-4 bg-white rounded-xl shadow-lg border border-blue-100 flex-shrink-0
-                         transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl hover:border-blue-600"
+              className="inline-block mx-10 p-4 bg-white rounded-xl shadow-lg border border-slate-300 flex-shrink-0
+                         transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl hover:border-slate-700" // Changed border-blue-100 to border-slate-300 and hover:border-blue-600 to hover:border-slate-700
               style={{ width: '240px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <img
                 src={logo.url}
                 alt={logo.alt}
-                className="w-full h-full object-contain" // Ensures image fills the div while maintaining aspect ratio
+                className="w-full h-full object-contain"
                 onError={(e) => {
                   // Fallback to a plain placeholder if the image fails to load
                   e.target.onerror = null; // Prevent infinite loop if fallback also fails
@@ -105,7 +105,7 @@ const Clients = () => {
         }
 
         .text-shadow-lg {
-            text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Adjusted for white background */
+            text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         }
       `}</style>
     </section>

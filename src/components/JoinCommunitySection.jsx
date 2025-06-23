@@ -70,7 +70,7 @@ const JoinCommunitySection = () => {
   return (
     <section
       ref={sectionRef} // Attach the ref for Intersection Observer
-      className="relative py-20 px-4 sm:px-10 bg-slate-50 text-gray-900 overflow-hidden font-inter" // Reverted to original light gray background and dark text
+      className="relative py-20 px-4 sm:px-10 bg-white text-slate-900 overflow-hidden font-inter" // Changed bg-slate-50 to bg-white
     >
       {/* Font import link is ideally in your public/index.html or global CSS, but kept here for self-containment if needed */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -79,20 +79,20 @@ const JoinCommunitySection = () => {
         transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}> {/* Apply animation classes here */}
         {/* Text Content */}
         <div className="lg:w-1/2 text-center lg:text-left px-4 lg:pl-10">
-          <h2 className="text-5xl lg:text-6xl font-light text-slate-800 mb-6 tracking-tight">
-            Join the <span className="font-semibold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">Resoundify Community</span>
+          <h2 className="text-5xl lg:text-6xl font-light text-slate-900 mb-6 tracking-tight"> {/* Changed text-slate-800 to text-slate-900 */}
+            Join the <span className="font-semibold bg-gradient-to-r from-slate-900 to-slate-500 bg-clip-text text-transparent">Resoundify Community</span> {/* Changed from-slate-800 to from-slate-900 and to-blue-700 to to-slate-500 */}
           </h2>
-          <p className="mb-8 text-lg sm:text-xl text-gray-700 leading-relaxed font-light"> {/* Original text color */}
+          <p className="mb-8 text-lg sm:text-xl text-slate-700 leading-relaxed font-light"> {/* Changed text-gray-700 to text-slate-700 */}
             At Resoundify, we believe in the power of sound to inspire, connect, and transform. Let us help you create audio-visual experiences that resonate. Explore our products, connect with our team, and experience the future of AV with Resoundify.
           </p>
-          <p className="mb-8 text-lg sm:text-xl font-semibold text-blue-700"> {/* Original accent color */}
+          <p className="mb-8 text-lg sm:text-xl font-semibold text-slate-700"> {/* Changed text-blue-700 to text-slate-700 */}
             Resoundify – Where Sound Meets Innovation.
           </p>
           {/* "Join the Community" Button */}
           <button
             onClick={() => setShowJoinForm(true)}
-            className="inline-block bg-blue-500 text-white text-lg font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-blue-600 hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out
-                       focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-75" // Original button styles
+            className="inline-block bg-slate-900 text-white text-lg font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-slate-700 hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out
+                       focus:outline-none focus:ring-4 focus:ring-slate-300 focus:ring-opacity-75" // Changed bg-blue-500 to bg-slate-900, hover:bg-blue-600 to hover:bg-slate-700, and focus:ring-blue-300 to focus:ring-slate-300
           >
             Join the Community
           </button>
@@ -103,16 +103,10 @@ const JoinCommunitySection = () => {
           <img
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" // Example image
             alt="Audio-visual collaboration"
-            className="w-full max-w-2xl rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300 border border-gray-100" // Original border style
+            className="w-full max-w-2xl rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300 border border-slate-300" // Changed border-gray-100 to border-slate-300
           />
         </div>
       </div>
-
-      {/* Floating decorative elements (removed for cleaner look unless explicitly requested back) */}
-      {/*
-      <div className="absolute top-10 left-10 w-24 h-24 bg-indigo-200 rounded-full opacity-30 animate-bounce-slow" />
-      <div className="absolute bottom-10 right-10 w-20 h-20 bg-blue-200 rounded-full opacity-20 animate-bounce-slow" />
-      */}
 
       {/* Custom animations for the section */}
       <style jsx>{`
@@ -135,18 +129,18 @@ const JoinCommunitySection = () => {
 
       {/* Join Form Modal - Conditional rendering based on showJoinForm state */}
       {showJoinForm && (
-        <div className="fixed inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"> {/* Original modal overlay */}
+        <div className="fixed inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div
-            className={`bg-white text-gray-900 rounded-3xl shadow-2xl p-8 w-full max-w-md transform transition-all duration-500 ease-in-out border border-gray-100
-              ${showJoinForm ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`} // Original modal background and border
+            className={`bg-white text-slate-900 rounded-3xl shadow-2xl p-8 w-full max-w-md transform transition-all duration-500 ease-in-out border border-slate-300
+              ${showJoinForm ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`} // Changed text-gray-900 to text-slate-900 and border-gray-100 to border-slate-300
           >
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-3xl font-bold text-gray-900"> {/* Original heading text color */}
+              <h3 className="text-3xl font-bold text-slate-900"> {/* Changed text-gray-900 to text-slate-900 */}
                 Join Us!
               </h3>
               <button
                 onClick={() => setShowJoinForm(false)} // Close the modal
-                className="text-gray-500 hover:text-gray-700 transition duration-300" // Original close button color
+                className="text-slate-500 hover:text-slate-700 transition duration-300" // Changed text-gray-500 to text-slate-500 and hover:text-gray-700 to hover:text-slate-700
                 aria-label="Close form"
               >
                 {/* SVG for a close (X) icon */}
@@ -170,14 +164,14 @@ const JoinCommunitySection = () => {
 
             {confirmationMessage ? (
               // Confirmation message display
-              <div className="text-center text-green-600 text-lg font-semibold py-8"> {/* Original green for success message */}
+              <div className="text-center text-slate-700 text-lg font-semibold py-8"> {/* Changed text-green-600 to text-slate-700, assuming it's a general confirmation, not necessarily a "success green" */}
                 {confirmationMessage}
               </div>
             ) : (
               // Form for joining the community
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-2"> {/* Original label text color */}
+                  <label htmlFor="email" className="block text-lg font-medium text-slate-700 mb-2"> {/* Changed text-gray-700 to text-slate-700 */}
                     Email Address
                   </label>
                   <input
@@ -187,12 +181,12 @@ const JoinCommunitySection = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900 text-lg placeholder-gray-500" // Original input styles
+                    className="mt-1 block w-full px-4 py-3 border border-slate-300 bg-white rounded-xl shadow-sm focus:ring-slate-500 focus:border-slate-500 text-slate-900 text-lg placeholder-slate-500" // Changed border-gray-300 to border-slate-300, focus:ring-blue-500 to focus:ring-slate-500, focus:border-blue-500 to focus:border-slate-500, text-gray-900 to text-slate-900, placeholder-gray-500 to placeholder-slate-500
                     placeholder="you@example.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="contactNumber" className="block text-lg font-medium text-gray-700 mb-2"> {/* Original label text color */}
+                  <label htmlFor="contactNumber" className="block text-lg font-medium text-slate-700 mb-2"> {/* Changed text-gray-700 to text-slate-700 */}
                     Contact Number
                   </label>
                   <input
@@ -202,7 +196,7 @@ const JoinCommunitySection = () => {
                     value={contactNumber}
                     onChange={(e) => setContactNumber(e.target.value)}
                     required
-                    className="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900 text-lg placeholder-gray-500" // Original input styles
+                    className="mt-1 block w-full px-4 py-3 border border-slate-300 bg-white rounded-xl shadow-sm focus:ring-slate-500 focus:border-slate-500 text-slate-900 text-lg placeholder-slate-500" // Changed border-gray-300 to border-slate-300, focus:ring-blue-500 to focus:ring-slate-500, focus:border-blue-500 to focus:border-slate-500, text-gray-900 to text-slate-900, placeholder-gray-500 to placeholder-slate-500
                     placeholder="+91-9876543210"
                   />
                 </div>
@@ -214,9 +208,9 @@ const JoinCommunitySection = () => {
                     type="checkbox"
                     checked={subscribeNewsletter}
                     onChange={(e) => setSubscribeNewsletter(e.target.checked)}
-                    className="h-6 w-6 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-md bg-white" // Original checkbox styles
+                    className="h-6 w-6 text-slate-900 focus:ring-slate-500 border-slate-300 rounded-md bg-white" // Changed text-blue-600 to text-slate-900, focus:ring-blue-500 to focus:ring-slate-500, border-gray-300 to border-slate-300
                   />
-                  <label htmlFor="newsletter" className="text-base text-gray-800 cursor-pointer select-none"> {/* Original label text color */}
+                  <label htmlFor="newsletter" className="text-base text-slate-800 cursor-pointer select-none"> {/* Changed text-gray-800 to text-slate-800 */}
                     Subscribe to our newsletter for the latest updates and exclusive content.
                   </label>
                 </div>
@@ -228,16 +222,16 @@ const JoinCommunitySection = () => {
                     type="checkbox"
                     checked={receiveNotifications}
                     onChange={(e) => setReceiveNotifications(e.target.checked)}
-                    className="h-6 w-6 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-md bg-white" // Original checkbox styles
+                    className="h-6 w-6 text-slate-900 focus:ring-slate-500 border-slate-300 rounded-md bg-white" // Changed text-blue-600 to text-slate-900, focus:ring-blue-500 to focus:ring-slate-500, border-gray-300 to border-slate-300
                   />
-                  <label htmlFor="notifications" className="text-base text-gray-800 cursor-pointer select-none"> {/* Original label text color */}
+                  <label htmlFor="notifications" className="text-base text-slate-800 cursor-pointer select-none"> {/* Changed text-gray-800 to text-slate-800 */}
                     Receive notifications about new stock, product launches, and stock refills.
                   </label>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full group relative px-8 py-4 bg-blue-500 rounded-xl font-semibold text-white shadow-xl hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] overflow-hidden" // Original button styles
+                  className="w-full group relative px-8 py-4 bg-slate-900 rounded-xl font-semibold text-white shadow-xl hover:shadow-2xl hover:shadow-slate-300/30 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] overflow-hidden" // Changed bg-blue-500 to bg-slate-900, hover:shadow-blue-500/25 to hover:shadow-slate-300/30
                 >
                   <span className="relative z-10 flex items-center justify-center">
                     <svg
@@ -250,7 +244,7 @@ const JoinCommunitySection = () => {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="lucide lucide-arrow-right-circle w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"
+                      className="lucide lucide-arrow-right-circle w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300 text-white" // Added text-white to ensure icon color is white against slate background
                     >
                       <circle cx="12" cy="12" r="10" />
                       <path d="M8 12h8" />
