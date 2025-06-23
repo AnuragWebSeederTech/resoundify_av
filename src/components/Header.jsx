@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <header className="w-full absolute top-0 left-0 right-0 bg-transparent z-50">
       {/* Top bar */}
-      <div className="text-white bg-transparent text-base px-6 lg:px-10 py-1 mt-3 flex justify-between items-center">
+      <div className="text-gray-500 bg-transparent text-base px-6 lg:px-10 py-1 mt-3 flex justify-between items-center">
         <div className="flex block items-center ml-30 space-x-4">
           <img src="/images/resoundifyLogo1.png" alt="Resoundify Logo" className="h-14 w-auto object-cover rounded-lg" />
         </div>
