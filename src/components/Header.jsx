@@ -26,7 +26,10 @@ const Header = () => {
   return (
     <header className="w-full absolute top-0 left-0 right-0 bg-transparent z-50">
       {/* Top bar */}
-      <div className="text-gray-700 bg-white text-base px-6 lg:px-10 py-1 flex justify-end items-center border-b border-gray-200">
+      <div className="text-white bg-transparent text-base px-6 lg:px-10 py-1 mt-3 flex justify-between items-center">
+        <div className="flex block items-center ml-30 space-x-4">
+          <img src="/images/resoundifyLogo1.png" alt="Resoundify Logo" className="h-14 w-auto object-cover rounded-lg" />
+        </div>
         <div className="flex items-center space-x-6 font-medium tracking-wide">
           <div className="flex items-center space-x-2 hover:text-blue-700 transition duration-300 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
@@ -52,12 +55,13 @@ const Header = () => {
       </div>
 
       {/* Main nav */}
-      <div className="flex bg-white justify-between items-center px-6 lg:px-10 py-1 mx-auto shadow-md relative">
-        <div className="flex items-center space-x-4">
-          <img src="/images/resoundifyLogo.jpeg" alt="Resoundify Logo" className="h-14 w-auto object-cover rounded-lg" />
-        </div>
+      <div className="flex bg-transparent justify-between items-center px-6 lg:px-10 py-1 mx-auto relative">
+        {/* <div className="flex block items-center space-x-4">
+          <img src="/images/resoundifyLogo1.png" alt="Resoundify Logo" className="h-14 w-auto object-cover rounded-lg" />
+        </div> */}
+        <div></div>
 
-        <nav className="flex items-center space-x-8 font-sans text-lg text-black hidden md:flex">
+        <nav className="flex items-center space-x-8 font-sans text-lg text-white hidden md:flex">
           <Link to="/" className="relative hover:text-indigo-600 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full">
             Home
           </Link>
@@ -79,32 +83,6 @@ const Header = () => {
             </svg>
           </div> */}
         </nav>
-
-        {/* Search Bar */}
-        {isSearchOpen && (
-          <form onSubmit={handleSearchSubmit} className="absolute top-1/2 right-16 transform -translate-y-1/2 flex items-center bg-white border border-gray-300 rounded-full px-4 py-2 shadow-lg transition-all duration-300 ease-in-out w-100 max-w-md">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="flex-grow outline-none text-gray-800 text-lg"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              autoFocus
-            />
-            <button type="submit" className="text-gray-600 hover:text-blue-700 transition duration-300 ml-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </button>
-            <button type="button" onClick={handleSearchToggle} className="text-gray-600 hover:text-red-500 transition duration-300 ml-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x">
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-            </button>
-          </form>
-        )}
       </div>
 
       {/* Global font style */}
