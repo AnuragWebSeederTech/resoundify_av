@@ -37,7 +37,7 @@ const HeroSection = () => {
           playsInline
           preload="metadata"
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-background-of-a-person-in-front-of-a-microphone-43501-large.mp4" type="video/mp4" /> {/* Placeholder video URL */}
+          <source src="/images/newbg3.mp4" type="video/mp4" /> {/* Placeholder video URL */}
           Your browser does not support the video tag.
         </video>
       </div>
