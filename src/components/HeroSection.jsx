@@ -43,7 +43,7 @@ const HeroSection = () => {
           <span className="bg-gradient-to-br from-slate-700 to-white bg-clip-text text-transparent font-serif">
             Audio-Visual
           </span>{' '}
-          Experience
+          Experiences
         </h1>
 
         <p className="text-lg md:text-xl text-white max-w-4xl mx-auto mb-12 leading-relaxed font-sans animate-fade-in-up delay-[400ms]">
