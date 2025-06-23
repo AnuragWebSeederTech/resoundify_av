@@ -48,7 +48,7 @@ const Clients = () => {
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-fade-in-up">
         <h2 className="text-4xl lg:text-5xl font-light text-slate-900 mb-6 tracking-tight">
-          Success supported by <span className="font-semibold bg-gradient-to-r from-slate-900 to-slate-500 bg-clip-text text-transparent">Powerful Brands</span>
+          Success supported by <span className="font-semibold bg-gradient-to-r from-black to bg-red-500 bg-clip-text text-transparent">Powerful Brands</span>
         </h2>
       </div>
 
