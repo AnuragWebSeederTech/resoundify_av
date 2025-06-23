@@ -87,7 +87,7 @@ const ExploreOurRange = () => {
 
   return (
     <section
-      className="relative flex items-center justify-center py-24 px-4 sm:px-8 overflow-hidden bg-gradient-to-b from-slate-400 to-slate-600 text-slate-900 min-h-screen font-inter"
+      className="relative flex items-center justify-center py-24 px-4 sm:px-8 overflow-hidden bg-gradient-to-b from-slate-400 to-black text-slate-900 min-h-screen font-inter"
       // Changed 'via-slate-100' to 'via-slate-200' for a slightly more noticeable gradient
     >
       <link
@@ -112,7 +112,7 @@ const ExploreOurRange = () => {
       >
         <h2 className="text-4xl lg:text-5xl font-light text-slate-900 mb-6 tracking-tight">
           Unleash the future of{' '}
-          <span className="font-semibold bg-gradient-to-r from-slate-900 to-slate-500 bg-clip-text text-transparent">
+          <span className="font-semibold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
             Audio Excellence
           </span>
         </h2>
@@ -122,7 +122,7 @@ const ExploreOurRange = () => {
         </p>
         <Link
           to="/products"
-          className="inline-block bg-slate-900 text-white font-bold px-10 py-4 sm:px-12 sm:py-5 rounded-full shadow-md hover:bg-slate-700 text-lg"
+          className="inline-block bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold px-10 py-4 sm:px-12 sm:py-5 rounded-full shadow-md hover:bg-slate-700 text-lg"
         >
           Explore Our Innovations
         </Link>

@@ -71,7 +71,7 @@ export default function WhatResoundifyDoes() {
             data-animate={1}
           >
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-300 hover:bg-slate-100 transition-all duration-500 hover:shadow-xl hover:shadow-slate-300/30 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-100/20 to-slate-300/40 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
+              <div className="absolute inset-0 bg-emerald-300 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-900 to-slate-700 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Network className="w-8 h-8 text-white" />
@@ -96,7 +96,7 @@ export default function WhatResoundifyDoes() {
             data-animate={2}
           >
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-300 hover:bg-slate-100 transition-all duration-500 hover:shadow-xl hover:shadow-slate-300/30 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-100/20 to-slate-300/40 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
+              <div className="absolute inset-0 bg-amber-300 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Cable className="w-8 h-8 text-white" />
@@ -121,7 +121,7 @@ export default function WhatResoundifyDoes() {
             data-animate={3}
           >
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-300 hover:bg-slate-100 transition-all duration-500 hover:shadow-xl hover:shadow-slate-300/30 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-100/20 to-slate-300/40 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
+              <div className="absolute inset-0 bg-fuchsia-300 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Monitor className="w-8 h-8 text-white" />
@@ -163,7 +163,7 @@ export default function WhatResoundifyDoes() {
                 <div
                   key={metric.label}
                   className="group bg-white/60 backdrop-blur-sm rounded-3xl p-6 border border-slate-300
-                             hover:bg-slate-100 hover:shadow-xl hover:shadow-slate-300/30 transition-all duration-500 hover:-translate-y-2
+                             hover:bg-slate-800 hover:text-white hover:shadow-xl hover:shadow-slate-300/30 transition-all duration-500 hover:-translate-y-2
                              flex items-start space-x-4"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center
@@ -171,13 +171,13 @@ export default function WhatResoundifyDoes() {
                     <IconComponent className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-grow text-left">
-                    <div className="text-2xl font-bold text-slate-900 mb-1">
+                    <div className="text-2xl font-bold mb-1">
                       {metric.value}
                     </div>
-                    <div className="text-md font-semibold text-slate-700 mb-1">
+                    <div className="text-md font-semibold mb-1">
                       {metric.label}
                     </div>
-                    <div className="text-xs text-slate-500">
+                    <div className="text-xs">
                       {metric.desc}
                     </div>
                   </div>
