@@ -13,6 +13,8 @@ const DanteBenefitsSection = () => {
         <p className="text-2xl md:text-3xl font-light text-slate-600 max-w-3xl mx-auto">
           Unleashing the power of seamless audio networking with cutting-edge technology.
         </p>
+        <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
+       
       </div>
 
       <section className="mb-20 bg-white p-10 rounded-xl shadow-xl border border-slate-100 animate-fade-in-up transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-slate-200">

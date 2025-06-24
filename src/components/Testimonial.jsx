@@ -136,6 +136,8 @@ const TestimonialsSection = () => {
             Discover how Resoundify is helping creators, educators, and businesses
             transform their audio content with cutting-edge AI technology.
           </p>
+          <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
+       
         </div>
 
         {/* Testimonials Container */}
@@ -216,20 +218,7 @@ const TestimonialsSection = () => {
             </button>
           </div>
         </div>
-
-        {/* CTA Section */}
-        <div className="text-center mt-20">
-          <div className="inline-flex flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-8 bg-white rounded-full px-10 py-5 shadow-2xl border border-slate-200 transform hover:scale-105 transition-transform duration-300"> {/* Changed to border-slate-200 */}
-            <span className="text-xl font-medium text-slate-800"> {/* Changed to text-slate-800 */}
-              Ready to elevate your audio?
-            </span>
-            <button className="bg-slate-900 hover:bg-gradient-to-tr from-blue-300 to-white hover:text-black {/* Changed to bg-slate-900 and hover:bg-slate-700 */}
-                               text-white text-lg font-semibold px-8 py-4 rounded-full
-                               transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
-              Start Your Free Trial Today
-            </button>
-          </div>
-        </div>
+        
       </div>
       <style jsx>{`
         .custom-scrollbar-hide {

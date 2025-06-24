@@ -52,6 +52,8 @@ const Clients = () => {
           >
             Success supported by <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">POWERFUL</span> Clients
           </h2>
+          <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
+       
       </div>
 
       {/* Marquee Container */}
