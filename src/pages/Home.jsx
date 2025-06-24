@@ -8,6 +8,7 @@ import JoinCommunitySection from '../components/JoinCommunitySection';
 import Footer from '../components/Footer';
 import Testimonial from '../components/Testimonial';
 import Clients from '../components/Clients';
+import ContactUs from '../components/Contact/Contactus';
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <Testimonial />
       <Clients />
       <JoinCommunitySection />
+      <ContactUs />
       <Footer />
     </>
   );
