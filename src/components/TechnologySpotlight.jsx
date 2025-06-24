@@ -238,12 +238,14 @@ const DanteTechnologySection = () => {
         {/* Revolutionary Video Section (will scroll into view after the points) */}
         <div ref={videoSectionRef} className="mt-32 pb-24">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold text-slate-800 mb-6">
-              Experience the <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Revolution</span>
+            <h3 className="text-6xl font-sans text-slate-800 mb-6">
+              Experience the <span className="bg-gradient-to-r from-slate-800 to-slate-400 font-semibold bg-clip-text text-transparent">Revolution</span>
             </h3>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Witness the future of digital audio networking as Dante transforms the industry with revolutionary technology that defies conventional limitations.
             </p>
+            <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
+        
           </div>
 
           <div className="relative max-w-6xl mx-auto group">
