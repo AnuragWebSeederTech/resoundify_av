@@ -30,7 +30,7 @@ const Footer = () => {
           <div className="xl:col-span-2 text-center md:text-left">
             <div className="mb-6">
               {/* Resoundify logo text with stronger visual impact using a slightly deeper slate for contrast */}
-              <img src="/images/resoundifyLogo.jpeg" alt="Resoundify Logo" className="w-80 h-16 rounded-3xl mx-auto md:mx-0 mb-2" />
+              <img src="/images/resoundifyLogo1.png" alt="Resoundify Logo" className="w-80 h-16 rounded-3xl mx-auto md:mx-0 mb-2" />
               <p className="text-slate-700 font-semibold text-xl leading-tight">Where Sound Meets Innovation</p> {/* Changed text-blue-600 to text-slate-700 */}
             </div>
 
