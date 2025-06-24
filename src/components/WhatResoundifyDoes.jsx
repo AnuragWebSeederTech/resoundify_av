@@ -54,7 +54,7 @@ export default function WhatResoundifyDoes() {
           >
             What <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span> Delivers
           </h2>
-          <p className="text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
             Professional audio networking solutions engineered for enterprise excellence
           </p>
           <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>

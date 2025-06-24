@@ -154,11 +154,11 @@ const DanteTechnologySection = () => {
                     <Volume2 className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-4xl font-bold text-slate-800 mb-2">Benefits of</h2>
-                    <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Dante Technology</h2>
+                    <h2 className="text-3xl font-bold text-slate-800 mb-2">Benefits of</h2>
+                    <h2 className="text-3xl font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Dante Technology</h2>
                   </div>
                 </div>
-                <p className="text-xl text-slate-700 leading-relaxed">
+                <p className="text-lg text-slate-700 leading-relaxed">
                   Dante is the leading solution for digital audio networking, delivering uncompressed, multi-channel digital media via standard Ethernet networks with near-zero latency and perfect synchronization. It simplifies system setup, eliminates bulky analog cabling, and provides superior sound quality. <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Resoundify</span> leverages Dante to provide unparalleled flexibility and scalability in audio installations.
                 </p>
               </div>

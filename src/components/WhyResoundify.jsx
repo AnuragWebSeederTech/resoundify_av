@@ -87,7 +87,8 @@ const ResoundifyFeatures = () => {
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             Why choose <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span> ?
-          </h2>          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          </h2>          
+          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Discover our comprehensive suite of advanced audio-visual solutions designed to transform your communication experience with cutting-edge technology.
           </p>
           <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-12"></div>
