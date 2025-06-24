@@ -127,8 +127,10 @@ const TestimonialsSection = () => {
       <div className="max-w-full mx-auto px-8 sm:px-12 lg:px-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl lg:text-6xl font-light text-slate-900 mb-6 tracking-tight"> {/* Changed to text-slate-900 */}
-            Trusted by <span className="font-semibold bg-gradient-to-r from-slate-900 to-slate-500 bg-clip-text text-transparent">Audio Professionals</span> {/* Changed to slate-900 to slate-500 */}
+          <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
+            style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+          >
+            Trusted by <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">Audio Professionals</span>
           </h2>
           <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed"> {/* Changed to text-slate-700 */}
             Discover how Resoundify is helping creators, educators, and businesses
