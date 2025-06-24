@@ -38,7 +38,7 @@ export default function WhatResoundifyDoes() {
 
   return (
     // Main section container with a light background using specified colors
-    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-slate-200 to-white py-24 overflow-hidden font-inter">
+    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-violet-200 to-white py-24 overflow-hidden font-inter">
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
