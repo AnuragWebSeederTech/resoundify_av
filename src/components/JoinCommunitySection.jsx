@@ -26,7 +26,7 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
 
 const ResoundifyHeroSection = () => {
   return (
-    <div className="relative w-full max-w-7xl mx-auto my-8 h-96
+    <div className="relative w-full max-w-fit mx-auto my-8 h-96
                     bg-gradient-to-b from-black via-slate-900 to-black
                     flex items-center justify-between overflow-hidden
                     rounded-xl shadow-2xl"> {/* Added max-w, mx-auto, my-8, rounded-xl, shadow-2xl, and gradient */}
@@ -34,16 +34,16 @@ const ResoundifyHeroSection = () => {
       {/* Left side: Image (placeholder for an AV product or a stylized sound wave/icon) with radial gradient */}
       <div className="absolute inset-y-0 left-0 w-1/2 flex items-center justify-center">
         <div
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(circle at center, rgba(30,30,30,1) 0%, rgba(0,0,0,0) 70%)',
-          }}
+          className="absolute inset-0 bg-gradient-to-l from-black-50 via-slate-600  to-black-50"
+          // style={{
+          //   background: 'radial-gradient(circle at center, rgba(30,30,30,1) 0%, rgba(0,0,0,0) 70%)',
+          // }}
         ></div>
         {/* Placeholder for a Resoundify-specific visual element */}
         <img
-          src="https://via.placeholder.com/200x200?text=Resoundify+Icon" // Replace with an actual Resoundify icon or stylized audio-visual element
+          src="https://i.giphy.com/l3vR4Fiim9wdPWp5C.webp" // Replace with an actual Resoundify icon or stylized audio-visual element
           alt="Resoundify Icon"
-          className="relative z-10 w-48 h-48 object-contain"
+          className="relative z-10 w-48 h-48 rounded-3xl object-contain"
         />
       </div>
 

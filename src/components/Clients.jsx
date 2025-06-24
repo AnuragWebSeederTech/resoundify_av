@@ -12,22 +12,24 @@ const Clients = () => {
     { name: "Client H", url: "/images/ClientH.jpg", alt: "BrightWave Tech Logo" },
   ];
 
+  // We still duplicate to ensure a seamless loop
   const duplicatedLogos = [...clientLogos, ...clientLogos];
 
   useEffect(() => {
     const marquee = document.querySelector('.client-marquee');
-    let scrollPosition = 0;
+    let scrollPosition = -marquee.scrollWidth / 2; // Start from the left-most edge of the second set of logos
     const scrollSpeed = 1; // Adjust as needed for faster/slower scroll
 
     const animate = () => {
-      scrollPosition -= scrollSpeed;
+      scrollPosition += scrollSpeed; // Increment scrollPosition to move right
       if (marquee) {
         marquee.style.transform = `translateX(${scrollPosition}px)`;
-        // Reset position when the first set of logos has scrolled past
-        // This ensures a continuous loop
-        const totalWidth = marquee.scrollWidth / 2; // Width of one full set of logos
-        if (scrollPosition < -totalWidth) {
-          scrollPosition = 0; // Reset to start position
+
+        // Reset position when the second set of logos has scrolled past
+        // (i.e., when the original first set is about to disappear from the right)
+        const totalWidthOfOneSet = marquee.scrollWidth / 2;
+        if (scrollPosition > 0) { // If we've scrolled past the starting point (0) to the right
+          scrollPosition = -totalWidthOfOneSet; // Reset to the left-most edge of the first set
         }
       }
       requestAnimationFrame(animate);
@@ -36,7 +38,6 @@ const Clients = () => {
     const animationFrameId = requestAnimationFrame(animate);
 
     return () => {
-      // Cleanup: Cancel the animation frame when the component unmounts
       cancelAnimationFrame(animationFrameId);
     };
   }, []); // Empty dependency array ensures this runs once on mount
@@ -50,10 +51,10 @@ const Clients = () => {
         <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
-            Success supported by <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Powerful Clients</span> 
+            Success supported by <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Powerful Clients</span>
           </h2>
           <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-10 mb-10"></div>
-       
+
       </div>
 
       {/* Marquee Container */}
@@ -63,7 +64,7 @@ const Clients = () => {
             <div
               key={index} // Using index as key is generally discouraged if items can change order, but for a static, duplicated list, it's acceptable.
               className="inline-block mx-10 p-4 bg-white rounded-xl shadow-lg border border-slate-300 flex-shrink-0
-                         transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl hover:border-slate-700" // Changed border-blue-100 to border-slate-300 and hover:border-blue-600 to hover:border-slate-700
+                         transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl hover:border-slate-700"
               style={{ width: '240px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <img
