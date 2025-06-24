@@ -80,7 +80,7 @@ const ResoundifyFeatures = () => {
     <div className="min-h-screen bg-gradient-to-b from-black via-slate-700 to-black py-12 px-10">
       <div className="max-w-7xl mx-auto">
         {/* Top Header Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-34">
           <h1 className="text-6xl font-medium text-white [text-shadow:2px_2px_4px_rgba(71,85,105,0.7)] mb-4">
             Why Choose Resoundify
           </h1>

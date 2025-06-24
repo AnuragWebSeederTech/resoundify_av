@@ -3,35 +3,40 @@ import { ArrowRight, Volume2, Waves, Headphones } from 'lucide-react';
 
 export default function ResoundifyCommunity() {
   return (
-    <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
+    // Main section with black background and adjusted padding
+    <section className="bg-black py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-8">
             <div>
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Pacifico, cursive' }}>
+              <h1 className="text-5xl lg:text-6xl font-bold text-white mb-4" style={{ fontFamily: 'Pacifico, cursive' }}>
                 Hi. <span className="bg-gradient-to-r from-green-400 via-yellow-400 via-orange-400 via-red-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">Welcome!</span>
               </h1>
             </div>
 
             <div className="space-y-6">
-              <p className="text-lg text-gray-700 leading-relaxed">
+              {/* Adjusted text color for dark background */}
+              <p className="text-lg text-gray-300 leading-relaxed">
                 We shape the functionality, aesthetics, and overall user experience of a wide range of Audio-Visual products.
               </p>
 
               <div className="space-y-4">
-                <p className="text-lg font-semibold text-gray-900">
-                  Join the <span className="text-purple-600">Resoundify Community!</span>
+                {/* Adjusted text color for dark background */}
+                <p className="text-lg font-semibold text-white">
+                  Join the <span className="text-purple-400">Resoundify Community!</span>
                 </p>
                 
-                <p className="text-lg text-gray-700 leading-relaxed">
+                {/* Adjusted text color for dark background */}
+                <p className="text-lg text-gray-300 leading-relaxed">
                   At Resoundify, we believe in the power of sound to inspire, connect, and transform. 
                   Let us help you create audio-visual experiences that resonate. Explore our products, 
                   connect with our team, and experience the future of AV with Resoundify.
                 </p>
                 
-                <p className="text-lg font-semibold text-gray-900">
-                  <span className="text-purple-600">Resoundify</span> – Where Sound Meets Innovation.
+                {/* Adjusted text color for dark background */}
+                <p className="text-lg font-semibold text-white">
+                  <span className="text-purple-400">Resoundify</span> – Where Sound Meets Innovation.
                 </p>
               </div>
 
@@ -46,7 +51,8 @@ export default function ResoundifyCommunity() {
 
           {/* Right Image/Visual */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-12 relative overflow-hidden">
+            {/* Darker gradient for the background of the visual element */}
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-12 relative overflow-hidden">
               {/* Main visual element */}
               <div className="relative z-10 flex flex-col items-center justify-center h-96">
                 {/* Central sound wave visualization */}
@@ -55,12 +61,12 @@ export default function ResoundifyCommunity() {
                     <Volume2 className="w-12 h-12 text-white" />
                   </div>
                   
-                  {/* Animated rings */}
-                  <div className="absolute inset-0 rounded-full border-2 border-purple-300 animate-ping"></div>
-                  <div className="absolute inset-0 rounded-full border-2 border-pink-300 animate-ping" style={{animationDelay: '0.5s'}}></div>
+                  {/* Animated rings with adjusted border colors for dark theme */}
+                  <div className="absolute inset-0 rounded-full border-2 border-purple-600 animate-ping"></div>
+                  <div className="absolute inset-0 rounded-full border-2 border-pink-600 animate-ping" style={{animationDelay: '0.5s'}}></div>
                 </div>
 
-                {/* Sound wave bars */}
+                {/* Sound wave bars - colors are fine, as they are part of the visualization */}
                 <div className="flex items-end space-x-2 mb-8">
                   {Array.from({ length: 12 }, (_, i) => (
                     <div 
@@ -76,29 +82,30 @@ export default function ResoundifyCommunity() {
                   ))}
                 </div>
 
-                {/* Floating icons */}
-                <div className="absolute top-8 left-8 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <Headphones className="w-6 h-6 text-blue-600" />
+                {/* Floating icons with darker backgrounds and text */}
+                <div className="absolute top-8 left-8 w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center">
+                  <Headphones className="w-6 h-6 text-blue-400" />
                 </div>
                 
-                <div className="absolute top-16 right-12 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                  <Waves className="w-5 h-5 text-green-600" />
+                <div className="absolute top-16 right-12 w-10 h-10 bg-green-900 rounded-full flex items-center justify-center">
+                  <Waves className="w-5 h-5 text-green-400" />
                 </div>
                 
-                <div className="absolute bottom-12 left-16 w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div className="absolute bottom-12 left-16 w-8 h-8 bg-yellow-900 rounded-lg flex items-center justify-center">
+                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
                 </div>
               </div>
 
-              {/* Background decorations */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-200 to-transparent rounded-full opacity-50"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-200 to-transparent rounded-full opacity-50"></div>
+              {/* Background decorations with darker hues */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-900 to-transparent rounded-full opacity-50"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-900 to-transparent rounded-full opacity-50"></div>
               
-              {/* Grid pattern */}
+              {/* Grid pattern with darker border */}
               <div className="absolute inset-0 opacity-5">
                 <div className="grid grid-cols-8 grid-rows-8 h-full w-full">
-                  {Array.from({ length: 64 }, (_, i) => (
-                    <div key={i} className="border border-gray-300"></div>
+                  <div className="border border-gray-700"></div> {/* Adjusted border color */}
+                  {Array.from({ length: 63 }, (_, i) => ( // Remaining 63 elements
+                    <div key={i} className="border border-gray-700"></div>
                   ))}
                 </div>
               </div>
