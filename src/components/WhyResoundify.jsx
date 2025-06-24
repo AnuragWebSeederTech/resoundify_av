@@ -81,12 +81,11 @@ const ResoundifyFeatures = () => {
       <div className="max-w-7xl mx-auto">
         {/* Top Header Section */}
         <div className="text-center mb-34">
-          <h2 className="text-5xl lg:text-6xl font-sans text-slate-300 mb-6 tracking-tight"
+ <h2 className="text-5xl lg:text-6xl font-sans text-slate-300 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             Why choose <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">Resoundify</span> ?
-          </h2>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          </h2>          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Discover our comprehensive suite of advanced audio-visual solutions designed to transform your communication experience with cutting-edge technology.
           </p>
         </div>
