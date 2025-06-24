@@ -1,118 +1,75 @@
-import React from 'react';
-import { ArrowRight, Volume2, Waves, Headphones } from 'lucide-react';
+import React, { memo } from 'react'; // Import memo
 
-export default function ResoundifyCommunity() {
+// Define the GradientButton component
+const GradientButton = memo(({ text = 'Button', href = '#' }) => {
   return (
-    // Main section with black background and adjusted padding
-    <section className="bg-black py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div className="space-y-8">
-            <div>
-              <h1 className="text-5xl lg:text-6xl font-bold text-white mb-4" style={{ fontFamily: 'Pacifico, cursive' }}>
-                Hi. <span className="bg-gradient-to-r from-green-400 via-yellow-400 via-orange-400 via-red-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">Welcome!</span>
-              </h1>
-            </div>
-
-            <div className="space-y-6">
-              {/* Adjusted text color for dark background */}
-              <p className="text-lg text-gray-300 leading-relaxed">
-                We shape the functionality, aesthetics, and overall user experience of a wide range of Audio-Visual products.
-              </p>
-
-              <div className="space-y-4">
-                {/* Adjusted text color for dark background */}
-                <p className="text-lg font-semibold text-white">
-                  Join the <span className="text-purple-400">Resoundify Community!</span>
-                </p>
-                
-                {/* Adjusted text color for dark background */}
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  At Resoundify, we believe in the power of sound to inspire, connect, and transform. 
-                  Let us help you create audio-visual experiences that resonate. Explore our products, 
-                  connect with our team, and experience the future of AV with Resoundify.
-                </p>
-                
-                {/* Adjusted text color for dark background */}
-                <p className="text-lg font-semibold text-white">
-                  <span className="text-purple-400">Resoundify</span> – Where Sound Meets Innovation.
-                </p>
-              </div>
-
-              <div className="pt-4">
-                <button className="group bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 flex items-center">
-                  JOIN NOW!
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Image/Visual */}
-          <div className="relative">
-            {/* Darker gradient for the background of the visual element */}
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-12 relative overflow-hidden">
-              {/* Main visual element */}
-              <div className="relative z-10 flex flex-col items-center justify-center h-96">
-                {/* Central sound wave visualization */}
-                <div className="relative mb-8">
-                  <div className="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl">
-                    <Volume2 className="w-12 h-12 text-white" />
-                  </div>
-                  
-                  {/* Animated rings with adjusted border colors for dark theme */}
-                  <div className="absolute inset-0 rounded-full border-2 border-purple-600 animate-ping"></div>
-                  <div className="absolute inset-0 rounded-full border-2 border-pink-600 animate-ping" style={{animationDelay: '0.5s'}}></div>
-                </div>
-
-                {/* Sound wave bars - colors are fine, as they are part of the visualization */}
-                <div className="flex items-end space-x-2 mb-8">
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <div 
-                      key={i}
-                      className="bg-gradient-to-t from-purple-400 to-pink-400 rounded-full animate-pulse"
-                      style={{ 
-                        width: '6px',
-                        height: `${Math.random() * 60 + 20}px`,
-                        animationDelay: `${i * 0.1}s`,
-                        animationDuration: '1.5s'
-                      }}
-                    />
-                  ))}
-                </div>
-
-                {/* Floating icons with darker backgrounds and text */}
-                <div className="absolute top-8 left-8 w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center">
-                  <Headphones className="w-6 h-6 text-blue-400" />
-                </div>
-                
-                <div className="absolute top-16 right-12 w-10 h-10 bg-green-900 rounded-full flex items-center justify-center">
-                  <Waves className="w-5 h-5 text-green-400" />
-                </div>
-                
-                <div className="absolute bottom-12 left-16 w-8 h-8 bg-yellow-900 rounded-lg flex items-center justify-center">
-                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                </div>
-              </div>
-
-              {/* Background decorations with darker hues */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-900 to-transparent rounded-full opacity-50"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-900 to-transparent rounded-full opacity-50"></div>
-              
-              {/* Grid pattern with darker border */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="grid grid-cols-8 grid-rows-8 h-full w-full">
-                  <div className="border border-gray-700"></div> {/* Adjusted border color */}
-                  {Array.from({ length: 63 }, (_, i) => ( // Remaining 63 elements
-                    <div key={i} className="border border-gray-700"></div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <a
+      href={href}
+      className="relative inline-flex items-center justify-center px-8 py-5 w-60 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-royalblue-500 group" // Added 'group' class here
+    >
+      {/* Button text */}
+      <span className="block z-10 group-hover:text-black transition-colors duration-300"> {/* Added group-hover:text-white and transition */}
+        {text}
+      </span>
+      {/* Outer border span */}
+      <span class="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
+        {/* Inner span for the sweeping effect with gradient */}
+        <span
+          class="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
+                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-white
+                     active:bg-gray-200"
+        ></span>
+      </span>
+    </a>
   );
-}
+});
+
+const ResoundifyHeroSection = () => {
+  return (
+    <div className="relative w-full max-w-7xl mx-auto my-8 h-96
+                    bg-gradient-to-b from-black via-slate-900 to-black
+                    flex items-center justify-between overflow-hidden
+                    rounded-xl shadow-2xl"> {/* Added max-w, mx-auto, my-8, rounded-xl, shadow-2xl, and gradient */}
+
+      {/* Left side: Image (placeholder for an AV product or a stylized sound wave/icon) with radial gradient */}
+      <div className="absolute inset-y-0 left-0 w-1/2 flex items-center justify-center">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at center, rgba(30,30,30,1) 0%, rgba(0,0,0,0) 70%)',
+          }}
+        ></div>
+        {/* Placeholder for a Resoundify-specific visual element */}
+        <img
+          src="https://via.placeholder.com/200x200?text=Resoundify+Icon" // Replace with an actual Resoundify icon or stylized audio-visual element
+          alt="Resoundify Icon"
+          className="relative z-10 w-48 h-48 object-contain"
+        />
+      </div>
+
+      {/* Right side: Text content - Adapted from Resoundify content */}
+      <div className="relative z-20 flex-1 flex flex-col items-start justify-center p-8 text-white ml-[50%]">
+        <h2 className="text-5xl font-bold mb-4">
+          Resoundify Community
+        </h2>
+        <p className="text-xl mb-8">
+          At Resoundify, we believe in the power of sound to inspire, connect, and transform. Explore our products, connect with our team, and experience the future of AV with Resoundify.
+        </p>
+        {/* Integrated GradientButton */}
+        <GradientButton text="Contact us" href="#" />
+      </div>
+
+      {/* Navigation Arrows (Optional, if this is part of a carousel) */}
+      {/*
+      <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-700 bg-opacity-50 p-2 rounded-full text-white hover:bg-opacity-75 transition">
+        &lt;
+      </button>
+      <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-700 bg-opacity-50 p-2 rounded-full text-white hover:bg-opacity-75 transition">
+        &gt;
+      </button>
+      */}
+    </div>
+  );
+};
+
+export default ResoundifyHeroSection;
