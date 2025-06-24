@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const ResoundifyFeatures = () => {
@@ -77,22 +78,24 @@ const ResoundifyFeatures = () => {
   const currentFeature = features[currentIndex];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-slate-700 to-black py-12 px-10">
-      <div className="max-w-7xl mx-auto">
+    // The gradient background is now applied directly to the outer div of ResoundifyFeatures
+    <div className="bg-gradient-to-b from-black via-slate-700 to-black py-12 px-10 ml-10 mr-10 rounded-3xl shadow-lg"> {/* Added rounded corners and shadow for better appearance within a container */}
+      <div className="px-10">
         {/* Top Header Section */}
-        <div className="text-center mb-34">
-          <h2 className="text-5xl lg:text-6xl font-sans text-slate-300 mb-6 tracking-tight"
+        <div className="text-center mb-24">
+ <h2 className="text-5xl lg:text-6xl font-sans text-slate-300 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
-            Why choose <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">Resoundify</span> ?
-          </h2>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            Why choose <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span> ?
+          </h2>          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Discover our comprehensive suite of advanced audio-visual solutions designed to transform your communication experience with cutting-edge technology.
           </p>
+          <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-12"></div>
+        
         </div>
-
+        
         {/* Main Content Area */}
-        <div className="flex flex-col lg:flex-row items-start justify-center gap-36 mb-12">
+        <div className="flex flex-col lg:flex-row rounded-3xl items-start justify-center gap-36 mb-12">
           {/* Left Side - Round Image */}
           <div className="w-130 h-100 flex-shrink-0 mx-auto lg:mx-0">
             <div className="relative w-full h-full rounded-full overflow-hidden shadow-xl group">
@@ -133,34 +136,14 @@ const ResoundifyFeatures = () => {
           </div>
         </div>
 
-        {/* Bottom Navigation Buttons */}
-        <div className="flex justify-center ml-165 space-x-16">
-          <button
-            onClick={prevFeature}
-            className="group px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 border border-gray-700"
-          >
-            <span className="font-medium transition-colors duration-200">
-              Previous
-            </span>
-          </button>
-
-          <button
-            onClick={nextFeature}
-            className={`group px-8 py-4 bg-gradient-to-r ${currentFeature.color} text-white rounded-xl transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 active:scale-95`}
-          >
-            <span className="font-medium transition-all duration-200">
-              Next
-            </span>
-          </button>
-        </div>
-
+        
         {/* Progress Indicators */}
-        <div className="flex justify-center mt-8 space-x-3">
+        <div className="flex justify-center mt-20 space-x-5">
           {features.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 transform hover:scale-125 ${
+              className={`w-4 h-4 rounded-full transition-all duration-300 transform hover:scale-125 ${
                 index === currentIndex
                   ? `bg-gradient-to-r ${currentFeature.color} shadow-lg`
                   : 'bg-gray-600 hover:bg-gray-500'

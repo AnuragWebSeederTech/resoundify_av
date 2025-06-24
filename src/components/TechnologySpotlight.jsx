@@ -126,7 +126,6 @@ const DanteTechnologySection = () => {
         <div style={{ height: headerRef.current ? headerRef.current.offsetHeight : 0 }}></div>
       )}
 
-      {/* Header content container */}
       <div className='h-[10vh] py-10 mb-5'>
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="relative">

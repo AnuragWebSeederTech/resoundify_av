@@ -41,6 +41,8 @@ const HeroSection = () => {
           Your browser does not support the video tag.
         </video>
       </div>
+      
+      <div className="absolute inset-0 bg-cyan-500 opacity-15 backdrop-blur-sm"></div>
 
       {/* Content */}
       <div className="relative z-10 px-40 py-20 text-center">
