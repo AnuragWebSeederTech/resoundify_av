@@ -144,7 +144,7 @@ const TestimonialsSection = () => {
                 <div
                   key={testimonial.id}
                   className="bg-white rounded-2xl shadow-lg p-8 transition-all duration-300 flex-shrink-0
-                             hover:shadow-xl hover:scale-[1.01] hover:border-slate-300 border border-slate-200 hover:bg-gradient-to-br from-slate-100 to-slate-300" // Changed hover:border-blue-200 to hover:border-slate-300, border-slate-200 for initial border
+                             hover:shadow-xl hover:scale-[1.01] hover:border-slate-300 border border-slate-200 hover:bg-gradient-to-br from-blue-300 to-white" // Changed hover:border-blue-200 to hover:border-slate-300, border-slate-200 for initial border
                   style={{ width: '360px', minHeight: '300px' }}
                 >
                   <div className="h-full flex flex-col">
@@ -221,7 +221,7 @@ const TestimonialsSection = () => {
             <span className="text-xl font-medium text-slate-800"> {/* Changed to text-slate-800 */}
               Ready to elevate your audio?
             </span>
-            <button className="bg-slate-900 hover:bg-slate-700 {/* Changed to bg-slate-900 and hover:bg-slate-700 */}
+            <button className="bg-slate-900 hover:bg-gradient-to-tr from-blue-300 to-white hover:text-black {/* Changed to bg-slate-900 and hover:bg-slate-700 */}
                                text-white text-lg font-semibold px-8 py-4 rounded-full
                                transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
               Start Your Free Trial Today
