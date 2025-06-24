@@ -3,7 +3,7 @@ import { Mail, MapPin, Phone, Clock, ArrowRight, CheckCircle } from 'lucide-reac
 import Footer from '../components/Footer';
 import TestimonialsSection from '../components/Testimonial';
 import Header from '../components/Header';
-import ContactUs from '../components/Contact/Contactus';
+import ContactForm from '../components/Contact/ContactForm';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -111,7 +111,7 @@ export default function ContactPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 py-16">
-          <ContactUs />
+          <ContactForm />
         </div>
       </div>
       <TestimonialsSection />
