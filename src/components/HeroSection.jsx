@@ -42,7 +42,7 @@ const HeroSection = () => {
         </video>
       </div>
       
-      <div className="absolute inset-0 bg-black opacity-20 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-black opacity-15 backdrop-blur-sm"></div>
 
       {/* Content */}
       <div className="relative z-10 px-40 py-20 text-center">

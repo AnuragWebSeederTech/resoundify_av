@@ -1,140 +1,84 @@
-import React, { memo } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
 
-// ✅ Product Card (Cleaned)
-const ProductPreviewCard = memo(({ product }) => {
+export default function ExploreProductsSection() {
   return (
-    <div
-      className={`
-        relative bg-white rounded-3xl overflow-hidden shadow-md border border-slate-300
-        ${product.sizeClass} ${product.rotateClass}
-      `}
-    >
-      <div className="relative overflow-hidden h-3/4">
-        <img
-          src={product.image}
-          alt={product.name}
-          loading="lazy"
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = "https://placehold.co/400x300/CCCCCC/666666?text=Image+Unavailable";
-          }}
-        />
+    <section className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 overflow-hidden">
+      {/* Subtle background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-32 right-20 w-80 h-80 bg-purple-200/30 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-pink-200/20 rounded-full blur-3xl"></div>
       </div>
-      <div className="p-2.5 text-center h-1/4 flex flex-col justify-center">
-        <h3 className="text-sm font-bold text-slate-900 leading-tight truncate">
-          {product.name}
-        </h3>
-        <p className="text-slate-600 text-xs font-semibold">{product.price}</p>
-      </div>
-    </div>
-  );
-});
 
-// ✅ Main Static Section
-const ExploreOurRange = () => {
-  const products = [
-    {
-      name: 'Dante Pro Interface',
-      price: '$1299',
-      image: "/images/product1.jpg",
-      sizeClass: 'w-40 h-56',
-      positionClass: 'top-[10%] left-[5%] xl:left-[10%]',
-      rotateClass: '-rotate-3',
-    },
-    {
-      name: 'Compact Mixer X200',
-      price: '$799',
-      image: "/images/product2.jpg",
-      sizeClass: 'w-52 h-72',
-      positionClass: 'bottom-[15%] left-[0%] xl:left-[5%]',
-      rotateClass: 'rotate-2',
-    },
-    {
-      name: 'Studio Monitor Array',
-      price: '$1899',
-      image: "/images/product3.jpg",
-      sizeClass: 'w-48 h-64',
-      positionClass: 'top-[8%] right-[5%] xl:right-[10%]',
-      rotateClass: 'rotate-4',
-    },
-    {
-      name: 'Wireless Mic System',
-      price: '$499',
-      image: "/images/product4.jpg",
-      sizeClass: 'w-40 h-56',
-      positionClass: 'bottom-[8%] right-[0%] xl:right-[5%]',
-      rotateClass: '-rotate-2',
-    },
-    {
-      name: 'Audio Interface Pro-5',
-      price: '$999',
-      image: "/images/product5.jpg",
-      sizeClass: 'w-44 h-60',
-      positionClass: 'top-[35%] left-[2%] md:left-[20%] xl:left-[25%]',
-      rotateClass: 'rotate-1',
-    },
-    {
-      name: 'Digital Sound Processor',
-      price: '$1499',
-      image: "/images/product6.jpg",
-      sizeClass: 'w-46 h-62',
-      positionClass: 'bottom-[35%] right-[2%] md:right-[20%] xl:right-[25%]',
-      rotateClass: 'rotate-3',
-    }
-  ];
+      <div className="relative z-10 w-full px-8 py-20 min-h-screen flex items-center">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Content Side */}
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-5xl lg:text-6xl font-sans text-slate-900 leading-tight">
+                  Unleash the{' '}
+                  <span className="bg-gradient-to-r from-slate-800 to-slate-400 bg-clip-text font-semibold text-transparent">
+                    Future
+                  </span>{' '}
+                  of Audio Excellence
+                </h1>
+                
+                <p className="text-xl text-slate-600 leading-relaxed max-w-2xl">
+                  Discover our groundbreaking suite of Dante-enabled professional audio equipment. 
+                  Engineered for unmatched clarity, unparalleled reliability, and limitless scalability, 
+                  <span className="text-purple-500 font-semibold"> Resoundify</span> empowers visionaries 
+                  to craft immersive sonic experiences.
+                </p>
+              </div>
 
-  return (
-    <section
-      className="relative flex items-center justify-center py-24 px-4 sm:px-8 overflow-hidden bg-gradient-to-b from-slate-400 to-black text-slate-900 min-h-screen font-inter"
-      // Changed 'via-slate-100' to 'via-slate-200' for a slightly more noticeable gradient
-    >
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"
-      />
+              {/* CTA Button */}
+              <div className="pt-6">
+                <button className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full text-white font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-200/50">
+                  <span className="flex items-center">
+                    Explore Our Products
+                    <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </button>
+              </div>
+            </div>
 
-      {/* Floating Cards */}
-      {products.map((product, index) => (
-        <div
-          key={`product-${index}`}
-          className={`absolute z-0 hidden md:block ${product.positionClass}`}
-        >
-          <ProductPreviewCard product={product} />
+            {/* Visual Side - Abstract Audio Visualization */}
+            <div className="relative h-96 lg:h-[500px]">
+              {/* Large central circle */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-60"></div>
+              
+              {/* Medium circles */}
+              <div className="absolute top-16 left-16 w-32 h-32 bg-gradient-to-br from-pink-200 to-blue-200 rounded-full opacity-50"></div>
+              <div className="absolute bottom-20 right-12 w-40 h-40 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full opacity-50"></div>
+              
+              {/* Small accent circles */}
+              <div className="absolute top-32 right-20 w-16 h-16 bg-blue-200 rounded-full opacity-60"></div>
+              <div className="absolute bottom-32 left-20 w-20 h-20 bg-purple-200 rounded-full opacity-60"></div>
+              <div className="absolute top-20 left-1/2 w-12 h-12 bg-pink-200 rounded-full opacity-70"></div>
+              
+              {/* Subtle lines connecting elements */}
+              <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="line1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#cbd5e1" stopOpacity="0.3"/>
+                    <stop offset="100%" stopColor="#a5b4fc" stopOpacity="0.3"/>
+                  </linearGradient>
+                  <linearGradient id="line2" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#e0e7ff" stopOpacity="0.3"/>
+                    <stop offset="100%" stopColor="#f3e8ff" stopOpacity="0.3"/>
+                  </linearGradient>
+                </defs>
+                <path d="M 80 80 Q 200 150 320 120" stroke="url(#line1)" strokeWidth="2" fill="none"/>
+                <path d="M 300 300 Q 180 200 60 250" stroke="url(#line2)" strokeWidth="2" fill="none"/>
+                <path d="M 200 50 Q 250 200 180 350" stroke="url(#line1)" strokeWidth="1.5" fill="none"/>
+              </svg>
+            </div>
+          </div>
         </div>
-      ))}
-
-      {/* Center Content */}
-      <div
-        className="relative z-10 w-full max-w-2xl mx-auto text-center p-6 sm:p-8 md:p-12
-                   bg-white bg-opacity-80 backdrop-blur-lg rounded-3xl shadow-md border border-slate-300"
-      >
-        <h2 className="text-4xl lg:text-5xl font-light text-slate-900 mb-6 tracking-tight">
-          Unleash the future of{' '}
-          <span className="font-semibold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-            Audio Excellence
-          </span>
-        </h2>
-        <p className="text-lg sm:text-xl max-w-xl mx-auto mb-10 leading-relaxed text-slate-700 font-light">
-          Discover our groundbreaking suite of Dante-enabled professional audio equipment.
-          Engineered for unmatched clarity, unparalleled reliability, and limitless scalability, Resoundify empowers visionaries to craft immersive sonic experiences.
-        </p>
-        <Link
-          to="/products"
-          className="inline-block bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold px-10 py-4 sm:px-12 sm:py-5 rounded-full shadow-md hover:bg-slate-700 text-lg"
-        >
-          Explore Our Innovations
-        </Link>
       </div>
-
-      <style jsx>{`
-        .font-inter {
-          font-family: 'Inter', sans-serif;
-        }
-      `}</style>
     </section>
   );
-};
-
-export default ExploreOurRange;
+}
