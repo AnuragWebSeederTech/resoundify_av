@@ -50,7 +50,7 @@ const Clients = () => {
         <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
-            Success supported by <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">POWERFUL</span> Clients
+            Success supported by <span className="font-semibold bg-gradient-to-br from-slate-700 to-slate-300 bg-clip-text text-transparent">Powerful Clients</span> 
           </h2>
           <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
        
