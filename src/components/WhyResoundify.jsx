@@ -82,7 +82,7 @@ const ResoundifyFeatures = () => {
     <div className="bg-gradient-to-b from-black via-slate-700 to-black py-12 px-10 ml-10 mr-10 rounded-3xl shadow-lg"> {/* Added rounded corners and shadow for better appearance within a container */}
       <div className="px-10">
         {/* Top Header Section */}
-        <div className="text-center mb-34">
+        <div className="text-center mb-24">
  <h2 className="text-5xl lg:text-6xl font-sans text-slate-300 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
@@ -90,7 +90,7 @@ const ResoundifyFeatures = () => {
           </h2>          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Discover our comprehensive suite of advanced audio-visual solutions designed to transform your communication experience with cutting-edge technology.
           </p>
-          <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
+          <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-12"></div>
         
         </div>
         
@@ -138,12 +138,12 @@ const ResoundifyFeatures = () => {
 
         
         {/* Progress Indicators */}
-        <div className="flex justify-center mt-8 space-x-5">
+        <div className="flex justify-center mt-20 space-x-5">
           {features.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 transform hover:scale-125 ${
+              className={`w-4 h-4 rounded-full transition-all duration-300 transform hover:scale-125 ${
                 index === currentIndex
                   ? `bg-gradient-to-r ${currentFeature.color} shadow-lg`
                   : 'bg-gray-600 hover:bg-gray-500'
