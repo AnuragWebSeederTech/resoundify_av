@@ -8,7 +8,7 @@ const DanteBenefitsSection = () => {
         <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
-            Technology <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">Spotlight</span>
+            Technology <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Spotlight</span>
           </h2>
         <p className="text-2xl md:text-3xl font-light text-slate-600 max-w-3xl mx-auto">
           Unleashing the power of seamless audio networking with cutting-edge technology.

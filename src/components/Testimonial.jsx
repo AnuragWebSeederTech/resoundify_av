@@ -70,7 +70,7 @@ const TestimonialsSection = () => {
           <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
-            Trusted by <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">Audio Professionals</span>
+            Trusted by <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Audio Professionals</span>
           </h2>
           <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
             Discover how Resoundify is helping creators, educators, and businesses
