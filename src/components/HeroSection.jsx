@@ -37,12 +37,12 @@ const HeroSection = () => {
           playsInline
           preload="metadata"
         >
-          <source src="/images/newbg3.mp4" type="video/mp4" /> {/* Placeholder video URL */}
+          <source src="/images/newbg.mp4" type="video/mp4" /> {/* Placeholder video URL */}
           Your browser does not support the video tag.
         </video>
       </div>
       
-      <div className="absolute inset-0 bg-cyan-500 opacity-15 backdrop-blur-sm"></div>
+      {/* <div className="absolute inset-0 bg-blue-700 opacity-15 backdrop-blur-sm"></div> */}
 
       {/* Content */}
       <div className="relative z-10 px-40 py-20 text-center">
