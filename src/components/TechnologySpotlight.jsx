@@ -5,6 +5,7 @@ const DanteTechnologySection = () => {
   const [activePoint, setActivePoint] = useState(0);
   const headerRef = useRef(null); // Ref for the header itself
   const videoSectionRef = useRef(null); // Ref for the video section
+  const pointRefs = useRef([]); // Array of refs for each point
   const [headerOffsetTop, setHeaderOffsetTop] = useState(0); // Tracks initial top position of header
   const [isHeaderFixed, setIsHeaderFixed] = useState(false); // Controls if header is fixed or static
   const [isVideoSectionReached, setIsVideoSectionReached] = useState(false); // New state to track if video section is at the top
@@ -44,36 +45,40 @@ const DanteTechnologySection = () => {
     }
   ];
 
+  // Store refs for each point in the pointRefs array
+  const setPointRef = (el, index) => {
+    if (el) {
+      pointRefs.current[index] = el;
+    }
+  };
+
+  // Effect for autoplay, adjusted to only run if not manually scrolled to a point
   useEffect(() => {
-    // Autoplay feature for points
-    const interval = setInterval(() => {
-      setActivePoint((prev) => (prev + 1) % points.length);
-    }, 3500);
-    return () => clearInterval(interval);
+    // We'll remove autoplay for now to prioritize scroll-based highlighting.
+    // If you want to re-introduce it, you'd need more sophisticated logic
+    // to pause autoplay when a user manually scrolls or clicks a point.
+    // For a cleaner scroll-highlight experience, it's often best to let scroll
+    // dictate the active state.
+    // const interval = setInterval(() => {
+    //   setActivePoint((prev) => (prev + 1) % points.length);
+    // }, 3500);
+    // return () => clearInterval(interval);
   }, [points.length]);
 
   useEffect(() => {
     // Measure header's initial offset from the top of the document
     const measureHeaderOffset = () => {
       if (headerRef.current) {
-        // Use getBoundingClientRect().top + window.scrollY for accurate document offset
         setHeaderOffsetTop(headerRef.current.getBoundingClientRect().top + window.scrollY);
       }
     };
 
-    // Set initial offset on mount and remeasure on resize
     measureHeaderOffset();
     window.addEventListener('resize', measureHeaderOffset);
 
-    // This function determines if the header should be fixed based on scroll position
-    // and the visibility of the video section.
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // The header should be fixed IF:
-      // 1. We have scrolled past the header's initial top position (headerOffsetTop)
-      // AND
-      // 2. The video section has NOT reached the top of the viewport yet (isVideoSectionReached is false)
       if (currentScrollY >= headerOffsetTop && !isVideoSectionReached) {
         setIsHeaderFixed(true);
       } else {
@@ -84,40 +89,78 @@ const DanteTechnologySection = () => {
     window.addEventListener('scroll', handleScroll);
 
     // Intersection Observer for the video section
-    // This observer will update the `isVideoSectionReached` state, which `handleScroll` reacts to.
-    const observer = new IntersectionObserver(
+    const videoObserver = new IntersectionObserver(
       ([entry]) => {
-        // If the video section is intersecting AND its top is at or above the viewport's top (threshold 0)
-        // This means the video section has scrolled into view at the top or above it.
         if (entry.isIntersecting && entry.boundingClientRect.top <= 0) {
-          setIsVideoSectionReached(true); // Mark video section as reached
+          setIsVideoSectionReached(true);
         } else if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
-          // If the video section has completely scrolled *past* the top of the viewport (its bottom is now above 0)
-          // This means it's no longer influencing the header's state.
-          setIsVideoSectionReached(false); // Mark video section as no longer reached
+          setIsVideoSectionReached(false);
         }
-        // No explicit setIsHeaderFixed here. `handleScroll` will be re-evaluated due to `isVideoSectionReached`
-        // being a dependency in the useEffect, and will then correctly set `isHeaderFixed`.
       },
       {
-        root: null, // observe the viewport
-        threshold: 0, // trigger as soon as any part of the target is visible or goes out
+        root: null,
+        threshold: 0,
       }
     );
 
     if (videoSectionRef.current) {
-      observer.observe(videoSectionRef.current);
+      videoObserver.observe(videoSectionRef.current);
     }
 
-    // Cleanup function: remove event listeners and unobserve when component unmounts or dependencies change
+    // New: Intersection Observer for the points
+    const pointObserver = new IntersectionObserver(
+      (entries) => {
+        let newActivePointIndex = null;
+        // Find the first intersecting entry from the top
+        for (let i = 0; i < entries.length; i++) {
+          const entry = entries[i];
+          if (entry.isIntersecting) {
+            // Get the index from the ref's dataset or another way you identify the point
+            // For this, we'll rely on the order of pointRefs
+            const index = pointRefs.current.indexOf(entry.target);
+            if (index !== -1) {
+              newActivePointIndex = index;
+              break; // Found the first intersecting one, stop
+            }
+          }
+        }
+        // If no point is intersecting, default to the first one or remain as is
+        if (newActivePointIndex !== null && newActivePointIndex !== activePoint) {
+          setActivePoint(newActivePointIndex);
+        } else if (newActivePointIndex === null && activePoint !== 0) {
+          // Optional: if nothing is in view, you could set it to 0 or leave as last active
+          // setActivePoint(0);
+        }
+      },
+      {
+        root: null, // Observe relative to the viewport
+        rootMargin: '-10% 0% -80% 0%', // Adjust this to make the active point highlight when it's closer to the top of the view. Top margin pulls the "detection line" down, bottom margin pulls it up.
+        threshold: [0, 0.25, 0.5, 0.75, 1.0], // Trigger at various visibility percentages
+      }
+    );
+
+    // Observe each point
+    pointRefs.current.forEach(ref => {
+      if (ref) {
+        pointObserver.observe(ref);
+      }
+    });
+
+    // Cleanup function
     return () => {
       window.removeEventListener('resize', measureHeaderOffset);
       window.removeEventListener('scroll', handleScroll);
       if (videoSectionRef.current) {
-        observer.unobserve(videoSectionRef.current);
+        videoObserver.unobserve(videoSectionRef.current);
       }
+      pointRefs.current.forEach(ref => {
+        if (ref) {
+          pointObserver.unobserve(ref);
+        }
+      });
+      pointObserver.disconnect(); // Disconnect the point observer
     };
-  }, [headerOffsetTop, isVideoSectionReached]); // Re-run this effect if headerOffsetTop or isVideoSectionReached changes
+  }, [headerOffsetTop, isVideoSectionReached, activePoint]); // Added activePoint to dependency array to trigger re-evaluation when it changes
 
   return (
     <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -198,6 +241,7 @@ const DanteTechnologySection = () => {
               {points.map((point, index) => (
                 <div
                   key={index}
+                  ref={el => setPointRef(el, index)} // Assign ref to each point div
                   className={`relative cursor-pointer transition-all duration-700 ${
                     activePoint === index ? '' : 'hover:scale-100'
                   }`}
@@ -245,7 +289,6 @@ const DanteTechnologySection = () => {
               Witness the future of digital audio networking as Dante transforms the industry with revolutionary technology that defies conventional limitations.
             </p>
             <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
-        
           </div>
 
           <div className="relative max-w-6xl mx-auto group">
