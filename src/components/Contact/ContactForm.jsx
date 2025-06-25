@@ -1,6 +1,22 @@
-// ContactForm.jsx
-import React, { useState, useRef, useEffect } from 'react';
-import { Mail, Phone, MapPin, Clock, CheckCircle, ArrowRight } from 'lucide-react'; // Assuming lucide-react for icons
+import React, { useEffect, useRef, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Import icons from lucide-react
+import { Phone, Mail, CheckCircle, MapPin, ArrowRight } from 'lucide-react';
+
+// Fix default marker icon issue in Leaflet + Webpack/Vite
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconUrl: markerIcon,
+  iconRetinaUrl: markerIcon2x,
+  shadowUrl: markerShadow,
+});
 
 const ContactForm = () => {
   // State for form data
@@ -11,53 +27,74 @@ const ContactForm = () => {
     message: '',
   });
 
-  // State to manage form submission success and loading
-  const [submitted, setSubmitted] = useState(false);
+  // State for form submission status
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  // State to track which input field is focused (optional, for potential styling)
+  // State for tracking focused input field (for potential styling)
   const [focusedField, setFocusedField] = useState('');
 
-  // Ref for the map container to potentially initialize a map library
+  // Refs for animation/intersection observation
+  const animatedElementsRef = useRef([]); // To hold refs of elements to animate
+  const [animatedElements, setAnimatedElements] = useState(new Set()); // To track which elements are in view
+
+  // Ref for the map container to ensure it's mounted before Leaflet tries to render
   const mapRef = useRef(null);
 
-  // Added for the animatedElements state, which was referenced in the original code
-  // but not defined. Assuming it's meant for animation on scroll/load.
-  const [animatedElements, setAnimatedElements] = useState(new Set());
+  // Dubai location coordinates for the map
+  const dubaiCoordinates = [25.1972, 55.2744]; // Approximate coordinates for Burj Khalifa area
 
-  // useEffect to handle map initialization (e.g., Google Maps, Leaflet)
+  // Intersection Observer for animations
   useEffect(() => {
-    const initMap = () => {
-      if (mapRef.current && window.google && window.google.maps) {
-        // Coordinates for Burj Khalifa, Dubai
-        const burjKhalifaCoords = { lat: 25.1972, lng: 55.2744 };
-
-        new window.google.maps.Map(mapRef.current, {
-          center: burjKhalifaCoords,
-          zoom: 16, // A good zoom level to see the building
-          disableDefaultUI: false, // You can keep UI controls for better user experience
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.dataset.animate);
+            setAnimatedElements((prev) => new Set(prev).add(index));
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
         });
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the element is visible
       }
-    };
+    );
 
-    // Load Google Maps script dynamically
-    // IMPORTANT: Replace 'YOUR_Maps_API_KEY' with your actual API key
-    if (!window.google) {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_Maps_API_KEY&callback=initMap`;
-      script.async = true;
-      script.defer = true; // Defer script execution
-      document.head.appendChild(script);
-      window.initMap = initMap; // Make initMap globally accessible for the callback
-    } else {
-      initMap(); // If Google Maps is already loaded
+    // Observe all elements that have a 'data-animate' attribute
+    animatedElementsRef.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []); // Empty dependency array means this runs once on mount
+
+  // Leaflet Map Initialization
+  useEffect(() => {
+    let map = null;
+
+    if (mapRef.current && !mapRef.current._leaflet_id) { // Check if map is not already initialized
+      map = L.map(mapRef.current).setView(dubaiCoordinates, 13); // Set view to Dubai
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Add a marker to the map
+      L.marker(dubaiCoordinates).addTo(map)
+        .bindPopup('Our office at Burj Khalifa!')
+        .openPopup();
     }
 
-    // This part is for the animatedElements, assuming it's meant to trigger on mount
-    // or through an Intersection Observer. For now, it's just setting the first element to visible.
-    setAnimatedElements(prev => new Set(prev).add(0));
-
-  }, []); // Empty dependency array means this runs once on mount
+    // Cleanup function to remove map when component unmounts
+    return () => {
+      if (map && mapRef.current && mapRef.current._leaflet_id) {
+        map.remove();
+      }
+    };
+  }, [mapRef]); // Depend on mapRef to ensure it's available
 
   // Handles changes in form input fields
   const handleInputChange = (e) => {
@@ -73,7 +110,6 @@ const ContactForm = () => {
     e.preventDefault(); // Prevent default browser form submission
     setIsSubmitting(true); // Set submitting state to true
 
-    // Simulate an API call delay
     try {
       // In a real application, you would send formData to your backend here
       // await fetch('/api/contact', {
@@ -123,6 +159,7 @@ const ContactForm = () => {
           animatedElements.has(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
         data-animate={0}
+        ref={(el) => (animatedElementsRef.current[0] = el)} // Attach ref for animation
       >
         <h2
           className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
@@ -136,7 +173,7 @@ const ContactForm = () => {
       <div className="grid lg:grid-cols-3 gap-12">
         {/* Main Contact Form - Modified for General Inquiries */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-2xl h-152 p-8 shadow-sm border border-gray-200 flex flex-col">
+          <div className="bg-white rounded-2xl h-[700px] p-8 shadow-sm border border-gray-200 flex flex-col"> {/* Corrected h-152 to h-[600px] */}
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
@@ -218,7 +255,7 @@ const ContactForm = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200 resize-none h-50 "
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200 resize-none h-40" // Corrected h-50 to h-40 or similar, based on rows
                     placeholder="Please describe your query or concern in detail..."
                     required
                   />
@@ -277,15 +314,15 @@ const ContactForm = () => {
               <MapPin className="w-5 h-5 text-gray-600" />
             </div>
 
-            <div ref={mapRef} className="mb-4 rounded-lg overflow-hidden border border-gray-200 min-h-[180px]">
-              {/* Map will be loaded here via useEffect */}
+            <div ref={mapRef} className="mb-4 rounded-lg overflow-hidden border border-gray-200 min-h-[250px] w-full">
+              {/* Added a more robust min-height for the map and full width */}
             </div>
 
             <div className="space-y-2">
               <p className="text-sm font-medium text-gray-900">Burj Khalifa</p>
               <p className="text-sm text-gray-600">1 Sheikh Mohammed bin Rashid Blvd, Downtown Dubai, Dubai, UAE</p>
               <a
-                href="https://www.google.com/maps/search/Burj+Khalifa" // Direct link to Google Maps search for Burj Khalifa
+                href="https://www.google.com/maps/search/?api=1&query=Burj+Khalifa" // Corrected Google Maps URL
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-gray-900 hover:text-gray-700 transition-colors"

@@ -6,10 +6,10 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
   return (
     <a
       href={href}
-      className="relative inline-flex items-center justify-center px-8 py-5 w-65 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-black group" // Original gradient background, white text
+      className="relative inline-flex items-center justify-center px-8 py-5 w-60 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-black group" // Original gradient background, white text
     >
       {/* Button text */}
-      <span className="block z-10 relative group-hover:text-black transition-colors duration-300"> {/* Text becomes black on hover */}
+      <span className="block z-10 relative group-hover:text-white transition-colors duration-300"> {/* Text becomes black on hover */}
         {text}
       </span>
       
@@ -18,7 +18,7 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
       {/* Inner span for the sweeping effect with white background */}
       <span
         className="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
-                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400
+                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400
                      active:bg-gray-200"
       ></span>
       </span>

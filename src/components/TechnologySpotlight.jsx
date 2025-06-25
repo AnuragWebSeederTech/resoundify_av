@@ -14,7 +14,7 @@ const DanteTechnologySection = () => {
     {
       icon: <Zap className="w-8 h-8 text-white" />,
       title: "Effortless Setup",
-      description: "Dante simplifies complex audio networks, making installation and configuration straightforward with intelligent auto-discovery.",
+      description: "Dante simplifies complex audio networks, making installation and configuration straightforward with auto-discovery.",
       color: "from-blue-400 to-cyan-500",
       accent: "blue",
       pattern: "M0,0 Q50,25 100,0 T200,0"
@@ -134,7 +134,7 @@ const DanteTechnologySection = () => {
       },
       {
         root: null, // Observe relative to the viewport
-        rootMargin: '-10% 0% -80% 0%', // Adjust this to make the active point highlight when it's closer to the top of the view. Top margin pulls the "detection line" down, bottom margin pulls it up.
+        rootMargin: '-40% 0% -80% 0%', // Adjust this to make the active point highlight when it's closer to the top of the view. Top margin pulls the "detection line" down, bottom margin pulls it up.
         threshold: [0, 0.25, 0.5, 0.75, 1.0], // Trigger at various visibility percentages
       }
     );
