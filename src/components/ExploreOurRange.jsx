@@ -6,18 +6,22 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
   return (
     <a
       href={href}
-      className="relative inline-flex items-center justify-center px-8 py-5 w-60 text-lg font-medium bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 border-none cursor-pointer user-select-none overflow-hidden font-inherit text-white group" // Original gradient background, white text
+      className="relative inline-flex items-center justify-center px-8 py-5 w-60 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-black group" // Original gradient background, white text
     >
       {/* Button text */}
       <span className="block z-10 relative group-hover:text-black transition-colors duration-300"> {/* Text becomes black on hover */}
         {text}
       </span>
+      
+      <span class="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
+        
       {/* Inner span for the sweeping effect with white background */}
       <span
         className="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
-                   group-hover:-rotate-90 group-hover:w-full group-hover:bg-white
-                   active:bg-gray-200"
+                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400
+                     active:bg-gray-200"
       ></span>
+      </span>
       {/* Outer border span - removed as original button had no explicit border */}
     </a>
   );
