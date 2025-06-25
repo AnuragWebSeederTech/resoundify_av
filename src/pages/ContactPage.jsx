@@ -90,11 +90,10 @@ export default function ContactPage() {
     <>
       <Header />
       <div className="min-h-screen">
-        {/* Hero Section with Background Image */}
         <div
           className="relative bg-cover bg-center bg-no-repeat h-170 flex items-center justify-center"
           style={{
-            backgroundImage: "url('/images/Contactbg.jpg')",
+            backgroundImage: "url('/images/contactHero.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-black/40 z-0"></div>

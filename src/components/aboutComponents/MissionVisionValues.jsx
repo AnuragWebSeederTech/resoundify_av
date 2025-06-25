@@ -107,9 +107,9 @@ const MissionVisionValues = () => {
     >
       {/* Background Elements - updated to use more blue-ish blurs */}
       <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-500"></div>
       </div>
 
       <div className="max-w-8xl mx-auto relative z-10">
@@ -197,10 +197,16 @@ const MissionVisionValues = () => {
         {/* Values Section */}
         <div className="mb-16">
           <div className="text-center mb-16">
-            <h3 className="text-4xl font-medium text-slate-900 mb-4">Core Values</h3>
+            <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
+            style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+          >
+            Core <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Values</span>
+          </h2>
             <p className="text-slate-600 text-lg font-sans max-w-3xl mx-auto">
               Six fundamental principles that guide our operations, innovation, and commitment to excellence.
             </p>
+            <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
+        
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">

@@ -1,173 +1,316 @@
+import React, { useState, useEffect, useRef } from 'react';
 
-import React, { useState } from 'react';
+const ResoundifyFeaturesNew = () => {
+  const [hoveredFeature, setHoveredFeature] = useState(null); // Stores the ID of the currently hovered feature
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 }); // Tracks mouse position for the interactive light
+  const containerRef = useRef(null); // Ref for the main container to observe mouse events
+  const featureRefs = useRef({}); // Ref for each feature card to observe visibility
 
-const ResoundifyFeatures = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
+  // Define the main features with their details (now 3 for a cleaner layout with the new side element).
   const features = [
     {
       id: 1,
-      title: "Dante-Centric Innovation",
-      image: "/images/Dante_Centric.png",
-      points: [
-        "Built to integrate seamlessly with Dante",
-        "Ensuring flawless audio transmission",
-        "Low latency performance",
-        "Unmatched scalability for AV systems"
-      ],
-      color: "from-cyan-400 to-blue-500"
+      title: "Dante Integration",
+      description: "Seamless integration with Dante for flawless audio transmission, industry-standard professional networking, and robust reliability.",
+      icon: "🎛️"
     },
     {
       id: 2,
-      title: "Flawless Audio Transmission",
-      image: "/images/Transmission.png",
-      points: [
-        "Crystal-clear audio over IP networks",
-        "Professional-grade signal processing",
-        "Noise-free digital transmission",
-        "Enterprise-level audio quality"
-      ],
-      color: "from-emerald-400 to-teal-500"
+      title: "Crystal Clarity",
+      description: "Experience crystal-clear audio over IP networks with advanced signal processing, intelligent noise reduction, and pristine sound reproduction.",
+      icon: "🔊"
     },
     {
       id: 3,
       title: "Ultra-Low Latency",
-      image: "/images/Latency.png",
-      points: [
-        "Real-time audio processing",
-        "Minimal delay for live applications",
-        "Optimized for performance",
-        "Industry-leading response times"
-      ],
-      color: "from-amber-400 to-orange-500"
+      description: "Achieve real-time audio processing with minimal delay, ensuring synchronized performance and optimized responsiveness for critical live applications.",
+      icon: "⚡"
     },
-    {
-      id: 4,
-      title: "Enterprise Scalability",
-      image: "/images/Scalable.png",
-      points: [
-        "Scalable for any enterprise AV system",
-        "Supports hundreds of audio channels",
-        "Flexible system architecture",
-        "Future-proof technology stack"
-      ],
-      color: "from-purple-400 to-violet-500"
-    },
-    {
-      id: 5,
-      title: "99.9% Uptime Guarantee",
-      image: "/images/Uptime.png",
-      points: [
-        "Enterprise-grade reliability",
-        "Redundant system architecture",
-        "24/7 monitoring and support",
-        "Mission-critical performance"
-      ],
-      color: "from-rose-400 to-pink-500"
-    }
+    // The "Scalable Architecture" and "Guaranteed Uptime" features will be handled separately for layout.
   ];
 
-  const nextFeature = () => {
-    setCurrentIndex((prev) => (prev + 1) % features.length);
+  // Data for the side "Uptime" button structure
+  const uptimeFeature = {
+    id: 5,
+    title: "99.9% Uptime",
+    description: "Guaranteed reliability with redundant systems and 24/7 proactive monitoring.",
+    icon: "🏆"
   };
 
-  const prevFeature = () => {
-    setCurrentIndex((prev) => (prev - 1 + features.length) % features.length);
-  };
+  // Map to store visibility state for each feature card, for scroll-in animation
+  const [featureVisibility, setFeatureVisibility] = useState({});
+  const uptimeRef = useRef(null); // Ref for the Uptime button
+  const [uptimeVisible, setUptimeVisible] = useState(false); // State for Uptime button visibility
 
-  const currentFeature = features[currentIndex];
+  // Effect for tracking mouse position within the container for the subtle light effect
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        // Calculate mouse position as a percentage of the container's width/height
+        setMousePosition({
+          x: ((e.clientX - rect.left) / rect.width) * 100,
+          y: ((e.clientY - rect.top) / rect.height) * 100
+        });
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
+    }
+
+    // Cleanup: remove event listener when component unmounts
+    return () => {
+      if (container) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, []);
+
+  // Effect for Intersection Observer to trigger entrance animations for each feature card and uptime button on scroll
+  useEffect(() => {
+    const observers = [];
+
+    // Observe main feature cards
+    features.forEach(feature => {
+      const cardRef = featureRefs.current[feature.id];
+      if (cardRef) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setFeatureVisibility(prev => ({ ...prev, [feature.id]: true }));
+              observer.unobserve(entry.target); // Stop observing once it's visible
+            }
+          },
+          { threshold: 0.1 } // Trigger when 10% of the card is visible
+        );
+        observer.observe(cardRef);
+        observers.push(observer);
+      }
+    });
+
+    // Observe Uptime button
+    if (uptimeRef.current) {
+      const uptimeObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setUptimeVisible(true);
+            uptimeObserver.unobserve(entry.target); // Stop observing once visible
+          }
+        },
+        { threshold: 0.1 }
+      );
+      uptimeObserver.observe(uptimeRef.current);
+      observers.push(uptimeObserver);
+    }
+
+
+    // Cleanup: disconnect all observers when component unmounts
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, [features]); // Dependency array includes features
 
   return (
-    // The gradient background is now applied directly to the outer div of ResoundifyFeatures
-    <div className="bg-gradient-to-b from-black via-slate-700 to-black py-12 px-10 ml-10 mr-10 rounded-3xl shadow-lg"> {/* Added rounded corners and shadow for better appearance within a container */}
-      <div className="px-10">
-        {/* Top Header Section */}
-        <div className="text-center mb-24">
- <h2 className="text-5xl lg:text-6xl font-sans text-slate-300 mb-6 tracking-tight"
+    <div
+      ref={containerRef}
+      // Ensure the component covers the full width and has a minimum height of 90vh
+      className="relative w-full min-h-[90vh] bg-gradient-to-br from-black via-gray-950 to-black py-20 px-8 overflow-hidden font-['Inter']"
+    >
+      {/* Subtle Background Particles - Reduced quantity and increased animation duration for smoothness */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 25 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-[1px] h-[1px] bg-blue-300/10 rounded-full animate-pulse" // Standard blue for particles
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 6}s`,
+              animationDuration: `${5 + Math.random() * 6}s` // Longer duration for smoother pulse
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Interactive Light following mouse - Standard blue/purple effect, reduced size */}
+      <div
+        className="absolute w-56 h-56 bg-gradient-radial from-blue-500/10 via-purple-500/05 to-transparent rounded-full blur-xl pointer-events-none transition-all duration-700 ease-out"
+        style={{
+          left: `${mousePosition.x}%`,
+          top: `${mousePosition.y}%`,
+          transform: 'translate(-50%, -50%)'
+        }}
+      />
+
+      {/* Main content wrapper - Utilizes more horizontal space with responsive padding */}
+      <div className="relative w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-12 z-10">
+        {/* Floating Header - Animates on initial load */}
+        <div className="text-center mb-24 opacity-0 translate-y-[-20px] animate-fade-in-up">
+          <div className="relative inline-block">
+            <h2 className="text-5xl lg:text-6xl font-sans text-slate-200 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
-            Why choose <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span> ?
-          </h2>          
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Discover our comprehensive suite of advanced audio-visual solutions designed to transform your communication experience with cutting-edge technology.
+            Why Choose <span className="font-semibold bg-gradient-to-br from-slate-600 to-slate-200 bg-clip-text text-transparent">Resoundify</span>
+          </h2>
+            {/* Subtler title glow using standard shades */}
+            <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-sky-500/10 to-indigo-500/10 blur-xl rounded-full"></div>
+          </div>
+
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Discover the core capabilities that power unparalleled audio experiences.
           </p>
-          <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-12"></div>
-        
+           <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
+       
         </div>
-        
-        {/* Main Content Area */}
-        <div className="flex flex-col lg:flex-row rounded-3xl items-start justify-center gap-36 mb-12">
-          {/* Left Side - Round Image */}
-          <div className="w-130 h-100 flex-shrink-0 mx-auto lg:mx-0">
-            <div className="relative w-full h-full rounded-full overflow-hidden shadow-xl group">
-              <div className={`absolute inset-0 bg-gradient-to-br ${currentFeature.color} opacity-0 transition-opacity duration-500 group-hover:opacity-30`}></div>
-              <img
-                src={currentFeature.image}
-                alt={currentFeature.title}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-            </div>
-          </div>
 
-          {/* Right Side - Points Container */}
-          <div className="flex-1 max-w-2xl">
-            <div className="bg-gray-900 rounded-2xl p-8 shadow-xl border border-gray-800">
-              <h2 className="text-3xl font-bold text-white mb-6 text-center">
-                {currentFeature.title}
-              </h2>
-              
-              <div className="space-y-4">
-                {currentFeature.points.map((point, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start space-x-3 p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1"
-                    style={{
-                      animationDelay: `${index * 100}ms`,
-                      animation: 'fadeInUp 0.6s ease-out forwards'
-                    }}
-                  >
-                    <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${currentFeature.color} mt-2 flex-shrink-0`}></div>
-                    <p className="text-gray-100 leading-relaxed">
-                      {point}
-                    </p>
+        {/* Main Content Area: Features Grid and Uptime button - Flex layout for horizontal distribution */}
+        <div className="flex flex-col lg:flex-row lg:items-start justify-center lg:justify-between gap-12 mb-24">
+
+          {/* Feature Grid - Takes 2/3 width on large screens, more columns for wider use */}
+          <div className="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12"> {/* Adjusted for 2 columns on MD+, could be 3 for very wide screens */}
+            {features.map((feature, index) => {
+              const isInView = featureVisibility[feature.id];
+              const isCurrentHovered = hoveredFeature === feature.id;
+
+              return (
+                <div
+                  key={feature.id}
+                  ref={el => featureRefs.current[feature.id] = el} // Assign ref to each card
+                  className={`
+                    relative p-8 rounded-2xl border transition-all duration-700 ease-out
+                    flex flex-col items-center text-center
+                    bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md
+                    shadow-2xl
+                    ${isCurrentHovered
+                      ? 'border-blue-400 shadow-blue-400/20 scale-[1.05] transform z-20' // Standard blue hover highlight
+                      : 'border-slate-700/60 hover:border-blue-500/70 hover:shadow-lg'
+                    }
+                    ${isInView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'}
+                  `}
+                  style={{ transitionDelay: isInView ? `${index * 120}ms` : '0ms' }} // Staggered animation on scroll
+                  onMouseEnter={() => setHoveredFeature(feature.id)}
+                  onMouseLeave={() => setHoveredFeature(null)}
+                >
+                  {/* Icon */}
+                  <div className="mb-6 text-6xl flex items-center justify-center w-20 h-20 rounded-full bg-sky-500/15 text-sky-300">
+                    {feature.icon}
                   </div>
-                ))}
+
+                  {/* Title */}
+                  <h3 className="text-3xl font-bold text-white mb-4">{feature.title}</h3>
+
+                  {/* Description - Always visible for simpler layout */}
+                  <p className="text-slate-300 text-base leading-relaxed mb-4">
+                    {feature.description}
+                  </p>
+
+                  {/* Small call to action / more info button */}
+                  <button className="text-sky-300 text-sm font-medium hover:underline flex items-center mt-auto">
+                    Learn More
+                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"></path></svg>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Guaranteed Uptime Side Button Structure - Takes 1/3 width on large screens */}
+          <div className="w-full lg:w-1/3 flex justify-center lg:justify-end">
+            <div
+              ref={uptimeRef}
+              className={`
+                relative flex flex-col items-center justify-center p-8 rounded-full
+                bg-gradient-to-br from-gray-800/60 to-gray-900/60 border border-gray-700/60 shadow-xl
+                min-w-[200px] min-h-[200px] max-w-[280px] max-h-[280px] aspect-square
+                transition-all duration-700 ease-out
+                ${uptimeVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'}
+              `}
+              style={{ transitionDelay: '300ms' }} // Slightly delayed animation
+            >
+              <div className="text-6xl mb-4 text-amber-400"> {/* Distinct icon color for this special feature */}
+                {uptimeFeature.icon}
               </div>
+              <h3 className="text-xl font-bold text-white text-center mb-2">{uptimeFeature.title}</h3>
+              <p className="text-slate-300 text-sm text-center mb-4">{uptimeFeature.description}</p>
+              <button className="text-amber-400 text-sm font-medium hover:underline flex items-center mt-auto">
+                Read More
+                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"></path></svg>
+              </button>
             </div>
           </div>
         </div>
 
         
-        {/* Progress Indicators */}
-        <div className="flex justify-center mt-20 space-x-5">
-          {features.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-4 h-4 rounded-full transition-all duration-300 transform hover:scale-125 ${
-                index === currentIndex
-                  ? `bg-gradient-to-r ${currentFeature.color} shadow-lg`
-                  : 'bg-gray-600 hover:bg-gray-500'
-              }`}
-            />
-          ))}
-        </div>
       </div>
 
       <style jsx>{`
-        @keyframes fadeInUp {
+        /* Custom Keyframes for subtle animations */
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.6; }
+        }
+
+        @keyframes ping-slow {
+          0% {
+            transform: scale(0.9);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1.1);
+            opacity: 0;
+          }
+        }
+
+        @keyframes fadeInMoveUp {
           from {
             opacity: 0;
-            transform: translateY(15px);
+            transform: translateY(20px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
+
+        @keyframes fadeInMoveDown {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-pulse-slow {
+          animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .animate-ping-slow {
+          animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInMoveDown 1s ease-out forwards;
+        }
+        .animate-fade-in-up-delay {
+            animation: fadeInMoveUp 1s ease-out forwards 0.5s; /* Apply a delay */
+        }
+
+        /* Additional delay for the uptime button if needed */
+        .animate-fade-in-up-delay-2 {
+            animation: fadeInMoveUp 1s ease-out forwards 0.8s;
+        }
+
+        .bg-gradient-radial {
+          background: radial-gradient(circle, var(--tw-gradient-stops));
+        }
       `}</style>
     </div>
   );
 };
 
-export default ResoundifyFeatures;
+export default ResoundifyFeaturesNew;
