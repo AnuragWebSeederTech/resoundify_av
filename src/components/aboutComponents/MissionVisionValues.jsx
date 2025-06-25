@@ -116,25 +116,15 @@ const MissionVisionValues = () => {
         
         {/* Header Section */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-4 mb-8">
-            <div className="h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent w-24"></div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
-              <span className="text-sm font-serif text-slate-500 tracking-widest uppercase">Core Principles</span>
-              <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
-            </div>
-            <div className="h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent w-24"></div>
-          </div>
-          
-          <h2 className="text-5xl font-sans text-slate-900 tracking-tight mb-6 leading-tight">
-            Foundation
-            <span className="block font-sans text-4xl text-slate-700 mt-2">& Future</span>
+          <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
+            style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+          >
+            Foundation <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">& Future</span>
           </h2>
-          
-          <p className="text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed font-sans">
-            Our mission, vision, and values form the strategic foundation that drives innovation, 
-            guides decision-making, and shapes our commitment to audio-visual excellence.
+          <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
+            Our mission, vision, and values form the strategic foundation that drives innovation, guides decision-making, and shapes our commitment to audio-visual excellence.
           </p>
+          <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
         </div>
 
 {/* Mission & Vision Section */}

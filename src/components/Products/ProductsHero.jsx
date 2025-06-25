@@ -3,10 +3,10 @@ import React from 'react';
 const ProductsHero = () => {
   return (
     <section 
-      className="relative text-white h-[60vh] py-28 px-6 lg:px-16 overflow-hidden shadow-xl bg-cover bg-center"
+      className="relative text-white h-[65vh] py-55 px-6 lg:px-16 overflow-hidden shadow-xl bg-cover bg-center"
       style={{ backgroundImage: `url('/images/productbg.jpg')` }} // Placeholder image path
     >
-      <div className="absolute inset-0 bg-black opacity-20"></div> {/* Optional: Add an overlay for better text readability */}
+      {/* <div className="absolute inset-0 bg-black opacity-20"></div> Optional: Add an overlay for better text readability */}
 
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         <h1 className="text-5xl md:text-7xl font-medium mb-6 leading-tight tracking-tighter">

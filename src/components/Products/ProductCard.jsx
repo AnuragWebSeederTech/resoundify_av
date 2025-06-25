@@ -13,12 +13,15 @@ const ProductCard = ({ product, isHovered }) => {
     <div
       className={`
         relative bg-white rounded-3xl overflow-hidden shadow-xl
+        flex flex-col h-180
         transform transition-all duration-500 ease-in-out
         ${isHovered ? "scale-105 shadow-2xl ring-4 ring-indigo-300" : "hover:shadow-xl"}
       `}
+      // Removed fixed height or min-height here. The parent will dictate the height.
+      // This card is designed to fill the height provided by its container.
     >
       {/* Product Image with dynamic overlay */}
-      <div className="relative overflow-hidden h-64 md:h-72">
+      <div className="relative overflow-hidden h-64 md:h-72 flex-shrink-0"> {/* flex-shrink-0 ensures image doesn't shrink */}
         <img
           src={product.image}
           alt={product.name}
@@ -41,8 +44,8 @@ const ProductCard = ({ product, isHovered }) => {
         </div>
       </div>
 
-      {/* Product Info */}
-      <div className="p-6">
+      {/* Product Info - Main content area that will grow */}
+      <div className="p-6 flex flex-col flex-grow"> {/* Added flex-grow to make this section take available space */}
         <h3 className="text-3xl font-medium text-gray-900 mb-2 leading-tight">
           {product.name}
         </h3>
@@ -62,8 +65,8 @@ const ProductCard = ({ product, isHovered }) => {
           ))}
         </div>
 
-        {/* Status Indicator & Learn More */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+        {/* Status Indicator & Learn More - Pushed to the bottom */}
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
           <div className="flex items-center space-x-2">
             <div className={`w-3 h-3 ${statusColor} rounded-full animate-pulse-slow`} />
             <span className="text-gray-700 text-sm font-medium">{product.status}</span>
@@ -91,6 +94,7 @@ const ProductCard = ({ product, isHovered }) => {
           </a>
         </div>
       </div>
+
       {/* Animation for pulse-slow */}
       <style jsx>{`
         @keyframes pulse-slow {

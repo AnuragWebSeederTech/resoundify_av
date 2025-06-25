@@ -5,7 +5,8 @@ import ProductsHero from '../components/Products/ProductsHero';
 import ProductFilter from '../components/Products/ProductFilter';  
 import ProductCard from '../components/Products/ProductCard';
 import ProductsGrid from '../components/Products/ProductsGrid';
-import ProductsCTA from '../components/Products/ProductsCTA';
+// import ProductsCTA from '../components/Products/ProductsCTA';
+import JoinCommunitySection from '../components/JoinCommunitySection';
 
 // Main Products Page component
 const ProductsPage = () => {
@@ -107,7 +108,7 @@ const ProductsPage = () => {
   return (
     <>
     <Header />
-    <div className="min-h-screen pt-20 bg-gray-50 font-inter text-gray-800">
+    <div className="min-h-screen bg-gray-50 font-inter text-gray-800">
       {/* Products Hero Section */}
       <ProductsHero />
 
@@ -129,8 +130,8 @@ const ProductsPage = () => {
           />
 
           {/* Call to Action Section */}
-          <ProductsCTA />
         </div>
+        <JoinCommunitySection />
       </section>
     </div>
     <Footer />

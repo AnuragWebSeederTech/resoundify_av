@@ -89,10 +89,10 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen mt-24">
+      <div className="min-h-screen">
         {/* Hero Section with Background Image */}
         <div
-          className="relative bg-cover bg-center bg-no-repeat h-140 flex items-center justify-center"
+          className="relative bg-cover bg-center bg-no-repeat h-170 flex items-center justify-center"
           style={{
             backgroundImage: "url('/images/Contactbg.jpg')",
           }}
