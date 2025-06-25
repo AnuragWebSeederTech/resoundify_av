@@ -4,7 +4,7 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
   return (
     <a
       href={href}
-      className="relative inline-flex items-center justify-center px-8 py-5 w-60 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-royalblue-500 group" // Added 'group' class here
+      className="relative inline-flex items-center justify-center px-8 py-5 w-60 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-white group" // Added 'group' class here
     >
       {/* Button text */}
       <span className="block z-10 group-hover:text-black transition-colors duration-300"> {/* Added group-hover:text-white and transition */}
@@ -63,7 +63,7 @@ const HeroSection = () => {
           {/*
             Accent word: "Audio-Visual" has black text with a slate drop-shadow.
           */}
-          <span className="text-black drop-shadow-[0_0_8px_rgba(255,255,255,0.9)] font-serif"> {/* Slate color is rgba(112,128,144) */}
+          <span className="text-white font-serif"> {/* Slate color is rgba(112,128,144) */}
             Audio-Visual
           </span>{' '}
           Experience

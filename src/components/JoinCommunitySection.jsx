@@ -56,7 +56,7 @@ const ResoundifyHeroSection = () => {
           At Resoundify, we believe in the power of sound to inspire, connect, and transform. Explore our products, connect with our team, and experience the future of AV with Resoundify.
         </p>
         {/* Integrated GradientButton */}
-        <GradientButton text="Contact us" href="#" />
+        <GradientButton text="Join Now!" href="#" />
       </div>
 
       {/* Navigation Arrows (Optional, if this is part of a carousel) */}

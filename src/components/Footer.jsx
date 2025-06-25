@@ -168,10 +168,13 @@ const Footer = () => {
 
           {/* Right section: Designed & Developed by */}
           <div className="text-center md:text-right">
-            <p className="text-slate-400 text-xs">
+            <p className="text-slate-400 text-sm">
               Designed & developed by
               <span className="text-slate-700 cursor-pointer transition-colors duration-300 ml-1 font-semibold hover:text-slate-900">
-                WebSeeder Technologies Pvt Ltd
+                {/* This is the corrected line */}
+                <a href="https://www.webseeder.in" target="_blank" rel="noopener noreferrer">
+                  WebSeeder Technologies Pvt Ltd
+                </a>
               </span>
             </p>
           </div>

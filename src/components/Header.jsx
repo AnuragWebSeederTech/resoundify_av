@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isVisible, setIsVisible] = useState(true); // State for header visibility
+  const [isWhiteBg, setIsWhiteBg] = useState(false); // State for background color
+  const [lastScrollY, setLastScrollY] = useState(0); // To track scroll direction
+  const location = useLocation(); // Hook to get current path
 
   const handleSearchToggle = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -23,31 +27,75 @@ const Header = () => {
     }
   };
 
+  // Effect for handling scroll behavior
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Determine header visibility based on scroll direction
+      if (currentScrollY > lastScrollY && currentScrollY > 100) { // Scroll down
+        setIsVisible(false);
+      } else { // Scroll up
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+
+      // Determine background color based on scroll position and route
+      // Assuming your hero section is at the very top (scrollY < some value, e.g., 600px)
+      // and typically corresponds to the home page (or specific routes)
+      const isHeroSection = location.pathname === '/' && currentScrollY < 600; // Adjust 600 as needed
+      setIsWhiteBg(!isHeroSection && currentScrollY > 50); // Becomes white after scrolling a bit past hero or on other pages
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY, location.pathname]); // Re-run when lastScrollY or path changes
+
   return (
-    <header className="w-full absolute top-0 left-0 right-0 bg-transparent z-50">
+    <header className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300
+      ${isVisible ? 'translate-y-0' : '-translate-y-full'}
+      ${isWhiteBg ? 'bg-white shadow-md text-gray-800' : 'bg-transparent text-white'}`}
+    >
       {/* Merged Top Bar and Main Nav */}
-      <div className="flex bg-transparent justify-between items-center px-6 lg:px-10 py-4 mx-auto relative">
+      <div className="flex justify-between items-center px-6 lg:px-10 py-4 mx-auto relative">
         <div className="flex items-center space-x-4">
-          <img src="/images/resoundifyLogo1.png" alt="Resoundify Logo" className="h-12 w-auto object-cover rounded-lg" />
+          {/* Wrapped logo with Link component */}
+          <Link to="/" className="focus:outline-none"> {/* Added focus:outline-none for accessibility */}
+            <img
+              src={isWhiteBg ? "/images/resoundifyLogo.jpeg" : "/images/resoundifyLogo1.png"}
+              alt="Resoundify Logo"
+              className="h-12 w-auto object-cover rounded-lg cursor-pointer" // Added cursor-pointer for visual cue
+            />
+          </Link>
         </div>
 
-        <nav className="flex items-center space-x-15 font-medium mr-15 text-xl text-white hidden md:flex">
-          <Link to="/" className="relative hover:text-white hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+        <nav className={`flex items-center space-x-15 font-medium mr-15 text-xl hidden md:flex
+          ${isWhiteBg ? 'text-gray-800' : 'text-white'}`}>
+          <Link to="/" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full
+            ${isWhiteBg ? 'hover:text-blue-700 after:bg-blue-700' : 'hover:text-white after:bg-white'}`}>
             Home
           </Link>
-          <Link to="/about" className="relative hover:text-white hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+          <Link to="/about" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full
+            ${isWhiteBg ? 'hover:text-blue-700 after:bg-blue-700' : 'hover:text-white after:bg-white'}`}>
             About
           </Link>
-          <Link to="/products" className="relative hover:text-white hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+          <Link to="/products" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full
+            ${isWhiteBg ? 'hover:text-blue-700 after:bg-blue-700' : 'hover:text-white after:bg-white'}`}>
             Products
           </Link>
-          <Link to="/contact" className="relative hover:text-white hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+          <Link to="/contact" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full
+            ${isWhiteBg ? 'hover:text-blue-700 after:bg-blue-700' : 'hover:text-white after:bg-white'}`}>
             Contact
           </Link>
         </nav>
 
         {/* Contact Icons (moved from original top bar) */}
-        <div className="flex items-center space-x-10 text-white tracking-wide">
+        <div className={`flex items-center space-x-10 tracking-wide
+          ${isWhiteBg ? 'text-gray-800' : 'text-white'}`}>
           <div className="flex items-center space-x-2 hover:text-blue-700 transition duration-300 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
               <rect width="20" height="16" x="2" y="4" rx="2" />

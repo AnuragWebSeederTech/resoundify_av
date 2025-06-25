@@ -1,3 +1,4 @@
+// ContactForm.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, MapPin, Clock, CheckCircle, ArrowRight } from 'lucide-react'; // Assuming lucide-react for icons
 
@@ -20,37 +21,41 @@ const ContactForm = () => {
   // Ref for the map container to potentially initialize a map library
   const mapRef = useRef(null);
 
+  // Added for the animatedElements state, which was referenced in the original code
+  // but not defined. Assuming it's meant for animation on scroll/load.
+  const [animatedElements, setAnimatedElements] = useState(new Set());
+
   // useEffect to handle map initialization (e.g., Google Maps, Leaflet)
   useEffect(() => {
-    // This is where you would integrate your map library.
-    // For example, if using Google Maps:
-    // const initMap = () => {
-    //   if (mapRef.current) {
-    //     new window.google.maps.Map(mapRef.current, {
-    //       center: { lat: 19.0760, lng: 72.8777 }, // Mumbai coordinates
-    //       zoom: 12,
-    //       disableDefaultUI: true, // Example: disable UI controls
-    //     });
-    //   }
-    // };
+    const initMap = () => {
+      if (mapRef.current && window.google && window.google.maps) {
+        // Coordinates for Burj Khalifa, Dubai
+        const burjKhalifaCoords = { lat: 25.1972, lng: 55.2744 };
 
-    // You'd typically load the Google Maps script dynamically if not already present
-    // if (!window.google) {
-    //   const script = document.createElement('script');
-    //   script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_Maps_API_KEY&callback=initMap`;
-    //   script.async = true;
-    //   document.head.appendChild(script);
-    //   window.initMap = initMap; // Make initMap globally accessible for the callback
-    // } else {
-    //   initMap();
-    // }
+        new window.google.maps.Map(mapRef.current, {
+          center: burjKhalifaCoords,
+          zoom: 16, // A good zoom level to see the building
+          disableDefaultUI: false, // You can keep UI controls for better user experience
+        });
+      }
+    };
 
-    // For now, a simple console log indicates where the map logic would go
-    if (mapRef.current) {
-      console.log('Map container is ready. Integrate your map initialization logic here (e.g., Google Maps, Leaflet).');
-      // You could also add a placeholder image or text if the map isn't loading
-      mapRef.current.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500">Map Loading...</div>';
+    // Load Google Maps script dynamically
+    // IMPORTANT: Replace 'YOUR_Maps_API_KEY' with your actual API key
+    if (!window.google) {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_Maps_API_KEY&callback=initMap`;
+      script.async = true;
+      script.defer = true; // Defer script execution
+      document.head.appendChild(script);
+      window.initMap = initMap; // Make initMap globally accessible for the callback
+    } else {
+      initMap(); // If Google Maps is already loaded
     }
+
+    // This part is for the animatedElements, assuming it's meant to trigger on mount
+    // or through an Intersection Observer. For now, it's just setting the first element to visible.
+    setAnimatedElements(prev => new Set(prev).add(0));
 
   }, []); // Empty dependency array means this runs once on mount
 
@@ -100,36 +105,45 @@ const ContactForm = () => {
   const contactMethods = [
     {
       icon: Phone,
-      primary: '+91 98765 43210',
-      secondary: 'Mon-Fri 9am-5pm IST',
+      primary: '+971 4 888 8888', // Updated to a Dubai-like number
+      secondary: 'Mon-Fri 9am-5pm GST', // Updated to GST (Gulf Standard Time)
     },
     {
       icon: Mail,
       primary: 'support@resoundify.com',
       secondary: 'We respond within 24 hours',
     },
-    {
-      icon: Clock,
-      primary: '24/7 Customer Care',
-      secondary: 'Always here to help',
-    },
   ];
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
-      <div className="grid lg:grid-cols-3 gap-12">
+      {/* Heading - Moved outside the grid container */}
+      <div
+        className={`text-center mb-12 transition-all duration-1000 ${
+          animatedElements.has(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+        data-animate={0}
+      >
+        <h2
+          className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
+          style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+        >
+          Contact <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Our Team</span>
+        </h2>
+        <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
+      </div>
 
+      <div className="grid lg:grid-cols-3 gap-12">
         {/* Main Contact Form - Modified for General Inquiries */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-2xl h-185 p-8 shadow-sm border border-gray-200 flex flex-col">
-
+          <div className="bg-white rounded-2xl h-152 p-8 shadow-sm border border-gray-200 flex flex-col">
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
                   <Mail className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900">Contact Our Team</h2>
+                  <h2 className="text-xl font-semibold text-gray-900">Contact Us</h2>
                   <p className="text-sm text-gray-600">For all your queries and customer care needs</p>
                 </div>
               </div>
@@ -141,7 +155,7 @@ const ContactForm = () => {
                   <CheckCircle className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Message Sent!</h3>
-                <p className="text-gray-600">We'll get back to you within 2 hours.</p>
+                <p className="text-gray-600">We'll get back to you within 24 hours.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 flex-grow flex flex-col justify-between">
@@ -204,7 +218,7 @@ const ContactForm = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200 resize-none h-70"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200 resize-none h-50 "
                     placeholder="Please describe your query or concern in detail..."
                     required
                   />
@@ -268,10 +282,10 @@ const ContactForm = () => {
             </div>
 
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-900">Audio District, Mumbai</p>
-              <p className="text-sm text-gray-600">Maharashtra, India 400001</p>
+              <p className="text-sm font-medium text-gray-900">Burj Khalifa</p>
+              <p className="text-sm text-gray-600">1 Sheikh Mohammed bin Rashid Blvd, Downtown Dubai, Dubai, UAE</p>
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=Mumbai,+Maharashtra,+India" // Replace with actual map URL
+                href="https://www.google.com/maps/search/Burj+Khalifa" // Direct link to Google Maps search for Burj Khalifa
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-gray-900 hover:text-gray-700 transition-colors"

@@ -71,7 +71,7 @@ export default function WhatResoundifyDoes() {
             data-animate={1}
           >
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-300 hover:bg-slate-100 transition-all duration-500 hover:shadow-xl hover:shadow-slate-300/30 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-rose-200 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
+              <div className="absolute inset-0 bg-rose-100 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-900 to-slate-700 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Network className="w-8 h-8 text-white" />
@@ -96,7 +96,7 @@ export default function WhatResoundifyDoes() {
             data-animate={2}
           >
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-300 hover:bg-slate-100 transition-all duration-500 hover:shadow-xl hover:shadow-slate-300/30 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-emerald-200 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
+              <div className="absolute inset-0 bg-amber-100 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Cable className="w-8 h-8 text-white" />
@@ -121,7 +121,7 @@ export default function WhatResoundifyDoes() {
             data-animate={3}
           >
             <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-300 hover:bg-slate-100 transition-all duration-500 hover:shadow-xl hover:shadow-slate-300/30 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-indigo-200 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
+              <div className="absolute inset-0 bg-indigo-100 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Monitor className="w-8 h-8 text-white" />
