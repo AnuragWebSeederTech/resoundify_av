@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 
-// GradientButton component with white to slate gradient on hover
 const GradientButton = memo(({ text = 'Button', href = '#' }) => {
   return (
     <a
@@ -23,6 +22,16 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
     </a>
   );
 });
+// Main App component to demonstrate the button with a black background
+const App = () => {
+  return (
+    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+      <GradientButton text="Learn More" href="#" />
+    </div>
+  );
+};
+
+
 
 const HeroSection = () => {
   return (
@@ -37,7 +46,7 @@ const HeroSection = () => {
           playsInline
           preload="metadata"
         >
-          <source src="/images/newbg4.mp4" type="video/mp4" /> {/* Placeholder video URL */}
+          <source src="/images/newbg5.mp4" type="video/mp4" /> {/* Placeholder video URL */}
           Your browser does not support the video tag.
         </video>
       </div>
@@ -49,12 +58,12 @@ const HeroSection = () => {
         {/*
           Main heading: "Redefining" and "Experience" use slate text color with a black drop-shadow.
         */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-300 mb-6 leading-tight tracking-tight animate-fade-in-up delay-[200ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight animate-fade-in-up delay-[200ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
           Redefining <br />
           {/*
             Accent word: "Audio-Visual" has black text with a slate drop-shadow.
           */}
-          <span className="text-black drop-shadow-[0_0_8px_rgba(112,128,144,0.8)] font-serif"> {/* Slate color is rgba(112,128,144) */}
+          <span className="text-black drop-shadow-[0_0_8px_rgba(255,255,255,0.9)] font-serif"> {/* Slate color is rgba(112,128,144) */}
             Audio-Visual
           </span>{' '}
           Experience
@@ -63,7 +72,7 @@ const HeroSection = () => {
         {/*
           Paragraph: White text with a strong black drop-shadow for readability.
         */}
-        <p className="text-lg md:text-xl text-black max-w-4xl mx-auto mb-12 leading-relaxed font-sans animate-fade-in-up delay-[400ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+        <p className="text-lg md:text-xl text-white max-w-4xl mx-auto mb-12 leading-relaxed font-sans animate-fade-in-up delay-[400ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
           At Resoundify, we deliver cutting-edge Dante-enabled solutions that redefine <br /> how you connect, communicate, and create exceptional results.
         </p>
 

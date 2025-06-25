@@ -31,23 +31,23 @@ const Header = () => {
           <img src="/images/resoundifyLogo1.png" alt="Resoundify Logo" className="h-12 w-auto object-cover rounded-lg" />
         </div>
 
-        <nav className="flex items-center space-x-15 font-medium mr-15 text-xl text-black hidden md:flex">
-          <Link to="/" className="relative hover:text-white transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+        <nav className="flex items-center space-x-15 font-medium mr-15 text-xl text-white hidden md:flex">
+          <Link to="/" className="relative hover:text-white hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
             Home
           </Link>
-          <Link to="/about" className="relative hover:text-white transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+          <Link to="/about" className="relative hover:text-white hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
             About
           </Link>
-          <Link to="/products" className="relative hover:text-white transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+          <Link to="/products" className="relative hover:text-white hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
             Products
           </Link>
-          <Link to="/contact" className="relative hover:text-white transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+          <Link to="/contact" className="relative hover:text-white hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
             Contact
           </Link>
         </nav>
 
         {/* Contact Icons (moved from original top bar) */}
-        <div className="flex items-center space-x-10 font tracking-wide">
+        <div className="flex items-center space-x-10 text-white tracking-wide">
           <div className="flex items-center space-x-2 hover:text-blue-700 transition duration-300 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
               <rect width="20" height="16" x="2" y="4" rx="2" />
