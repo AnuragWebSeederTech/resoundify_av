@@ -67,7 +67,7 @@ const HeroSection = () => {
           {/*
             Accent word: "Audio-Visual" has black text with a slate drop-shadow.
           */}
-          <span className="text-white font-serif"> {/* Slate color is rgba(112,128,144) */}
+          <span className="text-white font-[Tilt_Neon]"> {/* Slate color is rgba(112,128,144) */}
             Audio-Visual
           </span>{' '}
           Experience
