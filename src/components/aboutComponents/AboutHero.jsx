@@ -8,7 +8,9 @@ const AboutHero = () => {
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
       <div className="relative z-10 flex items-center justify-center h-full">
-        <h1 className="text-white text-7xl font-bold tracking-wider ">ABOUT</h1>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight tracking-tight animate-fade-in-up delay-[200ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] font-[Tilt_Neon]">
+          ABOUT
+        </h1>
       </div>
     </section>
   );

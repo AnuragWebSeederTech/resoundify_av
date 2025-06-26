@@ -15,8 +15,9 @@ const Footer = () => {
 
   return (
     // Main footer container with an even lighter slate gradient background, subtle shadow, and refined curves
+    // Primary Font (for entire site): Exo 2 applied here
     <footer
-      className="bg-gradient-to-br from-white via-slate-200 to-white text-slate-700 py-12 px-4 sm:px-6 lg:px-8 shadow-sm rounded-t-3xl relative overflow-hidden"
+      className="bg-gradient-to-br from-white via-slate-200 to-white text-slate-700 py-12 px-4 sm:px-6 lg:px-8 shadow-sm rounded-t-3xl relative overflow-hidden font-[Exo_2]"
     >
       {/* Subtle, animated background flourishes for a dynamic feel using very light slate and lower opacity */}
       <div className="absolute -top-10 -left-10 w-32 h-32 bg-slate-200 rounded-full mix-blend-multiply opacity-10 animate-pulse-slow"></div>
@@ -59,7 +60,8 @@ const Footer = () => {
 
           {/* Quick Links Section */}
           <div>
-            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer">
+            {/* Heading Font (for H1, H2): Tilt Neon applied here */}
+            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer font-[Tilt_Neon]">
               Quick Links
               <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
             </h4>
@@ -85,7 +87,8 @@ const Footer = () => {
 
           {/* Services Section */}
           <div>
-            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer">
+            {/* Heading Font (for H1, H2): Tilt Neon applied here */}
+            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer font-[Tilt_Neon]">
               Services
               <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
             </h4>
@@ -111,7 +114,8 @@ const Footer = () => {
 
           {/* Contact Information Section */}
           <div>
-            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer">
+            {/* Heading Font (for H1, H2): Tilt Neon applied here */}
+            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer font-[Tilt_Neon]">
               Get In Touch
               <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
             </h4>

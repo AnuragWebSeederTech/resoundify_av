@@ -98,12 +98,11 @@ export default function ContactPage() {
         >
           <div className="absolute inset-0 bg-black/40 z-0"></div>
 
-          <div className="relative z-10 text-center text-white px-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-              Get in Touch with Resoundify
+          <div className="relative z-10 text-center text-white px-6">  
+            <h1 className="text-5xl md:text-7xl text-white font-medium mb-6 leading-tight tracking-tighter font-[Tilt_Neon]">
+              Get in Touch with <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Resoundify</span>
             </h1>
-
-            <p className="text-lg max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-xl opacity-90 max-w-3xl mx-auto leading-relaxed mb-10">
               Have questions or need assistance? Reach out to our customer care team, we're here to help!
             </p>
           </div>

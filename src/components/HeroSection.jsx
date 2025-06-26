@@ -11,18 +11,21 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
         {text}
       </span>
       {/* Outer border span */}
-      <span class="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
-        {/* Inner span for the sweeping effect with gradient */}
-        <span
-          class="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
-                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-white
-                     active:bg-gray-200"
-        ></span>
-      </span>
+      <span className="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
+        {/* Inner span for the sweeping effect with gradient */}
+        <span
+          className="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
+                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-white
+                     active:bg-gray-200"
+        ></span>
+      </span>
     </a>
   );
 });
+
 // Main App component to demonstrate the button with a black background
+// NOTE: This App component is for demonstration and not part of the HeroSection export.
+// It should be integrated into your main application's routing or parent component.
 const App = () => {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
@@ -32,10 +35,10 @@ const App = () => {
 };
 
 
-
 const HeroSection = () => {
   return (
-    <div className="min-h-[100vh] relative flex flex-col justify-center items-center font-light overflow-hidden text-center">
+    // Primary Font (for entire site): Exo 2 applied here
+    <div className="min-h-[100vh] relative flex flex-col justify-center items-center font-light overflow-hidden text-center font-[Exo_2]">
       {/* Background Video (NO OVERLAY) */}
       <div className="absolute inset-0">
         <video
@@ -57,8 +60,9 @@ const HeroSection = () => {
       <div className="relative z-10 px-40 py-20 text-center">
         {/*
           Main heading: "Redefining" and "Experience" use slate text color with a black drop-shadow.
+          Heading Font (for H1, H2): Tilt Neon applied here
         */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight animate-fade-in-up delay-[200ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight tracking-tight animate-fade-in-up delay-[200ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] font-[Tilt_Neon]">
           Redefining <br />
           {/*
             Accent word: "Audio-Visual" has black text with a slate drop-shadow.
@@ -114,8 +118,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
-
-      
-
-

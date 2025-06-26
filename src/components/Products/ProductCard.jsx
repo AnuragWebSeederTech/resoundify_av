@@ -10,10 +10,11 @@ const ProductCard = ({ product, isHovered }) => {
       : "bg-purple-500"; // For "New Arrival" or other statuses
 
   return (
+    // Primary Font (for entire site): Exo 2 applied here
     <div
       className={`
         relative bg-white rounded-3xl overflow-hidden shadow-xl
-        flex flex-col h-180
+        flex flex-col h-180 font-[Exo_2]
         transform transition-all duration-500 ease-in-out
         ${isHovered ? "scale-105 shadow-2xl ring-4 ring-indigo-300" : "hover:shadow-xl"}
       `}
@@ -46,7 +47,8 @@ const ProductCard = ({ product, isHovered }) => {
 
       {/* Product Info - Main content area that will grow */}
       <div className="p-6 flex flex-col flex-grow"> {/* Added flex-grow to make this section take available space */}
-        <h3 className="text-3xl font-medium text-gray-900 mb-2 leading-tight">
+        {/* Heading Font (for H1, H2): Tilt Neon applied here */}
+        <h3 className="text-3xl font-medium text-gray-900 mb-2 leading-tight font-[Tilt_Neon]">
           {product.name}
         </h3>
         <p className="text-gray-600 mb-5 text-base leading-relaxed line-clamp-3">

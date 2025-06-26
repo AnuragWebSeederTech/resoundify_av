@@ -38,7 +38,8 @@ export default function WhatResoundifyDoes() {
 
   return (
     // Main section container with a light background using specified colors
-    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-24 overflow-hidden font-inter">
+    // Primary Font (for entire site): Exo 2 applied here
+    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-24 overflow-hidden font-[Exo_2]">
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
@@ -49,7 +50,8 @@ export default function WhatResoundifyDoes() {
           }`}
           data-animate={0}
         >
-          <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
+          {/* Heading Font (for H1, H2): Tilt Neon applied here */}
+          <h2 className="text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-900 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             What <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span> Delivers
@@ -167,7 +169,7 @@ export default function WhatResoundifyDoes() {
                              flex items-start space-x-4"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center
-                                 group-hover:scale-110 transition-transform duration-300 border border-slate-700">
+                                   group-hover:scale-110 transition-transform duration-300 border border-slate-700">
                     <IconComponent className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-grow text-left">

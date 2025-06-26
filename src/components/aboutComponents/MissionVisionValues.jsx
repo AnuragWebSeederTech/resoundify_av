@@ -34,7 +34,6 @@ const MissionVisionValues = () => {
       description: 'Pioneering breakthrough technologies that redefine industry standards and push the boundaries of what\'s possible in professional AV.',
       icon: '⚡',
       principles: ['Continuous R&D Investment', 'Emerging Technology Adoption', 'Patent Development'],
-      impact: 'Technology Leadership',
       // Changed to blue gradient
       color: 'from-blue-500 to-blue-700' 
     },
@@ -44,7 +43,6 @@ const MissionVisionValues = () => {
       description: 'Engineering solutions with enterprise-grade dependability, ensuring mission-critical performance when it matters most.',
       icon: '🛡️',
       principles: ['Rigorous Testing Protocols', '24/7 System Monitoring', 'Redundant Architecture'],
-      impact: 'Zero Downtime',
       // Changed to a sky/cyan gradient
       color: 'from-sky-500 to-cyan-700' 
     },
@@ -101,9 +99,10 @@ const MissionVisionValues = () => {
   }, []);
 
   return (
+    // Primary Font (for entire site): Exo 2 applied here
     <section 
       ref={sectionRef}
-      className="py-20 px-6 lg:px-20 bg-gradient-to-br from-gray-50 via-slate-50 to-stone-50 min-h-[75vh] relative overflow-hidden"
+      className="py-20 px-6 lg:px-20 bg-gradient-to-br from-gray-50 via-slate-50 to-stone-50 min-h-[75vh] relative overflow-hidden font-[Exo_2]"
     >
       {/* Background Elements - updated to use more blue-ish blurs */}
       <div className="absolute inset-0 opacity-[0.02]">
@@ -116,7 +115,8 @@ const MissionVisionValues = () => {
         
         {/* Header Section */}
         <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
+          {/* Heading Font (for H1, H2): Tilt Neon applied here */}
+          <h2 className="text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-900 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             Foundation <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">& Future</span>
@@ -197,7 +197,8 @@ const MissionVisionValues = () => {
         {/* Values Section */}
         <div className="mb-16">
           <div className="text-center mb-16">
-            <h2 className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
+            {/* Heading Font (for H1, H2): Tilt Neon applied here */}
+            <h2 className="text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-900 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             Core <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Values</span>
@@ -206,7 +207,7 @@ const MissionVisionValues = () => {
               Six fundamental principles that guide our operations, innovation, and commitment to excellence.
             </p>
             <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
-        
+          
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -221,8 +222,8 @@ const MissionVisionValues = () => {
                 onMouseLeave={() => setHoveredValue(null)}
               >
                 <div className={`bg-white border border-slate-200 rounded-xl p-8 h-full shadow-sm 
-                                 transition-all duration-300 transform hover:shadow-lg hover:border-slate-300 hover:scale-105 
-                                 ${hoveredValue === value.id ? 'shadow-md border-slate-300 -translate-y-1' : ''}`}>
+                                    transition-all duration-300 transform hover:shadow-lg hover:border-slate-300 hover:scale-105 
+                                    ${hoveredValue === value.id ? 'shadow-md border-slate-300 -translate-y-1' : ''}`}>
                   
                   {/* Icon & Title */}
                   <div className="mb-6">

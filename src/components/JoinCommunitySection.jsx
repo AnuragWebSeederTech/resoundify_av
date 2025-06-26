@@ -13,13 +13,13 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
       </span>
       {/* Outer border span */}
       <span class="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
-        {/* Inner span for the sweeping effect with gradient */}
-        <span
-          class="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
-                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-white
-                     active:bg-gray-200"
-        ></span>
-      </span>
+        {/* Inner span for the sweeping effect with gradient */}
+        <span
+          class="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
+                         group-hover:-rotate-90 group-hover:w-full group-hover:bg-white
+                         active:bg-gray-200"
+        ></span>
+      </span>
     </a>
   );
 });
@@ -27,14 +27,15 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
 const ResoundifyHeroSection = () => {
   return (
     <div className="relative w-full max-w-fit mx-auto my-8 h-96
-                    bg-gradient-to-b from-black via-slate-900 to-black
-                    flex items-center justify-between overflow-hidden
-                    rounded-xl shadow-2xl"> {/* Added max-w, mx-auto, my-8, rounded-xl, shadow-2xl, and gradient */}
+                     bg-gradient-to-b from-black via-slate-900 to-black
+                     flex items-center justify-between overflow-hidden
+                     rounded-xl shadow-2xl"
+         style={{ fontFamily: '"Exo 2", sans-serif' }}> {/* Primary Font applied here */}
 
       {/* Left side: Image (placeholder for an AV product or a stylized sound wave/icon) with radial gradient */}
       <div className="absolute inset-y-0 left-0 w-1/2 flex items-center justify-center">
         <div
-          className="absolute inset-0 bg-gradient-to-l from-black-50 via-slate-600  to-black-50"
+          className="absolute inset-0 bg-gradient-to-l from-black-50 via-slate-600 to-black-50"
           // style={{
           //   background: 'radial-gradient(circle at center, rgba(30,30,30,1) 0%, rgba(0,0,0,0) 70%)',
           // }}
@@ -49,12 +50,14 @@ const ResoundifyHeroSection = () => {
 
       {/* Right side: Text content - Adapted from Resoundify content */}
       <div className="relative z-20 flex-1 flex flex-col items-start justify-center p-8 text-white ml-[50%]">
-        <h2 className="text-5xl font-bold mb-4">
-          Resoundify Community
-        </h2>
-        <p className="text-xl mb-8">
-          At Resoundify, we believe in the power of sound to inspire, connect, and transform. Explore our products, connect with our team, and experience the future of AV with Resoundify.
-        </p>
+        <h2 className="text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-200 mb-6 tracking-tight"
+            style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+            >
+              Resoundify <span className="font-semibold bg-gradient-to-br from-slate-600 to-slate-200 bg-clip-text text-transparent">Community</span>
+            </h2>
+        <p className="text-lg text-white mb-5 leading-relaxed">
+            At Resoundify, we believe in the power of sound to inspire, connect, and transform. Explore our products, connect with our team, and experience the future of AV with Resoundify.
+          </p>
         {/* Integrated GradientButton */}
         <GradientButton text="Join Now!" href="#" />
       </div>

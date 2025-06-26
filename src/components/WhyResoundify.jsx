@@ -116,7 +116,8 @@ const ResoundifyFeaturesNew = () => {
     <div
       ref={containerRef}
       // Ensure the component covers the full width and has a minimum height of 90vh
-      className="relative w-full min-h-[90vh] bg-gradient-to-br from-black via-gray-950 to-black py-20 px-8 overflow-hidden font-['Inter']"
+      // Primary Font (for entire site): Exo 2 applied here
+      className="relative w-full min-h-[90vh] bg-gradient-to-br from-black via-gray-950 to-black py-20 px-8 overflow-hidden font-['Exo_2']"
     >
       {/* Subtle Background Particles - Reduced quantity and increased animation duration for smoothness */}
       <div className="absolute inset-0 overflow-hidden">
@@ -149,11 +150,12 @@ const ResoundifyFeaturesNew = () => {
         {/* Floating Header - Animates on initial load */}
         <div className="text-center mb-24 opacity-0 translate-y-[-20px] animate-fade-in-up">
           <div className="relative inline-block">
-            <h2 className="text-5xl lg:text-6xl font-sans text-slate-200 mb-6 tracking-tight"
+            {/* Heading Font (for H1, H2): Tilt Neon applied here */}
+            <h2 className="text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-200 mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
-          >
-            Why Choose <span className="font-semibold bg-gradient-to-br from-slate-600 to-slate-200 bg-clip-text text-transparent">Resoundify</span>
-          </h2>
+            >
+              Why Choose <span className="font-semibold bg-gradient-to-br from-slate-600 to-slate-200 bg-clip-text text-transparent">Resoundify</span>
+            </h2>
             {/* Subtler title glow using standard shades */}
             <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-sky-500/10 to-indigo-500/10 blur-xl rounded-full"></div>
           </div>
@@ -162,7 +164,7 @@ const ResoundifyFeaturesNew = () => {
             Discover the core capabilities that power unparalleled audio experiences.
           </p>
            <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
-       
+        
         </div>
 
         {/* Main Content Area: Features Grid and Uptime button - Flex layout for horizontal distribution */}

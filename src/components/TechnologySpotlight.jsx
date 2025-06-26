@@ -60,7 +60,7 @@ const DanteTechnologySection = () => {
     // For a cleaner scroll-highlight experience, it's often best to let scroll
     // dictate the active state.
     // const interval = setInterval(() => {
-    //   setActivePoint((prev) => (prev + 1) % points.length);
+    //   setActivePoint((prev) => (prev + 1) % points.length);
     // }, 3500);
     // return () => clearInterval(interval);
   }, [points.length]);
@@ -163,7 +163,8 @@ const DanteTechnologySection = () => {
   }, [headerOffsetTop, isVideoSectionReached, activePoint]); // Added activePoint to dependency array to trigger re-evaluation when it changes
 
   return (
-    <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    // Apply Primary Font (Exo 2) to the entire section
+    <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 font-['Exo_2']">
       {/* Spacer to reserve space for the fixed header, preventing content jump */}
       {isHeaderFixed && (
         <div style={{ height: headerRef.current ? headerRef.current.offsetHeight : 0 }}></div>
@@ -172,8 +173,9 @@ const DanteTechnologySection = () => {
       <div className='h-[15vh] py-10 mb-5'>
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="relative">
+            {/* Apply Heading Font (Tilt Neon) to the h2 */}
             <h2
-              className="text-5xl lg:text-6xl font-sans text-slate-900 mb-6 tracking-tight"
+              className="text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-900 mb-6 tracking-tight"
               style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
             >
               Technology <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">Spotlight</span>
@@ -282,7 +284,8 @@ const DanteTechnologySection = () => {
         {/* Revolutionary Video Section (will scroll into view after the points) */}
         <div ref={videoSectionRef} className="mt-32 pb-24">
           <div className="text-center mb-16">
-            <h3 className="text-6xl font-sans text-slate-800 mb-6">
+            {/* Apply Heading Font (Tilt Neon) to the h3 */}
+            <h3 className="text-6xl font-['Tilt_Neon'] text-slate-800 mb-6">
               Experience the <span className="bg-gradient-to-r from-slate-800 to-slate-400 font-semibold bg-clip-text text-transparent">Revolution</span>
             </h3>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">

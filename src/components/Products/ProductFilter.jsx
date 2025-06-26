@@ -2,7 +2,8 @@ import React from 'react';
 
 const ProductFilter = ({ categories, activeCategory, setActiveCategory }) => {
   return (
-    <div className="flex flex-wrap justify-center gap-4 mb-16 px-4 py-3 bg-white rounded-full shadow-lg max-w-fit mx-auto">
+    // Primary Font (for entire site): Exo 2 applied here
+    <div className="flex flex-wrap justify-center gap-4 mb-16 px-4 py-3 bg-white rounded-full shadow-lg max-w-fit mx-auto font-[Exo_2]">
       {categories.map((category) => (
         <button
           key={category.id}

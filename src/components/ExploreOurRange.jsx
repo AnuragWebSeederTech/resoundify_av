@@ -14,12 +14,12 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
       </span>
       
       <span class="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
-        
+        
       {/* Inner span for the sweeping effect with white background */}
       <span
         className="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
-                     group-hover:-rotate-90 group-hover:w-full group-hover:bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400
-                     active:bg-gray-200"
+                    group-hover:-rotate-90 group-hover:w-full group-hover:bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400
+                    active:bg-gray-200"
       ></span>
       </span>
       {/* Outer border span - removed as original button had no explicit border */}
@@ -89,7 +89,7 @@ export default function ExploreProductsSection() {
         }
         
         /* The wave-line and particle animations are not directly present on an element in the provided JSX,
-           but keeping their definitions here in case they are applied dynamically or elsewhere. */
+            but keeping their definitions here in case they are applied dynamically or elsewhere. */
         .wave-line {
           animation: wave 3s ease-in-out infinite;
         }
@@ -112,7 +112,7 @@ export default function ExploreProductsSection() {
       `}</style>
 
       <section
-        className="relative h-[75vh] bg-white overflow-hidden flex items-center justify-center"
+        className="relative h-[75vh] bg-white overflow-hidden flex items-center justify-center font-['Exo_2']" // Primary Font (Exo 2) applied here
       >
         {/* Background gradient patch that follows cursor */}
         <div
@@ -137,7 +137,7 @@ export default function ExploreProductsSection() {
               {/* Content Side with Static Text and Initial Animation */}
               <div className="space-y-8">
                 <div className="space-y-6">
-                  <h1 className="text-5xl lg:text-6xl font-sans text-slate-900 leading-tight">
+                  <h1 className="text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-900 leading-tight"> {/* Heading Font (Tilt Neon) applied here */}
                     {["Unleash the ", "Future", " of Audio Excellence"].map((segment, segIndex) => (
                       <React.Fragment key={segIndex}>
                         {segment.split('').map((char, charIndex) => (
