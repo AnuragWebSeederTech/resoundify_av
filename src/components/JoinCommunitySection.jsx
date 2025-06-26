@@ -12,10 +12,10 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
         {text}
       </span>
       {/* Outer border span */}
-      <span class="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
+      <span className="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
         {/* Inner span for the sweeping effect with gradient */}
         <span
-          class="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
+          className="block absolute w-0 h-[500%] bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-60 transition-all duration-1000 ease-out
                          group-hover:-rotate-90 group-hover:w-full group-hover:bg-white
                          active:bg-gray-200"
         ></span>

@@ -11,6 +11,7 @@ import Clients from '../components/Clients';
 import ContactForm from '../components/Contact/ContactForm';
 
 export default function Home() {
+  console.log("Home page rendered");
   return (
     <>
       <Header />

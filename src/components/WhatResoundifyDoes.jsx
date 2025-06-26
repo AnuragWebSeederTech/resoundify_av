@@ -3,27 +3,32 @@ import { Network, Monitor, Cable, CheckCircle, Zap, ArrowRight, Target, Globe } 
 
 export default function WhatResoundifyDoes() {
   const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  // We don't necessarily need isVisible state if we only animate once.
+  // We'll use a ref to track if the animations have already played.
+  const animationsPlayed = useRef(false);
   const [animatedElements, setAnimatedElements] = useState(new Set());
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries, obs) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
+          if (entry.isIntersecting && !animationsPlayed.current) {
+            // Only trigger animations if intersecting AND they haven't played yet
+            animationsPlayed.current = true; // Mark as played
             const elements = entry.target.querySelectorAll('[data-animate]');
-            elements.forEach((el, index) => {
+            elements.forEach((el) => {
+              const index = parseInt(el.dataset.animate, 10);
+              // Only add to the set if it's not already there
               if (!animatedElements.has(index)) {
                 setTimeout(() => {
                   setAnimatedElements(prev => new Set([...prev, index]));
                 }, index * 100);
               }
             });
-          } else {
-            setIsVisible(false);
-            setAnimatedElements(new Set());
+            obs.disconnect(); // Stop observing once animations are triggered
           }
+          // No 'else' block needed here if we want one-time animation
+          // The elements will stay visible due to the CSS classes
         });
       },
       { threshold: 0.15, rootMargin: '100px' }
@@ -33,13 +38,15 @@ export default function WhatResoundifyDoes() {
       observer.observe(sectionRef.current);
     }
 
+    // Cleanup function: disconnect observer if component unmounts before animation plays
     return () => observer.disconnect();
-  }, [animatedElements]);
+  }, []); // Empty dependency array: Effect runs once on mount
 
+  console.log("WhatResoundifyDoes Rendered");
   return (
     // Main section container with a light background using specified colors
-    // Primary Font (for entire site): Exo 2 applied here
-    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-24 overflow-hidden font-[Exo_2]">
+    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-24 overflow-hidden"
+    style={{ fontFamily: 'Exo 2, sans-serif' }}> {/* Apply Exo 2 directly */}
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
@@ -51,8 +58,8 @@ export default function WhatResoundifyDoes() {
           data-animate={0}
         >
           {/* Heading Font (for H1, H2): Tilt Neon applied here */}
-          <h2 className="text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-900 mb-6 tracking-tight"
-            style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+          <h2 className="text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
+            style={{ fontFamily: 'Tilt Neon, cursive', textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             What <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span> Delivers
           </h2>
@@ -143,7 +150,7 @@ export default function WhatResoundifyDoes() {
 
         {/* Performance Metrics Section */}
         <div
-          className={`group relative transition-all duration-1000 delay-400 ${
+          className={`group relative transition-all duration-1000 delay-[300ms] ${ // Adjusted delay for a smoother flow
             animatedElements.has(4) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
           data-animate={4}

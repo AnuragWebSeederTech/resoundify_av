@@ -83,7 +83,7 @@ const Clients = () => {
       </div>
 
       {/* Internal CSS for component-specific styles */}
-      <style jsx>{`
+      <style>{`
         .font-inter {
           font-family: 'Inter', sans-serif;
         }

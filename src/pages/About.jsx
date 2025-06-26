@@ -11,6 +11,7 @@ import Testimonial from '../components/Testimonial';
 const About = () => {
   return (
     <div className="relative">
+      {/* console.log("About page rendered"); */}
       <Header />
       <AboutHero />
       <MissionVisionValues />

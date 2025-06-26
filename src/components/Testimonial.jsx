@@ -133,7 +133,7 @@ const TestimonialsSection = () => {
           </div>
         </div>
       </div>
-      <style jsx>{`
+      <style>{`
         .marquee-content {
           animation: marquee 60s linear infinite; /* Adjust duration for desired speed */
           display: flex;

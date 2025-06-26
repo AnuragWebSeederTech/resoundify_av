@@ -323,7 +323,7 @@ const DanteTechnologySection = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes dash {
           to {
             stroke-dashoffset: -20;

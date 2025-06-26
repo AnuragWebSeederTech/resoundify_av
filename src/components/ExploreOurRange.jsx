@@ -13,7 +13,7 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
         {text}
       </span>
       
-      <span class="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
+      <span className="absolute inset-0 z-0 border-3 border-royalblue-500 rounded-2xl overflow-hidden group-hover:border-black transition-colors duration-300"> {/* Changed group-hover:border-white to group-hover:border-black */}
         
       {/* Inner span for the sweeping effect with white background */}
       <span
@@ -45,7 +45,7 @@ export default function ExploreProductsSection() {
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         .gradient-spotlight {
           position: absolute;
           width: 500px;

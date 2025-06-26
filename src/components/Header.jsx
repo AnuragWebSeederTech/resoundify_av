@@ -1,74 +1,72 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useLocation } from 'react-router-dom';
+
+// Simple throttling function
+const throttle = (func, limit) => {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
+}
 
 const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isVisible, setIsVisible] = useState(true); // State for header visibility
-  const [isWhiteBg, setIsWhiteBg] = useState(false); // State for background color
-  const [lastScrollY, setLastScrollY] = useState(0); // To track scroll direction
-  const location = useLocation(); // Hook to get current path
-
-  const handleSearchToggle = () => {
-    setIsSearchOpen(!isSearchOpen);
-    setSearchTerm("");
-  };
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchTerm.trim()) {
-      console.log("Searching for:", searchTerm);
-      setIsSearchOpen(false);
-      setSearchTerm("");
-    }
-  };
+  const [isVisible, setIsVisible] = useState(true);
+  const [isWhiteBg, setIsWhiteBg] = useState(false);
+  const lastScrollY = useRef(0); // Using useRef for lastScrollY
+  const location = useLocation();
 
   // Effect for handling scroll behavior
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Determine header visibility based on scroll direction
-      if (currentScrollY > lastScrollY && currentScrollY > 100) { // Scroll down
-        setIsVisible(false);
-      } else { // Scroll up
-        setIsVisible(true);
+      // Update visibility only if necessary
+      const shouldBeVisible = !(currentScrollY > lastScrollY.current && currentScrollY > 100);
+      if (isVisible !== shouldBeVisible) {
+        setIsVisible(shouldBeVisible);
       }
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY; // Update ref directly
 
       // Determine background color based on scroll position and route
-      // Assuming your hero section is at the very top (scrollY < some value, e.g., 600px)
-      // and typically corresponds to the home page (or specific routes)
-      const isHeroSection = location.pathname === '/' && currentScrollY < 600; // Adjust 600 as needed
-      setIsWhiteBg(!isHeroSection && currentScrollY > 50); // Becomes white after scrolling a bit past hero or on other pages
+      const isHeroSection = location.pathname === '/' && currentScrollY < 600;
+      const shouldBeWhiteBg = !isHeroSection && currentScrollY > 50;
+      if (isWhiteBg !== shouldBeWhiteBg) {
+        setIsWhiteBg(shouldBeWhiteBg);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // Throttle the scroll event listener
+    const throttledHandleScroll = throttle(handleScroll, 100); // Adjust throttle time (e.g., 100ms)
 
-    // Cleanup the event listener on component unmount
+    window.addEventListener("scroll", throttledHandleScroll);
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", throttledHandleScroll);
     };
-  }, [lastScrollY, location.pathname]); // Re-run when lastScrollY or path changes
+  }, [isVisible, isWhiteBg, location.pathname]); // Removed lastScrollY from dependency array
+
+  console.log("Header Rendered"); // You'll see this render less often now
 
   return (
     <header className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300
       ${isVisible ? 'translate-y-0' : '-translate-y-full'}
       ${isWhiteBg ? 'bg-white shadow-md text-gray-800' : 'bg-transparent text-white'}`}
     >
-      {/* Merged Top Bar and Main Nav */}
       <div className="flex justify-between items-center px-6 lg:px-10 py-4 mx-auto relative">
         <div className="flex items-center space-x-4">
-          {/* Wrapped logo with Link component */}
-          <Link to="/" className="focus:outline-none"> {/* Added focus:outline-none for accessibility */}
+          <Link to="/" className="focus:outline-none">
             <img
               src={isWhiteBg ? "/images/resoundifyLogo.jpeg" : "/images/resoundifyLogo1.png"}
               alt="Resoundify Logo"
-              className="h-12 w-auto object-cover rounded-lg cursor-pointer" // Added cursor-pointer for visual cue
+              className="h-12 w-auto object-cover rounded-lg cursor-pointer"
             />
           </Link>
         </div>
@@ -93,7 +91,6 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Contact Icons (moved from original top bar) */}
         <div className={`flex items-center space-x-10 tracking-wide
           ${isWhiteBg ? 'text-gray-800' : 'text-white'}`}>
           <div className="flex items-center space-x-2 hover:text-blue-700 transition duration-300 cursor-pointer">
@@ -116,16 +113,8 @@ const Header = () => {
           </a>
         </div>
       </div>
-
-      {/* Global font style */}
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        header, header * {
-          font-family: 'Inter', sans-serif;
-        }
-      `}</style>
     </header>
   );
 };
 
-export default Header;
+export default React.memo(Header); // Wrap with React.memo

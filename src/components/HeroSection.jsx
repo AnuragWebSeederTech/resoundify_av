@@ -36,6 +36,8 @@ const App = () => {
 
 
 const HeroSection = () => {
+  console.log("HeroSection Rendered");
+  
   return (
     // Primary Font (for entire site): Exo 2 applied here
     <div className="min-h-[100vh] relative flex flex-col justify-center items-center font-light overflow-hidden text-center font-[Exo_2]">
@@ -87,7 +89,7 @@ const HeroSection = () => {
       </div>
 
       {/* Fade-in Animation */}
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in-up {
           from {
             opacity: 0;
