@@ -57,20 +57,20 @@ const WhyResoundify = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 mb-16"> {/* Added mb-16 for spacing below grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-16"> {/* Added mb-16 for spacing below grid */}
           {features.map((feature) => (
             <div
               key={feature.id}
-              className="bg-white shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className={`bg-white shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ${feature.imagePosition === 'top' ? 'rounded-t-2xl' : 'rounded-b-2xl'}`}
             >
               {/* Original feature layout */}
               {feature.imagePosition === 'top' && (
                 <>
-                  <div className="aspect-w-16 aspect-h-12 overflow-hidden">
+                  <div className="aspect-w-16 aspect-h-12 overflow-hidden bg-gray-700 rounded-t-2xl">
                     <img
                       src={feature.image}
                       alt={feature.title}
-                      className="w-full h-80 object-cover hover:scale-105 transition-transform duration-300"
+                      className="w-full p-5 h-80 object-cover hover:scale-115 transition-transform duration-300 rounded-t-4xl" // Added rounded-lg here
                     />
                   </div>
                   <div className="p-12">
@@ -94,7 +94,7 @@ const WhyResoundify = () => {
 
               {feature.imagePosition === 'bottom' && (
                 <>
-                  <div className="p-12">
+                  <div className="p-12 ">
                     <h3 className="text-3xl font-bold text-gray-900 mb-6">
                       {feature.title}
                     </h3>
@@ -108,11 +108,11 @@ const WhyResoundify = () => {
                       </svg>
                     </button>
                   </div>
-                  <div className="aspect-w-16 aspect-h-12 overflow-hidden">
+                  <div className="aspect-w-16 aspect-h-12 overflow-hidden bg-gray-700 rounded-b-2xl">
                     <img
                       src={feature.image}
                       alt={feature.title}
-                      className="w-full h-80 object-cover hover:scale-105 transition-transform duration-300"
+                      className="w-full p-5 h-80 object-cover hover:scale-115 transition-transform duration-300 rounded-b-4xl" // Added rounded-lg here
                     />
                   </div>
                 </>
@@ -125,7 +125,7 @@ const WhyResoundify = () => {
 
         {/* Independent CTA Section with Background Image and Overlay */}
         <div
-          className="w-full text-white p-12 text-center shadow-xl rounded-lg relative overflow-hidden" // Added relative and overflow-hidden
+          className="w-full text-white p-12 text-center shadow-xl rounded-2xl relative overflow-hidden" // Added relative and overflow-hidden
           style={{
             // backgroundImage: "url('/images/Uptime.png')", // <--- **IMPORTANT: Update this path to your actual image!**
             backgroundSize: 'cover',
@@ -135,7 +135,7 @@ const WhyResoundify = () => {
           }}
         >
           {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-sky-700 to-white opacity-70 rounded-lg z-0"></div> {/* Increased opacity slightly */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-sky-700 to-black opacity-70 rounded-lg z-0"></div> {/* Increased opacity slightly */}
 
           {/* Content of the CTA */}
           <div className="relative z-10 flex flex-col items-center justify-center">
@@ -146,7 +146,10 @@ const WhyResoundify = () => {
             <p className="text-2xl mb-10 max-w-4xl mx-auto leading-relaxed"> {/* Changed max-w-7xl to max-w-4xl for better readability */}
               {ctaFeature.description}
             </p>
-            
+            {/* You can add a button here for the CTA, e.g.: */}
+            {/* <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-xl transition duration-300 shadow-lg">
+              Contact Us
+            </button> */}
           </div>
         </div>
 
