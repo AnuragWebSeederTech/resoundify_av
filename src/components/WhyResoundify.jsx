@@ -6,21 +6,21 @@ const WhyResoundify = () => {
       id: 1,
       title: "Dante Integration",
       description: "Seamless Dante integration for flawless AV transmission. Ensures reliable, ultra-low latency audio.",
-      image: "/images/why1.png", // Image related to networking/integration
+      image: "/images/why2.png", // Image related to networking/integration
       imagePosition: "top"
     },
     {
       id: 2,
       title: "Crystal-Clear Audio",
       description: "Delivers crystal-clear, professional-grade audio. Guarantees noise-free transmission over IP networks.",
-      image: "https://images.unsplash.com/photo-1506728097560-ef021870500e?w=500&h=400&fit=crop", // Image related to clear audio/sound waves
+      image: "/images/why1.png", // Image related to clear audio/sound waves
       imagePosition: "bottom"
     },
     {
       id: 3,
       title: "Ultra-Low Latency",
       description: "Achieve ultra-low latency for all real-time applications. Optimized for minimal delay and rapid response.",
-      image: "https://images.unsplash.com/photo-1542475765-b7713f019f3e?w=500&h=400&fit=crop", // Image related to speed/real-time
+      image: "/images/Latency.png", // Image related to speed/real-time
       imagePosition: "top"
     },
     {
@@ -40,7 +40,7 @@ const WhyResoundify = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-b from-gray-100 to-blue-200">
       <div className="w-[90%] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -53,7 +53,7 @@ const WhyResoundify = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {features.map((feature) => (
             <div
               key={feature.id}
