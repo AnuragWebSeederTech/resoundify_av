@@ -1,6 +1,7 @@
 import React from 'react';
 
 const WhyResoundify = () => {
+  // Separate the regular features from the CTA feature
   const features = [
     {
       id: 1,
@@ -29,37 +30,40 @@ const WhyResoundify = () => {
       description: "Highly scalable for any enterprise AV system. Supports hundreds of channels with flexible architecture.",
       image: "https://images.unsplash.com/photo-1517430816045-df4b7de11677?w=500&h=400&fit=crop", // Image related to scalability/growth
       imagePosition: "bottom"
-    },
-    {
-      id: 5,
-      title: "Guaranteed Uptime",
-      description: "Guaranteed 99.9% uptime with enterprise-grade reliability. Supported by redundant systems and 24/7 monitoring.",
-      image: "/images/why5.png", // Image related to reliability/uptime
-      imagePosition: "top"
     }
   ];
+
+  // Define the CTA feature separately
+  const ctaFeature = {
+    id: 5,
+    title: "Guaranteed Uptime", // Title will be used in the new CTA structure
+    description: "Experience unparalleled reliability with Resoundify's guaranteed 99.9% uptime. Our enterprise-grade systems are backed by redundant infrastructure and 24/7 monitoring, ensuring your audio-visual communications are always online and performing flawlessly.",
+  };
 
   return (
     <section className="py-20 bg-gradient-to-b from-gray-100 to-blue-200">
       <div className="w-[90%] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-gray-900 mb-6">
-            Why Choose Resoundify?
+          <h2 className="text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
+            style={{ fontFamily: 'Tilt Neon, cursive', textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+          >
+            Why Choose <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span>
           </h2>
           <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
             Discover our comprehensive suite of advanced audio-visual solutions designed to transform your communication experience with cutting-edge technology.
           </p>
+          <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-16"> {/* Added mb-16 for spacing below grid */}
           {features.map((feature) => (
             <div
               key={feature.id}
               className="bg-white shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              {/* Image on top layout */}
+              {/* Original feature layout */}
               {feature.imagePosition === 'top' && (
                 <>
                   <div className="aspect-w-16 aspect-h-12 overflow-hidden">
@@ -88,7 +92,6 @@ const WhyResoundify = () => {
                 </>
               )}
 
-              {/* Text on top layout */}
               {feature.imagePosition === 'bottom' && (
                 <>
                   <div className="p-12">
@@ -116,6 +119,20 @@ const WhyResoundify = () => {
               )}
             </div>
           ))}
+        </div>
+
+        {/* --- */}
+
+        {/* Independent CTA Section */}
+        <div className="w-full bg-blue-500 text-white p-5 text-center shadow-xl rounded-lg"> {/* Added w-full, p-16, rounded-lg */}
+          <h2 className="text-5xl font-extrabold mb-6">
+            <span className="block text-blue-300 text-3xl font-semibold mb-2">Experience Unwavering Reliability</span>
+            99.9% Uptime Guarantee
+          </h2>
+          <p className="text-2xl mb-10 max-w-7xl mx-auto leading-relaxed">
+            {ctaFeature.description}
+          </p>
+          
         </div>
 
       </div>
