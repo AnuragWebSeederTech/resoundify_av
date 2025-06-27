@@ -1,151 +1,126 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const ResoundifyFeatures = () => {
-  // Crisped features content with one-word headings and two-line descriptions
+const WhyResoundify = () => {
   const features = [
     {
       id: 1,
-      title: "Dante",
+      title: "Dante Integration",
       description: "Seamless Dante integration for flawless AV transmission. Ensures reliable, ultra-low latency audio.",
-      image: "/images/Dante_Centric.png" // Generated image for Dante
+      image: "/images/why1.png", // Image related to networking/integration
+      imagePosition: "top"
     },
     {
       id: 2,
-      title: "Audio",
+      title: "Crystal-Clear Audio",
       description: "Delivers crystal-clear, professional-grade audio. Guarantees noise-free transmission over IP networks.",
-      image: "/images/Transmission.png" // Generated image for Audio
+      image: "https://images.unsplash.com/photo-1506728097560-ef021870500e?w=500&h=400&fit=crop", // Image related to clear audio/sound waves
+      imagePosition: "bottom"
     },
     {
       id: 3,
-      title: "Latency",
+      title: "Ultra-Low Latency",
       description: "Achieve ultra-low latency for all real-time applications. Optimized for minimal delay and rapid response.",
-      image: "/images/Latency.png" // Generated image for Latency
+      image: "https://images.unsplash.com/photo-1542475765-b7713f019f3e?w=500&h=400&fit=crop", // Image related to speed/real-time
+      imagePosition: "top"
     },
     {
       id: 4,
-      title: "Scale",
+      title: "Highly Scalable",
       description: "Highly scalable for any enterprise AV system. Supports hundreds of channels with flexible architecture.",
-      image: "/images/Scalable.png" // Generated image for Scale
+      image: "https://images.unsplash.com/photo-1517430816045-df4b7de11677?w=500&h=400&fit=crop", // Image related to scalability/growth
+      imagePosition: "bottom"
     },
     {
       id: 5,
-      title: "Uptime",
+      title: "Guaranteed Uptime",
       description: "Guaranteed 99.9% uptime with enterprise-grade reliability. Supported by redundant systems and 24/7 monitoring.",
-      image: "/images/Uptime.png" // Generated image for Uptime
+      image: "https://images.unsplash.com/photo-1582213782179-e0d16ac9f122?w=500&h=400&fit=crop", // Image related to reliability/uptime
+      imagePosition: "top"
     }
   ];
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  // Configuration for the stack appearance and image size
-  const visibleStackCount = 3;    // Number of images visible in the stack
-  const verticalOffset = 35;      // Pixels to offset each subsequent image downwards
-  const horizontalOffset = 35;    // Pixels to offset each subsequent image to the right
-  const imageWidth = '400px';
-  const imageHeight = '300px';
-  // Calculate container size based on image size and offsets for the stack
-  const stackContainerWidth = `calc(${imageWidth} + ${horizontalOffset * (visibleStackCount - 1)}px)`;
-  const stackContainerHeight = `calc(${imageHeight} + ${verticalOffset * (visibleStackCount - 1)}px)`;
-
-  // useEffect to handle the automatic image change interval
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTransitioning(true); // Start fade transition for both image and text
-
-      // After fade transition starts, update the index
-      setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % features.length);
-        setIsTransitioning(false); // End fade transition
-      }, 350); // Half of the transition duration
-    }, 3500); // Change feature every 3.5 seconds
-
-    return () => clearInterval(interval);
-  }, [features.length]);
-
-  const currentFeature = features[currentImageIndex];
-
   return (
-    <div className="bg-gradient-to-b from-black via-slate-700 to-black py-12 px-10 ml-10 mr-10 mb-12 rounded-3xl shadow-lg font-[Exo_2]">
-      <div className="px-10">
-        {/* Top Header Section */}
-        <div className="text-center mb-24">
-          <h2 className="text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-300 mb-6 tracking-tight"
-            style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
-          >
-            Why choose <span className="font-semibold bg-gradient-to-br from-slate-600 to-slate-200 bg-clip-text text-transparent">Resoundify</span> ?
+    <section className="py-20 bg-gray-50">
+      <div className="w-[90%] mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold text-gray-900 mb-6">
+            Why Choose Resoundify?
           </h2>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
             Discover our comprehensive suite of advanced audio-visual solutions designed to transform your communication experience with cutting-edge technology.
           </p>
-          <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-12"></div>
         </div>
 
-        {/* Main Content Area - Image Stack and Description Side-by-Side */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-x-24 gap-y-16 mb-12">
-          {/* Left Side - Image Stack */}
-          <div
-            className="relative flex-shrink-0"
-            style={{ width: stackContainerWidth, height: stackContainerHeight }}
-          >
-            {[...Array(visibleStackCount)].map((_, stackIndex) => {
-              const imageIndex = (currentImageIndex + stackIndex) % features.length;
-              const imageSrc = features[imageIndex].image;
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          {features.map((feature) => (
+            <div
+              key={feature.id}
+              className="bg-white shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              {/* Image on top layout */}
+              {feature.imagePosition === 'top' && (
+                <>
+                  <div className="aspect-w-16 aspect-h-12 overflow-hidden">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-80 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-12">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                      {feature.title}
+                    </h3>
+                    <p className="text-lg text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div className="mt-8">
+                      <button className="text-blue-600 font-semibold text-lg hover:text-blue-700 transition-colors flex items-center group">
+                        Learn more
+                        <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
 
-              const translateX = stackIndex * horizontalOffset;
-              const translateY = stackIndex * verticalOffset;
-              const zIndex = visibleStackCount - stackIndex;
-
-              const opacity = (stackIndex === 0 && isTransitioning) ? 0 : 1;
-              const scale = isTransitioning ? (stackIndex === 0 ? 0.95 : 1.05) : 1;
-
-              return (
-                <div
-                  key={`stack-${stackIndex}-${features[imageIndex].id}`}
-                  className="absolute"
-                  style={{
-                    transform: `translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`,
-                    zIndex: zIndex,
-                    transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
-                    opacity: opacity,
-                  }}
-                >
-                  <img
-                    src={imageSrc}
-                    alt={features[imageIndex].title}
-                    className="object-cover rounded-2xl shadow-xl border-4 border-white/20"
-                    style={{
-                      width: imageWidth,
-                      height: imageHeight,
-                      boxShadow: `0 ${8 + stackIndex * 4}px ${16 + stackIndex * 8}px rgba(0, 0, 0, ${0.2 + stackIndex * 0.1})`,
-                    }}
-                  />
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Right Side - Description Content */}
-          <div
-            className="flex-1 max-w-lg text-center lg:text-left"
-            style={{
-              transition: 'opacity 0.5s ease-in-out',
-              opacity: isTransitioning ? 0.4 : 1, // Text fades during transition
-            }}
-          >
-            <h3 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-              {currentFeature.title}
-            </h3>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              {currentFeature.description}
-            </p>
-          </div>
+              {/* Text on top layout */}
+              {feature.imagePosition === 'bottom' && (
+                <>
+                  <div className="p-12">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                      {feature.title}
+                    </h3>
+                    <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                      {feature.description}
+                    </p>
+                    <button className="text-blue-600 font-semibold text-lg hover:text-blue-700 transition-colors flex items-center group">
+                      Learn more
+                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="aspect-w-16 aspect-h-12 overflow-hidden">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-80 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
         </div>
-
 
       </div>
-    </div>
+    </section>
   );
 };
 
-export default ResoundifyFeatures;
+export default WhyResoundify;
