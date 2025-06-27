@@ -34,7 +34,7 @@ const WhyResoundify = () => {
       id: 5,
       title: "Guaranteed Uptime",
       description: "Guaranteed 99.9% uptime with enterprise-grade reliability. Supported by redundant systems and 24/7 monitoring.",
-      image: "https://images.unsplash.com/photo-1582213782179-e0d16ac9f122?w=500&h=400&fit=crop", // Image related to reliability/uptime
+      image: "/images/why5.png", // Image related to reliability/uptime
       imagePosition: "top"
     }
   ];
