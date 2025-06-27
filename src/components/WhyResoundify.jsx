@@ -28,7 +28,7 @@ const WhyResoundify = () => {
       id: 4,
       title: "Highly Scalable",
       description: "Highly scalable for any enterprise AV system. Supports hundreds of channels with flexible architecture.",
-      image: "https://images.unsplash.com/photo-1517430816045-df4b7de11677?w=500&h=400&fit=crop", // Image related to scalability/growth
+      image: "/images/why4.jpg", // Image related to scalability/growth
       imagePosition: "bottom"
     }
   ];
@@ -127,7 +127,7 @@ const WhyResoundify = () => {
         <div
           className="w-full text-white p-12 text-center shadow-xl rounded-lg relative overflow-hidden" // Added relative and overflow-hidden
           style={{
-            backgroundImage: "url('/images/Uptime.png')", // <--- **IMPORTANT: Update this path to your actual image!**
+            // backgroundImage: "url('/images/Uptime.png')", // <--- **IMPORTANT: Update this path to your actual image!**
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -135,7 +135,7 @@ const WhyResoundify = () => {
           }}
         >
           {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black opacity-70 rounded-lg z-0"></div> {/* Increased opacity slightly */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-sky-700 to-black opacity-70 rounded-lg z-0"></div> {/* Increased opacity slightly */}
 
           {/* Content of the CTA */}
           <div className="relative z-10 flex flex-col items-center justify-center">
