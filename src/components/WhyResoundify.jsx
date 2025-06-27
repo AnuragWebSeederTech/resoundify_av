@@ -41,7 +41,7 @@ const WhyResoundify = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-100 to-blue-200">
+    <section className="py-20 bg-gradient-to-b from-gray-100 via-blue-200 to-white"> {/* Adjusted gradient for better look */}
       <div className="w-[90%] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -57,7 +57,7 @@ const WhyResoundify = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-16"> {/* Added mb-16 for spacing below grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 mb-16"> {/* Added mb-16 for spacing below grid */}
           {features.map((feature) => (
             <div
               key={feature.id}
@@ -123,16 +123,31 @@ const WhyResoundify = () => {
 
         {/* --- */}
 
-        {/* Independent CTA Section */}
-        <div className="w-full bg-blue-500 text-white p-5 text-center shadow-xl rounded-lg"> {/* Added w-full, p-16, rounded-lg */}
-          <h2 className="text-5xl font-extrabold mb-6">
-            <span className="block text-blue-300 text-3xl font-semibold mb-2">Experience Unwavering Reliability</span>
-            99.9% Uptime Guarantee
-          </h2>
-          <p className="text-2xl mb-10 max-w-7xl mx-auto leading-relaxed">
-            {ctaFeature.description}
-          </p>
-          
+        {/* Independent CTA Section with Background Image and Overlay */}
+        <div
+          className="w-full text-white p-12 text-center shadow-xl rounded-lg relative overflow-hidden" // Added relative and overflow-hidden
+          style={{
+            backgroundImage: "url('/images/Uptime.png')", // <--- **IMPORTANT: Update this path to your actual image!**
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'rgba(0, 0, 0, 0.6)' // Fallback color and for overlay if image has transparent areas
+          }}
+        >
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black opacity-70 rounded-lg z-0"></div> {/* Increased opacity slightly */}
+
+          {/* Content of the CTA */}
+          <div className="relative z-10 flex flex-col items-center justify-center">
+            <h2 className="text-5xl font-extrabold mb-6 leading-tight"> {/* Added leading-tight for better line spacing */}
+              <span className="block text-blue-300 text-2xl font-semibold mb-2">Experience Unwavering Reliability</span>
+              99.9% Uptime Guarantee
+            </h2>
+            <p className="text-2xl mb-10 max-w-4xl mx-auto leading-relaxed"> {/* Changed max-w-7xl to max-w-4xl for better readability */}
+              {ctaFeature.description}
+            </p>
+            
+          </div>
         </div>
 
       </div>
