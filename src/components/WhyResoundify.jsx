@@ -135,7 +135,7 @@ const WhyResoundify = () => {
           }}
         >
           {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-sky-700 to-black opacity-70 rounded-lg z-0"></div> {/* Increased opacity slightly */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-sky-700 to-white opacity-70 rounded-lg z-0"></div> {/* Increased opacity slightly */}
 
           {/* Content of the CTA */}
           <div className="relative z-10 flex flex-col items-center justify-center">
