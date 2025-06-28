@@ -112,7 +112,7 @@ export default function ExploreProductsSection() {
       `}</style>
 
       <section
-        className="relative h-[75vh] bg-white overflow-hidden flex items-center justify-center font-['Exo_2']" // Primary Font (Exo 2) applied here
+        className="relative lg:h-[75vh] bg-white overflow-hidden flex items-center justify-center font-['Exo_2']" // Primary Font (Exo 2) applied here
       >
         {/* Background gradient patch that follows cursor */}
         <div
