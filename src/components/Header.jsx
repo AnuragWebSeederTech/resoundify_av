@@ -16,8 +16,6 @@ const throttle = (func, limit) => {
 }
 
 const Header = () => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false); // This state is not used, consider removing if not needed.
-  const [searchTerm, setSearchTerm] = useState(""); // This state is not used, consider removing if not needed.
   const [isVisible, setIsVisible] = useState(true);
   const [isWhiteBg, setIsWhiteBg] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -38,7 +36,7 @@ const Header = () => {
       }
       lastScrollY.current = currentScrollY;
 
-      const isHeroSection = location.pathname === '/' && currentScrollY < 600;
+      const isHeroSection = location.pathname === '/' && currentScrollY < 200;
       const shouldBeWhiteBg = !isHeroSection && currentScrollY > 50;
       if (isWhiteBg !== shouldBeWhiteBg) {
         setIsWhiteBg(shouldBeWhiteBg);
@@ -124,6 +122,9 @@ const Header = () => {
           <Link to="/products" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full ${hoverColorClass}`}>
             Products
           </Link>
+          <Link to="/projects" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full ${hoverColorClass}`}>
+            Projects
+          </Link>
           <Link to="/contact" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full ${hoverColorClass}`}>
             Contact
           </Link>
@@ -192,6 +193,9 @@ const Header = () => {
           </Link>
           <Link to="/products" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
             Products
+          </Link>
+          <Link to="/projects" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
+            Projects
           </Link>
           <Link to="/contact" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
             Contact

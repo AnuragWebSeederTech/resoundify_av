@@ -19,12 +19,8 @@ const Footer = () => {
     <footer
       className="bg-gradient-to-br from-white via-slate-200 to-white text-slate-700 py-12 px-4 sm:px-6 lg:px-8 shadow-sm rounded-t-3xl relative overflow-hidden font-[Exo_2]"
     >
-      {/* Subtle, animated background flourishes for a dynamic feel using very light slate and lower opacity */}
-      <div className="absolute -top-10 -left-10 w-32 h-32 bg-slate-200 rounded-full mix-blend-multiply opacity-10 animate-pulse-slow"></div>
-      <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-slate-300 rounded-full mix-blend-multiply opacity-10 animate-pulse-slow delay-200"></div>
-
-      {/* Main Footer Content Grid - Now taking 80% width with a nearly transparent frosted glass effect */}
-      <div className="relative z-10 w-screen mx-auto px-25 py-8 bg-opacity-10 rounded-xl backdrop-blur-sm">
+      {/* Main Footer Content Grid - Now using max-w-7xl for better control and proper padding */}
+      <div className="relative z-10 w-[95%] mx-auto py-8 bg-opacity-10 rounded-xl backdrop-blur-sm lg:ml-25 md:ml-0"> {/* Corrected width and padding */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-10 gap-x-8">
 
           {/* Company Info Section - Takes 2 columns on XL screens, adjusted for flex to push legal links down */}
@@ -59,10 +55,11 @@ const Footer = () => {
           </div>
 
           {/* Quick Links Section */}
-          <div>
+          <div className="text-center md:text-left"> {/* Added text-center for mobile */}
             {/* Heading Font (for H1, H2): Tilt Neon applied here */}
             <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer font-[Tilt_Neon]">
               Quick Links
+              {/* Corrected underline positioning for proper hover effect on all screens */}
               <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
             </h4>
             <ul className="space-y-4">
@@ -86,10 +83,11 @@ const Footer = () => {
           </div>
 
           {/* Services Section */}
-          <div>
+          <div className="text-center md:text-left"> {/* Added text-center for mobile */}
             {/* Heading Font (for H1, H2): Tilt Neon applied here */}
             <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer font-[Tilt_Neon]">
               Services
+              {/* Corrected underline positioning for proper hover effect on all screens */}
               <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
             </h4>
             <ul className="space-y-4">
@@ -113,10 +111,11 @@ const Footer = () => {
           </div>
 
           {/* Contact Information Section */}
-          <div>
+          <div className="text-center md:text-left"> {/* Added text-center for mobile */}
             {/* Heading Font (for H1, H2): Tilt Neon applied here */}
             <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer font-[Tilt_Neon]">
               Get In Touch
+              {/* Corrected underline positioning for proper hover effect on all screens */}
               <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
             </h4>
 
@@ -175,7 +174,6 @@ const Footer = () => {
             <p className="text-slate-400 text-sm">
               Designed & developed by
               <span className="text-slate-700 cursor-pointer transition-colors duration-300 ml-1 font-semibold hover:text-slate-900">
-                {/* This is the corrected line */}
                 <a href="https://www.webseeder.in" target="_blank" rel="noopener noreferrer">
                   WebSeeder Technologies Pvt Ltd
                 </a>
