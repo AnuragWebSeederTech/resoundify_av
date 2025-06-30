@@ -1,6 +1,8 @@
 import Header from "../components/Header";
 import Heading from "../components/Heading";
 import WeCraftedCard from "../components/WeCraftedCards";
+import JoinCommunitySection from "../components/JoinCommunitySection";
+import Footer from "../components/Footer";
 
 export default function NarrativesWeCrafted() {
   return (
@@ -21,6 +23,8 @@ export default function NarrativesWeCrafted() {
         ))}
       </div>
     </div>
+    <JoinCommunitySection />
+    <Footer />
     </>
   );
 }
