@@ -34,23 +34,45 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const scrollThreshold = 100; // Define a threshold for when header hide/show applies
 
-      // Logic for header visibility: Hide on scroll down past 100px, show on scroll up
-      // This line is already configured to make the header visible when scrolling up.
-      const shouldBeVisible = !(currentScrollY > lastScrollY.current && currentScrollY > 100);
-      if (isVisible !== shouldBeVisible) {
-        setIsVisible(shouldBeVisible);
+      // Determine if we are on the homepage
+      const isHomePage = location.pathname === '/';
+
+      let newIsVisible;
+      let newIsWhiteBg;
+
+      // --- Universal Header Visibility Logic (Hide on scroll up, Show on scroll down) ---
+      if (currentScrollY > scrollThreshold) {
+        // If scrolled past the threshold:
+        if (currentScrollY > lastScrollY.current) {
+          newIsVisible = true; // Scrolling down, show header
+        } else {
+          newIsVisible = false; // Scrolling up, hide header
+        }
+      } else {
+        // If near the top (below threshold), always visible
+        newIsVisible = true;
       }
+
+      // --- Page-Specific Header Background Logic ---
+      if (isHomePage) {
+        // On homepage: transparent only at the very top (less than 100px scroll)
+        newIsWhiteBg = !(currentScrollY < 100); // If NOT within 100px of top, then white background
+      } else {
+        // On other pages: always white background
+        newIsWhiteBg = true;
+      }
+
+      // Update states only if they have actually changed to prevent unnecessary re-renders
+      if (isVisible !== newIsVisible) {
+        setIsVisible(newIsVisible);
+      }
+      if (isWhiteBg !== newIsWhiteBg) {
+        setIsWhiteBg(newIsWhiteBg);
+      }
+
       lastScrollY.current = currentScrollY; // Update last scroll position
-
-      // Logic for header background and text color:
-      // Transparent only on the homepage when at the very top (less than 100px scroll)
-      const isHomePageAndTop = location.pathname === '/' && currentScrollY < 100;
-      const shouldBeWhiteBg = !isHomePageAndTop; // If NOT homepage and top, then white background
-
-      if (isWhiteBg !== shouldBeWhiteBg) {
-        setIsWhiteBg(shouldBeWhiteBg);
-      }
     };
 
     // Apply throttling to the scroll handler for performance
@@ -60,7 +82,7 @@ const Header = () => {
     window.addEventListener("scroll", throttledHandleScroll);
 
     // Call handleScroll initially to set the correct state on component mount
-    handleScroll();
+    handleScroll(); // Ensures initial state is correct for the current page
 
     // Cleanup function: remove event listener when component unmounts
     return () => {
