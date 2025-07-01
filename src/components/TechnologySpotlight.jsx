@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Zap, Volume2, Expand, Rocket, Play, Waves, Circle } from 'lucide-react';
 
 const DanteTechnologySection = () => {
   const [activePoint, setActivePoint] = useState(0);
-  const headerRef = useRef(null); // Ref for the header itself
-  const videoSectionRef = useRef(null); // Ref for the video section
-  const pointRefs = useRef([]); // Array of refs for each point
-  const [headerOffsetTop, setHeaderOffsetTop] = useState(0); // Tracks initial top position of header
-  const [isHeaderFixed, setIsHeaderFixed] = useState(false); // Controls if header is fixed or static
-  const [isVideoSectionReached, setIsVideoSectionReached] = useState(false); // New state to track if video section is at the top
+  const headerRef = useRef(null);
+  const videoSectionRef = useRef(null);
+  const pointRefs = useRef([]);
+  const [headerOffsetTop, setHeaderOffsetTop] = useState(0);
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false);
+  const [isVideoSectionReached, setIsVideoSectionReached] = useState(false);
 
   const points = [
     {
@@ -46,39 +46,29 @@ const DanteTechnologySection = () => {
   ];
 
   // Store refs for each point in the pointRefs array
-  const setPointRef = (el, index) => {
+  const setPointRef = useCallback((el, index) => {
     if (el) {
       pointRefs.current[index] = el;
     }
-  };
+  }, []);
 
-  // Effect for autoplay, adjusted to only run if not manually scrolled to a point
+  // Effect for header offset and scroll handling
   useEffect(() => {
-    // We'll remove autoplay for now to prioritize scroll-based highlighting.
-    // If you want to re-introduce it, you'd need more sophisticated logic
-    // to pause autoplay when a user manually scrolls or clicks a point.
-    // For a cleaner scroll-highlight experience, it's often best to let scroll
-    // dictate the active state.
-    // const interval = setInterval(() => {
-    //   setActivePoint((prev) => (prev + 1) % points.length);
-    // }, 3500);
-    // return () => clearInterval(interval);
-  }, [points.length]);
-
-  useEffect(() => {
-    // Measure header's initial offset from the top of the document
     const measureHeaderOffset = () => {
       if (headerRef.current) {
+        // Use getBoundingClientRect().top + window.scrollY for absolute document offset
         setHeaderOffsetTop(headerRef.current.getBoundingClientRect().top + window.scrollY);
       }
     };
 
+    // Measure initially and on resize to account for layout shifts
     measureHeaderOffset();
     window.addEventListener('resize', measureHeaderOffset);
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      // Fix header when it reaches the top of the viewport
       if (currentScrollY >= headerOffsetTop && !isVideoSectionReached) {
         setIsHeaderFixed(true);
       } else {
@@ -88,18 +78,34 @@ const DanteTechnologySection = () => {
 
     window.addEventListener('scroll', handleScroll);
 
-    // Intersection Observer for the video section
+    // Cleanup function for scroll and resize listeners
+    return () => {
+      window.removeEventListener('resize', measureHeaderOffset);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [headerOffsetTop, isVideoSectionReached]); // Dependencies to re-run when header offset or video section state changes
+
+  // Effect for Intersection Observers
+  useEffect(() => {
+    // Intersection Observer for the video section (to unfix header)
     const videoObserver = new IntersectionObserver(
       ([entry]) => {
+        // When the video section's top is at or past the top of the viewport
+        // and it's intersecting, set isVideoSectionReached to true.
+        // Also check if its top is effectively at the top (<= 0)
         if (entry.isIntersecting && entry.boundingClientRect.top <= 0) {
           setIsVideoSectionReached(true);
-        } else if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
+        } else if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
+          // If it's not intersecting AND it's below the viewport, it means we scrolled up past it.
+          // Or if it's no longer intersecting and its top is above the viewport (meaning we scrolled far past it down),
+          // ensure it's false to allow header to become fixed again.
           setIsVideoSectionReached(false);
         }
       },
       {
-        root: null,
-        threshold: 0,
+        root: null, // relative to the viewport
+        threshold: 0, // as soon as any part of the target enters/leaves the root
+        // rootMargin: '0px 0px -100% 0px' // Could use this to detect when it's entirely out of view upwards
       }
     );
 
@@ -107,49 +113,53 @@ const DanteTechnologySection = () => {
       videoObserver.observe(videoSectionRef.current);
     }
 
-    // New: Intersection Observer for the points
+    // Intersection Observer for the points - IMPROVED LOGIC
     const pointObserver = new IntersectionObserver(
       (entries) => {
-        let newActivePointIndex = null;
-        // Find the first intersecting entry from the top
-        for (let i = 0; i < entries.length; i++) {
-          const entry = entries[i];
-          if (entry.isIntersecting) {
-            // Get the index from the ref's dataset or another way you identify the point
-            // For this, we'll rely on the order of pointRefs
-            const index = pointRefs.current.indexOf(entry.target);
-            if (index !== -1) {
-              newActivePointIndex = index;
-              break; // Found the first intersecting one, stop
+        let currentBestCandidateIndex = activePoint; // Start with current active point as a candidate
+        let maxIntersectionRatio = 0;
+
+        entries.forEach(entry => {
+          const index = pointRefs.current.indexOf(entry.target);
+          if (index !== -1) {
+            // Option 1: Activate based on most visibility
+            if (entry.isIntersecting && entry.intersectionRatio > maxIntersectionRatio) {
+              maxIntersectionRatio = entry.intersectionRatio;
+              currentBestCandidateIndex = index;
             }
+            // Option 2: Activate based on crossing a specific line (e.g., 20% from top of viewport)
+            // if (entry.isIntersecting && entry.boundingClientRect.top < window.innerHeight * 0.4 && entry.boundingClientRect.bottom > window.innerHeight * 0.4) {
+            //   currentBestCandidateIndex = index;
+            // }
           }
+        });
+
+        // Only update if a new best candidate is found and it's different from current
+        if (currentBestCandidateIndex !== activePoint) {
+          setActivePoint(currentBestCandidateIndex);
         }
-        // If no point is intersecting, default to the first one or remain as is
-        if (newActivePointIndex !== null && newActivePointIndex !== activePoint) {
-          setActivePoint(newActivePointIndex);
-        } else if (newActivePointIndex === null && activePoint !== 0) {
-          // Optional: if nothing is in view, you could set it to 0 or leave as last active
-          // setActivePoint(0);
-        }
+        // Fallback: If no points are intersecting (e.g., scrolled entirely past the section),
+        // you might want to default activePoint to 0 or leave it as the last active.
+        // This is handled implicitly if the last candidate remains the best.
       },
       {
-        root: null, // Observe relative to the viewport
-        rootMargin: '-40% 0% -80% 0%', // Adjust this to make the active point highlight when it's closer to the top of the view. Top margin pulls the "detection line" down, bottom margin pulls it up.
-        threshold: [0, 0.25, 0.5, 0.75, 1.0], // Trigger at various visibility percentages
+        root: null, // relative to the viewport
+        // Adjust rootMargin to create a wider "active zone" in the viewport center.
+        // This means an element becomes active when it enters 30% from the top
+        // and remains active until it exits 30% from the bottom.
+        rootMargin: '-30% 0px -30% 0px',
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], // More thresholds for precise intersectionRatio
       }
     );
 
-    // Observe each point
     pointRefs.current.forEach(ref => {
       if (ref) {
         pointObserver.observe(ref);
       }
     });
 
-    // Cleanup function
+    // Cleanup function for observers
     return () => {
-      window.removeEventListener('resize', measureHeaderOffset);
-      window.removeEventListener('scroll', handleScroll);
       if (videoSectionRef.current) {
         videoObserver.unobserve(videoSectionRef.current);
       }
@@ -158,19 +168,20 @@ const DanteTechnologySection = () => {
           pointObserver.unobserve(ref);
         }
       });
-      pointObserver.disconnect(); // Disconnect the point observer
+      pointObserver.disconnect();
     };
-  }, [headerOffsetTop, isVideoSectionReached, activePoint]); // Added activePoint to dependency array to trigger re-evaluation when it changes
+  }, [activePoint]); // Added activePoint to re-evaluate observer if it changes manually
 
   return (
     // Apply Primary Font (Exo 2) to the entire section
     <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 font-['Exo_2'] py-8 lg:py-12">
       {/* Spacer to reserve space for the fixed header, preventing content jump */}
-      {isHeaderFixed && (
-        <div style={{ height: headerRef.current ? headerRef.current.offsetHeight : 0 }}></div>
-      )}
 
-      <div className='h-[15vh]'>
+      {/* Header section, dynamically positioned */}
+      <div
+        ref={headerRef}
+        className={`w-full  'relative'`}
+      >
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="relative">
             {/* Apply Heading Font (Tilt Neon) to the h2 */}
@@ -186,7 +197,7 @@ const DanteTechnologySection = () => {
       </div>
 
       {/* Main Content Area within the section */}
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 py-5">
         {/* Revolutionary Content Layout */}
         <div className="grid lg:grid-cols-12 gap-12 items-start py-2 lg:py-8">
           {/* Left Column - Main Description Card (sticky relative to the viewport) */}
