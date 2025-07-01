@@ -45,12 +45,12 @@ const WhyResoundify = () => {
       <div className="w-[90%] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
             style={{ fontFamily: 'Tilt Neon, cursive', textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             Why Choose <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span>
           </h2>
-          <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto">
             Discover our comprehensive suite of advanced audio-visual solutions designed to transform your communication experience with cutting-edge technology.
           </p>
           <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
@@ -74,10 +74,10 @@ const WhyResoundify = () => {
                     />
                   </div>
                   <div className="p-12">
-                    <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                    <h3 className="text-3xl font-light lg:font-bold text-gray-900 mb-6">
                       {feature.title}
                     </h3>
-                    <p className="text-lg text-gray-600 leading-relaxed">
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
                       {feature.description}
                     </p>
                     <div className="mt-8">
@@ -95,10 +95,10 @@ const WhyResoundify = () => {
               {feature.imagePosition === 'bottom' && (
                 <>
                   <div className="p-12 ">
-                    <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                    <h3 className="text-3xl font-light lg:font-bold text-gray-900 mb-6">
                       {feature.title}
                     </h3>
-                    <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed mb-8">
                       {feature.description}
                     </p>
                     <button className="text-blue-600 font-semibold text-lg hover:text-blue-700 transition-colors flex items-center group">
@@ -143,7 +143,7 @@ const WhyResoundify = () => {
               <span className="block text-blue-300 text-2xl font-semibold mb-2">Experience Unwavering Reliability</span>
               99.9% Uptime Guarantee
             </h2>
-            <p className="text-2xl mb-10 max-w-4xl mx-auto leading-relaxed"> {/* Changed max-w-7xl to max-w-4xl for better readability */}
+            <p className="text-lg sm:text-lg lg:text-xl mb-10 max-w-4xl mx-auto leading-relaxed"> {/* Changed max-w-7xl to max-w-4xl for better readability */}
               {ctaFeature.description}
             </p>
             {/* You can add a button here for the CTA, e.g.: */}

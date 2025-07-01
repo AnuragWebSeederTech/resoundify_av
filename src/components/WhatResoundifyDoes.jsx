@@ -58,12 +58,12 @@ export default function WhatResoundifyDoes() {
           data-animate={0}
         >
           {/* Heading Font (for H1, H2): Tilt Neon applied here */}
-          <h2 className="text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
             style={{ fontFamily: 'Tilt Neon, cursive', textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             What <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span> Delivers
           </h2>
-          <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
             Professional audio networking solutions engineered for enterprise excellence
           </p>
           <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>

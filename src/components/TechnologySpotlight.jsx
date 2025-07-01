@@ -175,7 +175,7 @@ const DanteTechnologySection = () => {
           <div className="relative">
             {/* Apply Heading Font (Tilt Neon) to the h2 */}
             <h2
-              className="text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-900 mb-6 tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-900 mb-6 tracking-tight"
               style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
             >
               Technology <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">Spotlight</span>
@@ -199,11 +199,11 @@ const DanteTechnologySection = () => {
                     <Volume2 className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-3xl font-bold text-slate-800 mb-2">Benefits of</h2>
+                    <h2 className="text-3xl font-light lg:font-bold text-slate-800 mb-2">Benefits of</h2>
                     <h2 className="text-3xl font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Dante Technology</h2>
                   </div>
                 </div>
-                <p className="text-lg text-slate-700 leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed">
                   Dante is the leading solution for digital audio networking, delivering uncompressed, multi-channel digital media via standard Ethernet networks with near-zero latency and perfect synchronization. It simplifies system setup, eliminates bulky analog cabling, and provides superior sound quality. <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Resoundify</span> leverages Dante to provide unparalleled flexibility and scalability in audio installations.
                 </p>
               </div>
@@ -265,11 +265,11 @@ const DanteTechnologySection = () => {
                         )}
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-slate-800 mb-3 flex items-center gap-3">
+                        <h3 className="text-2xl font-light lg:font-bold text-slate-800 mb-3 flex items-center gap-3">
                           {point.title}
                           {activePoint === index && <Waves className="w-5 h-5 text-blue-500 animate-bounce" />}
                         </h3>
-                        <p className="text-slate-600 leading-relaxed text-lg">
+                        <p className="text-slate-600 leading-relaxed text-base sm:text-lg lg:text-xl">
                           {point.description}
                         </p>
                       </div>
@@ -285,10 +285,10 @@ const DanteTechnologySection = () => {
         <div ref={videoSectionRef} className="mt-32 pb-24">
           <div className="text-center mb-16">
             {/* Apply Heading Font (Tilt Neon) to the h3 */}
-            <h3 className="text-6xl font-['Tilt_Neon'] text-slate-800 mb-6">
+            <h3 className="text-4xl sm:text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-800 mb-6">
               Experience the <span className="bg-gradient-to-r from-slate-800 to-slate-400 font-semibold bg-clip-text text-transparent">Revolution</span>
             </h3>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Witness the future of digital audio networking as Dante transforms the industry with revolutionary technology that defies conventional limitations.
             </p>
             <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>

@@ -4,9 +4,8 @@ import React from 'react';
 // This is a placeholder for react-router-dom's Link component
 // In a real application, you would uncomment the import for 'react-router-dom'
 // and remove this mock Link component.
-const Link = ({ to, children, className, ...props }) => (
-  <a href={to} className={className} {...props}>{children}</a>
-);
+import { Link } from 'react-router-dom'; // Corrected import for Link component
+
 
 // Footer Component
 const Footer = () => {
@@ -65,10 +64,10 @@ const Footer = () => {
             <ul className="space-y-4">
               {[
                 { name: "Home", path: "/" },
+                { name: "About", path: "/about" },
                 { name: "Products", path: "/products" },
-                { name: "Solutions", path: "/solutions" },
-                { name: "Support", path: "/contact" },
-                { name: "About Us", path: "/about" }
+                { name: "Projects", path: "/projects" },
+                { name: "Contact", path: "/contact" }
               ].map((link, index) => (
                 <li key={index}>
                   <Link
@@ -93,7 +92,7 @@ const Footer = () => {
             <ul className="space-y-4">
               {[
                 { name: "Audio Solutions", path: "/services/audio" },
-                { name: "Video Systems", path: "https://www.resoundify.com/services/video" },
+                { name: "Video Systems", path: "/services/video" }, // Changed to Link
                 { name: "Network Integration", path: "/services/network" },
                 { name: "Consultation", path: "/services/consultation" },
                 { name: "Installation", path: "/services/installation" }

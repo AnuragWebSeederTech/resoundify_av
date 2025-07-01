@@ -72,7 +72,7 @@ const TestimonialsSection = () => {
           >
             Trusted by <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Audio Professionals</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto leading-relaxed px-2">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed px-2">
             Discover how Resoundify is helping creators, educators, and businesses transform their audio content with cutting-edge AI technology.
           </p>
           <div className="w-64 sm:w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-6 sm:mt-8"></div>
