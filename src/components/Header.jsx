@@ -1,19 +1,22 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useLocation } from 'react-router-dom';
 
 // Simple throttling function to limit how often a function can run
+// This version is slightly more robust
 const throttle = (func, limit) => {
   let inThrottle;
+  let lastResult;
   return function() {
-    const args = arguments;
     const context = this;
+    const args = arguments;
     if (!inThrottle) {
-      func.apply(context, args);
       inThrottle = true;
+      lastResult = func.apply(context, args);
       setTimeout(() => inThrottle = false, limit);
     }
-  }
-}
+    return lastResult;
+  };
+};
 
 const Header = () => {
   // State to control header visibility (slide up/down)
@@ -28,53 +31,60 @@ const Header = () => {
   // Hook to get the current location object from React Router
   const location = useLocation();
 
-  const [isMobileView, setIsMobileView] = useState(false);
+  // Memoize the scroll handler to prevent re-creation on every render
+  // This is good practice when adding functions to event listeners as a dependency
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    const scrollThreshold = 100; // Define a threshold for when header hide/show applies
+
+    // Determine if we are on the homepage
+    const isHomePage = location.pathname === '/';
+
+    let newIsVisible = isVisible; // Initialize with current state to minimize re-renders
+    let newIsWhiteBg = isWhiteBg; // Initialize with current state
+
+    // --- Universal Header Visibility Logic (Hide on scroll down, Show on scroll up) ---
+    if (currentScrollY > scrollThreshold) {
+      // If scrolled past the threshold:
+      if (currentScrollY > lastScrollY.current) {
+        // Scrolling down, hide header
+        newIsVisible = false;
+      } else if (currentScrollY < lastScrollY.current) { // Only set to true if truly scrolling up
+        // Scrolling up, show header
+        newIsVisible = true;
+      }
+      // If currentScrollY === lastScrollY.current (no scroll), keep current visibility
+    } else {
+      // If near the top (below threshold), always visible
+      newIsVisible = true;
+    }
+
+    // --- Page-Specific Header Background Logic ---
+    if (isHomePage) {
+      // On homepage: transparent only at the very top (less than 100px scroll)
+      newIsWhiteBg = !(currentScrollY < 100); // If NOT within 100px of top, then white background
+    } else {
+      // On other pages: always white background
+      newIsWhiteBg = true;
+    }
+
+    // Update states only if they have actually changed to prevent unnecessary re-renders
+    if (isVisible !== newIsVisible) {
+      // *** IMPORTANT DEBUGGING LOGS ***
+      console.log(`Scroll: ${currentScrollY}, lastScroll: ${lastScrollY.current}, isVisible changed to: ${newIsVisible}`);
+      setIsVisible(newIsVisible);
+    }
+    if (isWhiteBg !== newIsWhiteBg) {
+      // *** IMPORTANT DEBUGGING LOGS ***
+      console.log(`Scroll: ${currentScrollY}, isWhiteBg changed to: ${newIsWhiteBg}`);
+      setIsWhiteBg(newIsWhiteBg);
+    }
+
+    lastScrollY.current = currentScrollY; // Update last scroll position
+  }, [isVisible, isWhiteBg, location.pathname]); // Dependencies for useCallback
 
   // Effect hook to handle scroll behavior for header visibility and background change
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollThreshold = 100; // Define a threshold for when header hide/show applies
-
-      // Determine if we are on the homepage
-      const isHomePage = location.pathname === '/';
-
-      let newIsVisible;
-      let newIsWhiteBg;
-
-      // --- Universal Header Visibility Logic (Hide on scroll up, Show on scroll down) ---
-      if (currentScrollY > scrollThreshold) {
-        // If scrolled past the threshold:
-        if (currentScrollY > lastScrollY.current) {
-          newIsVisible = true; // Scrolling down, show header
-        } else {
-          newIsVisible = false; // Scrolling up, hide header
-        }
-      } else {
-        // If near the top (below threshold), always visible
-        newIsVisible = true;
-      }
-
-      // --- Page-Specific Header Background Logic ---
-      if (isHomePage) {
-        // On homepage: transparent only at the very top (less than 100px scroll)
-        newIsWhiteBg = !(currentScrollY < 100); // If NOT within 100px of top, then white background
-      } else {
-        // On other pages: always white background
-        newIsWhiteBg = true;
-      }
-
-      // Update states only if they have actually changed to prevent unnecessary re-renders
-      if (isVisible !== newIsVisible) {
-        setIsVisible(newIsVisible);
-      }
-      if (isWhiteBg !== newIsWhiteBg) {
-        setIsWhiteBg(newIsWhiteBg);
-      }
-
-      lastScrollY.current = currentScrollY; // Update last scroll position
-    };
-
     // Apply throttling to the scroll handler for performance
     const throttledHandleScroll = throttle(handleScroll, 100);
 
@@ -88,29 +98,13 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", throttledHandleScroll);
     };
-  }, [isVisible, isWhiteBg, location.pathname]); // Dependencies for this effect
-
-  // Effect hook to determine if the view is mobile based on window width
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth < 768); // Assuming 768px as the breakpoint for mobile (Tailwind's 'md')
-    };
-
-    // Set initial mobile view state
-    handleResize();
-
-    // Add resize event listener
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup function: remove event listener
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  }, [handleScroll]); // Dependency for this effect is the memoized handleScroll
 
   // Effect hook to close the mobile menu automatically when the route changes
   useEffect(() => {
-    setIsMobileMenuOpen(false);
+    if (isMobileMenuOpen) { // Only attempt to close if it's currently open
+      setIsMobileMenuOpen(false);
+    }
   }, [location.pathname]); // Dependency on location.pathname
 
   // Effect hook to disable/enable body scrolling when the mobile menu is open/closed
