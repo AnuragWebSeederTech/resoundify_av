@@ -211,7 +211,7 @@ const Header = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed top-0 left-0 h-full w-full bg-gradient-to-bl from-gray-500 via-gray-800-400 to-white rounded-b-xl bg-opacity-40 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto
+        className={`fixed top-0 left-0 h-400 w-full bg-gradient-to-bl from-gray-200 via-gray-800 to-white rounded-b-xl bg-opacity-40 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col items-center py-20 text-white`}
       >
         <button

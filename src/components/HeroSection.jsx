@@ -4,7 +4,7 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
   return (
     <a
       href={href}
-      className="relative inline-flex items-center justify-center px-8 py-5 w-60 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-white group" // Added 'group' class here
+      className="relative inline-flex items-center justify-center px-8 py-5 w-50 lg:w-60 text-base lg:text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-white group" // Added 'group' class here
     >
       {/* Button text */}
       <span className="block z-10 group-hover:text-black transition-colors duration-300"> {/* Added group-hover:text-white and transition */}
