@@ -152,7 +152,7 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-16" style={{ fontFamily: '"Exo 2", sans-serif' }}> {/* Primary Font applied here */}
+    <div className="max-w-7xl mx-auto px-6 py-8 lg:py-12" style={{ fontFamily: '"Exo 2", sans-serif' }}> {/* Primary Font applied here */}
       {/* Heading - Moved outside the grid container */}
       <div
         className={`text-center mb-12 transition-all duration-1000 ${

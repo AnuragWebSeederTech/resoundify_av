@@ -211,7 +211,7 @@ const Header = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed top-0 left-0 h-400 w-full bg-gradient-to-bl from-gray-200 via-gray-800 to-white rounded-b-xl bg-opacity-40 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto
+        className={`flex flex-col justify-between fixed top-0 left-0 h-214 w-full bg-gradient-to-bl from-gray-200 via-gray-800 to-white rounded-b-xl bg-opacity-40 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col items-center py-20 text-white`}
       >
         <button
@@ -221,7 +221,7 @@ const Header = () => {
         >
           &times; {/* Close button (X icon) */}
         </button>
-        <nav className="flex flex-col items-center space-y-6 text-2xl font-semibold mb-10">
+        <nav className="flex flex-col items-center mt-30 space-y-12 text-2xl font-semibold mb-10">
           <Link to="/" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
             Home
           </Link>
@@ -240,7 +240,7 @@ const Header = () => {
         </nav>
 
         {/* Mobile Contact Icons */}
-        <div className="flex items-center space-x-8">
+        <div className="flex items-end space-x-8">
           <div className="hover:text-blue-400 transition duration-300 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
               <rect width="20" height="16" x="2" y="4" rx="2" />

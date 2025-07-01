@@ -45,7 +45,7 @@ export default function WhatResoundifyDoes() {
   console.log("WhatResoundifyDoes Rendered");
   return (
     // Main section container with a light background using specified colors
-    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-12 overflow-hidden"
+    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-8 lg:py-12 overflow-hidden"
     style={{ fontFamily: 'Exo 2, sans-serif' }}> {/* Apply Exo 2 directly */}
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -70,7 +70,7 @@ export default function WhatResoundifyDoes() {
         </div>
 
         {/* Main Services Grid */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid lg:grid-cols-3 gap-8 mb-10 lg:mb-20">
 
           {/* Network Architecture Card */}
           <div

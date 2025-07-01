@@ -43,7 +43,7 @@ const Clients = () => {
   }, []); // Empty dependency array ensures this runs once on mount
 
   return (
-    <section className="bg-white font-inter py-10 overflow-hidden relative">
+    <section className="bg-white font-inter py-8 lg:py-12 overflow-hidden relative">
       {/* You might consider moving this <link> to your public/index.html or a global CSS file for better performance */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 

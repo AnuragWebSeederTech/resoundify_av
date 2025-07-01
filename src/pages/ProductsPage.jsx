@@ -113,7 +113,7 @@ const ProductsPage = () => {
       <ProductsHero />
 
       {/* Main Content Area */}
-      <section className="py-16 px-6 lg:px-16">
+      <section className="py-8 lg:py-12 px-6 lg:px-16">
         <div className="max-w-7xl mx-auto">
           {/* Product Filter Section */}
           <ProductFilter

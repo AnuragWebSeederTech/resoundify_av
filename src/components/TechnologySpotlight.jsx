@@ -164,13 +164,13 @@ const DanteTechnologySection = () => {
 
   return (
     // Apply Primary Font (Exo 2) to the entire section
-    <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 font-['Exo_2']">
+    <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 font-['Exo_2'] py-8 lg:py-12">
       {/* Spacer to reserve space for the fixed header, preventing content jump */}
       {isHeaderFixed && (
         <div style={{ height: headerRef.current ? headerRef.current.offsetHeight : 0 }}></div>
       )}
 
-      <div className='h-[15vh] py-10 mb-5'>
+      <div className='h-[15vh]'>
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="relative">
             {/* Apply Heading Font (Tilt Neon) to the h2 */}
@@ -182,13 +182,13 @@ const DanteTechnologySection = () => {
             </h2>
           </div>
         </div>
-        <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-10 mb-10"></div>
+        <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
       </div>
 
       {/* Main Content Area within the section */}
       <div className="max-w-7xl mx-auto px-6">
         {/* Revolutionary Content Layout */}
-        <div className="grid lg:grid-cols-12 gap-12 items-start py-8">
+        <div className="grid lg:grid-cols-12 gap-12 items-start py-2 lg:py-8">
           {/* Left Column - Main Description Card (sticky relative to the viewport) */}
           <div className="lg:col-span-7 space-y-12 lg:sticky lg:top-24">
             <div className="relative group">
