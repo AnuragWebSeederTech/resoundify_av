@@ -63,7 +63,7 @@ const TestimonialsSection = () => {
   const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <div className="py-12 sm:py-20 bg-white" style={{ fontFamily: '"Exo 2", sans-serif' }}>
+    <div className="py-5 sm:py-10 bg-white" style={{ fontFamily: '"Exo 2", sans-serif' }}>
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">

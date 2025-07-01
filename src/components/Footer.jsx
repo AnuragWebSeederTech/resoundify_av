@@ -174,7 +174,7 @@ const Footer = () => {
               Designed & developed by
               <span className="text-slate-700 cursor-pointer transition-colors duration-300 ml-1 font-semibold hover:text-slate-900">
                 <a href="https://www.webseeder.in" target="_blank" rel="noopener noreferrer">
-                  WebSeeder Technologies Pvt Ltd
+                  WebSeeder Technologies 
                 </a>
               </span>
             </p>

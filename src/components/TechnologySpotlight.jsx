@@ -282,7 +282,7 @@ const DanteTechnologySection = () => {
         </div>
 
         {/* Revolutionary Video Section (will scroll into view after the points) */}
-        <div ref={videoSectionRef} className="mt-32 pb-24">
+        <div ref={videoSectionRef} className="mt-12 pb-5 ">
           <div className="text-center mb-16">
             {/* Apply Heading Font (Tilt Neon) to the h3 */}
             <h3 className="text-4xl sm:text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-800 mb-6">

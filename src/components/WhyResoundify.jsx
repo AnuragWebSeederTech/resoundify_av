@@ -41,7 +41,7 @@ const WhyResoundify = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-100 via-blue-200 to-white"> {/* Adjusted gradient for better look */}
+    <section className="py-15 bg-gradient-to-b from-gray-100 via-blue-200 to-white"> {/* Adjusted gradient for better look */}
       <div className="w-[90%] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">

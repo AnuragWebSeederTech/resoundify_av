@@ -45,7 +45,7 @@ export default function WhatResoundifyDoes() {
   console.log("WhatResoundifyDoes Rendered");
   return (
     // Main section container with a light background using specified colors
-    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-24 overflow-hidden"
+    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-12 overflow-hidden"
     style={{ fontFamily: 'Exo 2, sans-serif' }}> {/* Apply Exo 2 directly */}
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">

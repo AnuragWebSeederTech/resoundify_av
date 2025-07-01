@@ -130,7 +130,7 @@ export default function ExploreProductsSection() {
           <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-pink-200/15 rounded-full blur-3xl transition-all duration-800"></div>
         </div>
 
-        <div className="relative z-10 w-full px-8 py-20">
+        <div className="relative z-10 w-full px-8 py-10">
           <div className="w-full max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
 
