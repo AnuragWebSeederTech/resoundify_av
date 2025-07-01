@@ -85,7 +85,7 @@ export default function WhatResoundifyDoes() {
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-900 to-slate-700 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Network className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-semibold text-slate-900 mb-4">Network Architecture</h3>
+                <h3 className="text-2xl font-light lg:font-semibold  text-slate-900 mb-4">Network Architecture</h3>
                 <p className="text-slate-700 leading-relaxed mb-6">
                   Enterprise-grade Dante network design and implementation for seamless audio distribution across complex infrastructures.
                 </p>
@@ -110,7 +110,7 @@ export default function WhatResoundifyDoes() {
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Cable className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-semibold text-slate-900 mb-4">System Integration</h3>
+                <h3 className="text-2xl font-light lg:font-semibold text-slate-900 mb-4">System Integration</h3>
                 <p className="text-slate-700 leading-relaxed mb-6">
                   Comprehensive integration services connecting diverse audio systems through standardized Ethernet infrastructure.
                 </p>
@@ -135,9 +135,9 @@ export default function WhatResoundifyDoes() {
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Monitor className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-semibold text-slate-900 mb-4">24/7 Monitoring</h3>
+                <h3 className="text-2xl font-light lg:font-semibold text-slate-900 mb-4">24/7 Monitoring</h3>
                 <p className="text-slate-700 leading-relaxed mb-6">
-                  Continuous system monitoring, proactive maintenance, and expert technical support ensuring optimal performance.
+                  Continuous system monitoring having proactive maintenance and expert technical support ensuring optimal performance.
                 </p>
                 <div className="flex items-center text-slate-600 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
                   <span className="text-sm font-medium">Support Details</span>
