@@ -86,92 +86,85 @@ const DanteTechnologySection = () => {
   }, [headerOffsetTop, isVideoSectionReached]); // Dependencies to re-run when header offset or video section state changes
 
   // Effect for Intersection Observers
-  useEffect(() => {
-    // Intersection Observer for the video section (to unfix header)
-    const videoObserver = new IntersectionObserver(
-      ([entry]) => {
-        // When the video section's top is at or past the top of the viewport
-        // and it's intersecting, set isVideoSectionReached to true.
-        // Also check if its top is effectively at the top (<= 0)
-        if (entry.isIntersecting && entry.boundingClientRect.top <= 0) {
-          setIsVideoSectionReached(true);
-        } else if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
-          // If it's not intersecting AND it's below the viewport, it means we scrolled up past it.
-          // Or if it's no longer intersecting and its top is above the viewport (meaning we scrolled far past it down),
-          // ensure it's false to allow header to become fixed again.
-          setIsVideoSectionReached(false);
-        }
-      },
-      {
-        root: null, // relative to the viewport
-        threshold: 0, // as soon as any part of the target enters/leaves the root
-        // rootMargin: '0px 0px -100% 0px' // Could use this to detect when it's entirely out of view upwards
+useEffect(() => {
+  // Intersection Observer for the video section (to unfix header)
+  const videoObserver = new IntersectionObserver(
+    ([entry]) => {
+      // When the video section's top is at or past the top of the viewport
+      // and it's intersecting, set isVideoSectionReached to true.
+      // Also check if its top is effectively at the top (<= 0)
+      if (entry.isIntersecting && entry.boundingClientRect.top <= 0) {
+        setIsVideoSectionReached(true);
+      } else if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
+        // If it's not intersecting AND it's below the viewport, it means we scrolled up past it.
+        // Or if it's no longer intersecting and its top is above the viewport (meaning we scrolled far past it down),
+        // ensure it's false to allow header to become fixed again.
+        setIsVideoSectionReached(false);
       }
-    );
-
-    if (videoSectionRef.current) {
-      videoObserver.observe(videoSectionRef.current);
+    },
+    {
+      root: null, // relative to the viewport
+      threshold: 0, // as soon as any part of the target enters/leaves the root
     }
+  );
 
-    // Intersection Observer for the points - IMPROVED LOGIC
-    const pointObserver = new IntersectionObserver(
-      (entries) => {
-        let currentBestCandidateIndex = activePoint; // Start with current active point as a candidate
-        let maxIntersectionRatio = 0;
+  if (videoSectionRef.current) {
+    videoObserver.observe(videoSectionRef.current);
+  }
 
-        entries.forEach(entry => {
-          const index = pointRefs.current.indexOf(entry.target);
-          if (index !== -1) {
-            // Option 1: Activate based on most visibility
-            if (entry.isIntersecting && entry.intersectionRatio > maxIntersectionRatio) {
-              maxIntersectionRatio = entry.intersectionRatio;
-              currentBestCandidateIndex = index;
-            }
-            // Option 2: Activate based on crossing a specific line (e.g., 20% from top of viewport)
-            // if (entry.isIntersecting && entry.boundingClientRect.top < window.innerHeight * 0.4 && entry.boundingClientRect.bottom > window.innerHeight * 0.4) {
-            //   currentBestCandidateIndex = index;
-            // }
+  // Intersection Observer for the points - REFINED FOR GLOW AND SMOOTHNESS
+  const pointObserver = new IntersectionObserver(
+    (entries) => {
+      let newActivePoint = activePoint; // Keep current active if no better candidate
+
+      entries.forEach(entry => {
+        const index = pointRefs.current.indexOf(entry.target);
+
+        if (index !== -1) {
+          // If the element is intersecting the root (viewport) within our defined margin
+          // and is past the top boundary of the active zone, make it active.
+          // This creates a "scroll-snap" like feel for activation.
+          if (entry.isIntersecting) {
+            newActivePoint = index; // The last element to enter the active zone wins
           }
-        });
-
-        // Only update if a new best candidate is found and it's different from current
-        if (currentBestCandidateIndex !== activePoint) {
-          setActivePoint(currentBestCandidateIndex);
-        }
-        // Fallback: If no points are intersecting (e.g., scrolled entirely past the section),
-        // you might want to default activePoint to 0 or leave it as the last active.
-        // This is handled implicitly if the last candidate remains the best.
-      },
-      {
-        root: null, // relative to the viewport
-        // Adjust rootMargin to create a wider "active zone" in the viewport center.
-        // This means an element becomes active when it enters 30% from the top
-        // and remains active until it exits 30% from the bottom.
-        rootMargin: '-30% 0px -30% 0px',
-        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], // More thresholds for precise intersectionRatio
-      }
-    );
-
-    pointRefs.current.forEach(ref => {
-      if (ref) {
-        pointObserver.observe(ref);
-      }
-    });
-
-    // Cleanup function for observers
-    return () => {
-      if (videoSectionRef.current) {
-        videoObserver.unobserve(videoSectionRef.current);
-      }
-      pointRefs.current.forEach(ref => {
-        if (ref) {
-          pointObserver.unobserve(ref);
         }
       });
-      pointObserver.disconnect();
-    };
-  }, [activePoint]); // Added activePoint to re-evaluate observer if it changes manually
 
+      // Update activePoint only if it has genuinely changed
+      if (newActivePoint !== activePoint) {
+        setActivePoint(newActivePoint);
+      }
+    },
+    {
+      root: null, // relative to the viewport
+      // Define a very precise "active zone" in the middle of the viewport.
+      // An item will become active when its top edge crosses the 30% mark from the top,
+      // and it will remain active until its bottom edge crosses the 70% mark from the top.
+      // This makes the activation more stable and less "flickery".
+      rootMargin: '-30% 0px -70% 0px', // Top: 30% from viewport top, Bottom: 70% from viewport top
+      threshold: 0, // We want to trigger as soon as it enters/leaves the rootMargin
+    }
+  );
+
+  pointRefs.current.forEach(ref => {
+    if (ref) {
+      pointObserver.observe(ref);
+    }
+  });
+
+  // Cleanup function for observers
+  return () => {
+    if (videoSectionRef.current) {
+      videoObserver.unobserve(videoSectionRef.current);
+    }
+    pointRefs.current.forEach(ref => {
+      if (ref) {
+        pointObserver.unobserve(ref);
+      }
+    });
+    pointObserver.disconnect();
+  };
+}, [activePoint]); // Added activePoint to re-evaluate observer if it changes manually
   return (
     // Apply Primary Font (Exo 2) to the entire section
     <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 font-['Exo_2'] py-8 lg:py-12">
