@@ -4,7 +4,7 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
   return (
     <a
       href={href}
-      className="relative inline-flex items-center justify-center px-8 py-5 w-50 lg:w-60 text-base lg:text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-white group" // Added 'group' class here
+      className="relative inline-flex items-center justify-center px-0 lg:px-8 py-4 lg:py-5 w-40 lg:w-60 text-base lg:text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-white group" // Added 'group' class here
     >
       {/* Button text */}
       <span className="block z-10 group-hover:text-black transition-colors duration-300"> {/* Added group-hover:text-white and transition */}
@@ -40,7 +40,7 @@ const HeroSection = () => {
   
   return (
     // Primary Font (for entire site): Exo 2 applied here
-    <div className="min-h-[100vh] relative flex flex-col justify-center items-center font-light overflow-hidden text-center font-[Exo_2]">
+    <div className="min-h-[60vh] lg:min-h-[100vh] relative flex flex-col justify-center items-center font-light overflow-hidden text-center font-[Exo_2]">
       {/* Background Video (NO OVERLAY) */}
       <div className="absolute inset-0">
         <video
@@ -59,12 +59,12 @@ const HeroSection = () => {
       {/* <div className="absolute inset-0 bg-blue-700 opacity-15 backdrop-blur-sm"></div> */}
 
       {/* Content */}
-      <div className="relative z-10 px-40 py-20 text-center">
+      <div className="relative z-10 px-5 lg:px-40 py-20 text-center">
         {/*
           Main heading: "Redefining" and "Experience" use slate text color with a black drop-shadow.
           Heading Font (for H1, H2): Tilt Neon applied here
         */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight tracking-tight animate-fade-in-up delay-[200ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] font-[Tilt_Neon]">
+        <h1 className="text-3xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight tracking-tight animate-fade-in-up delay-[200ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)] font-[Tilt_Neon]">
           Redefining <br />
           {/*
             Accent word: "Audio-Visual" has black text with a slate drop-shadow.
@@ -78,11 +78,11 @@ const HeroSection = () => {
         {/*
           Paragraph: White text with a strong black drop-shadow for readability.
         */}
-        <p className="text-lg md:text-xl text-white max-w-4xl mx-auto mb-12 leading-relaxed font-sans animate-fade-in-up delay-[400ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+        <p className="text-base md:text-xl text-white max-w-4xl mx-auto mb-12 leading-relaxed font-sans animate-fade-in-up delay-[400ms] drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
           At Resoundify, we deliver cutting-edge Dante-enabled solutions that redefine <br /> how you connect, communicate, and create exceptional results.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-[600ms]">
+        <div className="flex lg:flex-row sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-[600ms]">
           <GradientButton text="Explore Products" href="/products" />
           <GradientButton text="Contact Us" href="/contact" />
         </div>
