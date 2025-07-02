@@ -25,6 +25,9 @@ const Header = () => {
   const [isWhiteBg, setIsWhiteBg] = useState(false);
   // State to manage the mobile menu's open/closed status
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // State to track screen width
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+
 
   // Ref to store the last scroll position for determining scroll direction
   const lastScrollY = useRef(0);
@@ -120,13 +123,26 @@ const Header = () => {
     };
   }, [isMobileMenuOpen]); // Dependency on isMobileMenuOpen
 
+  // Effect hook to update screen size state on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); // Empty dependency array means this effect runs once on mount and cleans up on unmount
+
+
   // Determine text color class based on background state
   const textColorClass = isWhiteBg ? 'text-gray-800' : 'text-white';
   // Determine hover color class for navigation links based on background state
   const hoverColorClass = isWhiteBg ? 'hover:text-blue-700 after:bg-blue-700' : 'hover:text-white after:bg-white';
 
-  // Determine logo source based on background state
-  const logoSrc = isWhiteBg ? "/images/resoundifyLogo.jpeg" : "/images/resoundifyLogo1.png";
+  // Determine logo source based on screen size
+  const logoSrc = isSmallScreen ? "/images/resoundifyLogo.jpeg" : "/images/resoundifyLogo1.png";
 
   return (
     <header className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300
@@ -139,7 +155,7 @@ const Header = () => {
         <div className="flex items-center space-x-4">
           <Link to="/" className="focus:outline-none">
             <img
-              src={logoSrc}
+              src={logoSrc} // Use the dynamically determined logoSrc
               alt="Resoundify Logo"
               className="h-8 w-auto object-cover rounded-lg cursor-pointer md:h-12 lg:h-12" // Responsive logo sizing
             />
@@ -211,7 +227,7 @@ const Header = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`flex flex-col justify-between fixed top-0 left-0 h-214 w-full bg-gradient-to-bl from-gray-200 via-gray-800 to-white rounded-b-xl bg-opacity-40 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto
+        className={`flex flex-col justify-between fixed top-0 left-0 h-260 w-full bg-gradient-to-bl from-gray-200 via-gray-800 to-white rounded-b-xl bg-opacity-40 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col items-center py-20 text-white`}
       >
         <button
@@ -221,7 +237,7 @@ const Header = () => {
         >
           &times; {/* Close button (X icon) */}
         </button>
-        <nav className="flex flex-col items-center mt-30 space-y-12 text-2xl font-semibold mb-10">
+        <nav className="flex flex-col items-center mt-55 space-y-12 text-2xl font-semibold mb-10">
           <Link to="/" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
             Home
           </Link>
