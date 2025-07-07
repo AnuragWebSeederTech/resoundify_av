@@ -40,7 +40,7 @@ const HeroSection = () => {
   
   return (
     // Primary Font (for entire site): Exo 2 applied here
-    <div className="min-h-[60vh] lg:min-h-[100vh] relative flex flex-col justify-center items-center font-light overflow-hidden text-center font-[Exo_2]">
+    <div className="min-h-[70vh] lg:min-h-[100vh] relative flex flex-col justify-center items-center font-light overflow-hidden text-center font-[Exo_2]">
       {/* Background Video (NO OVERLAY) */}
       <div className="absolute inset-0">
         <video
