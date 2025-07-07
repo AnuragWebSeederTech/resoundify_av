@@ -110,9 +110,9 @@ export default function WhatResoundifyDoes() {
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Cable className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-light lg:font-semibold text-slate-900 mb-4">System Integration</h3>
+                <h3 className="text-2xl font-light lg:font-semibold text-slate-900 mb-4">Future-Ready Technology</h3>
                 <p className="text-slate-700 leading-relaxed mb-6">
-                  Comprehensive integration services connecting diverse audio systems through standardized Ethernet infrastructure.
+                  Products are designed to be compatible with current standards and prepared for future innovations, ensuring long-term relevance.
                 </p>
                 <div className="flex items-center text-slate-600 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
                   <span className="text-sm font-medium">View Integration</span>
