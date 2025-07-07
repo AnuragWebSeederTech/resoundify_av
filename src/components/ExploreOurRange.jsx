@@ -138,7 +138,7 @@ export default function ExploreProductsSection() {
               <div className="space-y-8">
                 <div className="space-y-6">
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-900 leading-tight"> {/* Heading Font (Tilt Neon) applied here */}
-                    {["Unleash the ", "Future", " of Audio Excellence"].map((segment, segIndex) => (
+                    {["Unleash the ", "Future", " of AV Excellence"].map((segment, segIndex) => (
                       <React.Fragment key={segIndex}>
                         {segment.split('').map((char, charIndex) => (
                           <span
@@ -156,10 +156,9 @@ export default function ExploreProductsSection() {
                   </h1>
 
                   <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl transform transition-all duration-500 hover:scale-102 hover:text-slate-700">
-                    Discover our groundbreaking suite of Dante-enabled professional audio equipment.
-                    Engineered for unmatched clarity, unparalleled reliability, and limitless scalability,
+                    Discover our groundbreaking suite of Dante-enabled professional audio and video equipment. Engineered for unmatched clarity, unparalleled reliability, and limitless scalability,
                     <span className="text-purple-500 font-semibold transition-all duration-300 hover:text-purple-600 hover:scale-105 inline-block"> Resoundify</span> empowers visionaries
-                    to craft immersive sonic experiences.
+                    to craft immersive audio-visual experiences.
                   </p>
                 </div>
 

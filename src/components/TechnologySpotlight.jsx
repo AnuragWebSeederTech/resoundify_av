@@ -14,15 +14,15 @@ const DanteTechnologySection = () => {
     {
       icon: <Zap className="w-8 h-8 text-white" />,
       title: "Effortless Setup",
-      description: "Dante simplifies complex audio networks, making installation and configuration straightforward with auto-discovery.",
+      description: "Dante simplifies complex AV networks, making installation and configuration straightforward with auto-discovery for both audio and video devices.",
       color: "from-blue-400 to-cyan-500",
       accent: "blue",
       pattern: "M0,0 Q50,25 100,0 T200,0"
     },
     {
-      icon: <Volume2 className="w-8 h-8 text-white" />,
-      title: "Superior Quality",
-      description: "Experience pristine, uncompressed audio with Dante's high-fidelity transmission and near-zero latency performance.",
+      icon: <Volume2 className="w-8 h-8 text-white" />, // Keeping Volume2 for primary association with 'sound', but description covers both.
+      title: "Superior AV Quality",
+      description: "Experience pristine, uncompressed audio and high-fidelity video transmission with Dante's near-zero latency performance.",
       color: "from-purple-400 to-violet-500",
       accent: "purple",
       pattern: "M0,25 Q50,0 100,25 T200,25"
@@ -30,15 +30,15 @@ const DanteTechnologySection = () => {
     {
       icon: <Expand className="w-8 h-8 text-white" />,
       title: "Unmatched Scalability",
-      description: "Easily expand your audio system without complex re-cabling or compatibility issues, supporting thousands of channels.",
+      description: "Easily expand your audio and video systems without complex re-cabling or compatibility issues, supporting thousands of channels.",
       color: "from-emerald-400 to-green-500",
       accent: "emerald",
       pattern: "M0,12.5 Q50,37.5 100,12.5 T200,12.5"
     },
     {
       icon: <Rocket className="w-8 h-8 text-white" />,
-      title: "Future-Proof",
-      description: "Stay ahead with an adaptable platform ready for tomorrow's audio demands and emerging technologies.",
+      title: "Future-Proof AV",
+      description: "Stay ahead with an adaptable platform ready for tomorrow's audio and video demands, including Dante-enabled cameras and AV-over-IP.",
       color: "from-orange-400 to-amber-500",
       accent: "orange",
       pattern: "M0,37.5 Q50,12.5 100,37.5 T200,37.5"
@@ -208,7 +208,7 @@ useEffect(() => {
                   </div>
                 </div>
                 <p className="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed">
-                  Dante is the leading solution for digital audio networking, delivering uncompressed, multi-channel digital media via standard Ethernet networks with near-zero latency and perfect synchronization. It simplifies system setup, eliminates bulky analog cabling, and provides superior sound quality. <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Resoundify</span> leverages Dante to provide unparalleled flexibility and scalability in audio installations.
+                  Dante is the leading solution for digital audio and video networking, delivering uncompressed, multi-channel digital media via standard Ethernet networks with near-zero latency and perfect synchronization. It simplifies system setup, eliminates bulky analog cabling, and provides superior AV quality. <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Resoundify</span> leverages Dante to provide unparalleled flexibility and scalability in both audio and video installations, including Dante-enabled cameras and AV-over-IP systems.
                 </p>
               </div>
             </div>
