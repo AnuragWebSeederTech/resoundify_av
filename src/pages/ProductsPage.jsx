@@ -2,139 +2,139 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductsHero from '../components/Products/ProductsHero';
-import ProductFilter from '../components/Products/ProductFilter';  
-import ProductCard from '../components/Products/ProductCard';
+import ProductFilter from '../components/Products/ProductFilter';
 import ProductsGrid from '../components/Products/ProductsGrid';
-// import ProductsCTA from '../components/Products/ProductsCTA';
 import JoinCommunitySection from '../components/JoinCommunitySection';
+
+// Import the product data
+import { productsData } from '../data/products';
 
 // Main Products Page component
 const ProductsPage = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [hoveredProduct, setHoveredProduct] = useState(null); // State to manage hovered product for animation
+  const [selectedSeries, setSelectedSeries] = useState(null);
+  const [hoveredProduct, setHoveredProduct] = useState(null);
 
-  // Mock product data for the products page
-  const products = [
-    {
-      id: 1,
-      name: "AcousticSculpt Pro",
-      category: "interfaces",
-      description: "Cutting-edge 32-channel Dante audio interface with AI-powered acoustic shaping.",
-      image: "https://placehold.co/400x300/F0F4F8/3B82F6?text=AcousticSculpt", // Placeholder image
-      features: ["32 Channels", "Ultra-Low Latency", "AI-Enhanced DSP", "Dante Enabled"],
-      status: "In Stock",
-    },
-    {
-      id: 2,
-      name: "SonicBloom Power Amp",
-      category: "amplifiers",
-      description: "High-fidelity modular power amplifier, delivering crystal-clear sound across all frequencies.",
-      image: "https://placehold.co/400x300/F0F4F8/EF4444?text=SonicBloom", // Placeholder image
-      features: ["2000W Output (Modular)", "Adaptive Impedance", "Network Control", "Integrated Safeguards"],
-      status: "In Stock",
-    },
-    {
-      id: 3,
-      name: "EchoSphere Digital Processor",
-      category: "processors",
-      description: "Advanced spatial audio processor, creating immersive soundscapes with precision.",
-      image: "https://placehold.co/400x300/F0F4F8/22C55E?text=EchoSphere", // Placeholder image
-      features: ["3D Audio Engine", "Parametric EQ", "Reverb & Delay", "Touch Interface"],
-      status: "Limited Stock",
-    },
-    {
-      id: 4,
-      name: "QuantumLink 16i",
-      category: "interfaces",
-      description: "16-channel quantum-optimized audio interface for unparalleled signal purity.",
-      image: "https://placehold.co/400x300/F0F4F8/6366F1?text=QuantumLink", // Placeholder image
-      features: ["16 Channels", "Quantum Purity", "Thunderbolt 4", "Modular I/O"],
-      status: "In Stock",
-    },
-    {
-      id: 5,
-      name: "PulseWave Matrix Amp",
-      category: "amplifiers",
-      description: "Versatile 32-zone matrix amplifier with advanced routing capabilities.",
-      image: "https://placehold.co/400x300/F0F4F8/F59E0B?text=PulseWave", // Placeholder image
-      features: ["32 Zones", "Flexible Routing", "Energy Efficient", "Remote Monitoring"],
-      status: "In Stock",
-    },
-    {
-      id: 6,
-      name: "NeuralSound AI Processor",
-      category: "processors",
-      description: "AI-driven audio processor for real-time sound optimization and enhancement.",
-      image: "https://placehold.co/400x300/F0F4F8/EC4899?text=NeuralSound", // Placeholder image
-      features: ["Machine Learning", "Dynamic EQ", "Noise Reduction", "Adaptive Filters"],
-      status: "New Arrival",
-    },
-    {
-      id: 7,
-      name: "SyncFlow HDMI Extender",
-      category: "accessories",
-      description: "Long-range HDMI extender with zero latency and Ethernet passthrough.",
-      image: "https://placehold.co/400x300/F0F4F8/10B981?text=SyncFlow", // Placeholder image
-      features: ["4K@60Hz", "100m Range", "PoE Support", "HDCP 2.2"],
-      status: "In Stock",
-    },
-    {
-      id: 8,
-      name: "VortexMic Pro",
-      category: "microphones",
-      description: "Professional condenser microphone with advanced noise cancellation.",
-      image: "https://placehold.co/400x300/F0F4F8/8B5CF6?text=VortexMic", // Placeholder image
-      features: ["Cardioid Pattern", "Noise Cancellation", "Studio Grade", "USB-C Connectivity"],
-      status: "In Stock",
-    },
-  ];
+  // --- NEW STATE FOR LOAD MORE ---
+  const [productsPerPage, setProductsPerPage] = useState(8); // Number of cards to show initially and load per click
+  const [productsToShow, setProductsToShow] = useState(productsPerPage);
+  // --- END NEW STATE ---
 
-  // Categories array for filtering products
+  // Categories array for filtering products, derived from the new productsData
   const categories = [
     { id: "all", name: "All Products" },
-    { id: "interfaces", name: "Audio Interfaces" },
-    { id: "amplifiers", name: "Amplifiers" },
-    { id: "processors", name: "Processors" },
-    { id: "microphones", name: "Microphones" },
-    { id: "accessories", name: "Accessories" },
+    ...productsData.map(brand => ({
+      id: brand.category,
+      name: brand.name,
+    })),
   ];
 
-  // Filter products based on the active category
-  const filteredProducts =
-    activeCategory === "all"
-      ? products
-      : products.filter((product) => product.category === activeCategory);
+  // Filtered products: if a category is selected, filter brands, then extract their series.
+  // If a series is selected, display its models.
+  const getDisplayProducts = () => {
+    if (selectedSeries) {
+      return selectedSeries.models; // Display models of the selected series
+    }
+
+    if (activeCategory === "all") {
+      // For "All Products", flatten all series from all brands
+      return productsData.flatMap(brand => brand.series || []);
+    } else {
+      // Find the brand corresponding to the active category
+      const selectedBrand = productsData.find(brand => brand.category === activeCategory);
+      return selectedBrand ? selectedBrand.series : []; // Display series of the selected brand
+    }
+  };
+
+  const allFilteredProducts = getDisplayProducts(); // Get all products for the current filter
+  // --- NEW: Slice the array to show only a limited number ---
+  const productsToRender = allFilteredProducts.slice(0, productsToShow);
+  // --- END NEW ---
+
+  // Check if there are more products to load
+  const hasMoreProducts = allFilteredProducts.length > productsToShow;
+
+  // Function to handle loading more products
+  const handleLoadMore = () => {
+    setProductsToShow(prev => prev + productsPerPage);
+  };
+
+  // Function to handle clicking on a series card
+  const handleSeriesClick = (series) => {
+    setSelectedSeries(series);
+    setHoveredProduct(null);
+  };
+
+  // Function to go back to the series view from model view
+  const handleBackToSeries = () => {
+    setSelectedSeries(null);
+    setHoveredProduct(null);
+    setProductsToShow(productsPerPage); // Reset productsToShow when going back to series view
+  };
 
   return (
     <>
-    <Header />
-    <div className="min-h-screen bg-gray-50 font-inter text-gray-800">
-      {/* Products Hero Section */}
-      <ProductsHero />
+      <Header />
+      <div className="min-h-screen bg-gray-50 font-inter text-gray-800">
+        <ProductsHero />
 
-      {/* Main Content Area */}
-      <section className="py-8 lg:py-12 px-6 lg:px-16">
-        <div className="max-w-7xl mx-auto">
-          {/* Product Filter Section */}
-          <ProductFilter
-            categories={categories}
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-          />
+        <section className="py-8 lg:py-12 px-6 lg:px-16">
+          <div className="max-w-7xl mx-auto lg:py-8">
+            <ProductFilter
+              categories={categories}
+              activeCategory={activeCategory}
+              setActiveCategory={(categoryId) => {
+                setActiveCategory(categoryId);
+                setSelectedSeries(null); // Reset selected series when category changes
+                setProductsToShow(productsPerPage); // Reset productsToShow when category changes
+              }}
+            />
 
-          {/* Products Grid Section */}
-          <ProductsGrid
-            products={filteredProducts}
-            hoveredProduct={hoveredProduct}
-            setHoveredProduct={setHoveredProduct}
-          />
+            {selectedSeries && (
+              <div className="mb-8 flex items-center space-x-2" style={{ fontFamily: 'Exo 2' }}>
+                <button
+                  onClick={handleBackToSeries}
+                  className="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+                  Back to Series
+                </button>
+                <span className="text-gray-400">/</span>
+                <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Tilt Neon' }}>
+                  {selectedSeries.name} Models
+                </h2>
+              </div>
+            )}
 
-          {/* Call to Action Section */}
-        </div>
-        <JoinCommunitySection />
-      </section>
-    </div>
-    <Footer />
+            <ProductsGrid
+              products={productsToRender} 
+              hoveredProduct={hoveredProduct}
+              setHoveredProduct={setHoveredProduct}
+              onProductClick={selectedSeries ? null : handleSeriesClick}
+              isShowingModels={!!selectedSeries}
+            />
+
+            {/* --- NEW LOAD MORE BUTTON --- */}
+            {hasMoreProducts && !selectedSeries && ( // Only show if there are more products AND not viewing models
+              <div className="text-center mt-10">
+                <button
+                  onClick={handleLoadMore}
+                  className="px-8 py-3 bg-indigo-600 text-white rounded-full text-lg font-semibold
+                             hover:bg-indigo-700 transition-colors duration-300 shadow-lg"
+                  style={{ fontFamily: 'Exo 2' }} // Apply primary font
+                >
+                  Load More Products
+                  <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">➡️</span>
+                </button>
+              </div>
+            )}
+            {/* --- END NEW LOAD MORE BUTTON --- */}
+
+          </div>
+          <JoinCommunitySection />
+        </section>
+      </div>
+      <Footer />
     </>
   );
 };
