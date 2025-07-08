@@ -227,7 +227,7 @@ const Header = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`flex flex-col justify-between fixed top-0 left-0 h-260 w-full bg-gradient-to-bl from-gray-200 via-gray-800 to-white rounded-b-xl bg-opacity-40 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto
+        className={`flex flex-col justify-between fixed top-0 left-0 h-230 w-full bg-gradient-to-bl from-gray-200 via-gray-800 to-white rounded-b-xl bg-opacity-40 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col items-center py-20 text-white`}
       >
         <button
@@ -237,7 +237,7 @@ const Header = () => {
         >
           &times; {/* Close button (X icon) */}
         </button>
-        <nav className="flex flex-col items-center mt-55 space-y-12 text-2xl font-semibold mb-10">
+        <nav className="flex flex-col items-center mt-35 space-y-12 text-2xl font-semibold mb-10">
           <Link to="/" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
             Home
           </Link>
