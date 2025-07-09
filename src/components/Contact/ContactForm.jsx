@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import emailjs from '@emailjs/browser'; // Import EmailJS library
 
 // Import icons from lucide-react
-import { Phone, Mail, CheckCircle, MapPin, ArrowRight } from 'lucide-react';
+import { Phone, Mail, CheckCircle, MapPin, ArrowRight, XCircle } from 'lucide-react'; // Added XCircle for error messages
 
 // Fix default marker icon issue in Leaflet + Webpack/Vite
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -30,6 +30,7 @@ const ContactForm = () => {
   // State for form submission status
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submissionMessage, setSubmissionMessage] = useState({ type: '', text: '' }); // State for success/error messages
 
   // State for tracking focused input field (for potential styling)
   const [focusedField, setFocusedField] = useState('');
@@ -41,8 +42,16 @@ const ContactForm = () => {
   // Ref for the map container to ensure it's mounted before Leaflet tries to render
   const mapRef = useRef(null);
 
+  // Ref for the form element, needed by EmailJS
+  const formRef = useRef();
+
   // Dubai location coordinates for the map
   const dubaiCoordinates = [25.1972, 55.2744]; // Approximate coordinates for Burj Khalifa area
+
+  // EmailJS configuration (REPLACE WITH YOUR ACTUAL IDs)
+  const EMAILJS_SERVICE_ID = 'service_pdp24wn'; // e.g., 'service_xxxxxxx'
+  const EMAILJS_TEMPLATE_ID = 'template_9ea33d8'; // e.g., 'template_xxxxxxx'
+  const EMAILJS_PUBLIC_KEY = 'LDfDmnFH0NNjK-AGp'; // e.g., 'your_public_key_xxxxxxx'
 
   // Intersection Observer for animations
   useEffect(() => {
@@ -75,7 +84,8 @@ const ContactForm = () => {
   useEffect(() => {
     let map = null;
 
-    if (mapRef.current && !mapRef.current._leaflet_id) { // Check if map is not already initialized
+    // Check if mapRef.current exists and if Leaflet map is not already initialized on it
+    if (mapRef.current && !mapRef.current._leaflet_id) {
       map = L.map(mapRef.current).setView(dubaiCoordinates, 13); // Set view to Dubai
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -99,29 +109,29 @@ const ContactForm = () => {
   // Handles changes in form input fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    console.log(`Input changed: Name=${name}, Value=${value}`); // Debugging line
+    setFormData((prevData) => {
+      const newState = {
+        ...prevData,
+        [name]: value,
+      };
+      console.log('Current formData after update:', newState); // Debugging line
+      return newState;
+    });
   };
 
   // Handles form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default browser form submission
     setIsSubmitting(true); // Set submitting state to true
+    setSubmissionMessage({ type: '', text: '' }); // Clear previous messages
 
     try {
-      // In a real application, you would send formData to your backend here
-      // await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(formData),
-      // });
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate network delay
+      // Send email using EmailJS
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, EMAILJS_PUBLIC_KEY);
 
       setSubmitted(true); // Set submitted to true on success
+      setSubmissionMessage({ type: 'success', text: 'Message sent successfully! We will get back to you within 24 hours.' });
       setFormData({ // Clear form data after successful submission
         name: '',
         email: '',
@@ -130,11 +140,23 @@ const ContactForm = () => {
       });
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Handle error, maybe show an error message to the user
-      alert('Failed to send message. Please try again later.');
+      setSubmissionMessage({ type: 'error', text: 'Failed to send message. Please try again later.' });
+      setSubmitted(false); // Ensure form is visible again if submission failed
     } finally {
       setIsSubmitting(false); // Reset submitting state
     }
+  };
+
+  // Function to reset the form and allow new input
+  const handleSendAnotherMessage = () => {
+    setSubmitted(false);
+    setSubmissionMessage({ type: '', text: '' });
+    setFormData({ // Optionally clear form data again, though it should already be clear from successful submission
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
   };
 
   // Data for contact methods in the sidebar
@@ -172,7 +194,7 @@ const ContactForm = () => {
       <div className="grid lg:grid-cols-3 gap-12">
         {/* Main Contact Form - Modified for General Inquiries */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-2xl h-[700px] p-8 shadow-sm border border-gray-200 flex flex-col"> {/* Corrected h-152 to h-[600px] */}
+          <div className="bg-white rounded-2xl h-[700px] p-8 shadow-sm border border-gray-200 flex flex-col">
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
@@ -185,16 +207,37 @@ const ContactForm = () => {
               </div>
             </div>
 
-            {submitted ? (
+            {/* Submission Message Display */}
+            {submissionMessage.text && (
+              <div className={`p-4 rounded-lg mb-4 flex items-center gap-3 ${
+                submissionMessage.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+              }`}>
+                {submissionMessage.type === 'success' ? (
+                  <CheckCircle className="w-5 h-5" />
+                ) : (
+                  <XCircle className="w-5 h-5" />
+                )}
+                <p className="text-sm font-medium">{submissionMessage.text}</p>
+              </div>
+            )}
+
+            {submitted && submissionMessage.type === 'success' ? (
               <div className="text-center flex-grow flex flex-col justify-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Message Sent!</h3>
-                <p className="text-gray-600">We'll get back to you within 24 hours.</p>
+                <p className="text-gray-600 mb-6">We'll get back to you within 24 hours.</p>
+                <button
+                  onClick={handleSendAnotherMessage}
+                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-200"
+                >
+                  Send Another Message
+                  <ArrowRight className="ml-2 -mr-1 w-5 h-5" />
+                </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4 flex-grow flex flex-col justify-between">
+              <form key={submitted ? 'submitted-form' : 'initial-form'} ref={formRef} onSubmit={handleSubmit} className="space-y-4 flex-grow flex flex-col justify-between">
                 {/* Personal Info */}
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="relative">
@@ -202,7 +245,7 @@ const ContactForm = () => {
                     <input
                       type="text"
                       id="name"
-                      name="name"
+                      name="name" // CHANGED: from user_name to name
                       value={formData.name}
                       onChange={handleInputChange}
                       onFocus={() => setFocusedField('name')}
@@ -218,7 +261,7 @@ const ContactForm = () => {
                     <input
                       type="email"
                       id="email"
-                      name="email"
+                      name="email" // CHANGED: from user_email to email
                       value={formData.email}
                       onChange={handleInputChange}
                       onFocus={() => setFocusedField('email')}
@@ -254,7 +297,7 @@ const ContactForm = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200 resize-none h-40" // Corrected h-50 to h-40 or similar, based on rows
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200 resize-none h-40"
                     placeholder="Please describe your query or concern in detail..."
                     required
                   />
@@ -321,7 +364,7 @@ const ContactForm = () => {
               <p className="text-sm font-medium text-gray-900">Burj Khalifa</p>
               <p className="text-sm text-gray-600">1 Sheikh Mohammed bin Rashid Blvd, Downtown Dubai, Dubai, UAE</p>
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=Burj+Khalifa" // Corrected Google Maps URL for directions
+                href="https://www.google.com/maps/dir/?api=1&destination=Burj+Khalifa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-gray-900 hover:text-gray-700 transition-colors"
