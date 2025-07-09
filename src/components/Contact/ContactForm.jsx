@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import emailjs from '@emailjs/browser'; // Import EmailJS library
+import emailjs from '@emailjs/browser';
 
-// Import icons from lucide-react
-import { Phone, Mail, CheckCircle, MapPin, ArrowRight, XCircle } from 'lucide-react'; // Added XCircle for error messages
+import { Phone, Mail, CheckCircle, MapPin, ArrowRight, XCircle } from 'lucide-react';
 
-// Fix default marker icon issue in Leaflet + Webpack/Vite
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -19,7 +17,6 @@ L.Icon.Default.mergeOptions({
 });
 
 const ContactForm = () => {
-  // State for form data
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,112 +24,59 @@ const ContactForm = () => {
     message: '',
   });
 
-  // State for form submission status
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [submissionMessage, setSubmissionMessage] = useState({ type: '', text: '' }); // State for success/error messages
+  const [submissionMessage, setSubmissionMessage] = useState({ type: '', text: '' });
 
-  // State for tracking focused input field (for potential styling)
-  const [focusedField, setFocusedField] = useState('');
-
-  // Refs for animation/intersection observation
-  const animatedElementsRef = useRef([]); // To hold refs of elements to animate
-  const [animatedElements, setAnimatedElements] = useState(new Set()); // To track which elements are in view
-
-  // Ref for the map container to ensure it's mounted before Leaflet tries to render
   const mapRef = useRef(null);
-
-  // Ref for the form element, needed by EmailJS
   const formRef = useRef();
 
-  // Dubai location coordinates for the map
-  const dubaiCoordinates = [25.1972, 55.2744]; // Approximate coordinates for Burj Khalifa area
+  const dubaiCoordinates = [25.1972, 55.2744];
 
-  // EmailJS configuration (REPLACE WITH YOUR ACTUAL IDs)
-  const EMAILJS_SERVICE_ID = 'service_pdp24wn'; // e.g., 'service_xxxxxxx'
-  const EMAILJS_TEMPLATE_ID = 'template_9ea33d8'; // e.g., 'template_xxxxxxx'
-  const EMAILJS_PUBLIC_KEY = 'LDfDmnFH0NNjK-AGp'; // e.g., 'your_public_key_xxxxxxx'
-
-  // Intersection Observer for animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.dataset.animate);
-            setAnimatedElements((prev) => new Set(prev).add(index));
-            observer.unobserve(entry.target); // Stop observing once animated
-          }
-        });
-      },
-      {
-        threshold: 0.1, // Trigger when 10% of the element is visible
-      }
-    );
-
-    // Observe all elements that have a 'data-animate' attribute
-    animatedElementsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []); // Empty dependency array means this runs once on mount
+  const EMAILJS_SERVICE_ID = 'service_pdp24wn';
+  const EMAILJS_TEMPLATE_ID = 'template_9ea33d8';
+  const EMAILJS_PUBLIC_KEY = 'LDfDmnFH0NNjK-AGp';
 
   // Leaflet Map Initialization
   useEffect(() => {
     let map = null;
 
-    // Check if mapRef.current exists and if Leaflet map is not already initialized on it
     if (mapRef.current && !mapRef.current._leaflet_id) {
-      map = L.map(mapRef.current).setView(dubaiCoordinates, 13); // Set view to Dubai
+      map = L.map(mapRef.current).setView(dubaiCoordinates, 13);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      // Add a marker to the map
       L.marker(dubaiCoordinates).addTo(map)
         .bindPopup('Our office at Burj Khalifa!')
         .openPopup();
     }
 
-    // Cleanup function to remove map when component unmounts
     return () => {
       if (map && mapRef.current && mapRef.current._leaflet_id) {
         map.remove();
       }
     };
-  }, [mapRef]); // Depend on mapRef to ensure it's available
+  }, [mapRef]);
 
-  // Handles changes in form input fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(`Input changed: Name=${name}, Value=${value}`); // Debugging line
-    setFormData((prevData) => {
-      const newState = {
-        ...prevData,
-        [name]: value,
-      };
-      console.log('Current formData after update:', newState); // Debugging line
-      return newState;
-    });
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  // Handles form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default browser form submission
-    setIsSubmitting(true); // Set submitting state to true
-    setSubmissionMessage({ type: '', text: '' }); // Clear previous messages
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmissionMessage({ type: '', text: '' });
 
     try {
-      // Send email using EmailJS
       await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, EMAILJS_PUBLIC_KEY);
 
-      setSubmitted(true); // Set submitted to true on success
       setSubmissionMessage({ type: 'success', text: 'Message sent successfully! We will get back to you within 24 hours.' });
-      setFormData({ // Clear form data after successful submission
+      setFormData({
         name: '',
         email: '',
         subject: '',
@@ -141,17 +85,14 @@ const ContactForm = () => {
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmissionMessage({ type: 'error', text: 'Failed to send message. Please try again later.' });
-      setSubmitted(false); // Ensure form is visible again if submission failed
     } finally {
-      setIsSubmitting(false); // Reset submitting state
+      setIsSubmitting(false);
     }
   };
 
-  // Function to reset the form and allow new input
   const handleSendAnotherMessage = () => {
-    setSubmitted(false);
-    setSubmissionMessage({ type: '', text: '' });
-    setFormData({ // Optionally clear form data again, though it should already be clear from successful submission
+    setSubmissionMessage({ type: '', text: '' }); // Clear message to show the form again
+    setFormData({
       name: '',
       email: '',
       subject: '',
@@ -159,12 +100,11 @@ const ContactForm = () => {
     });
   };
 
-  // Data for contact methods in the sidebar
   const contactMethods = [
     {
       icon: Phone,
-      primary: '+971 4 888 8888', // Updated to a Dubai-like number
-      secondary: 'Mon-Fri 9am-5pm GST', // Updated to GST (Gulf Standard Time)
+      primary: '+971 4 888 8888',
+      secondary: 'Mon-Fri 9am-5pm GST',
     },
     {
       icon: Mail,
@@ -174,25 +114,19 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-8 lg:py-12" style={{ fontFamily: '"Exo 2", sans-serif' }}> {/* Primary Font applied here */}
-      {/* Heading - Moved outside the grid container */}
+    <div className="max-w-7xl mx-auto px-6 py-8 lg:py-12" style={{ fontFamily: '"Exo 2", sans-serif' }}>
       <div
-        className={`text-center mb-12 transition-all duration-1000 ${
-          animatedElements.has(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-        data-animate={0}
-        ref={(el) => (animatedElementsRef.current[0] = el)} // Attach ref for animation
+        className="text-center mb-12"
       >
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-900 mb-6 tracking-tight"
-            style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
-          >
-            Contact <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Our Team</span>
-          </h2>
+          style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+        >
+          Contact <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Our Team</span>
+        </h2>
         <div className="w-72 h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mt-8"></div>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-12">
-        {/* Main Contact Form - Modified for General Inquiries */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-2xl h-[700px] p-8 shadow-sm border border-gray-200 flex flex-col">
             <div className="mb-6">
@@ -207,7 +141,6 @@ const ContactForm = () => {
               </div>
             </div>
 
-            {/* Submission Message Display */}
             {submissionMessage.text && (
               <div className={`p-4 rounded-lg mb-4 flex items-center gap-3 ${
                 submissionMessage.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
@@ -221,7 +154,7 @@ const ContactForm = () => {
               </div>
             )}
 
-            {submitted && submissionMessage.type === 'success' ? (
+            {submissionMessage.type === 'success' ? (
               <div className="text-center flex-grow flex flex-col justify-center">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-white" />
@@ -237,19 +170,16 @@ const ContactForm = () => {
                 </button>
               </div>
             ) : (
-              <form key={submitted ? 'submitted-form' : 'initial-form'} ref={formRef} onSubmit={handleSubmit} className="space-y-4 flex-grow flex flex-col justify-between">
-                {/* Personal Info */}
+              <form key={submissionMessage.type === 'success' ? 'submitted-form' : 'initial-form'} ref={formRef} onSubmit={handleSubmit} className="space-y-4 flex-grow flex flex-col justify-between">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="relative">
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">Full Name</label>
                     <input
                       type="text"
                       id="name"
-                      name="name" // CHANGED: from user_name to name
+                      name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      onFocus={() => setFocusedField('name')}
-                      onBlur={() => setFocusedField('')}
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200"
                       placeholder="Your full name"
                       required
@@ -261,11 +191,9 @@ const ContactForm = () => {
                     <input
                       type="email"
                       id="email"
-                      name="email" // CHANGED: from user_email to email
+                      name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      onFocus={() => setFocusedField('email')}
-                      onBlur={() => setFocusedField('')}
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all duration-200"
                       placeholder="your@email.com"
                       required
@@ -273,7 +201,6 @@ const ContactForm = () => {
                   </div>
                 </div>
 
-                {/* Subject */}
                 <div className="relative">
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1.5">Subject</label>
                   <input
@@ -288,7 +215,6 @@ const ContactForm = () => {
                   />
                 </div>
 
-                {/* Message */}
                 <div className="relative flex-grow">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">Your Message</label>
                   <textarea
@@ -303,7 +229,6 @@ const ContactForm = () => {
                   />
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -326,9 +251,7 @@ const ContactForm = () => {
           </div>
         </div>
 
-        {/* Sidebar */}
         <div className="space-y-8">
-          {/* Contact Information */}
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-6">Get in Touch</h3>
             <div className="space-y-6">
@@ -349,7 +272,6 @@ const ContactForm = () => {
             </div>
           </div>
 
-          {/* Working Map */}
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900">Our Location</h3>
@@ -357,7 +279,6 @@ const ContactForm = () => {
             </div>
 
             <div ref={mapRef} className="mb-4 rounded-lg overflow-hidden border border-gray-200 min-h-[250px] w-full">
-              {/* Added a more robust min-height for the map and full width */}
             </div>
 
             <div className="space-y-2">
