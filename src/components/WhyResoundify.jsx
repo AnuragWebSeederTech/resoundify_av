@@ -49,10 +49,10 @@ const WhyResoundify = () => {
       <div className="w-[90%] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          {/* Main heading for the section. Uses the 'Tilt Neon' font as remembered from user preferences. */}
+          {/* Main heading for the section. */}
           {/* Includes a gradient text effect for 'Resoundify' and subtle text shadows. */}
           <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
-            style={{ fontFamily: 'Tilt Neon, cursive', textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+            style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }} // Only kept textShadow
           >
             Why Choose <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span>
           </h2>

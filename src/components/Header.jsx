@@ -149,7 +149,6 @@ const Header = () => {
       ${isVisible ? 'translate-y-0' : '-translate-y-full'} {/* Controls header slide in/out */}
       ${isWhiteBg ? 'bg-white shadow-md' : 'bg-transparent'} {/* Controls background color */}
       ${textColorClass}`}
-      style={{ fontFamily: 'Exo 2' }} // Apply 'Exo 2' font
     >
       <div className="flex justify-between items-center px-6 lg:px-10 py-4 mx-auto relative">
         <div className="flex items-center space-x-4">

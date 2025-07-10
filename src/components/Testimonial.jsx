@@ -67,14 +67,12 @@ const TestimonialsSection = () => {
 
   return (
     // Main container for the testimonials section.
-    // Sets padding, background color, and applies the primary font 'Exo 2' as remembered from user preferences.
-    <div className="py-5 sm:py-10 bg-white" style={{ fontFamily: '"Exo 2", sans-serif' }}>
+    <div className="py-5 sm:py-10 bg-white">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header for the Testimonials Section */}
         <div className="text-center mb-12 sm:mb-16">
-          {/* Section title. Uses the heading font 'Tilt Neon' as remembered from user preferences. */}
           {/* Includes a gradient text effect for "Audio Professionals" and subtle text shadows. */}
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-900 mb-4 sm:mb-6 tracking-tight"
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-4 sm:mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             Trusted by <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Audio Professionals</span>

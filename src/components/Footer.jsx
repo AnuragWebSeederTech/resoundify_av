@@ -231,7 +231,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-white via-slate-200 to-white text-slate-700 py-12 px-4 sm:px-6 lg:px-8 shadow-sm rounded-t-3xl relative overflow-hidden font-[Exo_2]">
+    <footer className="bg-gradient-to-br from-white via-slate-200 to-white text-slate-700 py-12 px-4 sm:px-6 lg:px-8 shadow-sm rounded-t-3xl relative overflow-hidden">
       {/* Main Footer Content Grid - Now using max-w-7xl for better control and proper padding */}
       <div className="relative z-10 w-[95%] mx-auto py-8 bg-opacity-500 rounded-xl backdrop-blur-sm lg:ml-25 md:ml-0">
         {" "}
@@ -281,8 +281,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             {" "}
             {/* Added text-center for mobile */}
-            {/* Heading Font (for H1, H2): Tilt Neon applied here */}
-            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer font-[Tilt_Neon]">
+            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer">
               Quick Links
               {/* Corrected underline positioning for proper hover effect on all screens */}
               <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
@@ -310,8 +309,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             {" "}
             {/* Added text-center for mobile */}
-            {/* Heading Font (for H1, H2): Tilt Neon applied here */}
-            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer font-[Tilt_Neon]">
+            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer">
               Services
               {/* Corrected underline positioning for proper hover effect on all screens */}
               <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
@@ -339,8 +337,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             {" "}
             {/* Added text-center for mobile */}
-            {/* Heading Font (for H1, H2): Tilt Neon applied here */}
-            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer font-[Tilt_Neon]">
+            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer">
               Get In Touch
               {/* Corrected underline positioning for proper hover effect on all screens */}
               <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>

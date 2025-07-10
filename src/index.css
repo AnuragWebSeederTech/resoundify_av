@@ -1,11 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Tilt+Neon&display=swap');
+/* Update your main CSS file (e.g., src/index.css or src/App.css) */
+
+/* Remove previous font imports and add DM Sans */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 @import "tailwindcss";
 
 html {
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'DM Sans', sans-serif; /* Set DM Sans as the default font for the entire document */
 }
 
+/* Apply DM Sans to headings as well for consistency */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Tilt Neon', cursive;
+  font-family: 'DM Sans', sans-serif;
 }

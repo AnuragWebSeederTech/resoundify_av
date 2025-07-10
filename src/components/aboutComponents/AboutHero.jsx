@@ -7,7 +7,6 @@ const AboutHero = ({ backgroundImage = '/images/aboutbg2.png' }) => {
       className="relative h-[65vh] bg-cover bg-top" 
       style={{ 
         backgroundImage: `url('${backgroundImage}')`,
-        fontFamily: "'Exo 2', sans-serif" // Primary font applied to the section
       }}
     >
       {/* Dark Overlay for text readability over the background image */}
@@ -16,7 +15,6 @@ const AboutHero = ({ backgroundImage = '/images/aboutbg2.png' }) => {
       <div className="relative z-10 flex flex-col items-center justify-center h-full">
         <h1 
           className="text-5xl md:text-6xl lg:text-7xl font-medium text-black mb-6 leading-tight tracking-tight animate-fade-in-up delay-[200ms]"
-          style={{ fontFamily: "'Tilt Neon', sans-serif" }} // Heading font applied here
         >
           ABOUT
         </h1>

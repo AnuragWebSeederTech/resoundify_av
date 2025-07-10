@@ -104,11 +104,10 @@ const MissionVisionValues = () => {
   }, []); // Empty dependency array ensures this runs once on mount
 
   return (
-    // Primary Font (for entire site): Exo 2 applied here
     // Section wrapper with responsive padding and background
     <section 
       ref={sectionRef}
-      className="py-12 px-4 md:py-20 md:px-6 lg:px-20 bg-gradient-to-br from-gray-50 via-slate-50 to-stone-50 min-h-screen relative overflow-hidden font-[Exo_2]"
+      className="py-12 px-4 md:py-20 md:px-6 lg:px-20 bg-gradient-to-br from-gray-50 via-slate-50 to-stone-50 min-h-screen relative overflow-hidden"
     >
       {/* Background Elements - updated to use more blue-ish blurs */}
       {/* These elements create a subtle animated background effect */}
@@ -122,9 +121,7 @@ const MissionVisionValues = () => {
         
         {/* Header Section */}
         <div className="text-center mb-12 md:mb-20">
-          {/* Heading Font (for H1, H2): Tilt Neon applied here */}
-          {/* Main title with responsive font sizes and a gradient effect */}
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-900 mb-4 md:mb-6 tracking-tight"
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-4 md:mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
           >
             Foundation <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">& Future</span>
@@ -139,7 +136,7 @@ const MissionVisionValues = () => {
 
         {/* Mission & Vision Section */}
         {/* Responsive grid for mission and vision cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 font-sans mb-16 md:mb-24 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-16 md:mb-24 max-w-7xl mx-auto">
           {Object.entries(coreData).map(([key, data], index) => (
             <div
               key={key}
@@ -181,17 +178,17 @@ const MissionVisionValues = () => {
                 </div>
 
                 {/* Content */}
-                <p className="text-slate-700 leading-relaxed text-base md:text-lg font-sans mb-6 md:mb-8 flex-grow"> {/* flex-grow to push metrics to bottom */}
+                <p className="text-slate-700 leading-relaxed text-base md:text-lg mb-6 md:mb-8 flex-grow"> {/* flex-grow to push metrics to bottom */}
                   {data.content}
                 </p>
 
                 {/* Highlight */}
                 <div className="mb-4 md:mb-6">
-                  <span className="text-xs md:text-sm font-sans text-slate-500 uppercase tracking-wider">
+                  <span className="text-xs md:text-sm text-slate-500 uppercase tracking-wider">
                     Key Focus
                   </span>
                   {/* Highlight tag with dynamic gradient color */}
-                  <div className={`inline-block ml-2 md:ml-4 px-3 py-1 md:px-4 md:py-2 bg-gradient-to-r ${data.color} text-white text-xs md:text-sm font-sans rounded-full`}>
+                  <div className={`inline-block ml-2 md:ml-4 px-3 py-1 md:px-4 md:py-2 bg-gradient-to-r ${data.color} text-white text-xs md:text-sm rounded-full`}>
                     {data.highlight}
                   </div>
                 </div>
@@ -201,7 +198,7 @@ const MissionVisionValues = () => {
                   {data.metrics.map((metric, idx) => (
                     <span
                       key={idx}
-                      className="px-2 py-1 md:px-3 md:py-1 bg-slate-100 text-slate-700 text-xs md:text-sm font-sans rounded-full border border-slate-200"
+                      className="px-2 py-1 md:px-3 md:py-1 bg-slate-100 text-slate-700 text-xs md:text-sm rounded-full border border-slate-200"
                     >
                       {metric}
                     </span>
@@ -215,15 +212,14 @@ const MissionVisionValues = () => {
         {/* Values Section */}
         <div className="mb-12 md:mb-16">
           <div className="text-center mb-12 md:mb-16">
-            {/* Heading Font (for H1, H2): Tilt Neon applied here */}
             {/* Core Values main title */}
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-900 mb-4 md:mb-6 tracking-tight"
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl  text-slate-900 mb-4 md:mb-6 tracking-tight"
             style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
             >
               Core <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Values</span>
             </h2>
             {/* Sub-headline for values section */}
-            <p className="text-base md:text-lg text-slate-600 font-sans max-w-3xl mx-auto px-2">
+            <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto px-2">
               Six fundamental principles that guide our operations, innovation, and commitment to excellence.
             </p>
             {/* Decorative separator line */}
@@ -263,7 +259,7 @@ const MissionVisionValues = () => {
                   </div>
 
                   {/* Description */}
-                  <p className="text-slate-700 leading-relaxed text-sm md:text-base mb-4 md:mb-6 font-sans flex-grow"> {/* flex-grow to push principles/impact to bottom */}
+                  <p className="text-slate-700 leading-relaxed text-sm md:text-base mb-4 md:mb-6 flex-grow"> {/* flex-grow to push principles/impact to bottom */}
                     {value.description}
                   </p>
 
@@ -288,7 +284,7 @@ const MissionVisionValues = () => {
                       Impact
                     </span>
                     {/* Impact tag with dynamic gradient color */}
-                    <div className={`inline-block ml-2 md:ml-3 px-2 py-0.5 md:px-3 md:py-1 bg-gradient-to-r ${value.color} text-white text-xs font-sans rounded-full`}>
+                    <div className={`inline-block ml-2 md:ml-3 px-2 py-0.5 md:px-3 md:py-1 bg-gradient-to-r ${value.color} text-white text-xs rounded-full`}>
                       {value.impact}
                     </div>
                   </div>
@@ -304,7 +300,7 @@ const MissionVisionValues = () => {
             <h4 className="text-xl md:text-2xl font-medium text-slate-900 mb-3 md:mb-4">
               Driven by Purpose, Delivered with Excellence
             </h4>
-            <p className="text-sm md:text-base text-slate-600 font-sans">
+            <p className="text-sm md:text-base text-slate-600">
               These principles guide every decision, every innovation, and every partnership 
               as we continue to shape the future of professional audio-visual technology.
             </p>

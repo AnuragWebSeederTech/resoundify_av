@@ -31,7 +31,7 @@ const ProductFilter = ({ categories, activeCategory, setActiveCategory }) => {
 
   return (
     // Main container for the product filter, applying the primary font
-    <div className="mb-12 px-4 font-[Exo_2]">
+    <div className="mb-12 px-4">
       {/* Horizontal filter buttons for medium and larger screens */}
       <div className="hidden md:flex flex-wrap justify-center gap-4 py-3 bg-white rounded-full shadow-lg max-w-7xl mx-auto">
         {categories.map((category) => (

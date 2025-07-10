@@ -6,7 +6,7 @@ const GradientButton = memo(({ text = 'Button', href = '#' }) => {
   return (
     <a
       href={href}
-      className="relative inline-flex items-center justify-center px-8 py-5 w-60 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-black group" // Original gradient background, white text
+      className="relative inline-flex items-center justify-center px-8 py-5 w-65 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-black group" // Original gradient background, white text
     >
       {/* Button text */}
       <span className="block z-10 relative group-hover:text-white transition-colors duration-300"> {/* Text becomes black on hover */}
@@ -112,7 +112,7 @@ export default function ExploreProductsSection() {
       `}</style>
 
       <section
-        className="relative lg:h-[75vh] bg-white overflow-hidden flex items-center justify-center font-['Exo_2'] py-8 lg:py-0" // Primary Font (Exo 2) applied here
+        className="relative lg:h-[75vh] bg-white overflow-hidden flex items-center justify-center py-8 lg:py-0" 
       >
         {/* Background gradient patch that follows cursor */}
         <div
@@ -136,9 +136,9 @@ export default function ExploreProductsSection() {
 
               {/* Content Side with Static Text and Initial Animation */}
               <div className="space-y-8">
-                <div className="space-y-6">
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-900 leading-tight"> {/* Heading Font (Tilt Neon) applied here */}
-                    {["Unleash the ", "Future", " of AV Excellence"].map((segment, segIndex) => (
+                <div className="space-y-6 px-0 lg:px-3">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight"> 
+                    {["Unleash the ", "Future of ", "AV", " Excellence"].map((segment, segIndex) => (
                       <React.Fragment key={segIndex}>
                         {segment.split('').map((char, charIndex) => (
                           <span
@@ -164,7 +164,7 @@ export default function ExploreProductsSection() {
 
                 {/* Integrated GradientButton */}
                 <div className="pt-6">
-                  <GradientButton text="Explore Our Products" href="#" />
+                  <GradientButton text="Explore Our Products" href="/products" />
                 </div>
               </div>
 

@@ -7,7 +7,7 @@ const GradientButton = memo(({ text = 'Button', href = '#', className = '' }) =>
     <a
       href={href}
       // Combine base classes with any additional classes passed via the className prop
-      className={`relative inline-flex items-center justify-center px-8 py-5 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden font-inherit text-royalblue-500 group ${className}`}
+      className={`relative inline-flex items-center justify-center px-8 py-5 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden text-royalblue-500 group ${className}`}
     >
       {/* Button text, changes color on hover */}
       <span className="block z-10 group-hover:text-black transition-colors duration-300">
@@ -40,7 +40,6 @@ const ResoundifyHeroSection = () => {
                  bg-gradient-to-b from-black via-slate-900 to-black
                  flex flex-col md:flex-row items-center justify-center md:justify-between gap-8
                  min-h-[400px] md:h-96 overflow-hidden rounded-xl shadow-2xl m-2"
-      style={{ fontFamily: '"Exo 2", sans-serif' }} // Primary Font applied here
     >
       {/* Left side: Image container with responsive sizing */}
       {/* Added `flex-shrink-0` to prevent unintended shrinking */}
@@ -65,9 +64,8 @@ const ResoundifyHeroSection = () => {
       {/* Responsive alignment: text-center on mobile, text-left on larger screens */}
       {/* Added `flex-shrink-0` to prevent unintended shrinking */}
       <div className="w-full md:w-1/2 relative z-20 flex flex-col items-center md:items-start justify-center p-4 md:p-8 text-white text-center md:text-left flex-shrink-0">
-        {/* Heading with responsive font sizes and custom font */}
         <h2
-          className="text-4xl sm:text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-200 mb-4 sm:mb-6 tracking-tight"
+          className="text-4xl sm:text-5xl lg:text-6xl text-slate-200 mb-4 sm:mb-6 tracking-tight"
           style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
         >
           Resoundify{' '}

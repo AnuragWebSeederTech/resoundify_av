@@ -10,7 +10,7 @@ const ProductsHero = () => {
     >
       <div className="absolute inset-0 bg-black/20 z-0"></div>
       <div className="relative z-10 text-center text-white px-6">  
-        <h1 className="text-5xl md:text-7xl text-black font-medium mb-6 leading-tight tracking-tighter font-[Tilt_Neon] mt-15">
+        <h1 className="text-5xl md:text-7xl text-black font-medium mb-6 leading-tight tracking-tighter mt-15">
           Explore Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Innovation</span>
         </h1>
         <p className="text-xl md:text-xl opacity-90 max-w-3xl mx-auto leading-relaxed mb-10">

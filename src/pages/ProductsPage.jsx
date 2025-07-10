@@ -75,7 +75,7 @@ const ProductsPage = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gray-50 font-inter text-gray-800">
+      <div className="min-h-screen bg-gray-50 text-gray-800">
         <ProductsHero />
 
         <section className="py-8 lg:py-12 px-6 lg:px-16">
@@ -91,7 +91,7 @@ const ProductsPage = () => {
             />
 
             {selectedSeries && (
-              <div className="mb-8 flex items-center space-x-2" style={{ fontFamily: 'Exo 2' }}>
+              <div className="mb-8 flex items-center space-x-2" >
                 <button
                   onClick={handleBackToSeries}
                   className="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center"
@@ -100,7 +100,7 @@ const ProductsPage = () => {
                   Back to Series
                 </button>
                 <span className="text-gray-400">/</span>
-                <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Tilt Neon' }}>
+                <h2 className="text-2xl font-bold text-gray-900">
                   {selectedSeries.name} Models
                 </h2>
               </div>
@@ -121,7 +121,6 @@ const ProductsPage = () => {
                   onClick={handleLoadMore}
                   className="px-8 py-3 bg-indigo-600 text-white rounded-full text-lg font-semibold
                              hover:bg-indigo-700 transition-colors duration-300 shadow-lg"
-                  style={{ fontFamily: 'Exo 2' }} // Apply primary font
                 >
                   Load More Products
                   <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">➡️</span>

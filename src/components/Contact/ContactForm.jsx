@@ -114,11 +114,11 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-8 lg:py-12" style={{ fontFamily: '"Exo 2", sans-serif' }}>
+    <div className="max-w-7xl mx-auto px-6 py-8 lg:py-12">
       <div
         className="text-center mb-12"
       >
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-[Tilt_Neon] text-slate-900 mb-6 tracking-tight"
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
           style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
         >
           Contact <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Our Team</span>

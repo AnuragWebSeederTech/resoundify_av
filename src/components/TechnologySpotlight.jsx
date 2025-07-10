@@ -166,8 +166,7 @@ useEffect(() => {
   };
 }, [activePoint]); // Added activePoint to re-evaluate observer if it changes manually
   return (
-    // Apply Primary Font (Exo 2) to the entire section
-    <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 font-['Exo_2'] py-8 lg:py-12">
+    <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 py-8 lg:py-12">
       {/* Spacer to reserve space for the fixed header, preventing content jump */}
 
       {/* Header section, dynamically positioned */}
@@ -177,9 +176,8 @@ useEffect(() => {
       >
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="relative">
-            {/* Apply Heading Font (Tilt Neon) to the h2 */}
             <h2
-              className="text-4xl sm:text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-900 mb-6 tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
               style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
             >
               Technology <span className="font-semibold bg-gradient-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">Spotlight</span>
@@ -288,8 +286,7 @@ useEffect(() => {
         {/* Revolutionary Video Section (will scroll into view after the points) */}
         <div ref={videoSectionRef} className="mt-12 pb-5 ">
           <div className="text-center mb-16">
-            {/* Apply Heading Font (Tilt Neon) to the h3 */}
-            <h3 className="text-4xl sm:text-5xl lg:text-6xl font-['Tilt_Neon'] text-slate-800 mb-6">
+            <h3 className="text-4xl sm:text-5xl lg:text-6xl  text-slate-800 mb-6">
               Experience the <span className="bg-gradient-to-r from-slate-800 to-slate-400 font-semibold bg-clip-text text-transparent">Revolution</span>
             </h3>
             <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">

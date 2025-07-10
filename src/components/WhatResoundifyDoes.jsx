@@ -45,8 +45,7 @@ export default function WhatResoundifyDoes() {
   console.log("WhatResoundifyDoes Rendered");
   return (
     // Main section container with a light background using specified colors
-    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-8 lg:py-12 overflow-hidden"
-    style={{ fontFamily: 'Exo 2, sans-serif' }}> {/* Apply Exo 2 directly */}
+    <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-cyan-50 to-white py-8 lg:py-12 overflow-hidden">
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
@@ -59,7 +58,7 @@ export default function WhatResoundifyDoes() {
         >
           {/* Heading Font (for H1, H2): Tilt Neon applied here */}
           <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-6 tracking-tight"
-            style={{ fontFamily: 'Tilt Neon, cursive', textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }}
+            style={{ textShadow: '0 0 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.05)' }} // Only kept textShadow
           >
             What <span className="font-semibold bg-gradient-to-br from-slate-800 to-slate-400 bg-clip-text text-transparent">Resoundify</span> Delivers
           </h2>
@@ -85,7 +84,7 @@ export default function WhatResoundifyDoes() {
                 <div className="w-16 h-16 bg-gradient-to-br from-slate-900 to-slate-700 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Network className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-light lg:font-semibold  text-slate-900 mb-4">Network Architecture</h3>
+                <h3 className="text-2xl font-light lg:font-semibold text-slate-900 mb-4">Network Architecture</h3>
                 <p className="text-slate-700 leading-relaxed mb-6">
                   Enterprise-grade Dante network design and implementation for seamless audio distribution across complex infrastructures.
                 </p>
