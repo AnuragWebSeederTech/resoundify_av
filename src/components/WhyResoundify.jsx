@@ -16,7 +16,7 @@ const WhyResoundify = () => {
       id: 2,
       title: "Crystal-Clear Audio",
       description: "Delivers crystal-clear, professional-grade audio. Guarantees noise-free transmission over IP networks.",
-      image: "/images/Why1.png", // Image related to clear audio/sound waves
+      image: "/images/Whyy.png", // Image related to clear audio/sound waves
       imagePosition: "bottom" // Image will be at the bottom of the feature card
     },
     {
