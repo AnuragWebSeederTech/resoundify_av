@@ -284,9 +284,9 @@ useEffect(() => {
         </div>
 
         {/* Revolutionary Video Section (will scroll into view after the points) */}
-        <div ref={videoSectionRef} className="mt-12 pb-5 ">
+        <div ref={videoSectionRef} className="mt-12 pb-5">
           <div className="text-center mb-16">
-            <h3 className="text-4xl sm:text-5xl lg:text-6xl  text-slate-800 mb-6">
+            <h3 className="text-4xl sm:text-5xl lg:text-6xl text-slate-800 mb-6">
               Experience the <span className="bg-gradient-to-r from-slate-800 to-slate-400 font-semibold bg-clip-text text-transparent">Revolution</span>
             </h3>
             <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
@@ -298,26 +298,14 @@ useEffect(() => {
           <div className="relative max-w-6xl mx-auto group">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-purple-300 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
-              <div className="relative aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl overflow-hidden border border-slate-300 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"></div>
-                <div className="absolute inset-0 flex items-center justify-center group cursor-pointer">
-                  <div className="relative">
-                    <div className="w-24 h-24 bg-white bg-opacity-90 backdrop-blur-xl rounded-full flex items-center justify-center border border-slate-300 group-hover:bg-opacity-100 transition-all duration-500 shadow-2xl">
-                      <Play className="w-12 h-12 text-slate-800 ml-1" />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-purple-300 rounded-full blur-xl opacity-30 animate-pulse"></div>
-                  </div>
-                </div>
-                <div className="absolute bottom-8 left-8 right-8">
-                  <h4 className="text-2xl font-bold text-white mb-2">Dante Technology: The Future is Now</h4>
-                  <p className="text-gray-200">Discover how revolutionary audio networking transforms professional installations</p>
-                </div>
-                <div className="absolute top-8 right-8 text-blue-300">
-                  <div className="flex items-center gap-2 text-sm font-mono">
-                    <Circle className="w-2 h-2 animate-pulse" />
-                    <span>LIVE DEMO</span>
-                  </div>
-                </div>
+              <div className="relative aspect-video bg-slate-900 rounded-3xl overflow-hidden border border-slate-300 shadow-2xl">
+                <iframe
+                  src="https://www.youtube.com/embed/W__BdFBNCQg"
+                  title="Dante Technology: The Future is Now"
+                  className="w-full h-full rounded-3xl"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
               </div>
             </div>
           </div>

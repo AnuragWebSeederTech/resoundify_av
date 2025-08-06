@@ -16,21 +16,21 @@ const WhyResoundify = () => {
       id: 2,
       title: "Crystal-Clear Audio",
       description: "Delivers crystal-clear, professional-grade audio. Guarantees noise-free transmission over IP networks.",
-      image: "/images/WhyR2.jpg", // Image related to clear audio/sound waves
+      image: "/images/Why1.png", // Image related to clear audio/sound waves
       imagePosition: "bottom" // Image will be at the bottom of the feature card
     },
     {
       id: 3,
       title: "Ultra-Low Latency",
       description: "Achieve ultra-low latency for all real-time applications. Optimized for minimal delay and rapid response.",
-      image: "/images/WhyR3.png", // Image related to speed/real-time
+      image: "/images/Why3.png", // Image related to speed/real-time
       imagePosition: "top" // Image will be at the top of the feature card
     },
     {
       id: 4,
       title: "Highly Scalable",
       description: "Highly scalable for any enterprise AV system. Supports hundreds of channels with flexible architecture.",
-      image: "/images/WhyR4.png", // Image related to scalability/growth
+      image: "/images/Why4a.png", // Image related to scalability/growth
       imagePosition: "bottom" // Image will be at the bottom of the feature card
     }
   ];

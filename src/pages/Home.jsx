@@ -21,7 +21,7 @@ export default function Home() {
       <TechnologySpotlight />
       <ExploreOurRange />
       <Testimonial />
-      <Clients />
+      {/* <Clients /> */}
       <JoinCommunitySection />
       <ContactForm />
       <Footer />

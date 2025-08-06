@@ -172,9 +172,9 @@ const Header = () => {
           <Link to="/products" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full ${hoverColorClass}`}>
             Products
           </Link>
-          <Link to="/projects" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full ${hoverColorClass}`}>
+          {/* <Link to="/projects" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full ${hoverColorClass}`}>
             Projects
-          </Link>
+          </Link> */}
           <Link to="/contact" className={`relative hover:scale-125 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:transition-all after:duration-300 hover:after:w-full ${hoverColorClass}`}>
             Contact
           </Link>
@@ -246,9 +246,9 @@ const Header = () => {
           <Link to="/products" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
             Products
           </Link>
-          <Link to="/projects" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
+          {/* <Link to="/projects" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
             Projects
-          </Link>
+          </Link> */}
           <Link to="/contact" className="hover:text-blue-400 transition duration-300" onClick={() => setIsMobileMenuOpen(false)}>
             Contact
           </Link>

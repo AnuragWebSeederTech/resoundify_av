@@ -88,10 +88,10 @@ export default function WhatResoundifyDoes() {
                 <p className="text-slate-700 leading-relaxed mb-6">
                   Enterprise-grade Dante network design and implementation for seamless audio distribution across complex infrastructures.
                 </p>
-                <div className="flex items-center text-slate-600 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
+                {/* <div className="flex items-center text-slate-600 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
                   <span className="text-sm font-medium">Explore Architecture</span>
                   <ArrowRight className="w-4 h-4 ml-2" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -113,10 +113,10 @@ export default function WhatResoundifyDoes() {
                 <p className="text-slate-700 leading-relaxed mb-6">
                   Products are designed to be compatible with current standards and prepared for future innovations, ensuring long-term relevance.
                 </p>
-                <div className="flex items-center text-slate-600 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
+                {/* <div className="flex items-center text-slate-600 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
                   <span className="text-sm font-medium">View Integration</span>
                   <ArrowRight className="w-4 h-4 ml-2" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -138,10 +138,10 @@ export default function WhatResoundifyDoes() {
                 <p className="text-slate-700 leading-relaxed mb-6">
                   Continuous system monitoring having proactive maintenance and expert technical support ensuring optimal performance.
                 </p>
-                <div className="flex items-center text-slate-600 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
+                {/* <div className="flex items-center text-slate-600 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-2">
                   <span className="text-sm font-medium">Support Details</span>
                   <ArrowRight className="w-4 h-4 ml-2" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -162,7 +162,7 @@ export default function ExploreProductsSection() {
                   {/* Main animated heading. */}
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight"> 
                     {/* Iterates through text segments to apply character-by-character animation. */}
-                    {["Unleash the ", "Future of ", "AV", " Excellence"].map((segment, segIndex) => (
+                    {["Crafting Immersive ", "AV Experiences, ", "Today"].map((segment, segIndex) => (
                       <React.Fragment key={segIndex}>
                         {segment.split('').map((char, charIndex) => (
                           <span

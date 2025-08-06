@@ -6,6 +6,8 @@ const GradientButton = memo(({ text = 'Button', href = '#', className = '' }) =>
   return (
     <a
       href={href}
+      target="_blank"
+      rel="noopener noreferrer" 
       // Combine base classes with any additional classes passed via the className prop
       className={`relative inline-flex items-center justify-center px-8 py-5 text-lg font-medium bg-transparent border-none cursor-pointer user-select-none overflow-hidden text-royalblue-500 group ${className}`}
     >
@@ -79,7 +81,7 @@ const ResoundifyHeroSection = () => {
           products, connect with our team, and experience the future of AV with Resoundify.
         </p>
         {/* Integrated GradientButton with responsive width */}
-        <GradientButton text="Join Now!" href="#" className="w-full md:max-w-[240px] max-w-[160px] md:max-h-[100px] max-h-[50px] md:mt-0 mt-5" />
+        <GradientButton text="Join Now!" href="https://www.linkedin.com/" className="w-full md:max-w-[240px] max-w-[160px] md:max-h-[100px] max-h-[50px] md:mt-0 mt-5" />
       </div>
 
       {/* Navigation Arrows (Optional, if this is part of a carousel) */}

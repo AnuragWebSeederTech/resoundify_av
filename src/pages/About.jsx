@@ -17,7 +17,7 @@ const About = () => {
       <MissionVisionValues />
       {/* <OurHistory /> */}
       <Testimonial />
-      <Clients />
+      {/* <Clients /> */}
       <Footer />
 
     
