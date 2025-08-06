@@ -428,7 +428,7 @@ export const productsData = [
         id: "series_auto_switching_tracking_camera",
         name: "Auto switching auto Tracking camera",
         description: "Integrated 4K HD tracking cameras for teaching and presentation environments.",
-        image: "https://placehold.co/400x300/F0F4F8/22C55E?text=Auto+Tracking",
+        image: "/images/Products/video_conferencing/PTZ12.webp",
         features: ["4K Resolution", "AI Tracking", "Dual Lens Systems", "PoE"],
         status: "In Stock",
         type: "series",
@@ -447,8 +447,7 @@ export const productsData = [
             name: "VC-AUTO4", 
             description: "4K Integrated HD teaching tracking camera Student Close -up Lens: f=7.37mm, Horizontal FOV: 43° Teacher Close -up Lens: f=12.49mm, Horizontal FOV: 26° Student Panoramic lens: f=2.2mm, Horizontal FOV: 110° Teacher Panoramic lens: f=7.37mm, Horizontal FOV: 43° 4K@30fps/25fps RJ45, USB3.0, Line In, Line out, POE", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=VC-AUTO4+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=VC-AUTO4+2"
+              "/images/Products/video_conferencing/PTZ12.webp"
             ] 
           },
         ],
@@ -457,7 +456,7 @@ export const productsData = [
         id: "series_all_in_one_bar_solution",
         name: "All in one BAR solution",
         description: "Integrated 4K UHD USB cameras with built-in mics and speakers for seamless collaboration.",
-        image: "https://placehold.co/400x300/F0F4F8/22C55E?text=All-in-One+Bar",
+        image: "/images/Products/video_conferencing/ST-200.png",
         features: ["4K UHD Camera", "Built-in Mic & Speaker", "AI Tracking", "Bluetooth & WiFi"],
         status: "In Stock",
         type: "series",
@@ -467,8 +466,7 @@ export const productsData = [
             name: "ST-200", 
             description: "4K UHD ALL-IN-ONE USB Camera 1/1.8'', CMOS, 20M, 4K@30fps Built-in microphone and speaker, 114° (DFOV) ,105° (HFOV) , 5x zoom, MPT + EPTZ, speaker tracking, smart gallery, USB3.0(Type C), HDMI, RJ45, Bluetooth 5.0, WIFI6, BYOM", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=ST-200+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=ST-200+2"
+              "/images/Products/video_conferencing/ST-200.png",
             ] 
           },
           { 
@@ -476,8 +474,7 @@ export const productsData = [
             name: "RC-700", 
             description: "Digital Array Microphone, Built-in 7 microphone arrays, with 360° pickup range, 8-meter distance voice pickup, USB2.0 and 3.5 mm audio interface, USB DC5V", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=RC-700+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=RC-700+2"
+              "/images/Products/video_conferencing/RC-700.png",
             ] 
           },
           { 
@@ -485,8 +482,7 @@ export const productsData = [
             name: "RC-702", 
             description: "POE Cascading Omnidirectional Digital Array Microphone Built-in 6 mics to form a circular array microphone", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=RC-702+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=RC-702+2"
+              "/images/Products/video_conferencing/RC-702.png",
             ] 
           },
         ],
@@ -495,7 +491,7 @@ export const productsData = [
         id: "series_video_codec_control_panel",
         name: "Video codec and control panel",
         description: "Smart video conferencing endpoints and intuitive control panels for enhanced meeting experiences.",
-        image: "https://placehold.co/400x300/F0F4F8/22C55E?text=Video+Codec",
+        image: "/images/Products/video_conferencing/RC-VCE.png",
         features: ["4K Endpoint", "Android OS", "Touch Control"],
         status: "In Stock",
         type: "series",
@@ -505,8 +501,7 @@ export const productsData = [
             name: "RC-VCE", 
             description: "4K Smart Detachable Video Conferencing Endpoint Android 12", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=RC-VCE+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=RC-VCE+2"
+              "/images/Products/video_conferencing/RC-VCE.png",
             ] 
           },
           { 
@@ -524,7 +519,7 @@ export const productsData = [
         id: "series_av_processor",
         name: "AV Processor",
         description: "Video Conference AV bridges for seamless integration of audio-visual systems.",
-        image: "https://placehold.co/400x300/F0F4F8/22C55E?text=AV+Processor",
+        image: "/images/Products/video_conferencing/AV_PROCESSOR.png",
         features: ["Video Bridging", "Conference Integration"],
         status: "In Stock",
         type: "series",
@@ -534,8 +529,7 @@ export const productsData = [
             name: "RC-AVB", 
             description: "Video Conference AV Bridge", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=RC-AVB+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=RC-AVB+2"
+              "/images/Products/video_conferencing/AV_PROCESSOR.png",
             ] 
           },
         ],
@@ -612,7 +606,7 @@ export const productsData = [
         id: "series_dante_wall_plate",
         name: "Dante wall plate",
         description: "Versatile Dante wall plates featuring XLR, RCA, 3.5mm, and Bluetooth connectivity.",
-        image: "https://placehold.co/400x300/F0F4F8/8B5CF6?text=Dante+WP",
+        image: "/images/Products/dante_wall_plates/XLRIO.webp",
         features: ["XLR I/O", "Bluetooth", "RCA/TRS", "PoE"],
         status: "In Stock",
         type: "series",
@@ -656,8 +650,7 @@ export const productsData = [
             name: "DW 25 - LRBT iO", 
             description: "Dante wall plate with 4-channel XLR Audio Input Panel , 48V phantom power supply.", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=DW+25+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=DW+25+2"
+              "/images/Products/dante_wall_plates/DW25-LRBT.png",
             ] 
           },
           { 
@@ -665,8 +658,7 @@ export const productsData = [
             name: "DW 26 - LRBT iO", 
             description: "Dante Audio Input Panel Bluetooth 5.0, RCA stereo left and right channel interface (white)", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=DW+26+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=DW+26+2"
+              "/images/Products/dante_wall_plates/DW26-LRBT.png",
             ] 
           },
           { 
@@ -674,8 +666,7 @@ export const productsData = [
             name: "DW 27 - LRBT iO", 
             description: "Dante Audio Input Panel Bluetooth 5.0, RCA stereo left and right channel interface (black)", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=DW+27+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=DW+27+2"
+              "/images/Products/dante_wall_plates/DW27-LRBT.png",
             ] 
           },
           { 
@@ -683,8 +674,7 @@ export const productsData = [
             name: "DW 28 - LRBT iO", 
             description: "Dante Audio Input Panel Bluetooth 5.0, RCA stereo left and right channel interface (rose gold)", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=DW+28+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=DW+28+2"
+              "/images/Products/dante_wall_plates/DW28-LRBT.png",
             ] 
           },
         ],
@@ -693,7 +683,7 @@ export const productsData = [
         id: "series_customizable_floor_box",
         name: "Customizable Floor box",
         description: "Tailored floor boxes for flexible and discreet cable management and connectivity.",
-        image: "https://placehold.co/400x300/F0F4F8/8B5CF6?text=Custom+Floor",
+        image: "/images/Products/dante_wall_plates/floor_box.png",
         features: ["Customizable Ports", "Durable Design"],
         status: "Available to Order",
         type: "series",
@@ -703,8 +693,7 @@ export const productsData = [
             name: "Custom", 
             description: "Customizable Floor box", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=Custom+Floor+Box+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=Custom+Floor+Box+2"
+              "/images/Products/dante_wall_plates/floor_box.png",
             ] 
           },
         ],
@@ -713,7 +702,7 @@ export const productsData = [
         id: "series_customizable_wall_plate",
         name: "Customizable wall plate",
         description: "Design your own wall plates for unique installation needs and aesthetic preferences.",
-        image: "https://placehold.co/400x300/F0F4F8/8B5CF6?text=Custom+Wall",
+        image: "/images/Products/dante_wall_plates/wall_plate.png",
         features: ["Configurable Layout", "Various Finishes"],
         status: "Available to Order",
         type: "series",
@@ -723,8 +712,7 @@ export const productsData = [
             name: "Custom", 
             description: "Customizable wall plate", 
             images: [
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=Custom+Wall+Plate+1",
-              "https://placehold.co/400x300/E5E7EB/6B7280?text=Custom+Wall+Plate+2"
+              "/images/Products/dante_wall_plates/wall_plate.png",
             ] 
           },
         ],
