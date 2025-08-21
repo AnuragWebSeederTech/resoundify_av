@@ -17,9 +17,9 @@ export default function Home() {
       <Header />
       <HeroSection />
       <WhatResoundifyDoes />
-      <WhyResoundify />
+      {/* <WhyResoundify /> */}
       <TechnologySpotlight />
-      <ExploreOurRange />
+      {/* <ExploreOurRange /> */}
       <Testimonial />
       {/* <Clients /> */}
       <JoinCommunitySection />

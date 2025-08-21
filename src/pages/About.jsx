@@ -7,6 +7,7 @@ import MissionVisionValues from '../components/aboutComponents/MissionVisionValu
 import Footer from '../components/Footer';
 import Clients from '../components/Clients';
 import Testimonial from '../components/Testimonial';
+import ContactForm from '../components/Contact/ContactForm';
 
 const About = () => {
   return (
@@ -18,6 +19,7 @@ const About = () => {
       {/* <OurHistory /> */}
       <Testimonial />
       {/* <Clients /> */}
+      <ContactForm />
       <Footer />
 
     

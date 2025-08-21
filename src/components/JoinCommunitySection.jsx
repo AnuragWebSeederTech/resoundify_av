@@ -38,7 +38,7 @@ const ResoundifyHeroSection = () => {
     // `justify-center` for mobile (columns) and `md:justify-between` for desktop (rows).
     // Added `gap-8` for spacing between sections on both stacked and row layouts.
     <div
-      className="relative w-[95%] max-w-screen-xl mx-auto my-8
+      className="relative w-[95%] mx-auto my-8
                  bg-gradient-to-b from-black via-slate-900 to-black
                  flex flex-col md:flex-row items-center justify-center md:justify-between gap-8
                  min-h-[400px] md:h-96 overflow-hidden rounded-xl shadow-2xl m-2"

@@ -8,7 +8,7 @@ const Modal = ({ title, content, isOpen, onClose, onAccept }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/20 flex items-center justify-center z-50 p-4"> {/* Changed to bg-black/20 */}
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"> {/* Changed to bg-black/50 for a darker overlay */}
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative p-6">
         <button
           onClick={onClose}
@@ -231,7 +231,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-white via-slate-200 to-white text-slate-700 py-12 px-4 sm:px-6 lg:px-8 shadow-sm rounded-t-3xl relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-slate-900 via-gray-950 to-black text-slate-300 py-12 px-4 sm:px-6 lg:px-8 shadow-sm rounded-t-3xl relative overflow-hidden">
       {/* Main Footer Content Grid - Now using max-w-7xl for better control and proper padding */}
       <div className="relative z-10 w-[95%] mx-auto py-8 bg-opacity-500 rounded-xl backdrop-blur-sm lg:ml-25 md:ml-0">
         {" "}
@@ -247,15 +247,15 @@ const Footer = () => {
               <div className="mb-6">
                 {/* Resoundify logo text with stronger visual impact using a slightly deeper slate for contrast */}
                 <img
-                  src="/images/resoundifyLogo1.png"
+                  src="/images/resoundifyLogo2.png"
                   alt="Resoundify Logo"
                   className="w-80 h-16 rounded-3xl mx-auto md:mx-0 mb-2"
                 />
-                <p className="text-slate-700 font-semibold text-xl leading-tight">
+                <p className="text-slate-400 font-semibold text-xl leading-tight">
                   Where Sound Meets Innovation
                 </p>
               </div>
-              <p className="text-slate-600 leading-relaxed text-sm mb-8 max-w-md mx-auto md:mx-0 opacity-95">
+              <p className="text-slate-500 leading-relaxed text-sm mb-8 max-w-md mx-auto md:mx-0 opacity-95">
                 {companyDescription}
               </p>
             </div>
@@ -265,13 +265,13 @@ const Footer = () => {
               {/* Added pt-4 for mobile spacing, md:pt-0 to remove on larger screens */}
               <button
                 onClick={() => setShowPrivacyModal(true)}
-                className="text-slate-500 transition-colors duration-300 text-sm font-medium hover:text-slate-800"
+                className="text-emerald-500 transition-colors duration-300 text-sm font-medium hover:text-emerald-300"
               >
                 Privacy Policy
               </button>
               <button
                 onClick={() => setShowTermsModal(true)}
-                className="text-slate-500 transition-colors duration-300 text-sm font-medium hover:text-slate-800"
+                className="text-emerald-500 transition-colors duration-300 text-sm font-medium hover:text-emerald-300"
               >
                 Terms of Use
               </button>
@@ -281,10 +281,10 @@ const Footer = () => {
           <div className="text-center md:text-left">
             {" "}
             {/* Added text-center for mobile */}
-            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer">
+            <h4 className="text-xl font-bold text-white mb-6 relative group cursor-pointer">
               Quick Links
               {/* Corrected underline positioning for proper hover effect on all screens */}
-              <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
+              <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
             </h4>
             <ul className="space-y-4">
               {[
@@ -297,7 +297,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-slate-600 transition-colors duration-300 text-base relative inline-block group hover:text-slate-700"
+                    className="text-slate-400 transition-colors duration-300 text-base relative inline-block group hover:text-emerald-400"
                   >
                     {link.name}
                   </Link>
@@ -309,10 +309,10 @@ const Footer = () => {
           <div className="text-center md:text-left">
             {" "}
             {/* Added text-center for mobile */}
-            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer">
+            <h4 className="text-xl font-bold text-white mb-6 relative group cursor-pointer">
               Services
               {/* Corrected underline positioning for proper hover effect on all screens */}
-              <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
+              <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
             </h4>
             <ul className="space-y-4">
               {[
@@ -325,7 +325,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={service.path}
-                    className="text-slate-600 transition-colors duration-300 text-base relative inline-block group hover:text-slate-700"
+                    className="text-slate-400 transition-colors duration-300 text-base relative inline-block group hover:text-emerald-400"
                   >
                     {service.name}
                   </Link>
@@ -337,10 +337,10 @@ const Footer = () => {
           <div className="text-center md:text-left">
             {" "}
             {/* Added text-center for mobile */}
-            <h4 className="text-xl font-bold text-slate-900 mb-6 relative group cursor-pointer">
+            <h4 className="text-xl font-bold text-white mb-6 relative group cursor-pointer">
               Get In Touch
               {/* Corrected underline positioning for proper hover effect on all screens */}
-              <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
+              <span className="absolute left-1/2 md:left-0 -bottom-2 w-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full transform -translate-x-1/2 md:translate-x-0 transition-all duration-300 group-hover:w-12"></span>
             </h4>
             <div className="space-y-5">
               {/* Email */}
@@ -348,7 +348,7 @@ const Footer = () => {
                 <p className="text-slate-500 text-sm mb-0.5">Email Us</p>
                 <a
                   href="mailto:resoundify@example.com"
-                  className="text-slate-700 font-semibold transition-colors duration-300 text-base underline-offset-2 hover:text-slate-900 hover:underline"
+                  className="text-emerald-400 font-semibold transition-colors duration-300 text-base underline-offset-2 hover:text-emerald-500 hover:underline"
                 >
                   resoundify@example.com
                 </a>
@@ -358,7 +358,7 @@ const Footer = () => {
                 <p className="text-slate-500 text-sm mb-0.5">Call Us</p>
                 <a
                   href="tel:+919876543210"
-                  className="text-slate-700 font-semibold transition-colors duration-300 text-base underline-offset-2 hover:text-slate-900 hover:underline"
+                  className="text-emerald-400 font-semibold transition-colors duration-300 text-base underline-offset-2 hover:text-emerald-500 hover:underline"
                 >
                   +91-9876543210
                 </a>
@@ -366,7 +366,7 @@ const Footer = () => {
               {/* Location */}
               <div>
                 <p className="text-slate-500 text-sm mb-0.5">Visit Us</p>
-                <p className="text-slate-800 text-base leading-relaxed font-medium">
+                <p className="text-white text-base leading-relaxed font-medium">
                   Innovation Hub, Tech City
                   <br />
                   India
@@ -375,7 +375,7 @@ const Footer = () => {
               {/* Business Hours */}
               <div>
                 <p className="text-slate-500 text-sm mb-0.5">Business Hours</p>
-                <p className="text-slate-800 text-base font-medium">
+                <p className="text-white text-base font-medium">
                   Mon - Fri: 9AM - 6PM
                   <br />
                   Sat: 10AM - 4PM
@@ -386,7 +386,7 @@ const Footer = () => {
         </div>
       </div>
       {/* Footer Bottom Bar (Copyright & "Designed By") */}
-      <div className="mt-10 pt-2 relative z-10 border-t-2 border-slate-300">
+      <div className="mt-10 pt-2 relative z-10 border-t-2 border-slate-700">
         <div className="max-w-7xl mx-auto px-4 py-0 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           {/* Left section: Copyright */}
           <div className="text-center md:text-left">
@@ -396,15 +396,15 @@ const Footer = () => {
           </div>
           {/* Right section: Designed & Developed by */}
           <div className="text-center md:text-right">
-            <p className="text-slate-400 text-sm">
+            <p className="text-slate-600 text-sm">
               Designed & developed by
-              <span className="text-slate-700 cursor-pointer transition-colors duration-300 ml-1 font-semibold hover:text-slate-900">
+              <span className="text-emerald-400 cursor-pointer transition-colors duration-300 ml-1 font-semibold hover:text-emerald-500">
                 <a
                   href="https://www.webseeder.in"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  WebSeeder Technologies 
+                  WebSeeder Technologies
                 </a>
               </span>
             </p>

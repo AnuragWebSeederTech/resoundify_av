@@ -9,6 +9,7 @@ import ModelDetailModal from '../components/Products/ModelDetailModal';
 
 // Import the product data
 import { productsData } from '../data/products';
+import ContactForm from '../components/Contact/ContactForm';
 
 const ProductsPage = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -19,6 +20,10 @@ const ProductsPage = () => {
   const [productsPerPage] = useState(12);
   const [productsToShow, setProductsToShow] = useState(12);
 
+  // New state for search functionality
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
   // Categories array for filtering products
   const categories = [
     { id: "all", name: "All Products" },
@@ -28,18 +33,44 @@ const ProductsPage = () => {
     })),
   ];
 
-  // Get filtered products based on current selection
-  const getDisplayProducts = () => {
-    if (selectedSeries) {
-      return selectedSeries.models;
+  // Function to toggle the search bar visibility
+  const handleSearchClick = () => {
+    setIsSearchVisible(!isSearchVisible);
+    // Clear search term when hiding the search bar
+    if (isSearchVisible) {
+      setSearchTerm('');
     }
+  };
 
-    if (activeCategory === "all") {
-      return productsData.flatMap(brand => brand.series || []);
+  // Function to handle changes in the search input
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    setProductsToShow(productsPerPage); // Reset products to show on new search
+  };
+
+  // Get filtered products based on current selection and search term
+  const getDisplayProducts = () => {
+    let products = [];
+
+    if (selectedSeries) {
+      products = selectedSeries.models;
+    } else if (activeCategory === "all") {
+      products = productsData.flatMap(brand => brand.series || []);
     } else {
       const selectedBrand = productsData.find(brand => brand.category === activeCategory);
-      return selectedBrand ? selectedBrand.series : [];
+      products = selectedBrand ? selectedBrand.series : [];
     }
+
+    // Apply search filter if a search term exists
+    if (searchTerm) {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      return products.filter(product =>
+        product.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+        (product.description && product.description.toLowerCase().includes(lowerCaseSearchTerm))
+      );
+    }
+
+    return products;
   };
 
   const allFilteredProducts = getDisplayProducts();
@@ -80,6 +111,8 @@ const ProductsPage = () => {
     setShowDetailView(false);
     setSelectedModel(null);
     setHoveredProduct(null);
+    setSearchTerm(''); // Clear search term on category change
+    setIsSearchVisible(false); // Hide search bar on category change
   };
 
   return (
@@ -180,56 +213,76 @@ const ProductsPage = () => {
               
               {/* Left Sidebar - Filter */}
               <div className="lg:col-span-2 xl:col-span-2">
-                <ProductFilter
-                  categories={categories}
-                  activeCategory={activeCategory}
-                  setActiveCategory={handleCategoryChange}
-                />
+                <div className="lg:sticky lg:top-8 lg:z-10"> {/* Added sticky, top-8, and z-10 for desktop */}
+                  <ProductFilter
+                    categories={categories}
+                    activeCategory={activeCategory}
+                    setActiveCategory={handleCategoryChange}
+                  />
+                </div>
               </div>
 
               {/* Main Content Area */}
               <div className="lg:col-span-5 xl:col-span-6">
-                
-                {/* Results Header */}
                 {!showDetailView && (
-                  <div className="mb-8">
-                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 lg:p-8">
+                  <div className="lg:top-8 lg:z-10 mb-8">
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:p-8">
                       <div className="flex items-center justify-between flex-wrap gap-6">
+
+                        {/* Left-aligned content: Shows the filtered category name */}
                         <div className="flex items-center space-x-4">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse" />
-                            <span className="font-semibold text-gray-900">
-                              {productsToRender.length} of {allFilteredProducts.length}
-                            </span>
-                            <span className="text-gray-600">
-                              {selectedSeries ? 'models' : 'products'} shown
+                          <div className="flex items-center space-x-2 text-gray-800 px-3 py-1 rounded-full text-lg">
+                            <span className="font-semibold">
+                              {categories.find(cat => cat.id === activeCategory)?.name}
                             </span>
                           </div>
-                          
-                          {activeCategory !== "all" && (
-                            <div className="hidden sm:flex items-center space-x-2 bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">
-                              <span>Filtered by:</span>
-                              <span className="font-semibold">
-                                {categories.find(cat => cat.id === activeCategory)?.name}
-                              </span>
-                            </div>
-                          )}
                         </div>
 
-                        {/* View Toggle */}
-                        <div className="flex items-center space-x-2">
-                          <button className="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                            </svg>
-                          </button>
-                          <button className="p-2 text-gray-400 hover:text-gray-600 rounded-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                        {/* Right-aligned content: The search button */}
+                        <div className="flex items-center">
+                          <button
+                            onClick={handleSearchClick} // Attach the onClick handler
+                            className="flex items-center justify-center p-2 rounded-lg text-gray-600 transition-colors duration-200 hover:bg-gray-200"
+                          >
+                            {/* Search Icon (inline SVG for portability) */}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <circle cx="11" cy="11" r="8"></circle>
+                              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
                           </button>
                         </div>
+
                       </div>
+                      
+                      {/* Search Input Field - conditionally rendered based on isSearchVisible state */}
+                      {isSearchVisible && (
+                        <div className="mt-6">
+                          <div className="relative">
+                            <input
+                              type="text"
+                              placeholder="Search products..."
+                              value={searchTerm}
+                              onChange={handleSearchChange}
+                              className="w-full pl-10 pr-4 py-2 text-gray-800 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition-all duration-300"
+                            />
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                              </svg>
+                            </div>
+                            <button
+                              onClick={handleSearchClick} // Close button
+                              className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400 hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
                     </div>
                   </div>
                 )}
@@ -309,13 +362,9 @@ const ProductsPage = () => {
             </div>
           </div>
         </div>
-
-        {/* Community Section */}
-        <div className="mt-24">
-          <JoinCommunitySection />
-        </div>
       </main>
-
+      <JoinCommunitySection />
+      <ContactForm />
       <Footer />
     </>
   );

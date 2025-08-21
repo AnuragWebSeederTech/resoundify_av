@@ -143,14 +143,6 @@ const ProductFilter = ({ categories, activeCategory, setActiveCategory }) => {
                 </div>
               </div>
             )}
-
-            {/* Filter Stats */}
-            <div className="mt-8 pt-8 border-t border-gray-200">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-gray-900">{categories.length - 1}</div>
-                <div className="text-base text-gray-600 mt-1">Categories Available</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

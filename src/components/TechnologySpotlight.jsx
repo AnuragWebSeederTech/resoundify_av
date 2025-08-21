@@ -284,7 +284,7 @@ useEffect(() => {
         </div>
 
         {/* Revolutionary Video Section (will scroll into view after the points) */}
-        <div ref={videoSectionRef} className="mt-12 pb-5">
+        {/* <div ref={videoSectionRef} className="mt-12 pb-5">
           <div className="text-center mb-16">
             <h3 className="text-4xl sm:text-5xl lg:text-6xl text-slate-800 mb-6">
               Experience the <span className="bg-gradient-to-r from-slate-800 to-slate-400 font-semibold bg-clip-text text-transparent">Revolution</span>
@@ -309,7 +309,7 @@ useEffect(() => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <style>{`

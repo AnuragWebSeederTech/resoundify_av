@@ -148,7 +148,7 @@ export default function WhatResoundifyDoes() {
         </div>
 
         {/* Performance Metrics Section */}
-        <div
+        {/* <div
           className={`group relative transition-all duration-1000 delay-[300ms] ${ // Adjusted delay for a smoother flow
             animatedElements.has(4) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
@@ -193,7 +193,7 @@ export default function WhatResoundifyDoes() {
               );
             })}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
